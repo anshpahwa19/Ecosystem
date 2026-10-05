@@ -11,6 +11,8 @@ ASSETS = {
     "{{IMG_EDITION}}": "assets/the-abu-dhabi-edition.png",
     "{{IMG_MARRIOTT}}": "assets/marriott.png",
     "{{IMG_MARK}}": "assets/bloom-multiverse-mark.png",
+    # Bloom wordmark lifted from the Bloom Universal screen as an alpha mask (slides 07a-07f)
+    "{{IMG_WORDMARK}}": "assets/bloom-wordmark-alpha.png",
     # Product screens supplied by the Bloom team (slides 05a-05c)
     "{{SHOT_HOME}}": "screens/home-buying-platform.webp",
     "{{SHOT_PARTNERS}}": "screens/bloom-partners-requests.webp",

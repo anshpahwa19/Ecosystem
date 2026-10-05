@@ -20,6 +20,8 @@
   --ease: cubic-bezier(.16, 1, .3, 1);
   --spring: cubic-bezier(.34, 1.4, .64, 1);
   --shot-home: url({{SHOT_HOME}}); --shot-partners: url({{SHOT_PARTNERS}}); --shot-multiverse: url({{SHOT_MULTIVERSE}}); --shot-masterplan: url({{SHOT_MASTERPLAN}}); --shot-universal: url({{SHOT_UNIVERSAL}});
+  --wordmark: url({{IMG_WORDMARK}});
+  --b-paper: #F6F4F0; --b-line: #E6E1D8; --b-body: #535464;
 }
 
 /* ---------- base ---------- */
@@ -333,6 +335,331 @@ body[data-tone="ink"] { background: var(--ink); }
 .quote p { font-family: var(--serif); font-style: italic; font-weight: 600; font-size: 27px; line-height: 1.15; letter-spacing: -.01em; }
 .quote cite { display: block; margin-top: 10px; font-style: normal; font-size: 14px; color: var(--muted); }
 
+/* ---------- 07a-07f one Bloom language (concepts) ---------- */
+/* The genuine Bloom wordmark (lifted from the Bloom Universal screen) as a recolourable mask. */
+.wm { display: inline-block; flex: none; aspect-ratio: 254 / 79; background: var(--wm-c, #932A23); -webkit-mask: var(--wordmark) center / contain no-repeat; mask: var(--wordmark) center / contain no-repeat; }
+/* concept screen kit: every mock is drawn at 874 x 454 and scaled into a .fit box */
+.fit { position: relative; display: block; width: 100%; aspect-ratio: 874 / 454; overflow: hidden; }
+.fit > .scr { position: absolute; left: 0; top: 0; transform: scale(var(--k, 1)); transform-origin: 0 0; }
+.scr { position: relative; width: 874px; height: 454px; overflow: hidden; background: var(--b-paper); color: var(--ink); font-family: var(--sans); text-align: left; line-height: 1.3; }
+.scr__nav { display: flex; align-items: center; gap: 14px; height: 48px; padding: 0 8px 0 20px; border-radius: 24px; background: #FFFFFF; box-shadow: 0 0 0 1px var(--b-line), 0 10px 24px -16px rgba(11, 22, 64, .35); white-space: nowrap; }
+.scr > .scr__nav { position: absolute; z-index: 2; left: 24px; right: 24px; top: 16px; }
+.scr__brand { display: inline-flex; border-radius: 6px; }
+.scr__nav .wm { width: 62px; }
+.scr__desc { padding-left: 14px; border-left: 1px solid var(--b-line); font-size: 12px; font-weight: 800; letter-spacing: .16em; text-transform: uppercase; color: var(--acc); transition: color .5s; }
+.scr__links { display: flex; gap: 18px; margin-left: 8px; font-size: 12.5px; font-weight: 600; color: var(--b-body); }
+.scr__links b { font-weight: 700; color: var(--ink); }
+.scr__end { display: flex; align-items: center; gap: 8px; margin-left: auto; }
+.scr__kbd { display: inline-flex; align-items: center; gap: 7px; height: 32px; padding: 0 12px; border-radius: 16px; background: var(--b-paper); font-size: 11.5px; font-weight: 600; color: var(--b-body); }
+.scr__kbd .ico { width: 13px; height: 13px; }
+.scr__kbd b { margin-left: 4px; font-size: 10.5px; font-weight: 800; }
+.scr__icb { display: grid; place-items: center; width: 32px; height: 32px; border-radius: 50%; background: var(--b-paper); color: var(--ink); }
+.scr__icb .ico { width: 15px; height: 15px; }
+.scr__av { display: grid; place-items: center; width: 32px; height: 32px; border-radius: 50%; background: var(--acc-soft); color: var(--acc); font-size: 11px; font-weight: 800; transition: background-color .5s, color .5s; }
+.scr__lang { display: inline-flex; align-items: center; height: 32px; padding: 0 4px; border-radius: 16px; background: var(--b-paper); font-size: 11.5px; font-weight: 700; }
+.scr__lang span { padding: 0 10px; }
+.scr__lang b { display: grid; place-items: center; height: 24px; padding: 0 10px; border-radius: 12px; background: var(--ink); color: #FFFFFF; font-weight: 700; }
+.scr__body { position: absolute; left: 24px; right: 24px; top: 84px; bottom: 20px; }
+.scr__eyebrow { display: block; font-size: 10.5px; font-weight: 800; letter-spacing: .16em; text-transform: uppercase; color: var(--acc); transition: color .5s; }
+.scr__h { font-size: 34px; font-weight: 650; line-height: 1.04; letter-spacing: -.03em; color: var(--ink); }
+.scr__h--s { font-size: 26px; }
+.scr__h--l { font-size: 42px; }
+.scr__h em { font-family: var(--serif); font-style: italic; font-weight: 600; font-size: 1.14em; letter-spacing: -.01em; color: var(--red); }
+.scr__p { font-size: 13.5px; line-height: 1.5; color: var(--b-body); }
+.scr__btns { display: flex; gap: 8px; }
+.scr__btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; height: 36px; padding: 0 18px; border-radius: 18px; background: var(--red); color: #FFFFFF; font-size: 12.5px; font-weight: 700; white-space: nowrap; box-shadow: 0 8px 18px -10px rgba(182, 0, 14, .7); }
+.scr__btn--o { background: #FFFFFF; color: var(--ink); box-shadow: inset 0 0 0 1px var(--b-line); }
+.scr__btn .ico { width: 14px; height: 14px; }
+.scr__card { border-radius: 14px; background: #FFFFFF; box-shadow: 0 0 0 1px var(--b-line); }
+.scr__chip { display: inline-flex; align-items: center; gap: 6px; height: 24px; padding: 0 10px; border-radius: 12px; background: #FFFFFF; box-shadow: inset 0 0 0 1px var(--b-line); font-size: 11px; font-weight: 700; color: var(--b-body); white-space: nowrap; }
+.scr__chip--red { background: var(--red-soft); box-shadow: none; color: var(--red); }
+.scr__chip--acc { background: var(--acc-soft); box-shadow: none; color: var(--acc); transition: background-color .5s, color .5s; }
+.scr__chip .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--acc); }
+.scr__ic { display: grid; place-items: center; width: 38px; height: 38px; flex: none; border-radius: 12px; background: var(--acc-soft); color: var(--acc); transition: background-color .5s, color .5s; }
+.scr__ic .ico { width: 18px; height: 18px; }
+.scr__link { display: inline-flex; align-items: center; gap: 6px; font-size: 12px; font-weight: 700; color: var(--red); white-space: nowrap; }
+.scr__link .ico { width: 13px; height: 13px; }
+.scr__chev { width: 15px; height: 15px; margin-left: auto; color: var(--b-body); }
+.scr .crop { border-radius: 0; box-shadow: none; }
+.is-swap [data-s] { animation: rise .45s var(--ease) both; }
+/* spec screen (07a) */
+.sp { display: grid; grid-template-columns: 372px minmax(0, 1fr); column-gap: 26px; height: 100%; }
+.sp__text { display: flex; flex-direction: column; gap: 14px; padding: 22px 0 6px 10px; }
+.sp__text .scr__btns { margin-top: auto; }
+.sp__panel { display: grid; grid-template-rows: repeat(3, minmax(0, 1fr)); gap: 10px; padding: 14px; border-radius: 18px; background: var(--acc-soft); transition: background-color .5s; }
+.sp__row { display: flex; align-items: center; gap: 14px; padding: 0 16px; }
+.sp__row > div { display: grid; gap: 3px; min-width: 0; flex: 1; }
+.sp__row b { font-size: 14px; font-weight: 700; }
+.sp__row small { overflow: hidden; font-size: 12px; color: var(--b-body); white-space: nowrap; text-overflow: ellipsis; }
+/* Universal concept */
+.mu { display: grid; grid-template-columns: 300px 502px; column-gap: 24px; height: 100%; }
+.mu__text { display: flex; flex-direction: column; gap: 14px; padding: 22px 0 6px 10px; }
+.mu__text .scr__btns { margin-top: auto; }
+.mu__grid { display: grid; grid-template-columns: repeat(3, 160px); grid-template-rows: repeat(2, 170px); gap: 10px 11px; }
+.mu__tile { position: relative; overflow: hidden; border-radius: 14px; }
+.mu__tile::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 60%; background: linear-gradient(rgba(11, 22, 64, 0), rgba(11, 22, 64, .78)); }
+.mu__tile b { position: absolute; z-index: 1; left: 12px; right: 12px; bottom: 11px; display: flex; align-items: center; justify-content: space-between; color: #FFFFFF; font-size: 12px; font-weight: 700; }
+.mu__tile b .ico { width: 13px; height: 13px; }
+/* master plan concept */
+.mm__map { position: absolute; left: 0; top: 0; }
+.mm__panel { position: absolute; left: 24px; top: 84px; bottom: 20px; width: 272px; display: flex; flex-direction: column; gap: 10px; padding: 18px 18px 16px; box-shadow: 0 0 0 1px var(--b-line), 0 24px 40px -24px rgba(11, 22, 64, .55); }
+.mm__k { margin-top: 6px; font-size: 11px; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; color: var(--b-body); }
+.mm__f { display: grid; }
+.mm__f li { display: flex; align-items: center; gap: 10px; height: 30px; border-top: 1px solid var(--b-line); font-size: 12.5px; font-weight: 600; }
+.mm__f li b { margin-left: auto; font-size: 12px; font-weight: 700; color: var(--b-body); font-variant-numeric: tabular-nums; }
+.mm__cb { display: grid; place-items: center; width: 16px; height: 16px; border-radius: 5px; box-shadow: inset 0 0 0 1.5px var(--b-line); }
+.mm__cb.is-on { background: var(--acc); box-shadow: none; color: #FFFFFF; }
+.mm__cb .ico { width: 11px; height: 11px; stroke-width: 3; }
+.mm__panel .scr__btn { margin-top: auto; }
+.mm__panel .scr__link { align-self: center; }
+.mm__zoom { position: absolute; right: 24px; bottom: 20px; display: grid; border-radius: 18px; background: #FFFFFF; box-shadow: 0 0 0 1px var(--b-line); }
+.mm__zoom i { display: grid; place-items: center; width: 36px; height: 34px; }
+.mm__zoom i + i { border-top: 1px solid var(--b-line); }
+.mm__zoom .ico { width: 15px; height: 15px; }
+/* home-buying concept */
+.mh { display: grid; grid-template-columns: 512px minmax(0, 1fr); column-gap: 24px; height: 100%; }
+.mh__main { display: flex; flex-direction: column; gap: 14px; }
+.mh__photo { position: relative; overflow: hidden; border-radius: 16px; }
+.mh__prog { position: absolute; left: 8px; top: 10px; display: grid; gap: 6px; width: 184px; padding: 9px 12px 10px; border-radius: 12px; background: rgba(255, 255, 255, .94); font-size: 11.5px; font-weight: 700; }
+.mh__bar { height: 5px; border-radius: 3px; background: var(--acc-soft); }
+.mh__bar i { display: block; height: 100%; width: var(--v); border-radius: 3px; background: var(--acc); }
+.mh__row { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; }
+.mh__row > div:first-child { display: grid; gap: 5px; }
+.mh__row .scr__p { font-size: 12.5px; }
+.mh__specs { display: flex; gap: 6px; padding-top: 4px; }
+.mh__side { display: flex; flex-direction: column; gap: 10px; padding: 18px; }
+.mh__price { font-size: 26px; font-weight: 650; letter-spacing: -.02em; }
+.mh__price small { margin-right: 6px; font-size: 13px; font-weight: 700; color: var(--b-body); letter-spacing: 0; }
+.mh__loan { display: flex; align-items: center; gap: 10px; padding: 10px 12px; border-radius: 12px; background: var(--acc-soft); color: var(--acc); font-size: 11.5px; font-weight: 700; line-height: 1.35; }
+.mh__loan .ico { width: 16px; height: 16px; }
+.mh__side .scr__p { margin-top: auto; font-size: 12px; }
+.mh__side .scr__btn { width: 100%; }
+/* Partners concept */
+.mp { display: flex; flex-direction: column; gap: 14px; height: 100%; }
+.mp__head { display: flex; align-items: flex-end; justify-content: space-between; padding: 6px 4px 0 10px; }
+.mp__head > div { display: grid; gap: 8px; }
+.mp__head .scr__p { max-width: 260px; text-align: right; }
+.mp__cards { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
+.mp__card { display: grid; gap: 6px; align-content: start; padding: 14px 16px; }
+.mp__card .scr__ic { margin-bottom: 4px; }
+.mp__card b { font-size: 14px; font-weight: 700; }
+.mp__card small { font-size: 11.5px; line-height: 1.4; color: var(--b-body); }
+.mp__card .scr__link { margin-top: 4px; }
+.mp__list { display: grid; grid-template-columns: 1fr 1fr; gap: 8px 12px; }
+.mp__li { display: flex; align-items: center; gap: 12px; height: 44px; padding: 0 14px 0 8px; font-size: 12.5px; font-weight: 700; }
+.mp__li .scr__ic { width: 30px; height: 30px; border-radius: 9px; }
+.mp__li .scr__ic .ico { width: 15px; height: 15px; }
+/* Multiverse concept */
+.mv { display: grid; grid-template-columns: 410px minmax(0, 1fr); column-gap: 16px; height: 100%; }
+.mv__text { display: flex; flex-direction: column; align-items: flex-start; gap: 14px; padding: 14px 0 6px 10px; }
+.mv__chips { display: flex; gap: 6px; }
+.mv__text .scr__btns { margin-top: auto; }
+.mv__orbit { position: relative; }
+.mv__ring { position: absolute; left: 50%; top: 50%; border-radius: 50%; transform: translate(-50%, -50%); }
+.mv__ring--1 { width: 318px; height: 318px; box-shadow: inset 0 0 0 1px var(--acc); opacity: .35; }
+.mv__ring--2 { width: 212px; height: 212px; border: 1.5px dashed var(--acc); opacity: .35; }
+.mv__core { position: absolute; left: 50%; top: 50%; display: grid; place-content: center; justify-items: center; width: 118px; height: 118px; border-radius: 50%; background: #FFFFFF; transform: translate(-50%, -50%); box-shadow: 0 0 0 10px var(--acc-soft), 0 24px 40px -20px rgba(11, 22, 64, .45); }
+.mv__core b { font-size: 40px; font-weight: 650; line-height: 1; letter-spacing: -.03em; color: var(--acc); }
+.mv__core small { margin-top: 4px; font-size: 10.5px; font-weight: 700; color: var(--b-body); }
+.mv__node { position: absolute; display: flex; align-items: center; gap: 8px; height: 34px; padding: 0 12px 0 14px; border-radius: 17px; background: #FFFFFF; transform: translate(-50%, -50%); box-shadow: 0 0 0 1px var(--b-line), 0 12px 22px -14px rgba(11, 22, 64, .5); font-size: 12px; font-weight: 700; white-space: nowrap; }
+.mv__node i { display: grid; place-items: center; min-width: 22px; height: 20px; padding: 0 6px; border-radius: 10px; background: var(--red); color: #FFFFFF; font-size: 10.5px; font-style: normal; font-weight: 800; }
+/* 07a tuner */
+.tune { display: grid; grid-template-columns: 404px minmax(0, 1fr); column-gap: 48px; height: 100%; }
+.rules { display: flex; flex-direction: column; gap: 22px; }
+.rules__h { display: flex; align-items: center; gap: 10px; margin-bottom: 8px; font-size: 12px; font-weight: 800; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); }
+.rules__h::before { content: ""; width: 9px; height: 9px; border-radius: 50%; background: var(--red); }
+.rules__set--tuned .rules__h::before { background: none; box-shadow: inset 0 0 0 2px var(--acc); transition: box-shadow .5s; }
+.rules li { display: grid; grid-template-columns: 86px minmax(0, 1fr); align-items: center; min-height: 42px; border-top: 1px solid var(--rule); font-size: 16.5px; font-weight: 600; cursor: default; transition: color .25s; }
+.rules li:hover, .rules li:focus-visible { color: var(--red); }
+.g { display: flex; align-items: center; height: 24px; }
+.g .wm { width: 54px; }
+.g__pill { width: 40px; height: 16px; border-radius: 8px; background: var(--red); }
+.g__aa { font-size: 19px; font-weight: 650; letter-spacing: -.02em; color: var(--ink); }
+.g__aa em { margin-left: 1px; font-family: var(--serif); font-size: 1.2em; font-weight: 600; color: var(--red); }
+.g__sq { width: 30px; height: 20px; border-radius: 7px; box-shadow: inset 0 0 0 1.5px var(--ink); }
+.g__q { font-family: var(--serif); font-size: 40px; font-style: italic; font-weight: 600; line-height: 1; padding-top: 16px; color: var(--red); }
+.g__desc { font-size: 11px; font-weight: 800; letter-spacing: .16em; text-transform: uppercase; color: var(--acc); transition: color .5s; }
+.g__dot { width: 16px; height: 16px; border-radius: 50%; background: var(--acc); box-shadow: 0 0 0 4px var(--acc-soft); transition: background-color .5s, box-shadow .5s; }
+.g__lines { width: 34px; height: 14px; background: linear-gradient(var(--acc) 0 0) 0 0 / 34px 3px no-repeat, linear-gradient(var(--acc) 0 0) 0 50% / 24px 3px no-repeat, linear-gradient(var(--acc) 0 0) 0 100% / 30px 3px no-repeat; opacity: .8; }
+.rules__note { margin-top: auto; font-size: 13.5px; line-height: 1.45; color: var(--muted); }
+.tune__stage { display: flex; flex-direction: column; gap: 14px; min-width: 0; }
+.tune__frame { overflow: hidden; border-radius: 18px; box-shadow: 0 0 0 1px var(--rule), 0 40px 70px -42px rgba(11, 22, 64, .55); }
+.tune[data-hl="wm"] .scr__brand, .tune[data-hl="act"] .scr__btn:not(.scr__btn--o), .tune[data-hl="type"] .scr__h, .tune[data-hl="shape"] .scr__card, .tune[data-hl="shape"] .scr__nav,
+.tune[data-hl="voice"] .scr__p, .tune[data-hl="desc"] .scr__desc, .tune[data-hl="acc"] .sp__panel, .tune[data-hl="acc"] .scr__av, .tune[data-hl="content"] .sp__row > div { outline: 2px solid var(--red); outline-offset: 4px; border-radius: 8px; }
+.tune[data-hl="acc"] .sp__panel { border-radius: 18px; }
+.tune[data-hl="shape"] .scr__nav { border-radius: 24px; }
+.tune[data-hl="shape"] .scr__card { border-radius: 14px; }
+.seg--fam button { display: inline-flex; align-items: center; gap: 8px; padding: 0 16px; }
+.seg--fam button i { width: 8px; height: 8px; border-radius: 50%; background: var(--c); flex: none; }
+.seg--fam button[aria-selected="true"] i { box-shadow: 0 0 0 2px #FFFFFF; }
+/* 07b names */
+.names { display: grid; grid-template-columns: 437px minmax(0, 1fr); grid-template-rows: 264px minmax(0, 1fr); gap: 24px 32px; height: 100%; }
+.master { display: flex; flex-direction: column; justify-content: space-between; padding: 22px 26px; border-radius: 16px; background: #FFFFFF; box-shadow: inset 0 0 0 1px var(--rule); }
+.master .wm { align-self: center; width: 290px; }
+.master p { font-size: 14px; line-height: 1.45; color: var(--ink-2); }
+.lockups { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); grid-template-rows: repeat(2, minmax(0, 1fr)); gap: 12px; }
+.lk { display: flex; flex-direction: column; justify-content: space-between; padding: 22px 20px 14px; border-radius: 14px; background: var(--lk-bg); box-shadow: inset 0 0 0 1px rgba(11, 22, 64, .07); }
+.lk__l { display: flex; align-items: center; gap: 12px; }
+.lk__l .wm { width: 84px; --wm-c: var(--lk-wm, #932A23); }
+.lk__l b { padding-left: 12px; border-left: 1px solid var(--lk-rule, rgba(11, 22, 64, .2)); font-size: 13px; font-weight: 800; line-height: 22px; letter-spacing: .18em; text-transform: uppercase; color: var(--lk-d); }
+.lk small { font-size: 12.5px; color: var(--lk-s, var(--muted)); }
+.endorse { display: flex; flex-direction: column; gap: 10px; padding: 20px 22px; border-radius: 16px; background: var(--paper-2); }
+.endorse .label { margin-bottom: 2px; }
+.en { display: flex; align-items: center; gap: 14px; height: 58px; padding: 0 18px; border-radius: 12px; background: #FFFFFF; }
+.en .wm { width: 50px; }
+.en__div { width: 1px; height: 26px; background: var(--rule); flex: none; }
+.en__name { font-size: 14.5px; font-weight: 700; white-space: nowrap; }
+.en small { font-size: 10.5px; font-weight: 800; letter-spacing: .16em; text-transform: uppercase; color: var(--muted); }
+.endorse p { margin-top: auto; font-size: 13.5px; line-height: 1.45; color: var(--ink-2); }
+.apps { display: grid; grid-template-columns: auto minmax(0, 1fr); column-gap: 40px; align-items: center; padding: 20px 28px; border-radius: 16px; background: #FFFFFF; box-shadow: inset 0 0 0 1px var(--rule); }
+.apps__icons { display: flex; gap: 18px; }
+.app { display: grid; justify-items: center; gap: 10px; }
+.app__ic { display: grid; place-content: center; justify-items: center; gap: 6px; width: 88px; height: 88px; border-radius: 24px; background: var(--c); box-shadow: 0 16px 28px -18px rgba(11, 22, 64, .6); }
+.app__ic .wm { width: 60px; --wm-c: #FFFFFF; }
+.app__ic small { font-size: 8px; font-weight: 800; letter-spacing: .16em; text-transform: uppercase; color: rgba(255, 255, 255, .86); }
+.app__ic--mark { background: #FFFFFF; box-shadow: inset 0 0 0 1px var(--rule), 0 16px 28px -18px rgba(11, 22, 64, .6); }
+.app__ic--mark .logo--mark { width: 46px; height: 42px; }
+.app > span { font-size: 12.5px; font-weight: 700; color: var(--ink-2); }
+.apps__rule { display: grid; gap: 10px; }
+.apps__rule p { font-size: 30px; font-weight: 600; line-height: 1.1; letter-spacing: -.02em; }
+.apps__rule .serif { color: var(--red); font-size: 1.14em; }
+.apps__rule small { font-size: 13.5px; line-height: 1.45; color: var(--muted); }
+/* 07c colour */
+.palette { display: grid; grid-template-columns: 720px minmax(0, 1fr); column-gap: 48px; height: 100%; }
+.pal-k { display: flex; align-items: baseline; justify-content: space-between; gap: 16px; }
+.pal-k small { font-size: 12px; color: var(--ink-2); }
+.pal-k small::before { content: "● "; color: #2E8B57; font-size: 9px; vertical-align: 1px; }
+.pal-l, .pal-r { display: flex; flex-direction: column; gap: 14px; min-width: 0; }
+.cores { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 10px; margin-bottom: 12px; }
+.core { display: grid; gap: 4px; align-content: start; }
+.core i { height: 76px; margin-bottom: 4px; border-radius: 10px; background: var(--c); box-shadow: inset 0 0 0 1px rgba(11, 22, 64, .1); }
+.core b { font-size: 13px; font-weight: 700; }
+.core code { font: 600 11px/1 var(--sans); color: var(--ink-2); }
+.core small { font-size: 11px; line-height: 1.3; color: var(--muted); }
+.core small.in { color: var(--ink-2); }
+.core small.in::before { content: "● "; color: #2E8B57; font-size: 8px; vertical-align: 1px; }
+.accs { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 10px; }
+.acc { display: grid; gap: 4px; align-content: start; }
+.acc i { display: grid; grid-template-rows: 2fr 1fr; height: 70px; margin-bottom: 4px; overflow: hidden; border-radius: 10px; }
+.acc i::before { content: ""; background: var(--c); }
+.acc i::after { content: ""; background: var(--t); }
+.acc b { font-size: 13px; font-weight: 700; }
+.acc code { font: 600 11px/1.3 var(--sans); color: var(--ink-2); }
+.acc small { font-size: 11px; line-height: 1.3; color: var(--muted); }
+.count { display: grid; grid-template-columns: auto minmax(0, 1fr); column-gap: 24px; align-items: center; margin-top: auto; padding: 14px 0 8px; border-top: 1px solid var(--rule); }
+.count b { font-size: 56px; font-weight: 300; line-height: 1.1; letter-spacing: -.04em; white-space: nowrap; }
+.count b span { margin: 0 6px; color: var(--red); font-weight: 400; }
+.count p { font-size: 14px; line-height: 1.45; color: var(--ink-2); }
+.phs { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); column-gap: 16px; }
+.ph-wrap { display: grid; gap: 10px; justify-items: center; }
+.ph { display: flex; flex-direction: column; gap: 9px; width: 100%; height: 300px; padding: 12px 10px 14px; border-radius: 22px; background: var(--b-paper); box-shadow: inset 0 0 0 1px var(--rule), 0 26px 40px -30px rgba(11, 22, 64, .55); }
+:where(.ph i) { display: block; flex: none; }
+.ph__nav { display: flex; align-items: center; height: 24px; padding: 0 7px 0 9px; border-radius: 12px; background: #FFFFFF; box-shadow: 0 0 0 1px var(--b-line); }
+.ph__nav .wm { width: 30px; }
+.ph__nav i:last-child { width: 11px; height: 11px; margin-left: auto; border-radius: 50%; background: var(--acc); }
+.ph__e { width: 40%; height: 5px; margin-top: 6px; border-radius: 3px; background: var(--acc); }
+.ph__t { height: 9px; border-radius: 5px; background: var(--ink); }
+.ph__m { height: 5px; border-radius: 3px; background: #C9CAD4; }
+.ph__card { display: flex; align-items: center; gap: 7px; padding: 7px; border-radius: 10px; background: #FFFFFF; box-shadow: 0 0 0 1px var(--b-line); }
+.ph__ic { width: 22px; height: 22px; border-radius: 7px; background: radial-gradient(circle, var(--acc) 0 4px, var(--acc-soft) 4.5px); }
+.ph__l { display: grid; gap: 4px; flex: 1; }
+.ph__l::before, .ph__l::after { content: ""; height: 4px; border-radius: 2px; background: var(--ink); opacity: .75; }
+.ph__l::after { width: 60%; background: #C9CAD4; opacity: 1; }
+.ph__chips { display: flex; gap: 5px; }
+.ph__chips i { width: 30px; height: 12px; border-radius: 6px; background: var(--acc-soft); }
+.ph__btn { height: 24px; margin-top: auto; border-radius: 12px; background: var(--red); }
+.ph-wrap > span { display: flex; align-items: center; gap: 7px; font-size: 13px; font-weight: 700; }
+.ph-wrap > span::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--acc); }
+.ph-wrap small { margin-top: -8px; font-size: 11.5px; color: var(--muted); text-align: center; }
+.legend { display: flex; flex-wrap: wrap; gap: 8px 20px; margin-top: auto; padding-top: 16px; border-top: 1px solid var(--rule); }
+.legend span { display: inline-flex; align-items: center; gap: 8px; font-size: 13px; font-weight: 600; color: var(--ink-2); }
+.legend i { width: 14px; height: 14px; border-radius: 4px; background: var(--c); box-shadow: inset 0 0 0 1px rgba(11, 22, 64, .14); }
+/* 07d type and components */
+.kitwrap { display: grid; grid-template-columns: 437px minmax(0, 1fr); column-gap: 32px; height: 100%; }
+.typo { display: flex; flex-direction: column; gap: 18px; padding: 24px 28px; border-radius: 16px; background: #FFFFFF; box-shadow: inset 0 0 0 1px var(--rule); }
+.typo__pair { display: grid; grid-template-columns: 1fr 1fr; column-gap: 20px; }
+.typo__pair div { display: grid; gap: 4px; align-content: start; }
+.typo__pair b { font-size: 80px; font-weight: 600; line-height: 1; letter-spacing: -.04em; }
+.typo__pair .serif { font-size: 92px; color: var(--red); line-height: .87; }
+.typo__pair span { margin-top: 6px; font-size: 13.5px; font-weight: 700; }
+.typo__pair small { font-size: 12.5px; color: var(--muted); }
+.typo__demo { padding: 14px 0; border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); font-size: 32px; font-weight: 650; letter-spacing: -.03em; }
+.typo__demo em { font-family: var(--serif); font-style: italic; font-weight: 600; font-size: 1.14em; color: var(--red); letter-spacing: -.01em; }
+.typo__scale { display: grid; gap: 4px; }
+.typo__scale li { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; }
+.typo__scale small { font-size: 12px; color: var(--muted); font-variant-numeric: tabular-nums; }
+.typo__voice { display: grid; gap: 8px; padding-top: 14px; border-top: 1px solid var(--rule); }
+.typo__voice p { display: grid; grid-template-columns: 70px minmax(0, 1fr); row-gap: 4px; align-items: baseline; font-size: 15px; }
+.typo__voice span { font-size: 11px; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); }
+.typo__voice s { color: var(--muted); }
+.typo__voice b { font-weight: 700; }
+.typo__voice b em { font-family: var(--serif); font-style: italic; font-weight: 600; font-size: 1.14em; color: var(--red); }
+.typo__note { margin-top: auto; font-size: 12.5px; line-height: 1.45; color: var(--muted); }
+.kit { display: flex; flex-direction: column; gap: 18px; min-width: 0; }
+.kit__top { display: flex; align-items: center; justify-content: space-between; gap: 20px; }
+.kit__hint { font-size: 13.5px; color: var(--muted); }
+.kit__row { display: grid; grid-template-columns: 330px minmax(0, 1fr) 238px; column-gap: 24px; }
+.kit__cell { display: flex; flex-direction: column; gap: 8px; min-width: 0; }
+.kit__k { font-size: 11px; font-weight: 800; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); }
+.kit__line { display: flex; align-items: center; gap: 8px; height: 36px; }
+.kit__search { display: flex; align-items: center; gap: 10px; height: 36px; padding: 0 8px 0 14px; border-radius: 18px; background: #FFFFFF; box-shadow: inset 0 0 0 1px var(--b-line); font-size: 12.5px; color: var(--b-body); }
+.kit__search .ico { width: 15px; height: 15px; }
+.kit__search b { margin-left: auto; display: grid; place-items: center; height: 24px; padding: 0 8px; border-radius: 12px; background: var(--b-paper); font-size: 10.5px; font-weight: 800; }
+.kc { display: flex; flex-direction: column; gap: 6px; height: 176px; padding: 16px 18px; }
+.kc b { font-size: 15px; font-weight: 700; }
+.kc small { font-size: 12px; line-height: 1.4; color: var(--b-body); }
+.kc .scr__ic { margin-bottom: 4px; }
+.kc .scr__link { margin-top: auto; }
+.kc .mh__bar { margin: 6px 0 2px; height: 8px; border-radius: 4px; }
+.kc .mh__bar i { border-radius: 4px; }
+.kc__top { display: flex; justify-content: space-between; align-items: baseline; }
+.kc__top span { font-size: 22px; font-weight: 650; letter-spacing: -.02em; color: var(--acc); transition: color .5s; }
+.kc__sum { flex-direction: row; align-items: center; gap: 16px; }
+.kc__ring { display: grid; place-content: center; justify-items: center; flex: none; width: 104px; height: 104px; border-radius: 50%; background: radial-gradient(closest-side, #FFFFFF 78%, transparent 79%), conic-gradient(var(--acc) 0 47%, var(--acc-soft) 47% 100%); transition: background .5s; }
+.kc__ring b { font-size: 30px; line-height: 1; font-weight: 650; letter-spacing: -.03em; }
+.kc__ring small { font-size: 9.5px; font-weight: 700; }
+.kc__sum > div:last-child { display: grid; gap: 6px; }
+.kit .scr__nav { transition: none; }
+.kit__row--s { grid-template-columns: 330px minmax(0, 1fr) 238px; }
+.kit__row .mp__li { height: 44px; }
+.kit__row .mp__li .scr__ic { width: 30px; height: 30px; border-radius: 9px; }
+.kit__row .mp__li .scr__ic .ico { width: 15px; height: 15px; }
+.kit__tabs { display: inline-flex; align-self: flex-start; gap: 2px; padding: 3px; border-radius: 18px; background: #FFFFFF; box-shadow: inset 0 0 0 1px var(--b-line); font-size: 12px; font-weight: 700; }
+.kit__tabs span { display: grid; place-items: center; height: 30px; padding: 0 14px; border-radius: 15px; color: var(--b-body); }
+.kit__tabs span:first-child { background: var(--acc-soft); color: var(--acc); transition: background-color .5s, color .5s; }
+.kit__row .scr__lang { align-self: flex-start; height: 36px; padding: 0 5px; border-radius: 18px; background: #FFFFFF; box-shadow: inset 0 0 0 1px var(--b-line); }
+.kit__row .scr__lang b { height: 26px; border-radius: 13px; }
+/* 07e before and after */
+.bawrap { display: grid; grid-template-columns: 920px minmax(0, 1fr); column-gap: 40px; height: 100%; }
+.bastage { display: flex; flex-direction: column; gap: 14px; min-width: 0; }
+.batop { display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+.balegend { display: flex; align-items: center; gap: 10px; font-size: 11px; font-weight: 800; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); white-space: nowrap; }
+.balegend i { display: block; width: 28px; height: 2px; background: var(--rule); }
+.balegend b { color: var(--red); }
+.ba { --pos: 50%; position: relative; width: 100%; aspect-ratio: 874 / 454; overflow: hidden; border-radius: 16px; background: #FFFFFF; box-shadow: 0 0 0 1px var(--rule), 0 34px 60px -38px rgba(11, 22, 64, .55); cursor: ew-resize; touch-action: pan-y; user-select: none; -webkit-user-select: none; }
+.ba__before { position: absolute; inset: 0; background: var(--img) 0 0 / 100% auto no-repeat #FFFFFF; }
+.ba__after { position: absolute; inset: 0; clip-path: inset(0 0 0 var(--pos)); }
+.ba__line { position: absolute; top: 0; bottom: 0; left: var(--pos); width: 2px; margin-left: -1px; background: #FFFFFF; box-shadow: 0 0 0 1px rgba(11, 22, 64, .2); pointer-events: none; }
+.ba__knob { position: absolute; top: 50%; left: var(--pos); display: grid; place-items: center; width: 46px; height: 46px; margin: -23px 0 0 -23px; border-radius: 50%; background: var(--red); color: #FFFFFF; box-shadow: 0 0 0 4px #FFFFFF, 0 14px 26px -10px rgba(11, 22, 64, .6); transition: transform .3s var(--spring); }
+.ba__knob:hover, .ba.is-drag .ba__knob { transform: scale(1.08); }
+.ba__knob .ico { width: 20px; height: 20px; }
+.bainfo { display: flex; flex-direction: column; gap: 22px; padding-top: 58px; }
+.bainfo h3 { font-size: 28px; font-weight: 700; line-height: 1.15; letter-spacing: -.02em; }
+.bainfo h3 small { display: block; margin-top: 6px; font-size: 15px; font-weight: 500; letter-spacing: 0; color: var(--muted); }
+.bainfo ul { display: grid; gap: 9px; }
+.bainfo li { position: relative; padding-left: 20px; font-size: 15.5px; line-height: 1.4; color: var(--ink-2); }
+.bainfo li::before { content: ""; position: absolute; left: 0; top: 7px; width: 8px; height: 8px; border-radius: 50%; background: var(--red); }
+.bainfo .keep li::before { background: none; box-shadow: inset 0 0 0 2px var(--red); }
+.bainfo .label { display: block; margin-bottom: 10px; }
+.bainfo.swap > * { animation: rise .45s var(--ease) both; }
+.bainfo__note { margin-top: auto; font-size: 13px; color: var(--muted); }
+/* 07f family portrait */
+.shot__frame--mock { position: relative; }
+.shot__frame--mock .fit { pointer-events: none; }
+.shot__hit { position: absolute; inset: 0; border-radius: 14px; }
+.zoom__mock { display: grid; place-items: center; min-height: 100%; padding: 16px; background: var(--b-paper); }
+.zoom__mock .fit { width: var(--zw, 100%); border-radius: 12px; box-shadow: 0 0 0 1px var(--b-line), 0 30px 60px -30px rgba(11, 22, 64, .4); }
+
 /* ---------- 06 pillars ---------- */
 .temple { display: grid; }
 .lintel { display: flex; align-items: center; justify-content: space-between; height: 76px; padding: 0 32px; border-radius: 14px 14px 0 0; background: var(--red); color: #FFFFFF; }
@@ -494,7 +821,7 @@ body[data-tone="ink"] { background: var(--ink); }
 .is-narrow .close { margin-top: 40px; font-size: 36px; }
 .is-narrow .next { display: block; }
 .is-narrow .lineup, .is-narrow .tally, .is-narrow .cost, .is-narrow .same { grid-template-columns: minmax(0, 1fr); row-gap: 24px; }
-.is-narrow .shot .crop { width: 100%; height: auto; aspect-ratio: 437 / 227; background-size: calc(var(--iw) / var(--w) * 100%) auto; background-position: 0 0; }
+.is-narrow .shot__frame > .crop { width: 100%; height: auto; aspect-ratio: 437 / 227; background-size: calc(var(--iw) / var(--w) * 100%) auto; background-position: 0 0; }
 .is-narrow .chrome[data-bg="ink"] .bar { background: var(--ink); border-color: rgba(255, 255, 255, .16); }
 .is-narrow .zoom { position: fixed; z-index: 60; inset: calc(60px + env(safe-area-inset-top, 0px)) 0 calc(64px + env(safe-area-inset-bottom, 0px)); border-radius: 0; }
 .is-narrow .mx__tile { height: auto; min-height: var(--th); padding: 10px 14px; }
@@ -509,6 +836,35 @@ body[data-tone="ink"] { background: var(--ink); }
 .is-narrow .cost p { font-size: 19px; }
 .is-narrow .bridge { font-size: 24px; }
 .is-narrow .slist { grid-template-columns: minmax(0, 1fr); grid-auto-flow: row; grid-template-rows: none; }
+.is-narrow .tune, .is-narrow .names, .is-narrow .palette, .is-narrow .kitwrap, .is-narrow .bawrap { grid-template-columns: minmax(0, 1fr); grid-template-rows: none; row-gap: 32px; height: auto; }
+.is-narrow .seg--fam { display: flex; flex-wrap: wrap; border-radius: 20px; }
+.is-narrow .seg--fam button { padding: 0 12px; }
+.is-narrow .rules li { font-size: 15.5px; grid-template-columns: 72px minmax(0, 1fr); }
+.is-narrow .master .wm { width: 200px; }
+.is-narrow .master { gap: 18px; }
+.is-narrow .lockups { grid-template-columns: minmax(0, 1fr); grid-template-rows: none; }
+.is-narrow .lk { gap: 14px; }
+.is-narrow .en { height: auto; min-height: 58px; flex-wrap: wrap; padding: 12px 16px; }
+.is-narrow .en__name { white-space: normal; }
+.is-narrow .apps { grid-template-columns: minmax(0, 1fr); row-gap: 24px; padding: 20px; }
+.is-narrow .apps__icons { flex-wrap: wrap; gap: 14px; }
+.is-narrow .app__ic { width: 72px; height: 72px; border-radius: 20px; }
+.is-narrow .app__ic .wm { width: 48px; }
+.is-narrow .apps__rule p { font-size: 26px; }
+.is-narrow .cores { grid-template-columns: repeat(3, minmax(0, 1fr)); row-gap: 16px; }
+.is-narrow .accs { grid-template-columns: repeat(2, minmax(0, 1fr)); row-gap: 16px; }
+.is-narrow .count { grid-template-columns: minmax(0, 1fr); row-gap: 8px; }
+.is-narrow .phs { grid-template-columns: repeat(3, minmax(0, 1fr)); row-gap: 22px; column-gap: 12px; }
+.is-narrow .ph { height: 240px; }
+.is-narrow .typo__pair b { font-size: 64px; }
+.is-narrow .typo__pair .serif { font-size: 74px; }
+.is-narrow .typo__demo { font-size: 26px; }
+.is-narrow .kit__top { flex-direction: column; align-items: flex-start; }
+.is-narrow .kit__row { grid-template-columns: minmax(0, 1fr); row-gap: 18px; }
+.is-narrow .kit .scr__nav .scr__links, .is-narrow .kit .scr__kbd { display: none; }
+.is-narrow .kc { height: auto; min-height: 140px; }
+.is-narrow .batop { flex-direction: column; align-items: flex-start; }
+.is-narrow .bainfo { padding-top: 0; }
 @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation: none !important; transition: none !important; } }
 </style>
 
@@ -520,6 +876,26 @@ body[data-tone="ink"] { background: var(--ink); }
   <symbol id="i-expand" viewBox="0 0 24 24"><path d="M14 4h6v6M10 20H4v-6M20 4l-7 7M4 20l7-7"/></symbol>
   <symbol id="i-x" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></symbol>
   <symbol id="i-door" viewBox="0 0 24 24"><path d="M6 21V4a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v17M3 21h18"/><circle cx="14.5" cy="12" r=".9" fill="currentColor"/></symbol>
+  <symbol id="i-home" viewBox="0 0 24 24"><path d="M4 10.5L12 4l8 6.5V20H4z"/><path d="M10 20v-5.5h4V20"/></symbol>
+  <symbol id="i-cap" viewBox="0 0 24 24"><path d="M2.5 9L12 4.5 21.5 9 12 13.5z"/><path d="M6.5 11v5c1.5 1.6 3.5 2.5 5.5 2.5s4-.9 5.5-2.5v-5M21.5 9v5"/></symbol>
+  <symbol id="i-bed" viewBox="0 0 24 24"><path d="M3 18.5V6.5M3 14.5h18v4M21 14.5v-3a3 3 0 0 0-3-3h-7.5v6"/><circle cx="6.8" cy="11.2" r="1.7"/></symbol>
+  <symbol id="i-card" viewBox="0 0 24 24"><rect x="3" y="5.5" width="18" height="13" rx="2.5"/><path d="M3 10h18M7 14.5h4"/></symbol>
+  <symbol id="i-cal" viewBox="0 0 24 24"><rect x="4" y="5" width="16" height="15" rx="2.5"/><path d="M4 10h16M9 3v4M15 3v4"/></symbol>
+  <symbol id="i-tool" viewBox="0 0 24 24"><path d="M14.7 6.3a4 4 0 0 0 5 5L12.4 18.6a2.2 2.2 0 0 1-3.1-3.1z"/><path d="M14.7 6.3L17.5 3.5M19.7 11.3l2.8-2.8"/><path d="M8 16L4 20"/></symbol>
+  <symbol id="i-wave" viewBox="0 0 24 24"><path d="M3 15.5c2 0 2.2-1.5 4.5-1.5s2.5 1.5 4.5 1.5 2.2-1.5 4.5-1.5 2.5 1.5 4.5 1.5M3 19.5c2 0 2.2-1.5 4.5-1.5s2.5 1.5 4.5 1.5 2.2-1.5 4.5-1.5 2.5 1.5 4.5 1.5"/><path d="M8 12V6a2 2 0 0 1 4 0M16 12V6"/></symbol>
+  <symbol id="i-doc" viewBox="0 0 24 24"><path d="M6.5 3h7.5l4.5 4.5V21h-12z"/><path d="M14 3v4.5h4.5M9.5 12.5h6M9.5 16.5h6"/></symbol>
+  <symbol id="i-bell" viewBox="0 0 24 24"><path d="M6 16.5V11a6 6 0 0 1 12 0v5.5l1.5 1.5h-15z"/><path d="M10 21h4"/></symbol>
+  <symbol id="i-user" viewBox="0 0 24 24"><circle cx="12" cy="8" r="3.8"/><path d="M4.5 20.5c1-4 4.2-6 7.5-6s6.5 2 7.5 6"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></symbol>
+  <symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="6.5"/><path d="M16 16l4.5 4.5"/></symbol>
+  <symbol id="i-leaf" viewBox="0 0 24 24"><path d="M5 19C5 10.5 10.5 5 20 4c-.5 9.5-6 15-15 15z"/><path d="M5 19l7.5-7.5"/></symbol>
+  <symbol id="i-shop" viewBox="0 0 24 24"><path d="M4 9.5L5.5 4h13L20 9.5M4.5 9.5V20h15V9.5M3.5 9.5h17"/><path d="M9.5 20v-5.5h5V20"/></symbol>
+  <symbol id="i-chev-r" viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></symbol>
+  <symbol id="i-swap" viewBox="0 0 24 24"><path d="M9 7l-5 5 5 5M15 7l5 5-5 5"/></symbol>
+  <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol>
+  <symbol id="i-minus" viewBox="0 0 24 24"><path d="M5 12h14"/></symbol>
+  <symbol id="i-spark" viewBox="0 0 24 24"><path d="M12 3.5l1.8 5.2 5.2 1.8-5.2 1.8L12 17.5l-1.8-5.2L5 10.5l5.2-1.8z"/></symbol>
+  <symbol id="i-inbox" viewBox="0 0 24 24"><path d="M3.5 13.5l2.5-8h12l2.5 8V19h-17z"/><path d="M3.5 13.5h5l1.5 2.5h4l1.5-2.5h5"/></symbol>
 </svg>
 
 <div class="viewport" id="viewport">
@@ -691,8 +1067,170 @@ body[data-tone="ink"] { background: var(--ink); }
   </div>
 </section>
 
+<!-- 07a GLIMPSE -->
+<section class="slide" data-num="07a" data-title="A glimpse of one Bloom" data-cat="prop" aria-roledescription="slide">
+  <header class="s-head">
+    <h2 class="h1 rv">One language, tuned for every <span class="hl">product.</span></h2>
+  </header>
+  <div class="s-body">
+    <div class="tune" id="tune">
+      <div class="rules rv" style="--d:1">
+        <div class="rules__set">
+          <h3 class="rules__h">Fixed everywhere</h3>
+          <ul>
+            <li tabindex="0" data-hl="wm"><span class="g"><i class="wm" aria-hidden="true"></i></span>The Bloom wordmark</li>
+            <li tabindex="0" data-hl="act"><span class="g"><i class="g__pill" aria-hidden="true"></i></span>Bloom red for every main action</li>
+            <li tabindex="0" data-hl="type"><span class="g g__aa" aria-hidden="true">Aa<em>a</em></span>One type pairing</li>
+            <li tabindex="0" data-hl="shape"><span class="g"><i class="g__sq" aria-hidden="true"></i></span>Shared shapes and spacing</li>
+            <li tabindex="0" data-hl="voice"><span class="g g__q" aria-hidden="true">“</span>A warm, direct voice</li>
+          </ul>
+        </div>
+        <div class="rules__set rules__set--tuned">
+          <h3 class="rules__h">Tuned per product</h3>
+          <ul>
+            <li tabindex="0" data-hl="desc"><span class="g g__desc" id="tune-desc" aria-hidden="true">Homes</span>A descriptor name</li>
+            <li tabindex="0" data-hl="acc"><span class="g"><i class="g__dot" aria-hidden="true"></i></span>One accent colour</li>
+            <li tabindex="0" data-hl="content"><span class="g"><i class="g__lines" aria-hidden="true"></i></span>Content for its audience</li>
+          </ul>
+        </div>
+        <p class="rules__note">Concept for discussion, written with content from today's products. Point at a rule to find it on the screen.</p>
+      </div>
+      <div class="tune__stage rv" style="--d:2">
+        <div class="seg seg--fam" role="tablist" aria-label="Choose a product" id="tune-tabs"></div>
+        <div class="tune__frame"><div class="fit" id="tune-fit"></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 07b LOGO AND NAMING -->
+<section class="slide" data-num="07b" data-title="Logo and naming" data-cat="prop" aria-roledescription="slide">
+  <header class="s-head">
+    <h2 class="h1 rv">One wordmark, many <span class="hl">names.</span></h2>
+  </header>
+  <div class="s-body">
+    <div class="names">
+      <div class="master rv" style="--d:1">
+        <span class="label">Master brand</span>
+        <i class="wm" role="img" aria-label="Bloom wordmark"></i>
+        <p>The Bloom wordmark already on Bloom Universal, Bloom Partners and the home-buying platform. It leads every Bloom product, unchanged.<a class="src" href="#src-16" data-s="16">16</a></p>
+      </div>
+      <div class="lockups rv" style="--d:2" id="lockups"></div>
+      <div class="endorse rv" style="--d:3">
+        <span class="label">Partner brands lead</span>
+        <div class="en"><i class="logo logo--edition" role="img" aria-label="The Abu Dhabi EDITION"></i><i class="en__div" aria-hidden="true"></i><i class="wm" role="img" aria-label="Bloom"></i><small>Hospitality</small></div>
+        <div class="en"><span class="en__name">Brighton College Abu Dhabi</span><i class="en__div" aria-hidden="true"></i><i class="wm" role="img" aria-label="Bloom"></i><small>Education</small></div>
+        <p>A quiet Bloom endorsement sits beside the partner's brand, subject to partner agreements.</p>
+      </div>
+      <div class="apps rv" style="--d:4">
+        <div class="apps__icons" id="app-icons"></div>
+        <div class="apps__rule"><span class="label">Naming rule</span><p>Bloom, plus <span class="serif">what it does.</span></p><small>The wordmark says who. The descriptor says the job. Names shown are working titles.</small></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 07c COLOUR -->
+<section class="slide" data-num="07c" data-title="Colour" data-cat="prop" aria-roledescription="slide">
+  <header class="s-head">
+    <h2 class="h1 rv">One red. One accent per <span class="hl">audience.</span></h2>
+  </header>
+  <div class="s-body">
+    <div class="palette">
+      <div class="pal-l rv" style="--d:1">
+        <div class="pal-k"><span class="label">Core · on every product</span><small>Already in Bloom's products today</small></div>
+        <div class="cores" id="cores"></div>
+        <span class="label">Accents · one per audience, each with a light tint</span>
+        <div class="accs" id="accs"></div>
+        <div class="count"><b>43<span>→</span>16</b><p>distinct colours on today's five screens, against one shared palette of 7 core colours, 4 accents and 5 tints.<a class="src" href="#src-16" data-s="16">16</a></p></div>
+      </div>
+      <div class="pal-r rv" style="--d:2">
+        <span class="label">Same recipe, a different accent</span>
+        <div class="phs" id="phs" role="img" aria-label="Five product screens drawn with the same proportions of paper, white, ink and Bloom red, each with its own accent"></div>
+        <div class="legend"><span><i style="--c:#F6F4F0"></i>Paper</span><span><i style="--c:#FFFFFF"></i>White</span><span><i style="--c:#0B1640"></i>Ink</span><span><i style="--c:#B6000E"></i>Bloom red, actions only</span><span><i style="--c:linear-gradient(135deg,#8F5E24 0 25%,#3F7A55 25% 50%,#3F4FB8 50% 75%,#1F4DFF 75%)"></i>Accent</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 07d TYPE AND COMPONENTS -->
+<section class="slide" data-num="07d" data-title="Type and components" data-cat="prop" aria-roledescription="slide">
+  <header class="s-head">
+    <h2 class="h1 rv">Shared parts, built <span class="hl">once.</span></h2>
+  </header>
+  <div class="s-body">
+    <div class="kitwrap">
+      <div class="typo rv" style="--d:1">
+        <div class="typo__pair">
+          <div><b aria-hidden="true">Aa</b><span>Plus Jakarta Sans</span><small>Interface, on every product</small></div>
+          <div><b class="serif" aria-hidden="true">Aa</b><span>Cormorant Garamond Italic</span><small>One brand moment per screen</small></div>
+        </div>
+        <p class="typo__demo">Good afternoon, <em>Rashid.</em></p>
+        <ul class="typo__scale">
+          <li><span style="font-size:30px;font-weight:650;letter-spacing:-.03em">Display</span><small>34 · Semibold</small></li>
+          <li><span style="font-size:21px;font-weight:700;letter-spacing:-.015em">Title</span><small>22 · Bold</small></li>
+          <li><span style="font-size:15px">Body text for every product</span><small>14 · Regular</small></li>
+          <li><span style="font-size:11px;font-weight:800;letter-spacing:.16em;text-transform:uppercase">Label</span><small>11 · Capitals</small></li>
+        </ul>
+        <div class="typo__voice"><span>Voice · warm, direct, short</span><p><span>Today</span><s>Construction completed 45%</s><span>Bloom</span><b>Your home is 45% <em>built.</em></b></p></div>
+        <p class="typo__note">The pairing used in this proposal, to confirm against Bloom's brand guidelines.</p>
+      </div>
+      <div class="kit rv" style="--d:2" id="kit">
+        <div class="kit__top"><div class="seg seg--fam" role="tablist" aria-label="Theme the parts for a product" id="kit-tabs"></div><span class="kit__hint">The same parts, themed per product</span></div>
+        <div class="kit__cell"><span class="kit__k">Navigation</span><div class="scr__nav" id="kit-nav"></div></div>
+        <div class="kit__row">
+          <div class="kit__cell"><span class="kit__k">Actions</span><div class="kit__line"><span class="scr__btn">Primary</span><span class="scr__btn scr__btn--o">Secondary</span><span class="scr__link">Text link<svg class="ico" aria-hidden="true"><use href="#i-arrow-r"/></svg></span></div></div>
+          <div class="kit__cell"><span class="kit__k">Status</span><div class="kit__line"><span class="scr__chip scr__chip--red">2 overdue</span><span class="scr__chip scr__chip--acc">3 due today</span><span class="scr__chip">27 this week</span></div></div>
+          <div class="kit__cell"><span class="kit__k">Search</span><div class="kit__search"><svg class="ico" aria-hidden="true"><use href="#i-search"/></svg><span>Search Bloom</span><b>⌘K</b></div></div>
+        </div>
+        <div class="kit__row">
+          <div class="kit__cell"><span class="kit__k">Request card</span><div class="scr__card kc"><span class="scr__ic"><svg class="ico" aria-hidden="true"><use href="#i-home"/></svg></span><b>Open house</b><small>Materials or sales agent support for your open house.</small><span class="scr__link">Raise a request<svg class="ico" aria-hidden="true"><use href="#i-arrow-r"/></svg></span></div></div>
+          <div class="kit__cell"><span class="kit__k">Progress</span><div class="scr__card kc"><small>A1-401 · Al Metlaa, Al Ain</small><div class="kc__top"><b>Construction</b><span>45%</span></div><div class="mh__bar" style="--v:45%"><i></i></div><small>Handover by December 2028</small><span class="scr__link">View unit<svg class="ico" aria-hidden="true"><use href="#i-arrow-r"/></svg></span></div></div>
+          <div class="kit__cell"><span class="kit__k">Summary</span><div class="scr__card kc kc__sum"><div class="kc__ring"><b>32</b><small>actions</small></div><div><b>Salesforce</b><small>15 of 32 actions waiting</small></div></div></div>
+        </div>
+        <div class="kit__row">
+          <div class="kit__cell"><span class="kit__k">List row</span><div class="scr__card mp__li"><span class="scr__ic"><svg class="ico" aria-hidden="true"><use href="#i-card"/></svg></span>Delayed commission payment<svg class="ico scr__chev" aria-hidden="true"><use href="#i-chev-r"/></svg></div></div>
+          <div class="kit__cell"><span class="kit__k">Tabs</span><div class="kit__tabs"><span>Requests</span><span>Amenities</span><span>Payments</span></div></div>
+          <div class="kit__cell"><span class="kit__k">Language</span><span class="scr__lang"><b>EN</b><span>عربي</span></span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 07e BEFORE AND AFTER -->
+<section class="slide" data-num="07e" data-title="Before and after" data-cat="prop" aria-roledescription="slide">
+  <header class="s-head">
+    <h2 class="h1 rv">Same products. Unmistakably <span class="hl">Bloom.</span></h2>
+  </header>
+  <div class="s-body">
+    <div class="bawrap">
+      <div class="bastage rv" style="--d:1">
+        <div class="batop"><div class="seg seg--fam" role="tablist" aria-label="Choose a product" id="ba-tabs"></div><span class="balegend" aria-hidden="true">Today<i></i>drag<i></i><b>Concept</b></span></div>
+        <div class="ba" id="ba">
+          <div class="ba__before" id="ba-before" role="img"></div>
+          <div class="ba__after" id="ba-after"></div>
+          <i class="ba__line" aria-hidden="true"></i>
+          <div class="ba__knob" id="ba-knob" role="slider" tabindex="0" aria-label="Compare today with the concept" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50" aria-valuetext="Half today, half concept"><svg class="ico" aria-hidden="true"><use href="#i-swap"/></svg></div>
+        </div>
+      </div>
+      <div class="bainfo rv" style="--d:2" id="ba-info" aria-live="polite"></div>
+    </div>
+  </div>
+</section>
+
+<!-- 07f ONE BLOOM -->
+<section class="slide slide--ink" data-num="07f" data-title="One Bloom" data-cat="prop" aria-roledescription="slide">
+  <header class="s-head">
+    <h2 class="h1 rv">Five products. <span class="serif hl">One Bloom.</span></h2>
+  </header>
+  <div class="s-body">
+    <div class="lineup" id="family"></div>
+  </div>
+</section>
+
 <!-- 06 PILLARS -->
-<section class="slide" data-num="07" data-title="Strategic pillars" data-cat="prop" aria-roledescription="slide">
+<section class="slide" data-num="08" data-title="Strategic pillars" data-cat="prop" aria-roledescription="slide">
   <header class="s-head">
     <h2 class="h1 rv">Five pillars hold the ecosystem <span class="hl">together.</span></h2>
   </header>
@@ -712,7 +1250,7 @@ body[data-tone="ink"] { background: var(--ink); }
 </section>
 
 <!-- 07 EXPERIENCE -->
-<section class="slide" data-num="08" data-title="The experience" data-cat="mixed" aria-roledescription="slide">
+<section class="slide" data-num="09" data-title="The experience" data-cat="mixed" aria-roledescription="slide">
   <header class="s-head">
     <h2 class="h1 rv">People meet Bloom through <span class="hl">moments</span>,<br>not business units.</h2>
   </header>
@@ -726,7 +1264,7 @@ body[data-tone="ink"] { background: var(--ink); }
 </section>
 
 <!-- 08 PRINCIPLES -->
-<section class="slide" data-num="09" data-title="Experience principles" data-cat="prop" aria-roledescription="slide">
+<section class="slide" data-num="10" data-title="Experience principles" data-cat="prop" aria-roledescription="slide">
   <header class="s-head">
     <h2 class="h1 rv">Five principles for every Bloom <span class="hl">experience.</span></h2>
   </header>
@@ -742,7 +1280,7 @@ body[data-tone="ink"] { background: var(--ink); }
 </section>
 
 <!-- 09 VALUE -->
-<section class="slide" data-num="10" data-title="What this enables" data-cat="opp" aria-roledescription="slide">
+<section class="slide" data-num="11" data-title="What this enables" data-cat="opp" aria-roledescription="slide">
   <header class="s-head">
     <h2 class="h1 rv">Simpler for people.<br>Stronger for <span class="hl">Bloom.</span></h2>
   </header>
@@ -766,7 +1304,7 @@ body[data-tone="ink"] { background: var(--ink); }
 </section>
 
 <!-- 10 NEXT -->
-<section class="slide slide--red" data-num="11" data-title="What's next" data-cat="prop" aria-roledescription="slide">
+<section class="slide slide--red" data-num="12" data-title="What's next" data-cat="prop" aria-roledescription="slide">
   <header class="s-head">
     <h2 class="h1 rv">The beginning of a longer journey.</h2>
   </header>
@@ -798,7 +1336,8 @@ body[data-tone="ink"] { background: var(--ink); }
         </ul>
         <div class="notes">
           <p><b>Left out on purpose.</b> Bloom's own pages publish different school counts (15 and 20), student totals (19,000+ and 22,000+) and hotel room totals. None are shown until Bloom confirms one figure.</p>
-          <p><b>Logos.</b> The Abu Dhabi EDITION, Marriott and Bloom Multiverse marks come from the Phase 1 material. Other brands are plain text until official files are supplied.</p>
+          <p><b>Logos.</b> The Abu Dhabi EDITION, Marriott and Bloom Multiverse marks come from the Phase 1 material. The Bloom wordmark on 07a to 07f is taken from the Bloom Universal screen. Other brands are plain text until official files are supplied.</p>
+          <p><b>Concepts.</b> 07a to 07f are design concepts for discussion, written with content from today's screens. Descriptor names, accents and the type pairing are proposals, not Bloom decisions.</p>
         </div>
       </div>
       <ol class="slist rv" style="--d:2" id="src-list"></ol>
@@ -810,7 +1349,7 @@ body[data-tone="ink"] { background: var(--ink); }
 
 <div class="zoom" id="zoom" role="dialog" aria-modal="true" aria-labelledby="zoom-t" hidden>
   <div class="zoom__top"><b id="zoom-t"></b><span id="zoom-a"></span><button class="arrow" type="button" id="zoom-x" aria-label="Close full-size view"><svg class="ico"><use href="#i-x"/></svg></button></div>
-  <div class="zoom__scroll" id="zoom-scroll"><div class="zoom__img" id="zoom-img"></div></div>
+  <div class="zoom__scroll" id="zoom-scroll"><div class="zoom__img" id="zoom-img"></div><div class="zoom__mock" id="zoom-mock" hidden></div></div>
 </div>
 
 <div class="chrome" id="chrome" data-tone="red">
@@ -824,7 +1363,7 @@ body[data-tone="ink"] { background: var(--ink); }
     <button class="link-btn" type="button" id="src-btn" aria-controls="drawer" aria-expanded="false"><svg class="ico"><use href="#i-book"/></svg>Sources</button>
     <div class="pager">
       <ol class="ticks" id="ticks" aria-label="Go to chapter"></ol>
-      <span class="counter" id="counter" aria-live="polite">01 / 11</span>
+      <span class="counter" id="counter" aria-live="polite">01 / 12</span>
       <div class="arrows">
         <button class="arrow" type="button" id="prev" data-go="prev" aria-label="Previous chapter"><svg class="ico"><use href="#i-arrow-l"/></svg></button>
         <button class="arrow" type="button" id="next" data-go="next" aria-label="Next chapter"><svg class="ico"><use href="#i-arrow-r"/></svg></button>
@@ -871,7 +1410,7 @@ body[data-tone="ink"] { background: var(--ink); }
     ["Bloom Holding · Bloom Arjaan by Rotana hotel apartments", "https://bloomholding.com/press-releases/bloom-arjaan-rotana-hotel-apartments", "Hotel apartments on Saadiyat Island offered to investors, managed by Rotana."],
     ["Bloom team materials · Phase 1", "", "Bloom Multiverse, the employee platform: work apps, approvals, people and policies in one place."],
     ["Bloom Holding · Bloom Landscape", "https://bloomholding.com/what-we-do/bloomscape", "Landscape design, construction and maintenance for local and international clients: public parks, sports facilities, resorts, hotels, palaces, residential complexes, commercial centres and large urban developments, in Abu Dhabi and Dubai."],
-    ["Bloom product screens · supplied by the Bloom team", "", "Bloom Universal (home), Al Metlaa master plan, home-buying platform (Al Metlaa unit details), Bloom Partners (Your Requests) and Bloom Multiverse (home), October 2026. Colours on 05b are sampled directly from these screens; image compression can shift values slightly."]
+    ["Bloom product screens · supplied by the Bloom team", "", "Bloom Universal (home), Al Metlaa master plan, home-buying platform (Al Metlaa unit details), Bloom Partners (Your Requests) and Bloom Multiverse (home), October 2026. Colours on 05b are sampled directly from these screens; image compression can shift values slightly. The concept screens on 07a to 07f reuse their content, and 07e shows them as the 'today' view."]
   ];
   const short = (u) => u.replace(/^https:\/\/(www\.)?/, "").replace(/\/$/, "");
   $("#src-list").innerHTML = SOURCES.map(([t, u], i) => `<li><span>${pad(i + 1)}</span><div><b>${esc(t)}</b>${u ? `<a href="${esc(u)}" target="_blank" rel="noopener">${esc(short(u).split("/")[0])}</a>` : `<a>Shared with the Bloom team</a>`}</div></li>`).join("");
@@ -1023,14 +1562,193 @@ body[data-tone="ink"] { background: var(--ink); }
   const zoom = $("#zoom");
   let zoomFrom = null;
   function openZoom(k, from) {
-    const [t, a, img, ar] = SCREENS[k];
+    const mock = k.startsWith("mock:") ? k.slice(5) : "";
+    const [t, a, img, ar] = mock ? [`${PRODUCTS[mock].n} · concept`, `Bloom ${PRODUCTS[mock].d} · for discussion`] : SCREENS[k];
     $("#zoom-t").textContent = t; $("#zoom-a").textContent = a;
-    const z = $("#zoom-img"); z.style.setProperty("--img", img); z.style.setProperty("--ar", ar); z.setAttribute("role", "img"); z.setAttribute("aria-label", `${t}, full screen`);
-    zoomFrom = from; zoom.hidden = false; $("#zoom-scroll").scrollTop = 0; $("#zoom-x").focus({ preventScroll: true });
+    const z = $("#zoom-img"), zm = $("#zoom-mock"), sc = $("#zoom-scroll");
+    z.hidden = !!mock; zm.hidden = !mock; zm.innerHTML = mock ? `<div class="fit">${MOCKS[mock]()}</div>` : "";
+    if (!mock) { z.style.setProperty("--img", img); z.style.setProperty("--ar", ar); z.setAttribute("role", "img"); z.setAttribute("aria-label", `${t}, full screen`); }
+    zoomFrom = from; zoom.hidden = false; sc.scrollTop = 0;
+    if (mock) { zm.style.setProperty("--zw", `${Math.floor(Math.min(sc.clientWidth - 32, (sc.clientHeight - 32) * 874 / 454))}px`); fitAll(zm); }
+    $("#zoom-x").focus({ preventScroll: true });
   }
   function closeZoom() { if (zoom.hidden) return; zoom.hidden = true; if (zoomFrom) zoomFrom.focus({ preventScroll: true }); }
   document.addEventListener("click", (e) => { const z = e.target.closest("[data-zoom]"); if (z) openZoom(z.dataset.zoom, z); });
   $("#zoom-x").addEventListener("click", closeZoom);
+
+  /* ================= 07a-07f ONE BLOOM LANGUAGE (concepts) ================= */
+  // Fixed everywhere: wordmark, Bloom red for actions, type, shapes, voice. Tuned per audience: descriptor, one accent, content.
+  const FAM = {
+    group: ["#B6000E", "#FBE7E8"], homes: ["#8F5E24", "#F5EBDD"], community: ["#3F7A55", "#E3EFE6"],
+    partners: ["#3F4FB8", "#E6E8F8"], people: ["#1F4DFF", "#E5EBFF"]
+  };
+  const famVars = (f) => `--acc:${FAM[f][0]};--acc-soft:${FAM[f][1]}`;
+  const ic = (n) => `<svg class="ico" aria-hidden="true"><use href="#i-${n}"/></svg>`;
+  const fitObs = new ResizeObserver((es) => es.forEach((e) => { if (e.contentRect.width) e.target.style.setProperty("--k", (e.contentRect.width / 874).toFixed(4)); }));
+  const fitAll = (r) => $$(".fit", r).forEach((f) => fitObs.observe(f));
+  const crop = (img, iw, x, y, w, h, s, cls = "") => `<i class="crop ${cls}" style="--img:var(--shot-${img});--iw:${iw};--x:${x};--y:${y};--w:${w};--h:${h};--s:${s}"></i>`;
+  const lang = `<span class="scr__lang"><b>EN</b><span>عربي</span></span>`;
+  const av = (t) => `<span class="scr__av">${t}</span>`;
+  const kbd = `<span class="scr__kbd">${ic("search")}Search<b>⌘K</b></span>`;
+  const bell = `<span class="scr__icb">${ic("bell")}</span>`;
+  const navHtml = (d, links, end) => `<span class="scr__brand"><i class="wm"></i></span><span class="scr__desc">${d}</span><span class="scr__links">${links.map((l, i) => i ? `<span>${l}</span>` : `<b>${l}</b>`).join("")}</span><span class="scr__end">${end}</span>`;
+  const nav = (d, links, end) => `<div class="scr__nav">${navHtml(d, links, end)}</div>`;
+  const scr = (f, label, inner, cls = "") => `<div class="scr ${cls}" style="${famVars(f)}" role="img" aria-label="${esc(label)}">${inner}</div>`;
+
+  // Products in the family; content is taken from today's screens (see 05a) or Bloom's published features.
+  const PRODUCTS = {
+    universal: { f: "group", d: "Universal", n: "Bloom Universal", who: "Gateway to six Bloom businesses", shot: "universal" },
+    masterplan: { f: "homes", d: "Homes", n: "Al Metlaa master plan", who: "Buyers exploring Al Metlaa", shot: "masterplan" },
+    home: { f: "homes", d: "Homes", n: "Home-buying platform", who: "Emirati buyers · Al Metlaa", shot: "home" },
+    partners: { f: "partners", d: "Partners", n: "Bloom Partners", who: "Brokers and agencies", shot: "partners" },
+    multiverse: { f: "people", d: "Multiverse", n: "Bloom Multiverse", who: "Employees", shot: "multiverse" }
+  };
+  const TILES = [["Bloom Properties", 2000, 60, 560, 420, 446, .381], ["Bloom Education", 2000, 640, 468, 228, 242, .7018], ["Bloom Retail", 2000, 1080, 468, 228, 242, .7018],
+    ["Bloom Hospitality", 2000, 1690, 468, 228, 242, .7018], ["Bloom Landscape", 2000, 620, 812, 228, 242, .7018], ["Bloom Facilities Management", 2000, 1540, 812, 228, 242, .7018]];
+  const MOCKS = {
+    universal: () => scr("group", "Concept: Bloom Universal, the gateway to six Bloom businesses", nav("Universal", ["Home", "Businesses"], lang)
+      + `<div class="scr__body"><div class="mu"><div class="mu__text"><span class="scr__eyebrow">The Bloom experience</span><h4 class="scr__h">More than a place <em>to live.</em></h4><p class="scr__p">Homes, schools, hotels and services. Six Bloom businesses, one place to start.</p><div class="scr__btns"><span class="scr__btn">Let's get started${ic("arrow-r")}</span></div></div>`
+      + `<div class="mu__grid">${TILES.map(([n, iw, x, y, w, h, s]) => `<span class="mu__tile">${crop("universal", iw, x, y, w, h, s)}<b>${n.replace("Facilities Management", "Facilities")}${ic("arrow-r")}</b></span>`).join("")}</div></div></div>`),
+    masterplan: () => scr("homes", "Concept: Al Metlaa master plan as a Bloom Homes screen", crop("masterplan", 2000, 424, 0, 1576, 819, .5546, "mm__map") + nav("Homes", ["Masterplan", "Units", "Documents"], lang)
+      + `<div class="mm__panel scr__card"><span class="scr__eyebrow">Al Metlaa · Al Ain</span><h4 class="scr__h scr__h--s">2,247 <em>villas.</em></h4><span class="mm__k">Facade option</span>`
+      + `<ul class="mm__f">${[["Type 1", 391], ["Type 2", 727, 1], ["Type 3", 740], ["Type 4", 389]].map(([t, n, on]) => `<li><i class="mm__cb${on ? " is-on" : ""}">${on ? ic("check") : ""}</i>${t}<b>${n}</b></li>`).join("")}</ul>`
+      + `<span class="scr__btn">Book appointment</span><span class="scr__link">Download brochure${ic("arrow-r")}</span></div><div class="mm__zoom"><i>${ic("plus")}</i><i>${ic("minus")}</i></div>`),
+    home: () => scr("homes", "Concept: Al Metlaa unit details as a Bloom Homes screen", nav("Homes", ["Home", "Unit details", "Documents"], bell + av("JA"))
+      + `<div class="scr__body"><div class="mh"><div class="mh__main"><div class="mh__photo">${crop("home", 1930, 42, 170, 1050, 513, .4876)}<span class="mh__prog">Construction 45%<span class="mh__bar" style="--v:45%"><i></i></span></span></div>`
+      + `<div class="mh__row"><div><h4 class="scr__h scr__h--s">A1-401, <em>Al Metlaa</em></h4><p class="scr__p">Al Ain · Handover by December 2028</p></div><div class="mh__specs"><span class="scr__chip scr__chip--acc">3 bedrooms</span><span class="scr__chip scr__chip--acc">3 bathrooms</span><span class="scr__chip scr__chip--acc">1,260 sq ft</span></div></div></div>`
+      + `<div class="mh__side scr__card"><span class="scr__eyebrow">Unit price</span><b class="mh__price"><small>AED</small>1,850,000</b><span class="mh__loan">${ic("check")}Iskan loan of AED 2,000,000 covers this unit</span>`
+      + `<p class="scr__p">Visit the unit and talk it through with a sales representative.</p><span class="scr__btn">Book appointment</span><span class="scr__btn scr__btn--o">Reserve unit</span></div></div></div>`),
+    partners: () => scr("partners", "Concept: Bloom Partners requests screen", nav("Partners", ["Home", "Leads", "Inventory", "My Team"], bell + av("JD"))
+      + `<div class="scr__body"><div class="mp"><div class="mp__head"><div><span class="scr__eyebrow">Your requests</span><h4 class="scr__h">How can we <em>assist you?</em></h4></div><p class="scr__p">Choose a request type to get started. Our team will get back to you.</p></div>`
+      + `<div class="mp__cards">${[["home", "Open house", "Materials or sales agent support for your open house."], ["cal", "Event request", "Planning an event? Request materials from Bloom's team."], ["doc", "Mockups only", "Brochures, mockups, stationery or branded materials."]]
+        .map(([i, t, s]) => `<div class="scr__card mp__card"><span class="scr__ic">${ic(i)}</span><b>${t}</b><small>${s}</small><span class="scr__link">Raise a request${ic("arrow-r")}</span></div>`).join("")}</div>`
+      + `<div class="mp__list">${[["user", "Agency information update"], ["user", "Agent information update"], ["card", "Delayed commission payment"], ["card", "Incorrect commission payment"]]
+        .map(([i, t]) => `<div class="scr__card mp__li"><span class="scr__ic">${ic(i)}</span>${t}<svg class="ico scr__chev" aria-hidden="true"><use href="#i-chev-r"/></svg></div>`).join("")}</div></div></div>`),
+    multiverse: () => scr("people", "Concept: Bloom Multiverse home for employees", nav("Multiverse", ["Home", "Bloom GPT"], kbd + av("R"))
+      + `<div class="scr__body"><div class="mv"><div class="mv__text"><span class="scr__chip"><i class="dot"></i>Friday 25 September</span><h4 class="scr__h scr__h--l">Good afternoon, <em>Rashid.</em></h4><p class="scr__p">32 things are waiting across four of your apps. Salesforce needs you most today.</p>`
+      + `<div class="mv__chips"><span class="scr__chip scr__chip--red">2 overdue</span><span class="scr__chip">3 due today</span><span class="scr__chip">27 this week</span></div><div class="scr__btns"><span class="scr__btn">Review 32 actions</span><span class="scr__btn scr__btn--o">${ic("inbox")}Open inbox</span></div></div>`
+      + `<div class="mv__orbit"><i class="mv__ring mv__ring--1"></i><i class="mv__ring mv__ring--2"></i><div class="mv__core"><b>32</b><small>actions waiting</small></div>`
+      + [["Salesforce", 15, 74, 9], ["UiPath", 10, 15, 36], ["SAP", "02", 88, 64], ["Darwinbox", "05", 40, 91]].map(([n, c, x, y]) => `<span class="mv__node" style="left:${x}%;top:${y}%">${n}<i>${c}</i></span>`).join("") + `</div></div></div>`)
+  };
+
+  /* 07a: one spec screen, re-tuned in place so the accent visibly morphs */
+  const SPEC = {
+    universal: { f: "group", d: "Universal", links: ["Home", "Businesses"], end: lang, e: "The Bloom experience", h: "More than a place <em>to live.</em>", p: "Homes, schools, hotels and services. Six Bloom businesses, one place to start.", b: ["Let's get started", "Explore businesses"],
+      rows: [["home", "Bloom Properties", "Communities in Abu Dhabi and Dubai"], ["cap", "Bloom Education", "Brighton College · Bloom World Academy"], ["bed", "Bloom Hospitality", "Hotels with Marriott International and Rotana"]] },
+    homes: { f: "homes", d: "Homes", links: ["Home", "My unit", "Documents"], end: bell + av("JA"), e: "Al Metlaa · Al Ain", h: "Your home is <em>taking shape.</em>", p: "A1-401 is 45% built, with handover expected by December 2028.", b: ["Book appointment", "Reserve unit"],
+      rows: [["home", "A1-401, Al Metlaa", "3 bedrooms · 1,260 sq ft", "45% built"], ["card", "Iskan loan", "AED 2,000,000 covers this unit"], ["cal", "Appointment", "See the unit in person"]] },
+    community: { f: "community", d: "Community", links: ["Home", "Requests", "Amenities"], end: bell + av("SA"), e: "Bloom Gardens", h: "Good evening, <em>neighbour.</em>", p: "Requests, amenity bookings and service charges, in one place.", b: ["Raise a request", "Book an amenity"],
+      rows: [["tool", "Service requests", "Raise and track a request"], ["wave", "Amenity booking", "Reserve a community amenity"], ["card", "Service charges", "Pay and see your history"]] },
+    partners: { f: "partners", d: "Partners", links: ["Home", "Leads", "Inventory", "My Team"], end: bell + av("JD"), e: "Your requests", h: "How can we <em>assist you?</em>", p: "Choose a request type to get started. Our team will get back to you.", b: ["Raise a request", "Contact us"],
+      rows: [["home", "Open house", "Materials or sales agent support", "Most requested"], ["cal", "Event request", "Materials from Bloom's team"], ["doc", "Mockups only", "Brochures, stationery and branded materials"]] },
+    multiverse: { f: "people", d: "Multiverse", links: ["Home", "Bloom GPT"], end: kbd + av("R"), e: "Friday 25 September", h: "Good afternoon, <em>Rashid.</em>", p: "32 things are waiting across four of your apps. Salesforce needs you most today.", b: ["Review 32 actions", "Open inbox"],
+      rows: [["bell", "Salesforce", "15 actions waiting", "Most today"], ["check", "UiPath", "10 actions waiting"], ["user", "Darwinbox", "05 actions waiting"]] }
+  };
+  const TUNE_TABS = [["universal", "Universal", "group"], ["homes", "Homes", "homes"], ["community", "Community", "community"], ["partners", "Partners", "partners"], ["multiverse", "Multiverse", "people"]];
+  const famTabs = (list, sel) => list.map(([k, n, f], i) => `<button type="button" role="tab" aria-selected="${k === sel}" tabindex="${k === sel ? 0 : -1}" data-k="${k}"><i style="--c:${FAM[f][0]}"></i>${esc(n)}</button>`).join("");
+  const selectTab = (list, b) => $$("[role=tab]", list).forEach((x) => { const on = x === b; x.setAttribute("aria-selected", String(on)); x.tabIndex = on ? 0 : -1; });
+  const tune = $("#tune"), tuneTabs = $("#tune-tabs");
+  tuneTabs.innerHTML = famTabs(TUNE_TABS, "homes");
+  $("#tune-fit").innerHTML = `<div class="scr" id="tune-mk" role="img"><div class="scr__nav" data-s="nav"></div><div class="scr__body"><div class="sp"><div class="sp__text"><span class="scr__eyebrow" data-s="e"></span><h4 class="scr__h" data-s="h"></h4><p class="scr__p" data-s="p"></p>`
+    + `<div class="scr__btns"><span class="scr__btn" data-s="b0"></span><span class="scr__btn scr__btn--o" data-s="b1"></span></div></div><div class="sp__panel">${[0, 1, 2].map((i) => `<div class="sp__row scr__card" data-s="r${i}"></div>`).join("")}</div></div></div></div>`;
+  function setSpec(k, animate) {
+    const s = SPEC[k], m = $("#tune-mk"), put = (n, h) => { $(`[data-s="${n}"]`, m).innerHTML = h; };
+    m.setAttribute("style", famVars(s.f)); tune.setAttribute("style", famVars(s.f));
+    m.setAttribute("aria-label", `Concept: Bloom ${s.d} screen built from the shared Bloom language`);
+    put("nav", navHtml(s.d, s.links, s.end)); put("e", s.e); put("h", s.h); put("p", s.p); put("b0", s.b[0]); put("b1", s.b[1]);
+    s.rows.forEach(([i, t, sub, chip], x) => put(`r${x}`, `<span class="scr__ic">${ic(i)}</span><div><b>${t}</b><small>${sub}</small></div>${chip ? `<span class="scr__chip ${x ? "" : "scr__chip--acc"}">${chip}</span>` : `<svg class="ico scr__chev" aria-hidden="true"><use href="#i-chev-r"/></svg>`}`));
+    $("#tune-desc").textContent = s.d;
+    if (animate && !reduce) restart(m, "is-swap");
+  }
+  setSpec("homes", false);
+  tuneTabs.addEventListener("click", (e) => { const b = e.target.closest("[role=tab]"); if (!b) return; selectTab(tuneTabs, b); setSpec(b.dataset.k, true); });
+  $$(".rules li", tune).forEach((li) => {
+    const on = () => { tune.dataset.hl = li.dataset.hl; }, off = () => { delete tune.dataset.hl; };
+    li.addEventListener("mouseenter", on); li.addEventListener("focus", on);
+    li.addEventListener("mouseleave", off); li.addEventListener("blur", off);
+  });
+
+  /* 07b: lockups and app icons */
+  $("#lockups").innerHTML = [
+    ["Universal", "Bloom Universal, the group gateway", "#FFFFFF", "#B6000E"],
+    ["Homes", "Home-buying and master plans", "#F5EBDD", "#8F5E24"],
+    ["Owners", "The Super App, for owners", "#8F5E24", "#FFFFFF", "#FFFFFF", "rgba(255,255,255,.82)", "rgba(255,255,255,.4)"],
+    ["Community", "The Community App, for residents", "#E3EFE6", "#3F7A55"],
+    ["Partners", "For brokers and agencies", "#E6E8F8", "#3F4FB8"],
+    ["Multiverse", "For Bloom's employees", "#0B1640", "#A9B8FF", "#FFFFFF", "rgba(255,255,255,.72)", "rgba(255,255,255,.3)"]
+  ].map(([d, s, bg, fg, wm, sub, rule]) => `<div class="lk" style="--lk-bg:${bg};--lk-d:${fg}${wm ? `;--lk-wm:${wm};--lk-s:${sub};--lk-rule:${rule}` : ""}"><span class="lk__l"><i class="wm" role="img" aria-label="Bloom"></i><b>${d}</b></span><small>${s}</small></div>`).join("");
+  $("#app-icons").innerHTML = [["Owners", "#8F5E24"], ["Community", "#3F7A55"], ["Partners", "#3F4FB8"]]
+    .map(([d, c]) => `<span class="app"><span class="app__ic" style="--c:${c}" role="img" aria-label="Bloom ${d} app icon"><i class="wm"></i><small>${d}</small></span><span>${d}</span></span>`).join("")
+    + `<span class="app"><span class="app__ic app__ic--mark" role="img" aria-label="Bloom Multiverse icon, keeping its existing mark"><i class="logo logo--mark"></i></span><span>Multiverse</span></span>`;
+
+  /* 07c: palette and five same-recipe screens */
+  $("#cores").innerHTML = [
+    ["#932A23", "Wordmark", "On today's wordmark", 1], ["#B6000E", "Bloom red", "Every main action"], ["#0B1640", "Ink", "Multiverse headings", 1],
+    ["#535464", "Body", "Multiverse body text", 1], ["#F6F4F0", "Paper", "Multiverse page", 1], ["#FFFFFF", "White", "Cards and bars", 1], ["#E6E1D8", "Line", "Borders and rules"]
+  ].map(([c, n, s, used]) => `<div class="core"><i style="--c:${c}"></i><b>${n}</b><code>${c}</code><small${used ? ' class="in"' : ""}>${s}</small></div>`).join("");
+  $("#accs").innerHTML = [
+    ["group", "Group", "Bloom red", "Bloom Universal"], ["homes", "Homes", "Earth", "Home-buying, master plans, Owners"], ["community", "Community", "Garden", "Community App"],
+    ["partners", "Partners", "Indigo", "Bloom Partners"], ["people", "People", "Electric blue", "Multiverse, kept from today"]
+  ].map(([f, n, t, s]) => `<div class="acc"><i style="--c:${FAM[f][0]};--t:${FAM[f][1]}"></i><b>${n} · ${t}</b><code>${FAM[f][0]} / ${FAM[f][1]}</code><small>${s}</small></div>`).join("");
+  $("#phs").innerHTML = [["group", "Universal", "Group"], ["homes", "Homes", "Homes"], ["community", "Community", "Community"], ["partners", "Partners", "Partners"], ["people", "Multiverse", "People"]]
+    .map(([f, n, a]) => `<div class="ph-wrap" style="${famVars(f)}"><div class="ph" aria-hidden="true"><i class="ph__nav"><i class="wm"></i><i></i></i><i class="ph__e"></i><i class="ph__t" style="width:88%"></i><i class="ph__t" style="width:58%"></i><i class="ph__m" style="width:92%"></i><i class="ph__m" style="width:70%"></i>`
+      + `<i class="ph__card"><i class="ph__ic"></i><i class="ph__l"></i></i><i class="ph__card"><i class="ph__ic"></i><i class="ph__l"></i></i><i class="ph__chips"><i></i><i></i></i><i class="ph__btn"></i></div><span>${n}</span><small>${a} accent</small></div>`).join("");
+
+  /* 07d: the same parts, themed per product */
+  const kit = $("#kit"), kitTabs = $("#kit-tabs");
+  kitTabs.innerHTML = famTabs(TUNE_TABS, "partners");
+  function setKit(k) { const s = SPEC[k]; kit.setAttribute("style", famVars(s.f)); $("#kit-nav").innerHTML = navHtml(s.d, s.links, s.end); }
+  setKit("partners");
+  kitTabs.addEventListener("click", (e) => { const b = e.target.closest("[role=tab]"); if (!b) return; selectTab(kitTabs, b); setKit(b.dataset.k); });
+
+  /* 07e: before and after slider */
+  const BA = {
+    universal: [["Bloom red takes the main action", "A descriptor names the product", "Photography sits in shared rounded tiles", "The headline gains the italic Bloom moment"], ["The six businesses and their photography", "The Arabic language switch"]],
+    masterplan: [["The Bloom wordmark appears on the screen", "Filters move into a shared Bloom panel", "Book appointment uses Bloom red", "Ticks and controls take the Homes accent"], ["The satellite master plan", "Facade types and unit counts"]],
+    home: [["Bloom red replaces the black buttons", "Price and Iskan loan sit in one card", "Construction progress becomes a bar", "The same navigation as every product"], ["Unit photography and details", "Book appointment and reserve unit"]],
+    partners: [["One type pairing replaces the serif titles", "Raise a request becomes one red link style", "Pastel tiles become one Partners accent", "The same navigation and cards"], ["Request types and their wording", "Home, Leads, Inventory and My Team"]],
+    multiverse: [["The Bloom wordmark with a Multiverse descriptor", "Blue becomes the accent; actions turn Bloom red", "The gradient name becomes the italic Bloom moment", "Shared chips, buttons and cards"], ["The orbit of work apps and its counts", "Bloom GPT and quick search"]]
+  };
+  const ba = $("#ba"), knob = $("#ba-knob"), baTabs = $("#ba-tabs");
+  baTabs.innerHTML = Object.entries(PRODUCTS).map(([k, p], i) => `<button type="button" role="tab" aria-selected="${i === 0}" tabindex="${i ? -1 : 0}" data-k="${k}"><i style="--c:${FAM[p.f][0]}"></i>${esc(p.n.replace(/^Bloom /, "").replace("Al Metlaa master plan", "Master plan").replace("-buying platform", "-buying"))}</button>`).join("");
+  let baPos = 50;
+  function setPos(v) { baPos = Math.max(0, Math.min(100, v)); ba.style.setProperty("--pos", `${baPos}%`); knob.setAttribute("aria-valuenow", String(Math.round(baPos))); knob.setAttribute("aria-valuetext", `${Math.round(100 - baPos)}% concept`); }
+  function renderBA(k, animate) {
+    const p = PRODUCTS[k], [chg, keep] = BA[k], before = $("#ba-before");
+    before.style.setProperty("--img", `var(--shot-${p.shot})`); before.setAttribute("aria-label", `${p.n} today`);
+    $("#ba-after").innerHTML = `<div class="fit">${MOCKS[k]()}</div>`; fitAll($("#ba-after"));
+    const info = $("#ba-info");
+    info.innerHTML = `<h3>${esc(p.n)}<small>${esc(p.who)}${p.n === `Bloom ${p.d}` ? "" : ` · as Bloom ${esc(p.d)}`}</small></h3><div><span class="label">What changes</span><ul>${chg.map((t) => `<li>${esc(t)}</li>`).join("")}</ul></div>`
+      + `<div class="keep"><span class="label">What stays</span><ul>${keep.map((t) => `<li>${esc(t)}</li>`).join("")}</ul></div><p class="bainfo__note">Drag the handle, or use the arrow keys on it. Today's screen as supplied by the Bloom team.${src(16)}</p>`;
+    if (animate && !reduce) restart(info, "swap");
+  }
+  renderBA("universal", false);
+  baTabs.addEventListener("click", (e) => { const b = e.target.closest("[role=tab]"); if (!b) return; selectTab(baTabs, b); renderBA(b.dataset.k, true); sweep(); });
+  const dragTo = (e) => { const r = ba.getBoundingClientRect(); setPos((e.clientX - r.left) / r.width * 100); };
+  ba.addEventListener("pointerdown", (e) => { cancelAnimationFrame(sweep.raf); ba.setPointerCapture(e.pointerId); ba.classList.add("is-drag"); dragTo(e); });
+  ba.addEventListener("pointermove", (e) => { if (ba.hasPointerCapture(e.pointerId)) dragTo(e); });
+  ["pointerup", "pointercancel"].forEach((t) => ba.addEventListener(t, () => ba.classList.remove("is-drag")));
+  knob.addEventListener("keydown", (e) => {
+    const d = { ArrowLeft: -5, ArrowRight: 5, Home: -100, End: 100, PageUp: -20, PageDown: 20 }[e.key]; if (d === undefined) return;
+    e.preventDefault(); e.stopPropagation(); cancelAnimationFrame(sweep.raf); setPos(baPos + d);
+  });
+  // A short sweep shows that the screen can be compared, then settles in the middle.
+  function sweep() {
+    cancelAnimationFrame(sweep.raf); if (reduce) { setPos(50); return; }
+    const t0 = performance.now(), from = baPos, keys = [[0, from], [.38, 82], [.72, 26], [1, 50]];
+    const step = (t) => {
+      const p = Math.min(1, (t - t0) / 2200); let i = 0; while (i < keys.length - 2 && p > keys[i + 1][0]) i++;
+      const [a, va] = keys[i], [b, vb] = keys[i + 1], q = (p - a) / (b - a), e = q < .5 ? 2 * q * q : 1 - Math.pow(-2 * q + 2, 2) / 2;
+      setPos(va + (vb - va) * e); if (p < 1) sweep.raf = requestAnimationFrame(step);
+    };
+    sweep.raf = requestAnimationFrame(step);
+  }
+
+  /* 07f: the family portrait, mirroring 05a */
+  $("#family").innerHTML = Object.entries(PRODUCTS).map(([k, p], i) => `<figure class="shot rv" style="--d:${i + 1}"><div class="shot__frame shot__frame--mock"><span class="shot__bar"><i></i><i></i><i></i><b>${esc(p.n)}</b><span>Concept${p.n === `Bloom ${p.d}` ? "" : ` · Bloom ${esc(p.d)}`}</span><svg class="ico" aria-hidden="true"><use href="#i-expand"/></svg></span>`
+    + `<div class="fit">${MOCKS[k]()}</div><button class="shot__hit" type="button" data-zoom="mock:${k}" aria-label="View the ${esc(p.n)} concept full size"></button></div></figure>`).join("")
+    + `<div class="shot-text rv" style="--d:6"><p>One company. One way of saying Bloom.</p><ul><li><b>1</b>wordmark, on every product</li><li><b>1</b>action colour, Bloom red</li><li><b>1</b>set of shared parts</li><li><b>4</b>audience accents</li></ul><small>Concepts for discussion. Select a screen to see it full size.</small></div>`;
+  fitAll(document);
 
   /* ================= 05 PROPOSAL ================= */
   $("#pl-products").innerHTML = [
@@ -1104,7 +1822,7 @@ body[data-tone="ink"] { background: var(--ink); }
   const slides = $$(".slide"), N = slides.length;
   const CAT = { fact: '<span class="cat cat--fact">Fact</span>', opp: '<span class="cat cat--opp">Opportunity</span>', prop: '<span class="cat cat--prop">Proposal</span>', mixed: '<span class="tagset"><span class="cat cat--fact">Today</span><span class="cat cat--prop">Proposed</span></span>' };
   let cur = -1;
-  // Chapters are numbered 01-11 with 05a-05d as sub-slides and A for the appendix.
+  // Chapters are numbered 01-12 with 05a-05d and 07a-07f as sub-slides and A for the appendix.
   const LAST = slides.filter((s) => /^\d+$/.test(s.dataset.num)).pop().dataset.num;
   $("#toc-list").innerHTML = slides.map((s, i) => `<li><button type="button" data-go="${i}"><span>${esc(s.dataset.num)}</span>${esc(s.dataset.title)}</button></li>`).join("");
   $("#ticks").innerHTML = slides.map((s, i) => `<li><button type="button" data-go="${i}" aria-label="${esc(s.dataset.num)}: ${esc(s.dataset.title)}"></button></li>`).join("");
@@ -1134,6 +1852,7 @@ body[data-tone="ink"] { background: var(--ink); }
     try { history.replaceState(null, "", `#s${s.dataset.num}`); } catch { /* sandboxed */ }
     bloomOn(i === 0);
     if (s.querySelector("[data-count]")) countUp(s);
+    clearTimeout(sweep.t); if (s.contains(ba)) sweep.t = setTimeout(sweep, 900);
   }
   const toc = $("#toc"), tocBtn = $("#toc-btn");
   const setToc = (open) => { toc.hidden = !open; tocBtn.setAttribute("aria-expanded", String(open)); };
@@ -1154,7 +1873,7 @@ body[data-tone="ink"] { background: var(--ink); }
   });
   let tx = 0, ty = 0, skip = false;
   const vp = $("#viewport");
-  vp.addEventListener("touchstart", (e) => { const t = e.touches[0]; tx = t.clientX; ty = t.clientY; skip = !!e.target.closest(".who, .seg"); }, { passive: true });
+  vp.addEventListener("touchstart", (e) => { const t = e.touches[0]; tx = t.clientX; ty = t.clientY; skip = !!e.target.closest(".who, .seg, .ba"); }, { passive: true });
   vp.addEventListener("touchend", (e) => { if (skip) return; const t = e.changedTouches[0], dx = t.clientX - tx, dy = t.clientY - ty; if (Math.abs(dx) > 60 && Math.abs(dx) > Math.abs(dy) * 1.5) go(cur + (dx < 0 ? 1 : -1)); }, { passive: true });
   addEventListener("resize", fit);
   fit();
