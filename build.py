@@ -15,6 +15,8 @@ ASSETS = {
     "{{SHOT_HOME}}": "screens/home-buying-platform.webp",
     "{{SHOT_PARTNERS}}": "screens/bloom-partners-requests.webp",
     "{{SHOT_MULTIVERSE}}": "screens/bloom-multiverse-home.webp",
+    "{{SHOT_MASTERPLAN}}": "screens/al-metlaa-master-plan.webp",
+    "{{SHOT_UNIVERSAL}}": "screens/bloom-universal.webp",
 }
 MIME = {".png": "image/png", ".webp": "image/webp"}
 

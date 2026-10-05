@@ -19,7 +19,7 @@
   --serif: "Cormorant Garamond", "Iowan Old Style", Georgia, "Times New Roman", serif;
   --ease: cubic-bezier(.16, 1, .3, 1);
   --spring: cubic-bezier(.34, 1.4, .64, 1);
-  --shot-home: url({{SHOT_HOME}}); --shot-partners: url({{SHOT_PARTNERS}}); --shot-multiverse: url({{SHOT_MULTIVERSE}});
+  --shot-home: url({{SHOT_HOME}}); --shot-partners: url({{SHOT_PARTNERS}}); --shot-multiverse: url({{SHOT_MULTIVERSE}}); --shot-masterplan: url({{SHOT_MASTERPLAN}}); --shot-universal: url({{SHOT_UNIVERSAL}});
 }
 
 /* ---------- base ---------- */
@@ -225,61 +225,72 @@ a { color: inherit; }
 .crop { display: block; flex: none; width: calc(var(--w) * var(--s) * 1px); height: calc(var(--h) * var(--s) * 1px); border-radius: 6px; background-image: var(--img); background-repeat: no-repeat; background-size: calc(var(--iw) * var(--s) * 1px) auto; background-position: calc(var(--x) * var(--s) * -1px) calc(var(--y) * var(--s) * -1px); box-shadow: 0 0 0 1px var(--rule); }
 .slide--ink { background: radial-gradient(80% 90% at 100% 0%, #1D2C72 0%, rgba(29, 44, 114, 0) 62%), radial-gradient(60% 70% at 0% 100%, #131F55 0%, rgba(19, 31, 85, 0) 70%), var(--ink); color: #FFFFFF; }
 .slide--ink .hl { color: #FF7A86; }
-body[data-tone="ink"] { background: var(--ink); }
-.lineup { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); column-gap: 32px; }
-.shot { display: grid; gap: 16px; align-content: start; }
-.shot__frame { display: block; width: 100%; border-radius: 14px; overflow: hidden; background: #FFFFFF; text-align: left; box-shadow: 0 0 0 1px rgba(255, 255, 255, .14), 0 34px 60px -30px rgba(0, 0, 0, .7); transition: transform .4s var(--spring), box-shadow .4s; }
-.shot__frame:hover { transform: translateY(-6px); box-shadow: 0 0 0 1px rgba(255, 255, 255, .3), 0 44px 70px -30px rgba(0, 0, 0, .8); }
-.shot__frame .crop { border-radius: 0; box-shadow: none; }
-.shot__bar { display: flex; align-items: center; gap: 6px; height: 28px; padding: 0 12px; background: #E9E6E0; }
-.shot__bar i { width: 8px; height: 8px; border-radius: 50%; background: #CBC6BC; }
-.shot__bar em { margin-left: auto; font-style: normal; font-size: 11px; font-weight: 700; letter-spacing: .04em; color: var(--muted); opacity: 0; transition: opacity .3s; }
-.shot__frame:hover .shot__bar em, .shot__frame:focus-visible .shot__bar em { opacity: 1; }
-.shot__img { height: 330px; background-image: var(--img); background-repeat: no-repeat; background-size: 100% auto; background-position: center top; }
-.shot figcaption { display: grid; gap: 3px; }
-.shot figcaption b { font-size: 19px; font-weight: 700; }
-.shot figcaption span { font-size: 15px; color: rgba(255, 255, 255, .7); }
-.shot-note { margin-top: 34px; font-size: 14px; color: rgba(255, 255, 255, .7); }
 .slide--ink .src { color: #FF9AA3; }
-.pal { display: grid; gap: 20px; }
-.pal__row { display: grid; grid-template-columns: 300px minmax(0, 1fr); column-gap: 32px; align-items: start; padding-top: 16px; border-top: 1px solid var(--rule); }
-.pal__who b { display: block; font-size: 18px; font-weight: 700; }
-.pal__who span { display: block; margin-top: 2px; font-size: 14px; color: var(--muted); }
-.pal__who p { margin-top: 8px; font-size: 15px; line-height: 1.4; color: var(--ink-2); max-width: 34ch; }
-.pal__groups { display: flex; flex-wrap: wrap; gap: 14px 30px; }
-.pal__grp { display: grid; gap: 8px; align-content: start; }
-.pal__grp > span { font-size: 11px; font-weight: 800; line-height: 14px; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); }
+body[data-tone="ink"] { background: var(--ink); }
+/* 05a: 3 x 2 gallery, five screens plus one note, every frame 437 x (32 + 227) */
+.lineup { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px 32px; }
+.shot__frame { display: block; width: 100%; border-radius: 14px; overflow: hidden; background: #FFFFFF; text-align: left; box-shadow: 0 0 0 1px rgba(255, 255, 255, .14), 0 30px 54px -30px rgba(0, 0, 0, .75); transition: transform .4s var(--spring), box-shadow .4s; }
+.shot__frame:hover { transform: translateY(-5px); box-shadow: 0 0 0 1px rgba(255, 255, 255, .32), 0 40px 64px -30px rgba(0, 0, 0, .85); }
+.shot__frame .crop { border-radius: 0; box-shadow: none; }
+.shot__bar { display: flex; align-items: center; gap: 6px; height: 32px; padding: 0 12px; background: #E9E6E0; color: var(--ink); }
+.shot__bar i { width: 8px; height: 8px; border-radius: 50%; background: #CBC6BC; flex: none; }
+.shot__bar b { margin-left: 8px; font-size: 13px; font-weight: 700; white-space: nowrap; }
+.shot__bar span { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-size: 12px; color: var(--muted); }
+.shot__bar .ico { margin-left: auto; width: 14px; height: 14px; color: var(--muted); opacity: .55; transition: opacity .3s, color .3s; }
+.shot__frame:hover .shot__bar .ico, .shot__frame:focus-visible .shot__bar .ico { opacity: 1; color: var(--ink); }
+.shot-text { display: grid; align-content: space-between; padding: 24px 28px; border-radius: 14px; box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .18); }
+.shot-text p { font-family: var(--serif); font-style: italic; font-weight: 600; font-size: 30px; line-height: 1.1; letter-spacing: -.01em; }
+.shot-text ul { display: grid; gap: 6px; }
+.shot-text li { display: grid; grid-template-columns: 22px 1fr; font-size: 15.5px; line-height: 1.35; color: rgba(255, 255, 255, .86); }
+.shot-text li b { color: #FFFFFF; font-variant-numeric: tabular-nums; }
+.shot-text small { font-size: 13px; color: rgba(255, 255, 255, .62); }
+/* 05b: one row per product; columns are colour roles */
+.pt { display: grid; grid-template-columns: 290px 184px 248px minmax(0, 1fr); column-gap: 24px; }
+.pt > * { padding: 10px 0; border-top: 1px solid var(--rule); min-width: 0; }
+.pt__h { padding: 0 0 8px; border-top: 0; font-size: 11px; font-weight: 800; line-height: 14px; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); }
+.pt__who { align-self: stretch; }
+.pt__who b { display: block; font-size: 16px; font-weight: 700; }
+.pt__who span { display: block; margin-top: 3px; font-size: 13.5px; color: var(--muted); }
+.pt .sws { gap: 8px; }
+.pt .sw { width: 52px; gap: 5px; }
+.pt .sw i { width: 52px; height: 34px; border-radius: 7px; }
+.pt .sw code { font-size: 9.5px; }
+.pt__none { display: flex; align-items: center; height: 34px; font-size: 13.5px; font-style: italic; color: var(--muted); }
 .sws { display: flex; gap: 8px; }
-.sw { display: grid; gap: 6px; width: 52px; }
+.sw { display: grid; gap: 6px; align-content: start; width: 52px; }
 .sw i { width: 52px; height: 40px; border-radius: 8px; background: var(--c); box-shadow: inset 0 0 0 1px rgba(11, 22, 64, .12); }
 .sw code { font: 600 10px/1 var(--sans); letter-spacing: .01em; color: var(--ink-2); }
-.same { display: grid; grid-template-columns: 1fr 1fr 1fr 1.15fr; column-gap: 32px; margin-top: 4px; padding: 18px 24px; border-radius: 14px; background: var(--paper-2); }
+.same { display: grid; grid-template-columns: auto auto auto minmax(0, 1fr); column-gap: 40px; margin-top: 18px; padding: 16px 24px; border-radius: 14px; background: var(--paper-2); }
 .same__k { display: block; margin-bottom: 10px; font-size: 11px; font-weight: 800; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); }
 .same .sws { gap: 10px; }
-.same .sw { width: 80px; }
-.same .sw i { width: 80px; height: 30px; }
-.same .sw small { font-size: 11px; font-weight: 600; color: var(--muted); }
-.same p { align-self: center; font-size: 15px; line-height: 1.45; color: var(--ink-2); }
+.same .sw { width: 78px; }
+.same .sw i { width: 78px; height: 28px; }
+.same .sw small { font-size: 11px; font-weight: 600; line-height: 1.3; color: var(--muted); }
+.same p { align-self: center; font-size: 14.5px; line-height: 1.45; color: var(--ink-2); }
 .same p b { color: var(--red); }
-.mx { display: grid; grid-template-columns: 170px repeat(3, minmax(0, 1fr)); column-gap: 28px; }
-.mx > * { padding: 10px 0; border-top: 1px solid var(--rule); min-width: 0; }
-.mx__h { padding-top: 12px; border-top: 2px solid var(--ink); font-size: 15px; font-weight: 800; }
-.mx__h small { display: block; margin-top: 2px; font-size: 13px; font-weight: 500; color: var(--muted); }
-.mx__k { padding-top: 13px; font-size: 12px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); }
-.mx__c { display: grid; gap: 8px; align-content: start; justify-items: start; }
-.mx__c small { font-size: 14px; line-height: 1.35; color: var(--ink-2); }
+/* 05c: one row per product; columns are brand mark, headline, primary action */
+.mt { display: grid; grid-template-columns: 230px repeat(3, minmax(0, 1fr)); column-gap: 24px; }
+.mt > * { padding: 9px 0; border-top: 1px solid var(--rule); min-width: 0; }
+.mt__h { padding: 10px 0 10px; border-top: 2px solid var(--ink); font-size: 15px; font-weight: 800; }
+.mt__h:first-child { border-top-color: transparent; }
+.mt__who { padding-top: 14px; }
+.mt__who b { display: block; font-size: 16px; font-weight: 700; }
+.mt__who span { display: block; margin-top: 3px; font-size: 13.5px; color: var(--muted); }
+.mt__c { display: grid; gap: 6px; align-content: start; }
+.mt__c small { font-size: 13.5px; line-height: 1.3; color: var(--ink-2); }
 .mx__tile { display: flex; align-items: center; width: 100%; height: var(--th); padding: 0 16px; border-radius: 10px; background: var(--tbg, #FFFFFF); box-shadow: inset 0 0 0 1px var(--rule); overflow: hidden; }
 .mx__tile .crop { border-radius: 0; box-shadow: none; }
+/* 05d */
 .tally { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); column-gap: 32px; }
-.tally div { display: grid; gap: 10px; padding-top: 20px; border-top: 1px solid var(--rule); }
+.tally div { display: grid; gap: 10px; align-content: start; padding-top: 20px; border-top: 1px solid var(--rule); }
 .tally div:first-child { border-top: 2px solid var(--red); padding-top: 19px; }
 .tally b { font-size: 104px; font-weight: 300; line-height: .9; letter-spacing: -.045em; }
-.tally span { font-size: 19px; color: var(--ink-2); }
+.tally span { font-size: 19px; line-height: 1.35; color: var(--ink-2); max-width: 16ch; }
 .tally-note { margin-top: 14px; font-size: 14px; color: var(--muted); }
-.cost { display: grid; grid-template-columns: 1fr 1fr; column-gap: 32px; margin-top: 44px; }
+.cost { display: grid; grid-template-columns: 1fr 1fr; column-gap: 32px; margin-top: 40px; }
 .cost div { display: grid; gap: 8px; }
 .cost p { font-size: 22px; font-weight: 600; line-height: 1.35; letter-spacing: -.01em; max-width: 32ch; }
-.bridge { margin-top: 40px; padding-top: 24px; border-top: 1px solid var(--rule); font-size: 30px; font-weight: 600; line-height: 1.2; letter-spacing: -.02em; }
+.bridge { margin-top: 36px; padding-top: 22px; border-top: 1px solid var(--rule); font-size: 30px; font-weight: 600; line-height: 1.2; letter-spacing: -.02em; }
 
 /* full-size screen viewer (05a), drawn inside the content zone */
 .zoom { position: absolute; z-index: 15; left: 112px; right: 112px; top: 112px; bottom: 96px; display: flex; flex-direction: column; gap: 14px; padding: 16px 20px 20px; border-radius: 18px; background: #101C52; color: #FFFFFF; box-shadow: 0 0 0 1px rgba(255, 255, 255, .12), 0 40px 80px -30px rgba(0, 0, 0, .8); animation: rise .45s var(--ease); }
@@ -482,17 +493,17 @@ body[data-tone="ink"] { background: var(--ink); }
 .is-narrow .road::before, .is-narrow .road::after { display: none; }
 .is-narrow .close { margin-top: 40px; font-size: 36px; }
 .is-narrow .next { display: block; }
-.is-narrow .lineup, .is-narrow .tally, .is-narrow .cost, .is-narrow .same { grid-template-columns: minmax(0, 1fr); row-gap: 28px; }
-.is-narrow .shot .crop { width: 100%; height: auto; aspect-ratio: 437 / 300; background-size: calc(var(--iw) / var(--w) * 100%) auto; background-position: var(--px) 0; }
+.is-narrow .lineup, .is-narrow .tally, .is-narrow .cost, .is-narrow .same { grid-template-columns: minmax(0, 1fr); row-gap: 24px; }
+.is-narrow .shot .crop { width: 100%; height: auto; aspect-ratio: 437 / 227; background-size: calc(var(--iw) / var(--w) * 100%) auto; background-position: 0 0; }
 .is-narrow .chrome[data-bg="ink"] .bar { background: var(--ink); border-color: rgba(255, 255, 255, .16); }
 .is-narrow .zoom { position: fixed; z-index: 60; inset: calc(60px + env(safe-area-inset-top, 0px)) 0 calc(64px + env(safe-area-inset-bottom, 0px)); border-radius: 0; }
 .is-narrow .mx__tile { height: auto; min-height: var(--th); padding: 10px 14px; }
-.is-narrow .pal__row { grid-template-columns: minmax(0, 1fr); row-gap: 14px; }
+.is-narrow .pt, .is-narrow .mt { grid-template-columns: minmax(0, 1fr); }
+.is-narrow .pt__h, .is-narrow .mt__h { display: none; }
+.is-narrow .pt > *, .is-narrow .mt > * { border-top: 0; padding: 6px 0; }
+.is-narrow .pt__who, .is-narrow .mt__who { margin-top: 12px; padding-top: 18px; border-top: 1px solid var(--rule); }
+.is-narrow [data-role]::before { content: attr(data-role); display: block; margin-bottom: 6px; font-size: 11px; font-weight: 800; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); }
 .is-narrow .sws { flex-wrap: wrap; }
-.is-narrow .mx { grid-template-columns: minmax(0, 1fr); }
-.is-narrow .mx__k { padding-top: 22px; color: var(--red); }
-.is-narrow .mx__h { display: none; }
-.is-narrow .mx__c::before { content: attr(data-p); font-size: 12px; font-weight: 800; color: var(--muted); }
 .is-narrow .crop { max-width: 100%; }
 .is-narrow .tally b { font-size: 64px; }
 .is-narrow .cost p { font-size: 19px; }
@@ -506,6 +517,7 @@ body[data-tone="ink"] { background: var(--ink); }
   <symbol id="i-arrow-l" viewBox="0 0 24 24"><path d="M19 12H5M11 6l-6 6 6 6"/></symbol>
   <symbol id="i-chev" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></symbol>
   <symbol id="i-book" viewBox="0 0 24 24"><path d="M4 5a2 2 0 0 1 2-2h13v16H6a2 2 0 0 0-2 2z"/><path d="M4 21V5M8 7h7"/></symbol>
+  <symbol id="i-expand" viewBox="0 0 24 24"><path d="M14 4h6v6M10 20H4v-6M20 4l-7 7M4 20l7-7"/></symbol>
   <symbol id="i-x" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></symbol>
   <symbol id="i-door" viewBox="0 0 24 24"><path d="M6 21V4a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v17M3 21h18"/><circle cx="14.5" cy="12" r=".9" fill="currentColor"/></symbol>
 </svg>
@@ -607,13 +619,12 @@ body[data-tone="ink"] { background: var(--ink); }
 <!-- 05a PRODUCTS TODAY -->
 <section class="slide slide--ink" data-num="05a" data-title="Products today" data-cat="fact" aria-roledescription="slide">
   <header class="s-head">
-    <h2 class="h1 rv">Three Bloom products.<br>Three different <span class="hl">Blooms.</span></h2>
+    <h2 class="h1 rv">Five products. Five different <span class="hl">Blooms.</span></h2>
   </header>
   <div class="s-body">
     <div class="lineup">
-      <figure class="shot rv" style="--d:1"><button class="shot__frame" type="button" data-zoom="home" aria-label="View Home-buying platform full size"><span class="shot__bar" aria-hidden="true"><i></i><i></i><i></i><em>View full size</em></span><i class="crop" style="--img:var(--shot-home);--iw:1930;--x:0;--y:0;--w:1930;--h:1325;--s:0.2264;--px:0%" role="img" aria-label="Home-buying platform: Al Metlaa unit details page"></i></button><figcaption><b>Home-buying platform</b><span>Emirati buyers · Al Metlaa</span></figcaption></figure><figure class="shot rv" style="--d:2"><button class="shot__frame" type="button" data-zoom="partners" aria-label="View Bloom Partners full size"><span class="shot__bar" aria-hidden="true"><i></i><i></i><i></i><em>View full size</em></span><i class="crop" style="--img:var(--shot-partners);--iw:1333;--x:0;--y:0;--w:1333;--h:915;--s:0.3278;--px:0%" role="img" aria-label="Bloom Partners: Your Requests page"></i></button><figcaption><b>Bloom Partners</b><span>Brokers and agencies</span></figcaption></figure><figure class="shot rv" style="--d:3"><button class="shot__frame" type="button" data-zoom="multiverse" aria-label="View Bloom Multiverse full size"><span class="shot__bar" aria-hidden="true"><i></i><i></i><i></i><em>View full size</em></span><i class="crop" style="--img:var(--shot-multiverse);--iw:2000;--x:52;--y:0;--w:1895;--h:1301;--s:0.2306;--px:50%" role="img" aria-label="Bloom Multiverse: employee home page"></i></button><figcaption><b>Bloom Multiverse</b><span>Employees</span></figcaption></figure>
+      <figure class="shot rv" style="--d:1"><button class="shot__frame" type="button" data-zoom="universal" aria-label="View Bloom Universal full size"><span class="shot__bar"><i></i><i></i><i></i><b>Bloom Universal</b><span>Gateway to six Bloom businesses</span><svg class="ico" aria-hidden="true"><use href="#i-expand"/></svg></span><i class="crop" style="--img:var(--shot-universal);--iw:2000;--x:0;--y:0;--w:2000;--h:1039;--s:0.2185" role="img" aria-label="Bloom Universal: first screen"></i></button></figure><figure class="shot rv" style="--d:2"><button class="shot__frame" type="button" data-zoom="masterplan" aria-label="View Al Metlaa master plan full size"><span class="shot__bar"><i></i><i></i><i></i><b>Al Metlaa master plan</b><span>Buyers exploring Al Metlaa</span><svg class="ico" aria-hidden="true"><use href="#i-expand"/></svg></span><i class="crop" style="--img:var(--shot-masterplan);--iw:2000;--x:0;--y:0;--w:2000;--h:1039;--s:0.2185" role="img" aria-label="Al Metlaa master plan: first screen"></i></button></figure><figure class="shot rv" style="--d:3"><button class="shot__frame" type="button" data-zoom="home" aria-label="View Home-buying platform full size"><span class="shot__bar"><i></i><i></i><i></i><b>Home-buying platform</b><span>Emirati buyers · Al Metlaa</span><svg class="ico" aria-hidden="true"><use href="#i-expand"/></svg></span><i class="crop" style="--img:var(--shot-home);--iw:1930;--x:0;--y:0;--w:1930;--h:1003;--s:0.2264" role="img" aria-label="Home-buying platform: first screen"></i></button></figure><figure class="shot rv" style="--d:4"><button class="shot__frame" type="button" data-zoom="partners" aria-label="View Bloom Partners full size"><span class="shot__bar"><i></i><i></i><i></i><b>Bloom Partners</b><span>Brokers and agencies</span><svg class="ico" aria-hidden="true"><use href="#i-expand"/></svg></span><i class="crop" style="--img:var(--shot-partners);--iw:1333;--x:0;--y:0;--w:1333;--h:692;--s:0.3278" role="img" aria-label="Bloom Partners: first screen"></i></button></figure><figure class="shot rv" style="--d:5"><button class="shot__frame" type="button" data-zoom="multiverse" aria-label="View Bloom Multiverse full size"><span class="shot__bar"><i></i><i></i><i></i><b>Bloom Multiverse</b><span>Employees</span><svg class="ico" aria-hidden="true"><use href="#i-expand"/></svg></span><i class="crop" style="--img:var(--shot-multiverse);--iw:2000;--x:0;--y:0;--w:2000;--h:1039;--s:0.2185" role="img" aria-label="Bloom Multiverse: first screen"></i></button></figure><div class="shot-text rv" style="--d:6"><p>One company. Five ways of saying Bloom.</p><ul><li><b>3</b>show the Bloom wordmark</li><li><b>1</b>uses its own lockup</li><li><b>1</b>shows no Bloom mark in view</li></ul><small>Select a screen to see it full size.<a class="src" href="#src-16" data-s="16">16</a></small></div>
     </div>
-    <p class="shot-note rv" style="--d:4">Screens supplied by the Bloom team. Select any screen to see it full size.<a class="src" href="#src-16" data-s="16">16</a></p>
   </div>
 </section>
 
@@ -623,7 +634,7 @@ body[data-tone="ink"] { background: var(--ink); }
     <h2 class="h1 rv">Each product chose its own <span class="hl">colours.</span></h2>
   </header>
   <div class="s-body">
-    <div class="pal rv" style="--d:1" id="pal"></div>
+    <div class="rv" style="--d:1" id="pal"></div>
   </div>
 </section>
 
@@ -633,7 +644,7 @@ body[data-tone="ink"] { background: var(--ink); }
     <h2 class="h1 rv">And its own type and <span class="hl">components.</span></h2>
   </header>
   <div class="s-body">
-    <div class="mx rv" style="--d:1"><span class="mx__h"></span><span class="mx__h">Home-buying platform</span><span class="mx__h">Bloom Partners</span><span class="mx__h">Bloom Multiverse</span><span class="mx__k">Brand mark</span><div class="mx__c" data-p="Home-buying platform"><span class="mx__tile" style="--th:56px;--tbg:#F6F6F6"><i class="crop" style="--img:var(--shot-home);--iw:1930;--x:55;--y:55;--w:170;--h:65;--s:0.62" role="img" aria-label="Bloom wordmark on the home-buying platform"></i></span><small>Bloom wordmark</small></div><div class="mx__c" data-p="Bloom Partners"><span class="mx__tile" style="--th:56px;--tbg:#FFFFFF"><i class="crop" style="--img:var(--shot-partners);--iw:1333;--x:65;--y:8;--w:120;--h:52;--s:0.78" role="img" aria-label="Bloom wordmark on Bloom Partners"></i></span><small>Bloom wordmark</small></div><div class="mx__c" data-p="Bloom Multiverse"><span class="mx__tile" style="--th:56px;--tbg:#FEFEFE"><i class="crop" style="--img:var(--shot-multiverse);--iw:2000;--x:492;--y:34;--w:228;--h:58;--s:0.7" role="img" aria-label="Bloom Multiverse lockup"></i></span><small>Its own Bloom Multiverse lockup</small></div><span class="mx__k">Headlines</span><div class="mx__c" data-p="Home-buying platform"><span class="mx__tile" style="--th:72px;--tbg:#F6F6F6"><i class="crop" style="--img:var(--shot-home);--iw:1930;--x:300;--y:50;--w:222;--h:50;--s:1" role="img" aria-label="Unit Details heading"></i></span><small>Sans serif titles</small></div><div class="mx__c" data-p="Bloom Partners"><span class="mx__tile" style="--th:72px;--tbg:#FFFFFF"><i class="crop" style="--img:var(--shot-partners);--iw:1333;--x:100;--y:690;--w:245;--h:48;--s:1" role="img" aria-label="Other request types heading"></i></span><small>Serif display titles</small></div><div class="mx__c" data-p="Bloom Multiverse"><span class="mx__tile" style="--th:72px;--tbg:#F6F4F0"><i class="crop" style="--img:var(--shot-multiverse);--iw:2000;--x:96;--y:282;--w:990;--h:248;--s:0.21" role="img" aria-label="Good afternoon, Rashid heading"></i></span><small>Heavy grotesque, gradient name</small></div><span class="mx__k">Primary action</span><div class="mx__c" data-p="Home-buying platform"><span class="mx__tile" style="--th:56px;--tbg:#F6F6F6"><i class="crop" style="--img:var(--shot-home);--iw:1930;--x:1176;--y:540;--w:682;--h:72;--s:0.46" role="img" aria-label="Book Appointment button"></i></span><small>Full-width black button</small></div><div class="mx__c" data-p="Bloom Partners"><span class="mx__tile" style="--th:56px;--tbg:#FFFFFF"><i class="crop" style="--img:var(--shot-partners);--iw:1333;--x:203;--y:545;--w:165;--h:36;--s:1" role="img" aria-label="Raise a Request link"></i></span><small>Underlined text link</small></div><div class="mx__c" data-p="Bloom Multiverse"><span class="mx__tile" style="--th:56px;--tbg:#F6F4F0"><i class="crop" style="--img:var(--shot-multiverse);--iw:2000;--x:96;--y:826;--w:525;--h:84;--s:0.5" role="img" aria-label="Review 32 actions and Open inbox buttons"></i></span><small>Blue pill with an outlined partner</small></div><span class="mx__k">Sections</span><div class="mx__c" data-p="Home-buying platform"><i class="crop" style="--img:var(--shot-home);--iw:1930;--x:40;--y:165;--w:1810;--h:715;--s:0.1455" role="img" aria-label="Unit page layout"></i><small>White cards on light grey</small></div><div class="mx__c" data-p="Bloom Partners"><i class="crop" style="--img:var(--shot-partners);--iw:1333;--x:0;--y:66;--w:1333;--h:554;--s:0.1877" role="img" aria-label="Requests page layout"></i><small>Dark hero band, floating cards</small></div><div class="mx__c" data-p="Bloom Multiverse"><i class="crop" style="--img:var(--shot-multiverse);--iw:2000;--x:0;--y:0;--w:2000;--h:790;--s:0.1316" role="img" aria-label="Employee home layout"></i><small>Floating glass bars, orbit visual</small></div></div>
+    <div class="mt rv" style="--d:1"><span class="mt__h"></span><span class="mt__h">Brand mark</span><span class="mt__h">Headline</span><span class="mt__h">Primary action</span><div class="mt__who"><b>Bloom Universal</b><span>Gateway to six Bloom businesses</span></div><div class="mt__c" data-role="Brand mark"><span class="mx__tile" style="--th:52px;--tbg:#FFFFFF"><i class="crop" style="--img:var(--shot-universal);--iw:2000;--x:48;--y:65;--w:252;--h:85;--s:0.5" role="img" aria-label="Bloom wordmark on Bloom Universal"></i></span><small>Bloom wordmark</small></div><div class="mt__c" data-role="Headline"><span class="mx__tile" style="--th:52px;--tbg:#FFFFFF"><i class="crop" style="--img:var(--shot-universal);--iw:2000;--x:46;--y:203;--w:442;--h:94;--s:0.46" role="img" aria-label="The Bloom Experience: More Than a Place to Live"></i></span><small>Sans headline, capitals label</small></div><div class="mt__c" data-role="Primary action"><span class="mx__tile" style="--th:52px;--tbg:#FFFFFF"><i class="crop" style="--img:var(--shot-universal);--iw:2000;--x:46;--y:316;--w:304;--h:76;--s:0.57" role="img" aria-label="Let us get started button"></i></span><small>Charcoal button with an arrow</small></div><div class="mt__who"><b>Al Metlaa master plan</b><span>Buyers exploring Al Metlaa</span></div><div class="mt__c" data-role="Brand mark"><span class="mx__tile" style="--th:52px;--tbg:#FFFFFF"><i class="crop" style="--img:var(--shot-masterplan);--iw:2000;--x:18;--y:20;--w:254;--h:54;--s:0.8" role="img" aria-label="Back button and Al Ain, Masterplan breadcrumb"></i></span><small>No Bloom mark in view</small></div><div class="mt__c" data-role="Headline"><span class="mx__tile" style="--th:52px;--tbg:#FFFFFF"><i class="crop" style="--img:var(--shot-masterplan);--iw:2000;--x:16;--y:122;--w:394;--h:60;--s:0.72" role="img" aria-label="Filters, showing 2247 of 2247 units"></i></span><small>Small bold sans panel title</small></div><div class="mt__c" data-role="Primary action"><span class="mx__tile" style="--th:52px;--tbg:#FFFFFF"><i class="crop" style="--img:var(--shot-masterplan);--iw:2000;--x:1860;--y:18;--w:124;--h:50;--s:0.86" role="img" aria-label="English and Arabic toggle"></i></span><small>Black toggle; filters as checkboxes</small></div><div class="mt__who"><b>Home-buying platform</b><span>Emirati buyers · Al Metlaa</span></div><div class="mt__c" data-role="Brand mark"><span class="mx__tile" style="--th:52px;--tbg:#F6F6F6"><i class="crop" style="--img:var(--shot-home);--iw:1930;--x:55;--y:55;--w:170;--h:65;--s:0.62" role="img" aria-label="Bloom wordmark on the home-buying platform"></i></span><small>Bloom wordmark</small></div><div class="mt__c" data-role="Headline"><span class="mx__tile" style="--th:52px;--tbg:#F6F6F6"><i class="crop" style="--img:var(--shot-home);--iw:1930;--x:300;--y:50;--w:222;--h:50;--s:0.86" role="img" aria-label="Unit Details heading"></i></span><small>Sans serif titles</small></div><div class="mt__c" data-role="Primary action"><span class="mx__tile" style="--th:52px;--tbg:#F6F6F6"><i class="crop" style="--img:var(--shot-home);--iw:1930;--x:1240;--y:540;--w:560;--h:72;--s:0.6" role="img" aria-label="Book Appointment button"></i></span><small>Full-width black button</small></div><div class="mt__who"><b>Bloom Partners</b><span>Brokers and agencies</span></div><div class="mt__c" data-role="Brand mark"><span class="mx__tile" style="--th:52px;--tbg:#FFFFFF"><i class="crop" style="--img:var(--shot-partners);--iw:1333;--x:65;--y:8;--w:120;--h:52;--s:0.78" role="img" aria-label="Bloom wordmark on Bloom Partners"></i></span><small>Bloom wordmark</small></div><div class="mt__c" data-role="Headline"><span class="mx__tile" style="--th:52px;--tbg:#FFFFFF"><i class="crop" style="--img:var(--shot-partners);--iw:1333;--x:100;--y:690;--w:245;--h:48;--s:0.9" role="img" aria-label="Other request types heading"></i></span><small>Serif display titles</small></div><div class="mt__c" data-role="Primary action"><span class="mx__tile" style="--th:52px;--tbg:#FFFFFF"><i class="crop" style="--img:var(--shot-partners);--iw:1333;--x:203;--y:545;--w:165;--h:36;--s:1" role="img" aria-label="Raise a Request link"></i></span><small>Underlined text link</small></div><div class="mt__who"><b>Bloom Multiverse</b><span>Employees</span></div><div class="mt__c" data-role="Brand mark"><span class="mx__tile" style="--th:52px;--tbg:#FEFEFE"><i class="crop" style="--img:var(--shot-multiverse);--iw:2000;--x:492;--y:34;--w:228;--h:58;--s:0.7" role="img" aria-label="Bloom Multiverse lockup"></i></span><small>Its own Bloom Multiverse lockup</small></div><div class="mt__c" data-role="Headline"><span class="mx__tile" style="--th:52px;--tbg:#F6F4F0"><i class="crop" style="--img:var(--shot-multiverse);--iw:2000;--x:96;--y:282;--w:990;--h:248;--s:0.175" role="img" aria-label="Good afternoon, Rashid heading"></i></span><small>Heavy grotesque, gradient name</small></div><div class="mt__c" data-role="Primary action"><span class="mx__tile" style="--th:52px;--tbg:#F6F4F0"><i class="crop" style="--img:var(--shot-multiverse);--iw:2000;--x:96;--y:826;--w:525;--h:84;--s:0.51" role="img" aria-label="Review 32 actions and Open inbox buttons"></i></span><small>Blue pill, outlined partner</small></div></div>
   </div>
 </section>
 
@@ -644,12 +655,12 @@ body[data-tone="ink"] { background: var(--ink); }
   </header>
   <div class="s-body">
     <div class="tally rv" style="--d:1">
-      <div><b>2</b><span>brand marks</span></div>
-      <div><b>3</b><span>headline styles</span></div>
-      <div><b>3</b><span>primary action styles</span></div>
-      <div><b>3</b><span>colour systems</span></div>
+      <div><b>3</b><span>brand treatments</span></div>
+      <div><b>4</b><span>primary action styles</span></div>
+      <div><b>3</b><span>heading colours</span></div>
+      <div><b>1</b><span>product with no Bloom mark in view</span></div>
     </div>
-    <p class="tally-note rv" style="--d:1">Counted across the three product screens on 05a to 05c.</p>
+    <p class="tally-note rv" style="--d:1">Counted across the five product screens on 05a to 05c.</p>
     <div class="cost rv" style="--d:2">
       <div><span class="label">For people</span><p>Moving between Bloom products feels like moving between companies.</p></div>
       <div><span class="label">For Bloom</span><p>The same parts are designed, built and maintained more than once.</p></div>
@@ -860,7 +871,7 @@ body[data-tone="ink"] { background: var(--ink); }
     ["Bloom Holding · Bloom Arjaan by Rotana hotel apartments", "https://bloomholding.com/press-releases/bloom-arjaan-rotana-hotel-apartments", "Hotel apartments on Saadiyat Island offered to investors, managed by Rotana."],
     ["Bloom team materials · Phase 1", "", "Bloom Multiverse, the employee platform: work apps, approvals, people and policies in one place."],
     ["Bloom Holding · Bloom Landscape", "https://bloomholding.com/what-we-do/bloomscape", "Landscape design, construction and maintenance for local and international clients: public parks, sports facilities, resorts, hotels, palaces, residential complexes, commercial centres and large urban developments, in Abu Dhabi and Dubai."],
-    ["Bloom product screens · supplied by the Bloom team", "", "Home-buying platform (Al Metlaa unit details), Bloom Partners (Your Requests) and Bloom Multiverse (home), October 2026. Colours on 05b are sampled directly from these screens; image compression can shift values slightly."]
+    ["Bloom product screens · supplied by the Bloom team", "", "Bloom Universal (home), Al Metlaa master plan, home-buying platform (Al Metlaa unit details), Bloom Partners (Your Requests) and Bloom Multiverse (home), October 2026. Colours on 05b are sampled directly from these screens; image compression can shift values slightly."]
   ];
   const short = (u) => u.replace(/^https:\/\/(www\.)?/, "").replace(/\/$/, "");
   $("#src-list").innerHTML = SOURCES.map(([t, u], i) => `<li><span>${pad(i + 1)}</span><div><b>${esc(t)}</b>${u ? `<a href="${esc(u)}" target="_blank" rel="noopener">${esc(short(u).split("/")[0])}</a>` : `<a>Shared with the Bloom team</a>`}</div></li>`).join("");
@@ -983,29 +994,28 @@ body[data-tone="ink"] { background: var(--ink); }
   /* ================= 05b COLOUR ================= */
   // Colours sampled from the supplied screens (median of a 3x3 patch, or the most frequent ink colour in a text region).
   const PAL = [
-    { n: "Home-buying platform", a: "Emirati buyers · Al Metlaa", o: "Neutral greys, black actions, orange and green accents.", g: [
-      ["Surface", [["#F6F6F6", "Page"], ["#FFFFFF", "Cards"]]],
-      ["Text and action", [["#333333", "Headings"], ["#1A1A1A", "Primary button"], ["#922B23", "Bloom wordmark"]]],
-      ["Accents", [["#F45D2C", "Calendar icon"], ["#F9EAD6", "Calendar tile"], ["#408945", "Home icon"], ["#C8E6CA", "Home tile"], ["#1A5D24", "Loan text"]]]] },
-    { n: "Bloom Partners", a: "Brokers and agencies", o: "A charcoal hero, a purple label and a spread of pastel tiles.", g: [
-      ["Surface", [["#F9F9F9", "Page"], ["#333333", "Hero band"], ["#EAF7F9", "Contact card"]]],
-      ["Text and action", [["#1C1A19", "Headings"], ["#000000", "Active tab"], ["#9D292C", "Bloom wordmark"]]],
-      ["Accents", [["#7058E0", "Label text"], ["#EAECFF", "Label"], ["#FFD7D7", "Pink tile"], ["#FFE7D6", "Peach tile"], ["#EFD6FE", "Lavender tile"], ["#D7F5FF", "Blue tile"], ["#D8FFD6", "Green tile"], ["#1FB4E6", "Wave"], ["#F1908E", "Avatar"]]]] },
-    { n: "Bloom Multiverse", a: "Employees", o: "Deep navy and electric blue on warm off-white, with a gradient name.", g: [
-      ["Surface", [["#F6F4F0", "Page"], ["#FEFEFE", "Floating bars"], ["#0A1236", "Navy panel"]]],
-      ["Text and action", [["#0B1641", "Headings"], ["#535464", "Body text"], ["#1F4DFF", "Primary button"]]],
-      ["Accents", [["#1A76E5", "Name gradient"], ["#13B1D5", "Name gradient"], ["#2445D3", "Italic accent"], ["#16A570", "Status dot"], ["#D25773", "Count badge"], ["#A51D1C", "Mark red"]]]] }
+    { n: "Bloom Universal", o: "White page, colour from photography", s: [["#FFFFFF", "Page"]], t: [["#343434", "Headline"], ["#030303", "Label"], ["#333333", "Button"], ["#932A23", "Bloom wordmark"]], a: [], none: "Photography only" },
+    { n: "Al Metlaa master plan", o: "Monochrome panel over a satellite map", s: [["#FFFFFF", "Panel"]], t: [["#1C1C1C", "Headings"], ["#4C4C4C", "Body text"], ["#838383", "Muted text"], ["#171815", "Toggle"]], a: [], none: "Satellite imagery only" },
+    { n: "Home-buying platform", o: "Greys, black actions, orange and green", s: [["#F6F6F6", "Page"], ["#FFFFFF", "Cards"]], t: [["#333333", "Headings"], ["#1A1A1A", "Primary button"], ["#922B23", "Bloom wordmark"]],
+      a: [["#F45D2C", "Calendar icon"], ["#F9EAD6", "Calendar tile"], ["#408945", "Home icon"], ["#C8E6CA", "Home tile"], ["#1A5D24", "Loan text"]] },
+    { n: "Bloom Partners", o: "Charcoal hero, purple label, pastel tiles", s: [["#F9F9F9", "Page"], ["#333333", "Hero band"], ["#EAF7F9", "Contact card"]], t: [["#1C1A19", "Headings"], ["#000000", "Active tab"], ["#9D292C", "Bloom wordmark"]],
+      a: [["#7058E0", "Label text"], ["#EAECFF", "Label"], ["#FFD7D7", "Pink tile"], ["#FFE7D6", "Peach tile"], ["#EFD6FE", "Lavender tile"], ["#D7F5FF", "Blue tile"], ["#D8FFD6", "Green tile"], ["#1FB4E6", "Wave"], ["#F1908E", "Avatar"]] },
+    { n: "Bloom Multiverse", o: "Navy, electric blue, a gradient name", s: [["#F6F4F0", "Page"], ["#FEFEFE", "Floating bars"], ["#0A1236", "Navy panel"]], t: [["#0B1641", "Headings"], ["#535464", "Body text"], ["#1F4DFF", "Primary button"]],
+      a: [["#1A76E5", "Name gradient"], ["#13B1D5", "Name gradient"], ["#2445D3", "Italic accent"], ["#16A570", "Status dot"], ["#D25773", "Count badge"], ["#A51D1C", "Mark red"]] }
   ];
   const sw = ([c, t], sub) => `<span class="sw" title="${esc(t)}"><i style="--c:${c}"></i><code>${c}</code>${sub ? `<small>${esc(sub)}</small>` : ""}</span>`;
-  $("#pal").innerHTML = PAL.map((p) => `<div class="pal__row"><div class="pal__who"><b>${esc(p.n)}</b><span>${esc(p.a)}</span><p>${esc(p.o)}</p></div>`
-    + `<div class="pal__groups">${p.g.map(([k, cs]) => `<div class="pal__grp"><span>${esc(k)}</span><div class="sws">${cs.map((c) => sw(c)).join("")}</div></div>`).join("")}</div></div>`).join("")
-    + `<div class="same"><div><span class="same__k">Primary action</span><div class="sws">${sw(["#1A1A1A", "Home-buying"], "Home-buying")}${sw(["#000000", "Partners"], "Partners")}${sw(["#1F4DFF", "Multiverse"], "Multiverse")}</div></div>`
-    + `<div><span class="same__k">Heading text</span><div class="sws">${sw(["#333333", "Home-buying"], "Home-buying")}${sw(["#1C1A19", "Partners"], "Partners")}${sw(["#0B1641", "Multiverse"], "Multiverse")}</div></div>`
+  const sws = (list, none) => list.length ? `<div class="sws">${list.map((c) => sw(c)).join("")}</div>` : `<span class="pt__none">${esc(none)}</span>`;
+  $("#pal").innerHTML = `<div class="pt"><span class="pt__h">Product</span><span class="pt__h">Surface</span><span class="pt__h">Text and action</span><span class="pt__h">Accents</span>`
+    + PAL.map((p) => `<div class="pt__who"><b>${esc(p.n)}</b><span>${esc(p.o)}</span></div><div data-role="Surface">${sws(p.s)}</div><div data-role="Text and action">${sws(p.t)}</div><div data-role="Accents">${sws(p.a, p.none)}</div>`).join("") + `</div>`
+    + `<div class="same"><div><span class="same__k">Primary action</span><div class="sws">${sw(["#333333", "Universal"], "Universal")}${sw(["#1A1A1A", "Home-buying"], "Home-buying")}${sw(["#000000", "Partners"], "Partners")}${sw(["#1F4DFF", "Multiverse"], "Multiverse")}</div></div>`
+    + `<div><span class="same__k">Heading text</span><div class="sws">${sw(["#333333", "Home-buying and Universal"], "Home-buying, Universal")}${sw(["#1C1C1C", "Partners and master plan"], "Partners, Master plan")}${sw(["#0B1641", "Multiverse"], "Multiverse")}</div></div>`
     + `<div><span class="same__k">Green tile</span><div class="sws">${sw(["#C8E6CA", "Home-buying"], "Home-buying")}${sw(["#D8FFD6", "Partners"], "Partners")}</div></div>`
-    + `<p>Same job, different values. <b>Bloom red</b> appears in the wordmark, but none of the three uses it as its action colour.</p></div>`;
+    + `<p>Same job, different values. Where the <b>Bloom wordmark</b> appears its red holds, but no product uses Bloom red for actions.</p></div>`;
 
   /* ================= 05a FULL-SIZE VIEWER ================= */
   const SCREENS = {
+    universal: ["Bloom Universal", "Gateway to six Bloom businesses", "var(--shot-universal)", "2000 / 1140"],
+    masterplan: ["Al Metlaa master plan", "Buyers exploring Al Metlaa", "var(--shot-masterplan)", "2000 / 1140"],
     home: ["Home-buying platform", "Emirati buyers · Al Metlaa unit details", "var(--shot-home)", "1930 / 2000"],
     partners: ["Bloom Partners", "Brokers and agencies · Your Requests", "var(--shot-partners)", "1333 / 2000"],
     multiverse: ["Bloom Multiverse", "Employees · Home", "var(--shot-multiverse)", "2000 / 1300"]
