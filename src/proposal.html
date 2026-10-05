@@ -1,463 +1,414 @@
 <title>Bloom Digital Ecosystem</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400..800&family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500;1,600&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300..800&family=Cormorant+Garamond:ital,wght@1,500;1,600&display=swap">
 <style>
-/* Layout: ten full-screen chapters plus a source appendix, one idea per chapter.
-   Language carried over from the Phase 1 work and Bloom Multiverse: Bloom red leads,
-   warm paper and navy ink, serif italics for the word that matters, frosted chrome,
-   "01 / 11" counters. Red is reserved for emphasis and for what we propose. */
+/* Layout: a fixed 1600x900 presentation canvas, scaled to the window like a Keynote slide.
+   12 columns, 112px side margins, 32px gutters. Reserved zones on every slide:
+   running head y 44-84, content y 136-796, controls y 820-864. Nothing is placed outside them.
+   Below 900px wide, or in portrait, each chapter reflows into one scrolling column.
+   One deliberate look (not theme-switched): warm paper carries the argument,
+   full-bleed Bloom red opens and closes it. */
 :root {
   color-scheme: light;
-  --canvas: #F6F4EF; --surface: #FFFFFF; --surface-2: #EFECE5; --line: #E3DFD5; --line-strong: #CBC5B8;
-  --ink: #0B1640; --ink-2: #1E2A5A; --slate: #4A5372; --slate-2: #6A7191;
-  --accent: #B6000E; --accent-fg: #B6000E; --accent-soft: #FBE7E8; --on-accent: #FFFFFF;
-  --grad: #FF3C4B 0%, #B00A2E 36%, #6E0020 70%, #3A000D 100%;
-  --blob-1: #FF4D5E; --blob-2: #FFA28F; --blob-3: #B58CF0;
-  --frost: rgba(255, 255, 255, .62); --frost-panel: rgba(255, 255, 255, .96); --frost-line: rgba(11, 22, 64, .09);
-  --frost-shadow: 0 1px 2px rgba(11, 22, 64, .05), 0 22px 48px -20px rgba(11, 22, 64, .34);
-  --glass: rgba(255, 255, 255, .58); --glass-line: rgba(255, 255, 255, .85);
-  --sh-1: 0 1px 2px rgba(11, 22, 64, .05), 0 10px 28px -14px rgba(11, 22, 64, .16);
-  --sh-2: 0 2px 8px rgba(11, 22, 64, .05), 0 30px 64px -30px rgba(11, 22, 64, .3);
-  --ring: 0 0 0 3px color-mix(in srgb, var(--accent) 35%, transparent);
-  --logo-bg: #FFFFFF;
-  --font-display: "Plus Jakarta Sans", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
-  --font-serif: "Cormorant Garamond", "Iowan Old Style", Georgia, "Times New Roman", serif;
-  --fs-mega: clamp(3rem, 1rem + 6vw, 7.25rem);
-  --fs-title: clamp(2rem, 1.05rem + 2.7vw, 4rem);
-  --fs-num: clamp(3rem, 1.7rem + 3.6vw, 5.75rem);
-  --fs-lead: clamp(1.0625rem, .98rem + .35vw, 1.3125rem);
-  --r-sm: 12px; --r-md: 18px; --r-lg: 28px; --r-xl: 36px; --r-pill: 999px;
-  --ease-expo: cubic-bezier(.16, 1, .3, 1); --ease-out: cubic-bezier(.2, .8, .2, 1); --ease-spring: cubic-bezier(.34, 1.56, .64, 1);
-  --gutter: clamp(16px, 4vw, 56px); --maxw: 1200px;
+  --paper: #FAF8F4; --paper-2: #F2EEE7; --paper-3: #E8E2D7;
+  --ink: #0B1640; --ink-2: #2B3459; --muted: #646B88; --rule: #D8D2C6;
+  --red: #B6000E; --red-deep: #7E0008; --red-soft: #F8E6E7;
+  --on-red: #FFFFFF; --on-red-2: rgba(255, 255, 255, .78); --on-red-rule: rgba(255, 255, 255, .28);
+  --sans: "Plus Jakarta Sans", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --serif: "Cormorant Garamond", "Iowan Old Style", Georgia, "Times New Roman", serif;
+  --ease: cubic-bezier(.16, 1, .3, 1);
+  --spring: cubic-bezier(.34, 1.4, .64, 1);
 }
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) {
-    color-scheme: dark;
-    --canvas: #0B0714; --surface: #160F22; --surface-2: #1E1530; --line: #2A2040; --line-strong: #3E3158;
-    --ink: #F3EEF6; --ink-2: #D9D0E2; --slate: #B3A8C2; --slate-2: #9389A6;
-    --accent: #D62839; --accent-fg: #FF7A86; --accent-soft: rgba(214, 40, 57, .2); --on-accent: #FFFFFF;
-    --grad: #E0223A 0%, #8A0A26 38%, #3A0716 72%, #0B0714 100%;
-    --blob-1: #E0223A; --blob-2: #FF7A5C; --blob-3: #8F5BE0;
-    --frost: rgba(30, 16, 40, .6); --frost-panel: rgba(24, 14, 34, .97); --frost-line: rgba(255, 255, 255, .1);
-    --frost-shadow: 0 16px 36px -20px rgba(0, 0, 0, .55);
-    --glass: rgba(40, 22, 54, .55); --glass-line: rgba(255, 255, 255, .14);
-    --sh-1: 0 0 0 1px rgba(255, 255, 255, .04), 0 10px 24px -16px rgba(0, 0, 0, .5);
-    --sh-2: 0 0 0 1px rgba(255, 255, 255, .05), 0 22px 44px -28px rgba(0, 0, 0, .55);
-    --logo-bg: #FFFFFF;
-  }
-}
-:root[data-theme="dark"], .invert {
-  color-scheme: dark;
-  --canvas: #0B0714; --surface: #160F22; --surface-2: #1E1530; --line: #2A2040; --line-strong: #3E3158;
-  --ink: #F3EEF6; --ink-2: #D9D0E2; --slate: #B3A8C2; --slate-2: #9389A6;
-  --accent: #D62839; --accent-fg: #FF7A86; --accent-soft: rgba(214, 40, 57, .2); --on-accent: #FFFFFF;
-  --grad: #E0223A 0%, #8A0A26 38%, #3A0716 72%, #0B0714 100%;
-  --blob-1: #E0223A; --blob-2: #FF7A5C; --blob-3: #8F5BE0;
-  --frost: rgba(30, 16, 40, .6); --frost-panel: rgba(24, 14, 34, .97); --frost-line: rgba(255, 255, 255, .1);
-  --frost-shadow: 0 16px 36px -20px rgba(0, 0, 0, .55);
-  --glass: rgba(40, 22, 54, .55); --glass-line: rgba(255, 255, 255, .14);
-  --sh-1: 0 0 0 1px rgba(255, 255, 255, .04), 0 10px 24px -16px rgba(0, 0, 0, .5);
-  --sh-2: 0 0 0 1px rgba(255, 255, 255, .05), 0 22px 44px -28px rgba(0, 0, 0, .55);
-}
-/* The red stage keeps its own warm-light gradient in both themes. */
-.stage { --grad: #FF3C4B 0%, #B00A2E 36%, #6E0020 70%, #3A000D 100%; --blob-1: #FF4D5E; --blob-2: #FFA28F; --accent-fg: #FFFFFF; --ink: #FFFFFF; --ink-2: rgba(255, 255, 255, .86); --slate: rgba(255, 255, 255, .74); --slate-2: rgba(255, 255, 255, .62); --frost: rgba(255, 255, 255, .12); --frost-line: rgba(255, 255, 255, .22); }
 
 /* ---------- base ---------- */
 *, *::before, *::after { box-sizing: border-box; }
 html, body { height: 100%; }
-body { margin: 0; overflow: hidden; background: var(--canvas); color: var(--ink); font: 400 1rem/1.5 var(--font-display); -webkit-font-smoothing: antialiased; }
-button { font: inherit; color: inherit; cursor: pointer; }
-a { color: inherit; text-underline-offset: 3px; text-decoration-color: var(--accent-fg); }
-:focus-visible { outline: none; box-shadow: var(--ring); border-radius: var(--r-sm); }
-h1, h2, h3, h4, p, ul, ol, figure, blockquote, dl, dd { margin: 0; }
+body { margin: 0; overflow: hidden; background: var(--paper); color: var(--ink); font-family: var(--sans); -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility; transition: background-color .5s; }
+body[data-tone="red"] { background: var(--red); }
+h1, h2, h3, h4, p, ul, ol, figure, blockquote { margin: 0; }
 ul, ol { padding: 0; list-style: none; }
+button { font: inherit; color: inherit; cursor: pointer; background: none; border: 0; padding: 0; }
+a { color: inherit; }
+:focus-visible { outline: 2px solid var(--red); outline-offset: 3px; border-radius: 4px; }
+.slide--red :focus-visible, .chrome[data-tone="red"] :focus-visible { outline-color: #FFFFFF; }
 .ico { width: 18px; height: 18px; flex: none; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
 .vh { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
-em.s { font-family: var(--font-serif); font-style: italic; font-weight: 600; font-size: 1.14em; line-height: .9; letter-spacing: -.005em; color: var(--accent-fg); }
 
-/* ---------- deck frame ---------- */
-.deck { position: fixed; inset: 0; }
-.slide { position: absolute; inset: 0; overflow-x: hidden; overflow-y: auto; overscroll-behavior: contain;
-  padding: calc(96px + env(safe-area-inset-top, 0px)) var(--gutter) calc(96px + env(safe-area-inset-bottom, 0px));
-  background: var(--canvas); color: var(--ink); visibility: hidden; opacity: 0; transform: translateX(40px);
-  transition: opacity .6s var(--ease-expo), transform .6s var(--ease-expo), visibility 0s linear .6s; }
-.slide.is-before { transform: translateX(-40px); }
-.slide.is-current { visibility: visible; opacity: 1; transform: none; transition-delay: 0s; z-index: 1; }
-.slide__in { max-width: var(--maxw); margin: 0 auto; min-height: 100%; display: flex; flex-direction: column; justify-content: center; gap: clamp(24px, 3.4vw, 44px); }
-.head { display: grid; gap: 14px; max-width: 920px; }
-.eyebrow { display: flex; align-items: center; flex-wrap: wrap; gap: 10px 12px; font-size: .75rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--slate); }
-.eyebrow b { font-variant-numeric: tabular-nums; color: var(--accent-fg); }
-.title { font-size: var(--fs-title); font-weight: 600; line-height: 1.02; letter-spacing: -.025em; text-wrap: balance; }
-.mega { font-size: var(--fs-mega); font-weight: 600; line-height: .94; letter-spacing: -.035em; text-wrap: balance; }
-.lead { font-size: var(--fs-lead); line-height: 1.45; color: var(--ink-2); max-width: 46ch; text-wrap: pretty; }
-.hint { display: inline-flex; align-items: center; gap: 8px; font-size: .875rem; color: var(--slate); }
-.hint::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--accent); animation: pulse 1.8s ease-in-out infinite; }
-@keyframes pulse { 50% { transform: scale(1.6); opacity: .4; } }
-.is-current .rv { animation: rise .9s var(--ease-expo) both; animation-delay: calc(var(--d, 0) * 90ms + 120ms); }
-@keyframes rise { from { opacity: 0; transform: translateY(20px); } }
-.pop { animation: rise .5s var(--ease-expo) both; }
+/* ---------- canvas ---------- */
+.viewport { position: fixed; inset: 0; overflow: hidden; }
+.canvas { position: absolute; left: 0; top: 0; width: 1600px; height: 900px; transform-origin: 0 0; }
+.slide { position: absolute; inset: 0; display: flex; flex-direction: column; gap: 48px; padding: 136px 112px 104px; background: var(--paper); color: var(--ink); opacity: 0; visibility: hidden; transition: opacity .55s var(--ease), visibility 0s linear .55s; }
+.slide.is-current { opacity: 1; visibility: visible; transition-delay: 0s; z-index: 1; }
+.slide--red { background: radial-gradient(120% 90% at 0% 0%, #D0101F 0%, rgba(208, 16, 31, 0) 60%), radial-gradient(90% 90% at 100% 100%, var(--red-deep) 0%, rgba(126, 0, 8, 0) 70%), var(--red); color: var(--on-red); }
+.s-head { display: grid; gap: 14px; max-width: 1180px; }
+.s-body { flex: 1; min-height: 0; position: relative; }
+.is-current .rv { animation: rise .8s var(--ease) both; animation-delay: calc(var(--d, 0) * 90ms + 100ms); }
+@keyframes rise { from { opacity: 0; transform: translateY(16px); } }
 
-/* category tags: what is fact, what is interpretation, what is recommendation */
-.tag { display: inline-flex; align-items: center; gap: 6px; padding: 4px 10px 4px 8px; border-radius: var(--r-pill); font-size: .6875rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; white-space: nowrap; line-height: 1.2; }
-.tag::before { content: ""; width: 8px; height: 8px; border-radius: 50%; flex: none; }
-.tag--fact { color: var(--ink-2); box-shadow: inset 0 0 0 1px var(--line-strong); }
-.tag--fact::before { background: var(--ink-2); }
-.tag--opp { color: var(--ink-2); box-shadow: inset 0 0 0 1px var(--line-strong); }
-.tag--opp::before { box-shadow: inset 0 0 0 2px var(--accent-fg); }
-.tag--prop { background: var(--accent); color: var(--on-accent); }
-.tag--prop::before { background: currentColor; }
-.stage .tag--fact, .stage .tag--opp { box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .4); }
-.stage .tag--prop { background: #FFFFFF; color: #B6000E; }
+/* ---------- type ---------- */
+.h1 { font-size: 64px; font-weight: 600; line-height: 1.04; letter-spacing: -.028em; text-wrap: balance; }
+.hl { color: var(--red); }
+.slide--red .hl { color: var(--on-red); }
+.sub { font-size: 20px; line-height: 1.45; color: var(--muted); max-width: 62ch; }
+.label { font-size: 12px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); }
+.slide--red .label { color: var(--on-red-2); }
+.serif { font-family: var(--serif); font-style: italic; font-weight: 600; letter-spacing: -.01em; }
+
+/* category marks: fact, opportunity, proposal */
+.cat { display: inline-flex; align-items: center; gap: 8px; font-size: 12px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; white-space: nowrap; }
+.cat::before { content: ""; width: 9px; height: 9px; border-radius: 50%; flex: none; }
+.cat--fact::before { background: currentColor; }
+.cat--opp::before { box-shadow: inset 0 0 0 2px currentColor; }
+.cat--prop::before { background: var(--red); }
+.chrome[data-tone="red"] .cat--prop::before { background: #FFFFFF; }
+.tagset { display: inline-flex; gap: 18px; }
+.chip-t { display: inline-flex; align-items: center; height: 22px; padding: 0 8px; border-radius: 4px; font-size: 11px; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; white-space: nowrap; }
+.chip-t--today { color: var(--ink-2); box-shadow: inset 0 0 0 1px var(--rule); }
+.chip-t--prop { background: var(--red); color: #FFFFFF; }
 
 /* source markers */
-.src { display: inline-grid; place-items: center; min-width: 18px; height: 18px; padding: 0 4px; margin-left: 3px; border: 0; border-radius: var(--r-pill); background: transparent; box-shadow: inset 0 0 0 1px var(--line-strong); color: var(--slate); font: 700 .625rem/1 var(--font-display); font-variant-numeric: tabular-nums; vertical-align: super; transition: background .2s, color .2s; }
-.src:hover { background: var(--ink); color: var(--canvas); box-shadow: none; }
-.srcs-inline { display: inline-flex; gap: 2px; }
+.src { display: inline; margin-left: 2px; font-size: .62em; font-weight: 800; line-height: 1; color: var(--red); vertical-align: super; letter-spacing: .02em; text-decoration: none; border-bottom: 1px solid transparent; transition: border-color .2s; }
+.src:hover { border-bottom-color: currentColor; }
+.src + .src::before { content: ","; margin-right: 1px; }
 
-/* buttons, chips */
-.btn { display: inline-flex; align-items: center; gap: 10px; min-height: 52px; padding: 0 24px; border: 0; border-radius: var(--r-pill); font-weight: 600; background: #FFFFFF; color: #B6000E; box-shadow: 0 10px 24px -12px rgba(0, 0, 0, .5); transition: transform .25s var(--ease-spring); text-decoration: none; }
-.btn:hover { transform: translateY(-2px); }
-.chip { display: inline-flex; align-items: center; gap: 8px; min-height: 40px; padding: 0 16px; border: 0; border-radius: var(--r-pill); background: var(--surface); color: var(--ink-2); font-size: .875rem; font-weight: 600; white-space: nowrap; box-shadow: inset 0 0 0 1px var(--line-strong); transition: background .2s, color .2s, box-shadow .2s, transform .25s var(--ease-spring); }
-.chip:hover { transform: translateY(-2px); }
-.chip[aria-selected="true"], .chip[aria-pressed="true"] { background: var(--accent); color: var(--on-accent); box-shadow: 0 12px 24px -14px var(--accent); }
-.chips { display: flex; flex-wrap: wrap; gap: 8px; }
-.seg { display: inline-flex; padding: 4px; gap: 4px; border-radius: var(--r-pill); background: var(--surface-2); box-shadow: inset 0 0 0 1px var(--line); }
-.seg button { border: 0; background: transparent; min-height: 40px; padding: 0 20px; border-radius: var(--r-pill); font-size: .875rem; font-weight: 700; color: var(--slate); transition: background .25s, color .25s; }
-.seg button[aria-selected="true"] { background: var(--ink); color: var(--canvas); }
-.seg button[data-v="eco"][aria-selected="true"] { background: var(--accent); color: var(--on-accent); }
-.icon-btn { display: inline-grid; place-items: center; width: 40px; height: 40px; border: 0; border-radius: 50%; background: transparent; color: var(--ink); }
-.icon-btn:hover { background: color-mix(in srgb, var(--ink) 9%, transparent); }
-.icon-btn:disabled { opacity: .3; cursor: default; background: transparent; }
+/* genuine logo files (the only three held); every other brand is a text label */
+.logo { display: inline-block; vertical-align: middle; background-repeat: no-repeat; background-position: left center; background-size: contain; flex: none; }
+.logo--edition { width: 92px; height: 26px; background-image: url({{IMG_EDITION}}); }
+.logo--marriott { width: 24px; height: 22px; background-image: url({{IMG_MARRIOTT}}); }
+.logo--mark { width: 18px; height: 16px; background-image: url({{IMG_MARK}}); }
 
-/* brand labels and genuine logos */
-.lbl { display: inline-flex; align-items: center; gap: 8px; min-height: 34px; padding: 0 13px; border-radius: var(--r-pill); background: var(--surface); color: var(--ink-2); box-shadow: inset 0 0 0 1px var(--line); font-size: .8125rem; font-weight: 600; white-space: nowrap; transition: opacity .35s, box-shadow .3s, background .3s, color .3s, transform .35s var(--ease-spring); }
-.logo { display: inline-block; height: 34px; border-radius: 10px; background-color: var(--logo-bg); background-repeat: no-repeat; background-position: center; box-shadow: inset 0 0 0 1px rgba(11, 22, 64, .1); flex: none; }
-.logo--edition { width: 96px; background-image: url({{IMG_EDITION}}); background-size: 80% auto; }
-.logo--marriott { width: 58px; background-image: url({{IMG_MARRIOTT}}); background-size: auto 76%; }
-.logo--mark { width: 34px; background-image: url({{IMG_MARK}}); background-size: 66% auto; }
-.lbl .logo { height: 24px; margin-left: -9px; border-radius: 8px; }
-.lbl .logo--edition { width: 72px; } .lbl .logo--marriott { width: 40px; } .lbl .logo--mark { width: 26px; }
-
-/* ---------- chrome ---------- */
-.frost { background: var(--frost); border: 1px solid var(--frost-line); box-shadow: var(--frost-shadow); -webkit-backdrop-filter: blur(22px) saturate(1.8); backdrop-filter: blur(22px) saturate(1.8); }
-.chrome { position: fixed; z-index: 20; top: 0; left: 0; right: 0; padding: calc(16px + env(safe-area-inset-top, 0px)) var(--gutter) 0; display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 12px; pointer-events: none; color: var(--ink); }
+/* ---------- chrome (inside the canvas, in reserved zones) ---------- */
+.chrome { position: absolute; inset: 0; z-index: 10; pointer-events: none; color: var(--ink); transition: color .4s; }
+.chrome[data-tone="red"] { color: var(--on-red); }
 .chrome > * { pointer-events: auto; }
-.chrome::before { content: ""; position: absolute; z-index: -1; inset: 0 0 -28px; pointer-events: none; background: color-mix(in srgb, var(--canvas) 30%, transparent); -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px); -webkit-mask-image: linear-gradient(#000 60%, transparent); mask-image: linear-gradient(#000 60%, transparent); }
-.chrome.on-stage::before { background: transparent; }
-.chrome.on-stage, .rail.on-stage { color: #FFFFFF; --ink: #FFFFFF; --slate: rgba(255, 255, 255, .74); --frost: rgba(255, 255, 255, .12); --frost-line: rgba(255, 255, 255, .22); }
-.brand { justify-self: start; display: grid; gap: 1px; text-decoration: none; line-height: 1.15; }
-.brand b { font-size: .9375rem; font-weight: 800; letter-spacing: -.01em; }
-.brand small { font-size: .75rem; color: var(--slate); }
-.capsule-wrap { position: relative; }
-.capsule { display: inline-flex; align-items: center; gap: 12px; height: 48px; padding: 0 16px 0 8px; border-radius: var(--r-pill); color: inherit; max-width: min(56vw, 380px); }
-.capsule__num { display: grid; place-items: center; width: 32px; height: 32px; border-radius: 50%; background: var(--accent); color: #FFFFFF; font-size: .75rem; font-weight: 700; font-variant-numeric: tabular-nums; flex: none; }
-.on-stage .capsule__num { background: #FFFFFF; color: #B6000E; }
-.capsule__name { font-weight: 600; font-size: .875rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; min-width: 0; }
-.jump { position: absolute; top: calc(100% + 10px); left: 50%; transform: translateX(-50%); width: min(340px, calc(100vw - 32px)); max-height: 72vh; overflow-y: auto; padding: 8px; border-radius: var(--r-md); background: var(--frost-panel); border: 1px solid var(--frost-line); box-shadow: var(--frost-shadow); color: var(--ink); }
-.chrome.on-stage .jump { --ink: #0B1640; --slate-2: #6A7191; --surface-2: #EFECE5; background: rgba(255, 255, 255, .97); }
-.jump button { display: flex; align-items: center; gap: 12px; width: 100%; padding: 10px 12px; border: 0; background: transparent; border-radius: var(--r-sm); text-align: left; font-size: .875rem; font-weight: 500; color: var(--ink); }
-.jump button span { font-variant-numeric: tabular-nums; color: var(--slate-2); font-size: .75rem; width: 20px; }
-.jump button:hover { background: var(--surface-2); }
-.jump button[aria-current="true"] { background: var(--accent); color: #FFFFFF; }
-.jump button[aria-current="true"] span { color: inherit; }
-.tools { justify-self: end; display: inline-flex; gap: 8px; align-items: center; }
-.tools .icon-btn { width: 44px; height: 44px; }
-.src-btn { display: inline-flex; align-items: center; gap: 8px; height: 44px; padding: 0 16px; border: 0; border-radius: var(--r-pill); font-size: .8125rem; font-weight: 700; color: inherit; }
-.theme-btn .i-sun { display: none; }
-:root[data-theme="dark"] .theme-btn .i-sun { display: block; }
-:root[data-theme="dark"] .theme-btn .i-moon { display: none; }
-@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .theme-btn .i-sun { display: block; } :root:not([data-theme="light"]) .theme-btn .i-moon { display: none; } }
-.rail { position: fixed; z-index: 20; right: 0; bottom: 0; padding: 0 var(--gutter) calc(16px + env(safe-area-inset-bottom, 0px)); pointer-events: none; color: var(--ink); }
-.rail-foot { pointer-events: auto; display: inline-flex; align-items: center; gap: 12px; padding: 4px 4px 4px 18px; border-radius: var(--r-pill); }
-.progress { position: relative; width: 120px; height: 4px; border-radius: var(--r-pill); background: color-mix(in srgb, currentColor 18%, transparent); overflow: hidden; }
-.progress i { position: absolute; inset: 0; background: linear-gradient(90deg, var(--accent), var(--blob-2)); transform-origin: 0 50%; transform: scaleX(0); transition: transform .6s var(--ease-expo); }
-.on-stage .progress i { background: #FFFFFF; }
-.counter { font-size: .875rem; font-weight: 600; font-variant-numeric: tabular-nums; min-width: 64px; text-align: center; }
+.bar { position: absolute; left: 112px; right: 112px; display: flex; align-items: center; gap: 24px; }
+.bar--top { top: 44px; height: 40px; }
+.bar--bottom { bottom: 36px; height: 44px; justify-content: space-between; }
+.toc-btn { display: inline-flex; align-items: center; gap: 12px; height: 40px; padding: 0 14px 0 0; font-size: 14px; font-weight: 700; }
+.toc-btn b { font-variant-numeric: tabular-nums; color: var(--red); min-width: 22px; text-align: left; }
+.chrome[data-tone="red"] .toc-btn b { color: var(--on-red); }
+.toc-btn .ico { width: 16px; height: 16px; opacity: .6; transition: transform .3s; }
+.toc-btn[aria-expanded="true"] .ico { transform: rotate(180deg); }
+.chrome .cat { opacity: .85; }
+.runner { margin-left: auto; font-size: 13px; font-weight: 600; letter-spacing: .01em; opacity: .7; white-space: nowrap; }
+.toc { position: absolute; top: 92px; left: 100px; width: 360px; padding: 10px; border-radius: 14px; background: #FFFFFF; color: var(--ink); box-shadow: 0 2px 6px rgba(11, 22, 64, .06), 0 28px 60px -24px rgba(11, 22, 64, .35); }
+.toc button { display: grid; grid-template-columns: 30px 1fr; align-items: center; width: 100%; padding: 10px 12px; border-radius: 8px; text-align: left; font-size: 15px; font-weight: 600; }
+.toc button span { font-size: 12px; font-weight: 800; color: var(--muted); font-variant-numeric: tabular-nums; }
+.toc button:hover { background: var(--paper-2); }
+.toc button[aria-current="true"] { background: var(--ink); color: #FFFFFF; }
+.toc button[aria-current="true"] span { color: rgba(255, 255, 255, .7); }
+.link-btn { display: inline-flex; align-items: center; gap: 10px; height: 40px; font-size: 14px; font-weight: 700; }
+.link-btn .ico { width: 17px; height: 17px; }
+.pager { display: flex; align-items: center; gap: 18px; }
+.ticks { display: flex; gap: 6px; }
+.ticks button { display: block; width: 22px; height: 20px; position: relative; }
+.ticks button::before { content: ""; position: absolute; left: 0; right: 0; top: 9px; height: 3px; border-radius: 2px; background: currentColor; opacity: .2; transition: opacity .3s, background-color .3s; }
+.ticks button[aria-current="true"]::before { opacity: 1; background: var(--red); }
+.chrome[data-tone="red"] .ticks button[aria-current="true"]::before { background: #FFFFFF; }
+.counter { font-size: 14px; font-weight: 700; font-variant-numeric: tabular-nums; min-width: 58px; text-align: right; }
+.arrows { display: flex; gap: 6px; }
+.arrow { display: grid; place-items: center; width: 44px; height: 44px; border-radius: 50%; box-shadow: inset 0 0 0 1px var(--rule); transition: background-color .2s, box-shadow .2s, color .2s; }
+.arrow:hover { background: var(--ink); color: #FFFFFF; box-shadow: none; }
+.chrome[data-tone="red"] .arrow { box-shadow: inset 0 0 0 1px var(--on-red-rule); }
+.chrome[data-tone="red"] .arrow:hover { background: #FFFFFF; color: var(--red); }
+.arrow:disabled { opacity: .3; cursor: default; background: none; color: inherit; }
 
-/* sources drawer */
-.drawer { position: fixed; z-index: 40; inset: 0; display: flex; justify-content: flex-end; background: rgba(11, 7, 20, .32); }
-.drawer__panel { width: min(520px, 100%); height: 100%; overflow-y: auto; padding: calc(24px + env(safe-area-inset-top, 0px)) 24px calc(24px + env(safe-area-inset-bottom, 0px)); background: var(--frost-panel); border-left: 1px solid var(--frost-line); box-shadow: var(--frost-shadow); -webkit-backdrop-filter: blur(24px); backdrop-filter: blur(24px); display: grid; gap: 18px; align-content: start; animation: slidein .45s var(--ease-expo); }
-@keyframes slidein { from { transform: translateX(40px); opacity: 0; } }
-.drawer__top { display: flex; justify-content: space-between; align-items: center; gap: 12px; }
-.drawer__top h2 { font-size: 1.5rem; letter-spacing: -.015em; }
-.srclist { display: grid; gap: 4px; counter-reset: s; }
-.srclist li { display: grid; grid-template-columns: 28px minmax(0, 1fr); gap: 10px; padding: 12px; border-radius: var(--r-md); transition: background .3s; }
-.srclist li.is-hit { background: var(--accent-soft); }
-.srclist li > span { font-size: .75rem; font-weight: 800; color: var(--accent-fg); font-variant-numeric: tabular-nums; padding-top: 2px; }
-.srclist b { display: block; font-size: .9375rem; line-height: 1.3; }
-.srclist a { font-size: .8125rem; color: var(--slate); word-break: break-all; }
-.srclist p { font-size: .8125rem; color: var(--ink-2); line-height: 1.45; margin-top: 4px; }
-
-/* ---------- stage (cover, close) ---------- */
-.stage { isolation: isolate; color: #FFFFFF; background: #3A000D; }
-.stage__bg { position: fixed; inset: 0; overflow: hidden; z-index: -1; pointer-events: none; background: linear-gradient(155deg, var(--grad)); }
-.blob { position: absolute; border-radius: 50%; filter: blur(64px); animation: drift 18s ease-in-out infinite alternate; }
-.blob--1 { width: 46vw; height: 46vw; background: var(--blob-1); top: -14vw; right: -8vw; opacity: .5; }
-.blob--2 { width: 32vw; height: 32vw; background: var(--blob-2); bottom: -14vw; left: 6vw; opacity: .26; animation-duration: 23s; }
-@keyframes drift { to { transform: translate(-4vw, 3vw) scale(1.08); } }
-.cover { display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, .95fr); align-items: center; gap: clamp(28px, 4vw, 72px); }
-.cover__text { display: grid; gap: 28px; align-content: center; }
-.cover .lead { color: rgba(255, 255, 255, .9); max-width: 36ch; }
-.cover__act { display: flex; flex-wrap: wrap; align-items: center; gap: 18px; }
-.cover .hint { color: rgba(255, 255, 255, .8); }
-.cover .hint::before { background: #FFFFFF; }
-.mega em.s, .stage .title em.s { color: inherit; }
-
-/* cover orbit: scattered pieces converge into one Bloom */
-.orbit { position: relative; width: 100%; max-width: 520px; aspect-ratio: 1; justify-self: center; }
-.orbit svg { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
-.orbit .ring { fill: none; stroke: rgba(255, 255, 255, .26); stroke-width: 1; opacity: 0; transition: opacity 1s .9s; }
-.orbit .ring--dash { stroke-dasharray: 3 6; }
-.orbit .spoke { stroke: rgba(255, 255, 255, .34); stroke-width: 1; stroke-dasharray: 220; stroke-dashoffset: 220; transition: stroke-dashoffset 1.2s var(--ease-expo) 1.1s; }
-.orbit .pulse { fill: #FFFFFF; opacity: 0; }
-.orbit.is-on .ring { opacity: 1; }
-.orbit.is-on .spoke { stroke-dashoffset: 0; }
-.orbit.is-on .pulse { opacity: .9; }
-.o-core { position: absolute; left: 50%; top: 50%; width: 31%; aspect-ratio: 1; transform: translate(-50%, -50%) scale(.6); opacity: 0; border-radius: 50%; display: grid; place-content: center; justify-items: center; text-align: center; gap: 2px; background: rgba(255, 255, 255, .12); border: 1px solid rgba(255, 255, 255, .3); box-shadow: 0 30px 80px -30px rgba(0, 0, 0, .6), inset 0 0 40px rgba(255, 255, 255, .08); -webkit-backdrop-filter: blur(18px); backdrop-filter: blur(18px); transition: transform 1.1s var(--ease-spring) .55s, opacity .8s .55s; }
-.orbit.is-on .o-core { transform: translate(-50%, -50%) scale(1); opacity: 1; }
-.o-core strong { font-family: var(--font-serif); font-style: italic; font-weight: 600; font-size: clamp(1.75rem, 1rem + 2.2vw, 3rem); line-height: 1; }
-.o-core small { font-size: .6875rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; opacity: .78; }
-.o-node { position: absolute; left: calc(var(--x0) * 1%); top: calc(var(--y0) * 1%); transform: translate(-50%, -50%) rotate(var(--r0)); display: inline-flex; align-items: center; gap: 7px; padding: 7px 13px; border-radius: var(--r-pill); font-size: .8125rem; font-weight: 600; white-space: nowrap; color: #FFFFFF; background: rgba(255, 255, 255, .1); border: 1px solid rgba(255, 255, 255, .24); -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px); opacity: .55;
-  transition: left 1.5s var(--ease-expo), top 1.5s var(--ease-expo), transform 1.5s var(--ease-expo), opacity .8s, background .5s; transition-delay: calc(var(--i) * 28ms); }
-.o-node i { width: 7px; height: 7px; border-radius: 50%; background: #FFFFFF; opacity: .8; }
-.o-node--b { font-weight: 700; background: rgba(255, 255, 255, .2); }
-.o-node--b i { background: #FFA28F; opacity: 1; }
-.orbit.is-on .o-node { left: calc(var(--x1) * 1%); top: calc(var(--y1) * 1%); transform: translate(-50%, -50%) rotate(0deg); opacity: 1; }
+/* ---------- 01 cover ---------- */
+.cover { display: grid; grid-template-columns: 789px 1fr; column-gap: 32px; align-items: center; height: 100%; }
+.cover__text { display: grid; gap: 36px; align-content: center; }
+.display { font-size: 118px; font-weight: 600; line-height: .96; letter-spacing: -.04em; }
+.display .serif { font-size: 1.12em; font-weight: 600; letter-spacing: -.02em; line-height: .8; }
+.lede { font-size: 24px; line-height: 1.45; color: var(--on-red-2); max-width: 30ch; }
+.cta { justify-self: start; display: inline-flex; align-items: center; gap: 12px; height: 56px; padding: 0 26px; border-radius: 28px; background: #FFFFFF; color: var(--red); font-size: 17px; font-weight: 700; transition: transform .3s var(--spring); }
+.cta:hover { transform: translateX(4px); }
+.bloom { width: 100%; max-width: 600px; justify-self: end; }
+.bloom svg { display: block; width: 100%; height: auto; overflow: visible; }
+.petal { transform-box: fill-box; transform-origin: center; transform: translate(var(--tx), var(--ty)) scale(.82); opacity: 0; transition: transform 1.4s var(--ease), opacity .9s; transition-delay: calc(var(--k) * 90ms + 250ms); }
+.petal circle { fill: rgba(255, 255, 255, .09); stroke: rgba(255, 255, 255, .55); stroke-width: 1.5; }
+.petal text { fill: #FFFFFF; font: 600 18px var(--sans); letter-spacing: .01em; }
+.bloom.is-on .petal { transform: none; opacity: 1; }
+.bloom__core { opacity: 0; transform-box: fill-box; transform-origin: center; transform: scale(.4); transition: transform 1s var(--spring) 1.1s, opacity .6s 1.1s; }
+.bloom.is-on .bloom__core { opacity: 1; transform: none; }
+.bloom__core circle { fill: #FFFFFF; }
+.bloom__core text { fill: var(--red); font: 800 15px var(--sans); letter-spacing: .02em; }
 
 /* ---------- 02 numbers ---------- */
-.nums { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(24px, 3.2vw, 44px) clamp(20px, 3vw, 48px); }
-.num { display: grid; gap: 10px; align-content: start; padding-top: 18px; border-top: 1px solid var(--line-strong); min-width: 0; }
-.num b { font-size: var(--fs-num); font-weight: 700; line-height: .9; letter-spacing: -.04em; font-variant-numeric: tabular-nums; }
-.num b sup { font-size: .42em; vertical-align: .9em; color: var(--accent-fg); margin-left: .04em; letter-spacing: 0; }
-.num p { font-size: 1rem; line-height: 1.4; color: var(--ink-2); max-width: 30ch; }
-.num:first-child b { color: var(--accent-fg); }
-.foot { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 16px; font-size: .8125rem; color: var(--slate); }
+.figs { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); grid-template-rows: 1fr 1fr; column-gap: 32px; row-gap: 40px; height: 100%; }
+.fig { display: grid; gap: 14px; align-content: start; padding-top: 22px; border-top: 1px solid var(--rule); }
+.fig b { font-size: 96px; font-weight: 300; line-height: .9; letter-spacing: -.045em; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.fig b sup { font-size: .45em; font-weight: 500; vertical-align: .95em; margin-left: .04em; color: var(--red); letter-spacing: 0; }
+.fig:first-child { border-top: 2px solid var(--red); padding-top: 21px; }
+.fig p { font-size: 19px; line-height: 1.42; color: var(--ink-2); max-width: 28ch; }
 
-/* ---------- 03 ecosystem map ---------- */
-.map { position: relative; display: grid; gap: clamp(14px, 1.8vw, 22px); padding: clamp(16px, 2vw, 24px); border-radius: var(--r-xl); background: var(--surface-2); }
-.map svg { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; overflow: visible; }
-.map path { fill: none; stroke: var(--accent); stroke-width: 1.6; stroke-linecap: round; opacity: .65; stroke-dasharray: var(--len, 1000); stroke-dashoffset: var(--len, 1000); animation: draw .9s var(--ease-expo) forwards; }
-@keyframes draw { to { stroke-dashoffset: 0; } }
-.layer { position: relative; display: grid; grid-template-columns: 132px minmax(0, 1fr); gap: 16px; align-items: center; }
-.layer__k { font-size: .6875rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--slate-2); }
-.layer__row { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
-.layer--core .layer__row { justify-content: center; }
-.core-pill { display: inline-flex; align-items: center; min-height: 44px; padding: 0 22px; border-radius: var(--r-pill); background: var(--ink); color: var(--canvas); font-weight: 800; letter-spacing: -.01em; }
-.groups { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 10px; }
-.grp { display: grid; gap: 5px; align-content: start; padding: 9px; border-radius: var(--r-md); background: color-mix(in srgb, var(--surface) 55%, transparent); box-shadow: inset 0 0 0 1px var(--line); transition: box-shadow .3s, background .3s; min-width: 0; }
-.grp__k { font-size: .6875rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--slate-2); padding: 0 2px 2px; }
-.grp .lbl { justify-content: flex-start; min-height: 28px; font-size: .78rem; padding: 0 10px; max-width: 100%; overflow: hidden; text-overflow: ellipsis; }
-.grp .lbl--logo { padding: 0 4px; }
-.grp .lbl--logo .logo { margin-left: 0; height: 22px; }
-.grp.is-on { box-shadow: inset 0 0 0 1.5px var(--accent); background: var(--surface); }
-.map.has-sel .lbl { opacity: .38; }
-.map.has-sel .lbl.is-on { opacity: 1; box-shadow: inset 0 0 0 1.5px var(--accent); color: var(--ink); background: var(--surface); }
-.map.has-sel .biz.is-on { background: var(--accent); color: var(--on-accent); box-shadow: none; }
-.people .chip { min-height: 34px; padding: 0 12px; font-size: .78rem; }
-.people .chip--house { background: transparent; box-shadow: inset 0 0 0 1.5px var(--accent-fg); color: var(--accent-fg); }
-.people .chip--house[aria-selected="true"] { background: var(--accent); color: var(--on-accent); }
-.map-head { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, .85fr); gap: 18px 40px; align-items: end; }
-.caption { display: grid; gap: 6px; align-content: end; justify-items: start; min-height: 5.6em; padding-left: 18px; border-left: 2px solid var(--accent); }
-.caption strong { font-size: 1.125rem; letter-spacing: -.01em; }
-.caption p { color: var(--ink-2); font-size: 1rem; max-width: 70ch; }
+/* ---------- 03 ecosystem matrix ---------- */
+.matrix { display: grid; grid-template-columns: 168px repeat(5, minmax(0, 1fr)); column-gap: 24px; }
+.mrow { display: contents; }
+.mrow > * { padding: 11px 0; border-top: 1px solid var(--rule); min-width: 0; }
+.mrow > .mk { padding-top: 14px; }
+.mrow--group > * { border-top: 0; padding-top: 0; }
+.mrow--biz > * { border-top: 2px solid var(--ink); }
+.mk { font-size: 12px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); }
+.span5 { grid-column: span 5; }
+.group-name { font-size: 22px; font-weight: 800; letter-spacing: -.01em; }
+.biz { font-size: 17px; font-weight: 700; line-height: 1.25; transition: color .3s, border-color .3s; }
+.biz.is-on { color: var(--red); border-top-color: var(--red) !important; }
+.items { display: grid; gap: 2px; align-content: start; }
+.items--inline { display: flex; flex-wrap: wrap; gap: 4px 32px; }
+.it { display: flex; align-items: center; gap: 10px; min-height: 28px; font-size: 15.5px; line-height: 1.25; color: var(--ink-2); transition: opacity .35s, color .3s; }
+.it::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: var(--rule); flex: none; transition: background-color .3s, transform .3s; }
+.it.is-on { color: var(--ink); font-weight: 700; }
+.it.is-on::before { background: var(--red); transform: scale(1.35); }
+.matrix.has-sel .it:not(.is-on) { opacity: .34; }
+.who { display: flex; flex-wrap: wrap; gap: 8px; }
+.who button { height: 36px; padding: 0 15px; border-radius: 18px; font-size: 14px; font-weight: 700; box-shadow: inset 0 0 0 1px var(--rule); transition: background-color .25s, color .25s, box-shadow .25s; }
+.who button:hover { box-shadow: inset 0 0 0 1px var(--ink); }
+.who button[aria-selected="true"] { background: var(--ink); color: #FFFFFF; box-shadow: none; }
+.who button.house { color: var(--red); box-shadow: inset 0 0 0 1px var(--red); }
+.who button.house[aria-selected="true"] { background: var(--red); color: #FFFFFF; }
+.mcap { display: grid; grid-template-columns: 168px minmax(0, 1fr); column-gap: 24px; align-items: baseline; margin-top: 14px; min-height: 52px; }
+.mcap strong { font-size: 17px; font-weight: 800; }
+.mcap p { font-size: 17px; line-height: 1.5; color: var(--ink-2); max-width: 92ch; }
+.mcap .cat { margin-right: 10px; color: var(--ink-2); vertical-align: 1px; }
+.pop { animation: rise .45s var(--ease) both; }
 
 /* ---------- 04 opportunity ---------- */
-.opp { display: grid; grid-template-columns: minmax(0, .78fr) minmax(0, 1.22fr); gap: clamp(24px, 3.4vw, 56px); align-items: start; }
-.ground { display: grid; gap: 18px; align-content: start; }
-.ground h3 { font-size: 1.25rem; letter-spacing: -.01em; line-height: 1.2; }
-.places { display: grid; gap: 8px; }
-.places li { display: grid; gap: 2px; padding: 12px 0 12px 16px; border-left: 2px solid var(--accent); }
-.places b { font-size: 1rem; }
-.places span { font-size: .875rem; color: var(--slate); }
-.online { font-family: var(--font-serif); font-style: italic; font-weight: 600; font-size: clamp(1.5rem, 1.1rem + 1vw, 2.125rem); line-height: 1.12; letter-spacing: -.005em; color: var(--ink); text-wrap: balance; }
-.flow-wrap { display: grid; gap: 16px; min-width: 0; }
-.flow-top { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px; }
-.flow { position: relative; padding: 70px 18px 26px; border-radius: var(--r-xl); background: var(--surface-2); overflow: hidden; isolation: isolate; }
-.flow::before { content: ""; position: absolute; z-index: -1; width: 60%; aspect-ratio: 1; right: -18%; top: -50%; border-radius: 50%; background: var(--blob-2); filter: blur(70px); opacity: 0; transition: opacity .8s; }
-.flow.is-eco::before { opacity: .35; }
-.band { position: absolute; left: 12px; right: 12px; top: 54px; bottom: 14px; border-radius: var(--r-lg); background: var(--glass); border: 1px solid var(--glass-line); box-shadow: 0 30px 60px -36px var(--accent), inset 0 1px 0 rgba(255, 255, 255, .5); -webkit-backdrop-filter: blur(16px); backdrop-filter: blur(16px); opacity: 0; transform: scaleY(.9); transition: opacity .6s .2s, transform .8s var(--ease-spring) .2s; }
-.band span { position: absolute; left: 18px; bottom: 12px; font-size: .6875rem; font-weight: 800; letter-spacing: .14em; text-transform: uppercase; color: var(--accent-fg); }
+.opp { display: grid; grid-template-columns: 469px 875px; grid-template-rows: minmax(0, 1fr); column-gap: 32px; height: 100%; }
+.ground { display: flex; flex-direction: column; gap: 26px; }
+.ground h3 { font-size: 22px; font-weight: 700; line-height: 1.3; letter-spacing: -.01em; max-width: 22ch; }
+.places { display: grid; gap: 18px; }
+.places li { display: grid; gap: 4px; padding-left: 18px; border-left: 2px solid var(--red); }
+.places b { font-size: 18px; font-weight: 700; }
+.places span { font-size: 15.5px; line-height: 1.4; color: var(--muted); }
+.online { margin-top: auto; font-family: var(--serif); font-style: italic; font-weight: 600; font-size: 30px; line-height: 1.1; letter-spacing: -.01em; max-width: 16ch; }
+.flow { display: flex; flex-direction: column; }
+.seg { display: inline-flex; align-self: flex-start; padding: 4px; gap: 4px; border-radius: 22px; background: var(--paper-2); box-shadow: inset 0 0 0 1px var(--rule); }
+.seg button { height: 36px; padding: 0 20px; border-radius: 18px; font-size: 14px; font-weight: 700; color: var(--muted); transition: background-color .3s, color .3s; }
+.seg button[aria-selected="true"] { background: var(--ink); color: #FFFFFF; }
+.seg button[data-v="eco"][aria-selected="true"] { background: var(--red); }
+.stage { position: relative; margin-top: 22px; height: 204px; }
+.band { position: absolute; inset: 0; border-radius: 20px; background: var(--red-soft); box-shadow: inset 0 0 0 1px rgba(182, 0, 14, .18); opacity: 0; transform: scale(.97); transition: opacity .6s, transform .8s var(--ease); }
+.band span { position: absolute; left: 22px; bottom: 12px; font-size: 12px; font-weight: 800; letter-spacing: .14em; text-transform: uppercase; color: var(--red); }
 .flow.is-eco .band { opacity: 1; transform: none; }
-.stations { position: relative; display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 10px; }
-.st { position: relative; min-width: 0; display: grid; gap: 8px; justify-items: center; text-align: center; transform: translateY(var(--dy, 0)) rotate(var(--rot, 0)); transition: transform .9s var(--ease-spring); transition-delay: calc(var(--i) * 50ms); }
+.track { position: absolute; left: 0; right: 0; top: 14px; display: flex; align-items: flex-start; }
+.st { flex: 0 0 125px; display: grid; gap: 10px; justify-items: center; text-align: center; transform: translateY(var(--dy)) rotate(var(--r)); transition: transform .9s var(--spring); transition-delay: calc(var(--i) * 45ms); }
 .flow.is-eco .st { transform: none; }
-.st__k { font-size: .6875rem; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; color: var(--slate-2); }
-.st__card { display: grid; place-items: center; gap: 6px; width: 100%; min-width: 0; overflow-wrap: anywhere; min-height: 96px; padding: 12px 8px; border-radius: var(--r-md); background: var(--surface); box-shadow: var(--sh-2); font-size: .8125rem; font-weight: 700; line-height: 1.25; }
-.st__card small { font-size: .6875rem; font-weight: 600; color: var(--slate); }
-.st__door { width: 22px; height: 22px; color: var(--slate-2); transition: color .4s; }
-.flow.is-eco .st__door { color: var(--accent-fg); }
-.links { position: absolute; left: 0; right: 0; pointer-events: none; animation: fade .5s both; }
-@keyframes fade { from { opacity: 0; } }
-.gap { position: absolute; height: 2px; margin-top: -1px; border-top: 2px dashed var(--line-strong); transition: border-color .5s; }
-.gap::after { content: ""; position: absolute; left: 50%; top: -7px; width: 12px; height: 12px; transform: translateX(-50%) rotate(45deg); border-radius: 2px; background: var(--canvas); box-shadow: inset 0 0 0 2px var(--accent-fg); transition: transform .5s var(--ease-spring), background .4s; }
-.flow.is-eco .gap { border-top: 2px solid var(--accent); }
-.flow.is-eco .gap::after { transform: translateX(-50%) rotate(45deg) scale(.6); background: var(--accent); box-shadow: none; }
-.note { position: absolute; top: 14px; display: inline-flex; align-items: center; gap: 8px; max-width: 290px; padding: 8px 12px; border-radius: var(--r-md); background: var(--surface); box-shadow: var(--sh-1), inset 0 0 0 1.5px var(--accent-fg); font-size: .78rem; font-weight: 600; line-height: 1.3; color: var(--ink); transition: opacity .4s, transform .5s var(--ease-expo); }
-.note--eco { opacity: 0; transform: translateY(-6px); box-shadow: var(--sh-1); background: var(--accent); color: var(--on-accent); }
-.flow.is-eco .note--today { opacity: 0; transform: translateY(-6px); pointer-events: none; }
-.flow.is-eco .note--eco { opacity: 1; transform: none; }
-.shift { display: grid; grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr); gap: 12px; align-items: center; }
-.shift ul { display: grid; gap: 6px; transition: opacity .4s; }
-.shift li { font-size: .9375rem; font-weight: 600; line-height: 1.3; }
-.shift .k { font-size: .6875rem; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; color: var(--slate-2); margin-bottom: 4px; }
-.shift__arrow { width: 40px; height: 40px; display: grid; place-items: center; border-radius: 50%; background: var(--surface); box-shadow: var(--sh-1); color: var(--accent-fg); }
-.shift ul.is-dim { opacity: .38; }
-.shift .tomorrow li { color: var(--accent-fg); }
+.st__k { font-size: 11px; font-weight: 800; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); }
+.st__box { display: grid; place-items: center; align-content: center; gap: 6px; width: 125px; height: 122px; padding: 12px 10px; border-radius: 14px; background: #FFFFFF; box-shadow: 0 1px 2px rgba(11, 22, 64, .06), 0 16px 32px -18px rgba(11, 22, 64, .3); font-size: 14.5px; font-weight: 700; line-height: 1.2; overflow-wrap: anywhere; }
+.st__box small { font-size: 12px; font-weight: 600; color: var(--muted); }
+.st__box .ico { width: 20px; height: 20px; color: var(--muted); transition: color .4s; }
+.flow.is-eco .st__box .ico { color: var(--red); }
+.lk { flex: 1 1 0; position: relative; height: 122px; margin-top: 26px; }
+.lk::before { content: ""; position: absolute; left: 2px; right: 2px; top: 60px; border-top: 2px dashed var(--rule); transition: border-color .4s; }
+.lk::after { content: ""; position: absolute; left: 50%; top: 54px; width: 2px; height: 14px; background: var(--red); transform: translateX(-50%) rotate(28deg); transition: transform .4s, height .4s, top .4s, width .4s, border-radius .4s; }
+.flow.is-eco .lk::before { border-top: 2px solid var(--red); }
+.flow.is-eco .lk::after { width: 8px; height: 8px; top: 57px; border-radius: 50%; transform: translateX(-50%); }
+.annot { position: relative; height: 46px; margin-top: 6px; }
+.brk { position: absolute; top: 0; left: calc(2 * 150px + 62px); width: 150px; height: 12px; border: 2px solid var(--red); border-top: 0; border-radius: 0 0 8px 8px; transition: opacity .3s; }
+.annot p { position: absolute; top: 18px; left: calc(2 * 150px + 137px); transform: translateX(-50%); white-space: nowrap; font-size: 15px; font-weight: 600; color: var(--ink); transition: opacity .3s; }
+.annot .eco { left: 50%; color: var(--red); font-weight: 700; opacity: 0; }
+.flow.is-eco .brk, .flow.is-eco .annot .today { opacity: 0; }
+.flow.is-eco .annot .eco { opacity: 1; }
+.compare { display: grid; grid-template-columns: 1fr 1fr; column-gap: 32px; margin-top: auto; padding-top: 14px; border-top: 1px solid var(--rule); }
+.compare ul { display: grid; gap: 4px; align-content: start; transition: opacity .4s; }
+.compare li { font-size: 15.5px; font-weight: 600; line-height: 1.3; }
+.compare li.label { margin-bottom: 4px; }
+.compare .to li:not(.label) { color: var(--red); }
+.compare .dim { opacity: .35; }
 
 /* ---------- 05 proposal ---------- */
-.prop { display: grid; grid-template-columns: minmax(0, 1.3fr) minmax(0, .7fr); gap: clamp(24px, 3.4vw, 56px); align-items: start; }
-.stack { position: relative; display: grid; gap: 10px; isolation: isolate; }
-.stack::before { content: ""; position: absolute; z-index: -1; width: 70%; aspect-ratio: 1; left: 15%; top: 10%; border-radius: 50%; background: radial-gradient(circle, var(--blob-1), transparent 65%); filter: blur(50px); opacity: .28; }
-.plane { position: relative; display: grid; grid-template-columns: 136px minmax(0, 1fr); gap: 14px; align-items: center; padding: 12px 16px; border-radius: var(--r-lg); background: var(--surface); box-shadow: var(--sh-1); }
-.plane__k { display: grid; gap: 2px; font-size: .6875rem; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; color: var(--slate-2); }
-.plane__k small { font-size: .75rem; font-weight: 500; letter-spacing: 0; text-transform: none; color: var(--slate); }
-.plane__row { display: flex; flex-wrap: wrap; gap: 6px; }
-.plane .lbl { min-height: 30px; font-size: .78rem; padding: 0 11px; }
-.plane--layer { padding: 18px 16px; background: linear-gradient(155deg, var(--grad)); color: #FFFFFF; box-shadow: 0 30px 60px -28px rgba(182, 0, 14, .65); transform: scale(1.03); }
-.plane--layer .plane__k { color: rgba(255, 255, 255, .8); }
-.plane--layer .plane__k b { font-size: 1.125rem; letter-spacing: -.01em; text-transform: none; color: #FFFFFF; font-weight: 800; }
-.plane--layer .plane__k small { color: rgba(255, 255, 255, .78); }
-.plane--layer .plane__row span { display: inline-flex; align-items: center; min-height: 34px; padding: 0 14px; border-radius: var(--r-pill); background: rgba(255, 255, 255, .16); border: 1px solid rgba(255, 255, 255, .3); font-size: .8125rem; font-weight: 700; -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px); }
-.plane--products .lbl { box-shadow: inset 0 0 0 1px var(--line), inset 3px 0 0 var(--c, var(--line-strong)); padding-left: 14px; }
-.plane--future { background: transparent; box-shadow: inset 0 0 0 1.5px var(--line-strong); }
-.lbl--dash { background: transparent; box-shadow: none !important; outline: 1.5px dashed var(--line-strong); outline-offset: -1.5px; color: var(--slate); }
-.plane--biz { background: var(--surface-2); box-shadow: none; }
-.plane--biz .lbl--partner { background: transparent; }
-.joint { display: flex; justify-content: center; gap: 22%; height: 0; position: relative; z-index: -1; }
-.side { display: grid; gap: 18px; align-content: start; }
-.split { display: grid; gap: 10px; }
-.split > div { display: grid; gap: 8px; padding: 16px 18px; border-radius: var(--r-lg); }
-.split h3 { font-size: 1.25rem; letter-spacing: -.01em; line-height: 1.15; }
-.split ul { display: grid; gap: 4px; }
-.split li { font-size: .875rem; color: var(--ink-2); padding-left: 16px; position: relative; }
-.split li::before { content: ""; position: absolute; left: 0; top: .6em; width: 7px; height: 7px; border-radius: 50%; background: var(--accent); }
-.split .one { background: var(--accent-soft); }
-.split .many { box-shadow: inset 0 0 0 1px var(--line-strong); }
-.split .many li::before { background: transparent; box-shadow: inset 0 0 0 1.5px var(--accent-fg); }
-.quote { display: grid; gap: 8px; padding-left: 18px; border-left: 2px solid var(--accent); }
-.quote p { font-family: var(--font-serif); font-style: italic; font-weight: 600; font-size: clamp(1.125rem, .95rem + .5vw, 1.375rem); line-height: 1.2; color: var(--ink); text-wrap: balance; }
-.quote cite { font-style: normal; font-size: .8125rem; color: var(--slate); }
+.prop { display: grid; grid-template-columns: 907px 437px; column-gap: 32px; height: 100%; }
+.layers { display: grid; gap: 10px; align-content: start; }
+.lay { display: grid; grid-template-columns: 170px minmax(0, 1fr); column-gap: 24px; align-items: center; min-height: 82px; padding: 16px 24px; border-radius: 14px; background: #FFFFFF; box-shadow: inset 0 0 0 1px var(--rule); }
+.lay__k { display: grid; gap: 4px; font-size: 12px; font-weight: 800; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); }
+.lay__k small { font-size: 13px; font-weight: 500; letter-spacing: 0; text-transform: none; }
+.lay__v { display: flex; flex-wrap: wrap; gap: 8px 26px; font-size: 15.5px; font-weight: 600; color: var(--ink-2); }
+.lay--core { min-height: 118px; background: var(--red); color: #FFFFFF; box-shadow: 0 24px 48px -26px rgba(126, 0, 8, .8); }
+.lay--core .lay__k { color: rgba(255, 255, 255, .78); }
+.lay--core .lay__k b { font-size: 21px; font-weight: 800; letter-spacing: -.01em; text-transform: none; color: #FFFFFF; line-height: 1.15; }
+.lay--core .lay__v { display: grid; grid-template-columns: 1fr 1fr; gap: 10px 24px; color: #FFFFFF; font-size: 16.5px; font-weight: 700; }
+.lay--core .lay__v span { display: flex; align-items: center; gap: 10px; }
+.lay--core .lay__v span::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: #FFFFFF; flex: none; }
+.pd { display: inline-flex; align-items: center; gap: 9px; }
+.pd::before { content: ""; width: 9px; height: 9px; border-radius: 2px; background: var(--c); flex: none; }
+.pd--mark::before { display: none; }
+.pd--future { color: var(--muted); }
+.pd--future::before { background: none; box-shadow: inset 0 0 0 1.5px var(--muted); }
+.lay--base { background: var(--paper-2); box-shadow: none; }
+.lay__v .br { flex-basis: 100%; height: 0; }
+.lay__v .partner { color: var(--muted); font-weight: 500; }
+.side { display: grid; gap: 30px; align-content: start; }
+.side h3 { font-size: 22px; font-weight: 800; letter-spacing: -.01em; margin-bottom: 12px; }
+.side ul { display: grid; gap: 9px; }
+.side li { position: relative; padding-left: 20px; font-size: 16.5px; line-height: 1.4; color: var(--ink-2); }
+.side li::before { content: ""; position: absolute; left: 0; top: 8px; width: 8px; height: 8px; border-radius: 50%; background: var(--red); }
+.side .many li::before { background: none; box-shadow: inset 0 0 0 2px var(--red); }
+.quote { padding-top: 22px; border-top: 1px solid var(--rule); }
+.quote p { font-family: var(--serif); font-style: italic; font-weight: 600; font-size: 27px; line-height: 1.15; letter-spacing: -.01em; }
+.quote cite { display: block; margin-top: 10px; font-style: normal; font-size: 14px; color: var(--muted); }
 
 /* ---------- 06 pillars ---------- */
-.temple { display: grid; gap: 10px; }
-.lintel { display: flex; justify-content: space-between; align-items: center; gap: 16px; flex-wrap: wrap; padding: 18px 24px; border-radius: var(--r-lg); background: linear-gradient(155deg, var(--grad)); color: #FFFFFF; box-shadow: 0 30px 60px -32px rgba(182, 0, 14, .6); }
-.lintel b { font-family: var(--font-serif); font-style: italic; font-weight: 600; font-size: clamp(1.5rem, 1.1rem + 1vw, 2.25rem); line-height: 1; }
-.lintel span { font-size: .6875rem; font-weight: 800; letter-spacing: .14em; text-transform: uppercase; opacity: .82; }
-.pillars { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 10px; }
-.pillar { display: grid; grid-template-rows: auto auto 1fr; gap: 12px; min-height: 280px; padding: 24px 20px; border-radius: var(--r-lg); background: var(--surface); box-shadow: var(--sh-1); transform-origin: 50% 0; min-width: 0; }
-.is-current .pillar { animation: grow .9s var(--ease-expo) both; animation-delay: calc(var(--i) * 80ms + 300ms); }
-@keyframes grow { from { opacity: 0; transform: scaleY(.6) translateY(-10px); } }
-.pillar span { font-size: .8125rem; font-weight: 800; color: var(--accent-fg); font-variant-numeric: tabular-nums; }
-.pillar h3 { font-size: clamp(1.25rem, 1rem + .6vw, 1.5rem); line-height: 1.1; letter-spacing: -.015em; text-wrap: balance; }
-.pillar p { font-size: .9375rem; line-height: 1.45; color: var(--slate); align-self: end; }
-.base { height: 10px; border-radius: var(--r-pill); background: var(--line-strong); opacity: .6; }
+.temple { display: grid; }
+.lintel { display: flex; align-items: center; justify-content: space-between; height: 76px; padding: 0 32px; border-radius: 14px 14px 0 0; background: var(--red); color: #FFFFFF; }
+.lintel b { font-family: var(--serif); font-style: italic; font-weight: 600; font-size: 34px; letter-spacing: -.01em; }
+.lintel span { font-size: 12px; font-weight: 800; letter-spacing: .14em; text-transform: uppercase; opacity: .8; }
+.cols { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); border-left: 1px solid var(--rule); }
+.col { display: grid; grid-template-rows: auto auto 1fr; gap: 16px; min-height: 340px; padding: 32px 28px 30px; border-right: 1px solid var(--rule); }
+.is-current .col { animation: drop .8s var(--ease) both; animation-delay: calc(var(--i) * 80ms + 250ms); }
+@keyframes drop { from { opacity: 0; transform: translateY(-12px); } }
+.col span { font-size: 14px; font-weight: 800; color: var(--red); font-variant-numeric: tabular-nums; }
+.col h3 { font-size: 27px; font-weight: 700; line-height: 1.12; letter-spacing: -.02em; }
+.col p { align-self: end; font-size: 17px; line-height: 1.45; color: var(--muted); }
+.plinth { height: 14px; border-radius: 0 0 14px 14px; background: var(--paper-3); }
 
 /* ---------- 07 journeys ---------- */
-.jhead { display: flex; flex-wrap: wrap; gap: 12px 24px; align-items: center; justify-content: space-between; }
-.legend { display: flex; flex-wrap: wrap; gap: 8px; }
-.journey { display: grid; grid-template-columns: minmax(0, .8fr) repeat(3, minmax(0, 1fr)) minmax(0, 1fr); gap: 10px; align-items: stretch; position: relative; }
-.journey::before { content: ""; position: absolute; left: 6%; right: 6%; top: 50%; height: 2px; background: linear-gradient(90deg, var(--line-strong), var(--accent)); z-index: 0; }
-.jcard { position: relative; z-index: 1; display: grid; gap: 10px; align-content: start; padding: 18px; border-radius: var(--r-lg); background: var(--surface); box-shadow: var(--sh-1); min-width: 0; }
-.jcard--who { background: var(--ink); color: var(--canvas); box-shadow: var(--sh-2); align-content: space-between; }
-.jcard--who b { font-size: 1.375rem; letter-spacing: -.015em; line-height: 1.1; }
-.jcard--who small { font-size: .8125rem; opacity: .75; }
-.jcard__n { font-size: .6875rem; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; color: var(--slate-2); }
-.jcard h3 { font-size: 1.25rem; letter-spacing: -.015em; line-height: 1.1; }
-.jline { display: grid; gap: 6px; justify-items: start; }
-.jline p { font-size: .875rem; line-height: 1.4; color: var(--ink-2); }
-.jline--eco p { color: var(--ink); font-weight: 600; }
-.jcard--out { background: linear-gradient(155deg, var(--grad)); color: #FFFFFF; box-shadow: 0 26px 50px -28px rgba(182, 0, 14, .7); align-content: space-between; }
-.jcard--out p { font-family: var(--font-serif); font-style: italic; font-weight: 600; font-size: 1.5rem; line-height: 1.12; }
-.journey.swap .jcard { animation: rise .55s var(--ease-expo) both; animation-delay: calc(var(--i) * 60ms); }
-.truth { font-size: .8125rem; color: var(--slate); }
+.jwrap { display: flex; flex-direction: column; gap: 30px; height: 100%; }
+.journey { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); column-gap: 20px; flex: 1; position: relative; }
+.journey::before { content: ""; position: absolute; left: 0; right: 0; top: 7px; height: 2px; background: linear-gradient(90deg, var(--rule), var(--red)); }
+.jc { position: relative; display: flex; flex-direction: column; gap: 14px; padding-top: 34px; min-width: 0; }
+.jc::before { content: ""; position: absolute; left: 0; top: 0; width: 16px; height: 16px; border-radius: 50%; background: var(--paper); box-shadow: inset 0 0 0 2px var(--ink); }
+.jc--out::before { background: var(--red); box-shadow: none; }
+.jc h3 { font-size: 24px; font-weight: 700; line-height: 1.15; letter-spacing: -.015em; }
+.jl { display: grid; gap: 8px; justify-items: start; }
+.jl p { font-size: 15.5px; line-height: 1.45; color: var(--ink-2); }
+.jl--prop p { color: var(--ink); font-weight: 650; }
+.jperson { flex: 1; display: flex; flex-direction: column; justify-content: space-between; gap: 16px; padding: 24px; border-radius: 14px; background: var(--ink); color: #FFFFFF; }
+.jperson b { font-size: 30px; font-weight: 700; line-height: 1.1; letter-spacing: -.02em; }
+.jperson small { font-size: 15px; line-height: 1.4; opacity: .75; }
+.jout { flex: 1; display: flex; flex-direction: column; justify-content: flex-end; padding: 24px; border-radius: 14px; background: var(--red); color: #FFFFFF; }
+.jout p { font-family: var(--serif); font-style: italic; font-weight: 600; font-size: 31px; line-height: 1.08; letter-spacing: -.01em; }
+.journey.swap .jc { animation: rise .5s var(--ease) both; animation-delay: calc(var(--i) * 60ms); }
+.jnote { font-size: 14px; color: var(--muted); }
 
 /* ---------- 08 principles ---------- */
-.princ { display: grid; border-top: 1px solid var(--line-strong); }
-.pr { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr) minmax(0, 1fr); gap: 12px 32px; align-items: baseline; padding: clamp(10px, 1.2vw, 16px) 0; border-bottom: 1px solid var(--line-strong); }
-.pr h3 { font-size: clamp(1.875rem, 1.1rem + 2vw, 3.125rem); font-weight: 600; line-height: 1; letter-spacing: -.035em; transition: color .3s; }
-.pr h3 em { font-style: normal; }
-.pr:hover h3 em { font-family: var(--font-serif); font-style: italic; font-size: 1.1em; color: var(--accent-fg); letter-spacing: -.01em; }
-.pr p { font-size: 1.0625rem; font-weight: 600; line-height: 1.35; }
-.pr small { font-size: .9375rem; line-height: 1.45; color: var(--slate); }
+.princ { display: grid; border-bottom: 1px solid var(--rule); }
+.pr { display: grid; grid-template-columns: 469px 437px 1fr; column-gap: 32px; align-items: baseline; padding: 20px 0 18px; border-top: 1px solid var(--rule); }
+.pr h3 { font-size: 50px; font-weight: 600; line-height: 1; letter-spacing: -.035em; transition: color .3s; }
+.pr:hover h3 { color: var(--red); }
+.pr p { font-size: 20px; font-weight: 700; line-height: 1.3; }
+.pr small { font-size: 16.5px; line-height: 1.45; color: var(--muted); }
 
-/* ---------- 09 enables ---------- */
-.value { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 10px; }
-.vcol { display: grid; gap: 18px; align-content: start; padding: clamp(24px, 3vw, 40px); border-radius: var(--r-xl); min-width: 0; }
-.vcol--people { background: var(--surface); box-shadow: var(--sh-1); }
-.vcol--bloom { background: linear-gradient(155deg, var(--grad)); color: #FFFFFF; box-shadow: 0 30px 60px -32px rgba(182, 0, 14, .6); }
-.vcol h3 { font-size: .75rem; font-weight: 800; letter-spacing: .14em; text-transform: uppercase; opacity: .78; }
-.vcol ul { display: grid; gap: 0; }
-.vcol li { display: grid; grid-template-columns: 26px minmax(0, 1fr); gap: 10px; align-items: baseline; padding: 12px 0; border-top: 1px solid var(--line); font-size: clamp(1.125rem, 1rem + .5vw, 1.5rem); font-weight: 600; letter-spacing: -.015em; line-height: 1.2; }
-.vcol--bloom li { border-top-color: rgba(255, 255, 255, .22); }
-.vcol li span { font-size: .75rem; font-weight: 800; color: var(--accent-fg); font-variant-numeric: tabular-nums; letter-spacing: 0; }
+/* ---------- 09 value ---------- */
+.value { display: grid; grid-template-columns: 1fr 1fr; column-gap: 32px; align-items: start; }
+.vcol { display: grid; align-content: start; gap: 18px; padding: 36px 40px; border-radius: 16px; }
+.vcol--people { background: #FFFFFF; box-shadow: inset 0 0 0 1px var(--rule); }
+.vcol--bloom { background: var(--red); color: #FFFFFF; }
+.vcol--bloom .label { color: rgba(255, 255, 255, .78); }
+.vcol li { display: grid; grid-template-columns: 34px 1fr; align-items: baseline; padding: 14px 0; border-top: 1px solid var(--rule); font-size: 25px; font-weight: 600; line-height: 1.22; letter-spacing: -.015em; }
+.vcol--bloom li { border-top-color: rgba(255, 255, 255, .25); }
+.vcol li span { font-size: 13px; font-weight: 800; color: var(--red); font-variant-numeric: tabular-nums; letter-spacing: 0; }
 .vcol--bloom li span { color: rgba(255, 255, 255, .7); }
 
 /* ---------- 10 next ---------- */
-.road { position: relative; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; }
-.road::before { content: ""; position: absolute; left: 0; right: 0; top: 23px; height: 2px; background: rgba(255, 255, 255, .25); }
-.road::after { content: ""; position: absolute; left: 0; top: 23px; height: 2px; width: 100%; background: #FFFFFF; transform-origin: 0 50%; transform: scaleX(0); }
-.is-current .road::after { animation: fill 2.4s var(--ease-expo) .6s forwards; }
-@keyframes fill { to { transform: scaleX(1); } }
-.step { position: relative; display: grid; gap: 10px; align-content: start; padding-top: 0; min-width: 0; }
-.step__dot { width: 48px; height: 48px; border-radius: 50%; display: grid; place-items: center; background: rgba(255, 255, 255, .12); border: 1px solid rgba(255, 255, 255, .4); font-size: .75rem; font-weight: 800; -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px); }
-.step--now .step__dot { background: #FFFFFF; color: #B6000E; border-color: #FFFFFF; }
-.step__k { font-size: .75rem; font-weight: 800; letter-spacing: .14em; text-transform: uppercase; opacity: .8; }
-.step h3 { font-size: clamp(1.25rem, 1rem + .7vw, 1.625rem); line-height: 1.12; letter-spacing: -.015em; text-wrap: balance; }
-.step p { font-size: .9375rem; line-height: 1.45; opacity: .82; max-width: 30ch; }
-.close { font-size: clamp(2rem, 1.1rem + 2.6vw, 3.75rem); font-weight: 600; line-height: 1; letter-spacing: -.03em; text-wrap: balance; max-width: 22ch; }
+.next { display: grid; grid-template-rows: auto 1fr; height: 100%; }
+.road { position: relative; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); column-gap: 32px; }
+.road::before, .road::after { content: ""; position: absolute; left: 0; right: 0; top: 19px; height: 2px; }
+.road::before { background: var(--on-red-rule); }
+.road::after { background: #FFFFFF; transform-origin: 0 50%; transform: scaleX(0); }
+.is-current .road::after { animation: fill 1.6s var(--ease) .5s forwards; }
+@keyframes fill { to { transform: scaleX(.25); } }
+.step { position: relative; display: grid; gap: 12px; align-content: start; }
+.dot { display: grid; place-items: center; width: 40px; height: 40px; border-radius: 50%; background: var(--red); box-shadow: inset 0 0 0 2px rgba(255, 255, 255, .55); font-size: 12px; font-weight: 800; }
+.step--now .dot { background: #FFFFFF; color: var(--red); box-shadow: none; }
+.step .label { margin-top: 8px; }
+.step h3 { font-size: 26px; font-weight: 700; line-height: 1.15; letter-spacing: -.015em; max-width: 14ch; }
+.step p { font-size: 16.5px; line-height: 1.45; color: var(--on-red-2); max-width: 28ch; }
+.close { align-self: end; padding-bottom: 8px; font-size: 52px; font-weight: 600; line-height: 1.04; letter-spacing: -.03em; max-width: 22ch; text-wrap: balance; }
+.close .serif { font-size: 1.12em; }
 
-/* ---------- appendix ---------- */
-.appx { display: grid; grid-template-columns: minmax(0, .8fr) minmax(0, 1.2fr); gap: clamp(24px, 3vw, 48px); align-items: start; }
-.keys { display: grid; gap: 14px; }
-.keys li { display: grid; gap: 6px; justify-items: start; }
-.keys p { font-size: .9375rem; color: var(--ink-2); }
-.notes { display: grid; gap: 10px; padding: 18px 20px; border-radius: var(--r-lg); background: var(--surface-2); font-size: .875rem; line-height: 1.5; color: var(--ink-2); }
+/* ---------- 11 sources ---------- */
+.appx { display: grid; grid-template-columns: 437px 1fr; column-gap: 64px; height: 100%; }
+.keys { display: grid; gap: 22px; align-content: start; }
+.keys li { display: grid; gap: 6px; }
+.keys .cat { color: var(--ink); }
+.keys p { font-size: 15.5px; line-height: 1.45; color: var(--ink-2); }
+.notes { display: grid; gap: 10px; margin-top: 28px; padding-top: 20px; border-top: 1px solid var(--rule); font-size: 14px; line-height: 1.5; color: var(--ink-2); }
 .notes b { color: var(--ink); }
-.appx .srclist { max-height: none; }
+.slist { display: grid; grid-template-columns: 1fr 1fr; grid-auto-flow: column; grid-template-rows: repeat(7, auto); column-gap: 40px; align-content: start; }
+.slist li { display: grid; grid-template-columns: 30px 1fr; padding: 10px 0; border-top: 1px solid var(--rule); }
+.slist li > span { font-size: 12px; font-weight: 800; color: var(--red); font-variant-numeric: tabular-nums; padding-top: 3px; }
+.slist b { display: block; font-size: 14.5px; font-weight: 700; line-height: 1.3; }
+.slist a { font-size: 12.5px; color: var(--muted); text-decoration: none; overflow-wrap: anywhere; }
+.slist a[href]:hover { text-decoration: underline; }
 
-/* ---------- responsive ---------- */
-@media (max-width: 1080px) {
-  .pillars { grid-template-columns: repeat(3, minmax(0, 1fr)); }
-  .pillar { min-height: 0; }
-  .journey { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  .journey::before { display: none; }
-  .jcard--out { grid-column: 1 / -1; }
-  .groups { grid-template-columns: repeat(3, minmax(0, 1fr)); }
-  .map svg { display: none; }
-}
-@media (max-width: 960px) {
-  .cover, .opp, .prop, .appx, .map-head { grid-template-columns: minmax(0, 1fr); }
-  .orbit { max-width: 420px; }
-  .nums { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  .stations { grid-template-columns: repeat(3, minmax(0, 1fr)); row-gap: 18px; }
-  .links, .note { display: none; }
-  .pr { grid-template-columns: minmax(0, 1fr); gap: 6px; }
-  .road { grid-template-columns: repeat(2, minmax(0, 1fr)); row-gap: 28px; }
-  .road::before, .road::after { display: none; }
-}
-@media (max-width: 640px) {
-  .slide { padding-top: calc(84px + env(safe-area-inset-top, 0px)); }
-  .chrome { grid-template-columns: minmax(0, 1fr) auto; }
-  .brand { display: none; }
-  .capsule-wrap { justify-self: start; min-width: 0; max-width: 100%; }
-  .capsule { max-width: 100%; }
-  .src-btn span { display: none; }
-  .src-btn { width: 44px; padding: 0; justify-content: center; }
-  .nums { grid-template-columns: minmax(0, 1fr); }
-  .layer { grid-template-columns: minmax(0, 1fr); gap: 8px; }
-  .groups { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  .stations { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  .plane { grid-template-columns: minmax(0, 1fr); }
-  .pillars, .journey, .value, .road { grid-template-columns: minmax(0, 1fr); }
-  .shift { grid-template-columns: minmax(0, 1fr); }
-  .shift__arrow { transform: rotate(90deg); }
-  .o-node { font-size: .6875rem; padding: 5px 9px; }
-  .orbit { width: 80%; }
-  .progress { width: 56px; }
-  .o-core small { display: none; }
-  .o-core strong { font-size: 1.125rem; }
-}
+/* ---------- sources drawer (outside the canvas, readable at any scale) ---------- */
+.drawer { position: fixed; inset: 0; z-index: 50; display: flex; justify-content: flex-end; background: rgba(11, 22, 64, .28); }
+.drawer__panel { width: min(500px, 100%); height: 100%; overflow-y: auto; padding: calc(28px + env(safe-area-inset-top, 0px)) 28px calc(28px + env(safe-area-inset-bottom, 0px)); background: #FFFFFF; color: var(--ink); box-shadow: -30px 0 60px -30px rgba(11, 22, 64, .4); display: grid; gap: 18px; align-content: start; animation: slidein .45s var(--ease); }
+@keyframes slidein { from { transform: translateX(32px); opacity: 0; } }
+.drawer__top { display: flex; justify-content: space-between; align-items: center; }
+.drawer__top h2 { font-size: 24px; font-weight: 700; letter-spacing: -.015em; }
+.dlist { display: grid; }
+.dlist li { display: grid; grid-template-columns: 30px 1fr; gap: 6px; padding: 14px 10px; border-top: 1px solid var(--rule); transition: background-color .3s; }
+.dlist li.is-hit { background: var(--red-soft); }
+.dlist li > span { font-size: 12px; font-weight: 800; color: var(--red); font-variant-numeric: tabular-nums; padding-top: 2px; }
+.dlist b { display: block; font-size: 15px; line-height: 1.35; }
+.dlist a { display: block; margin-top: 2px; font-size: 13px; color: var(--muted); overflow-wrap: anywhere; }
+.dlist p { margin-top: 6px; font-size: 14px; line-height: 1.5; color: var(--ink-2); }
+
+/* ---------- reflow: phones, portrait, small windows ---------- */
+.is-narrow .canvas { position: absolute; inset: 0; width: auto; height: auto; transform: none !important; }
+.is-narrow .slide { overflow-y: auto; overflow-x: hidden; overscroll-behavior: contain; display: block; padding: calc(84px + env(safe-area-inset-top, 0px)) 20px calc(100px + env(safe-area-inset-bottom, 0px)); }
+.is-narrow .slide > * + * { margin-top: 32px; }
+.is-narrow .chrome { position: fixed; }
+.is-narrow .bar { left: 0; right: 0; padding: 0 16px; background: var(--paper); transition: background-color .5s; }
+.is-narrow .chrome[data-tone="red"] .bar { background: var(--red); }
+.is-narrow .bar--top { top: 0; height: calc(60px + env(safe-area-inset-top, 0px)); padding-top: env(safe-area-inset-top, 0px); border-bottom: 1px solid var(--rule); }
+.is-narrow .bar--bottom { bottom: 0; height: calc(64px + env(safe-area-inset-bottom, 0px)); padding-bottom: env(safe-area-inset-bottom, 0px); border-top: 1px solid var(--rule); }
+.is-narrow .chrome[data-tone="red"] .bar { border-color: var(--on-red-rule); }
+.is-narrow .runner, .is-narrow .ticks, .is-narrow #c-cat { display: none; }
+.is-narrow .toc { position: fixed; top: calc(64px + env(safe-area-inset-top, 0px)); left: 12px; width: calc(100% - 24px); max-height: 70vh; overflow-y: auto; }
+.is-narrow .h1 { font-size: 34px; }
+.is-narrow .sub { font-size: 17px; }
+.is-narrow .cover, .is-narrow .opp, .is-narrow .prop, .is-narrow .appx, .is-narrow .value { display: grid; grid-template-columns: minmax(0, 1fr); row-gap: 36px; height: auto; }
+.is-narrow .display { font-size: 56px; }
+.is-narrow .lede { font-size: 19px; }
+.is-narrow .bloom { justify-self: center; max-width: 440px; }
+.is-narrow .bloom { max-width: 100%; }
+.is-narrow .petal text { font-size: 30px; }
+.is-narrow .bloom__core text { font-size: 17px; }
+.is-narrow .figs { grid-template-columns: minmax(0, 1fr); row-gap: 28px; height: auto; }
+.is-narrow .fig b { font-size: 64px; }
+.is-narrow .fig p { font-size: 17px; }
+.is-narrow .matrix { grid-template-columns: minmax(0, 1fr); }
+.is-narrow .mrow > .mk, .is-narrow .mrow--biz { display: none; }
+.is-narrow .span5 { grid-column: auto; }
+.is-narrow .mrow--items .items::before { content: attr(data-biz); display: block; margin-bottom: 4px; font-size: 15px; font-weight: 800; color: var(--ink); }
+.is-narrow .mrow--items .items.has-on::before { color: var(--red); }
+.is-narrow .mcap { grid-template-columns: minmax(0, 1fr); row-gap: 4px; }
+.is-narrow .online { margin-top: 8px; font-size: 28px; }
+.is-narrow .stage { height: auto; margin-top: 20px; }
+.is-narrow .track { position: relative; top: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; padding: 16px 16px 48px; }
+.is-narrow .st { flex: none; }
+.is-narrow .st__box { width: 100%; }
+.is-narrow .lk, .is-narrow .brk { display: none; }
+.is-narrow .annot { height: auto; }
+.is-narrow .annot p { position: static; transform: none; white-space: normal; }
+.is-narrow .annot .eco { display: none; }
+.is-narrow .flow.is-eco .annot .eco { display: block; }
+.is-narrow .flow.is-eco .annot .today { display: none; }
+.is-narrow .compare { margin-top: 20px; grid-template-columns: minmax(0, 1fr); row-gap: 18px; }
+.is-narrow .lay { grid-template-columns: minmax(0, 1fr); row-gap: 12px; }
+.is-narrow .lay--core .lay__v { grid-template-columns: minmax(0, 1fr); }
+.is-narrow .temple { display: block; }
+.is-narrow .cols { grid-template-columns: minmax(0, 1fr); border-left: 0; }
+.is-narrow .col { border-right: 0; border-bottom: 1px solid var(--rule); padding: 22px 0; }
+.is-narrow .lintel { height: auto; padding: 18px 20px; flex-direction: column; align-items: flex-start; gap: 6px; border-radius: 14px; }
+.is-narrow .lintel b { font-size: 26px; }
+.is-narrow .plinth { display: none; }
+.is-narrow .jwrap { height: auto; }
+.is-narrow .journey { grid-template-columns: minmax(0, 1fr); row-gap: 26px; }
+.is-narrow .journey::before { left: 7px; right: auto; top: 0; bottom: 0; width: 2px; height: auto; background: linear-gradient(var(--rule), var(--red)); }
+.is-narrow .jc { padding: 0 0 0 34px; }
+.is-narrow .jperson, .is-narrow .jout { min-height: 150px; }
+.is-narrow .pr { grid-template-columns: minmax(0, 1fr); row-gap: 6px; }
+.is-narrow .pr h3 { font-size: 38px; }
+.is-narrow .vcol { padding: 24px; }
+.is-narrow .vcol li { font-size: 20px; }
+.is-narrow .road { grid-template-columns: minmax(0, 1fr); row-gap: 28px; }
+.is-narrow .road::before, .is-narrow .road::after { display: none; }
+.is-narrow .close { margin-top: 40px; font-size: 36px; }
+.is-narrow .next { display: block; }
+.is-narrow .slist { grid-template-columns: minmax(0, 1fr); grid-auto-flow: row; grid-template-rows: none; }
 @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation: none !important; transition: none !important; } }
 </style>
 
@@ -465,124 +416,97 @@ em.s { font-family: var(--font-serif); font-style: italic; font-weight: 600; fon
   <symbol id="i-arrow-r" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
   <symbol id="i-arrow-l" viewBox="0 0 24 24"><path d="M19 12H5M11 6l-6 6 6 6"/></symbol>
   <symbol id="i-chev" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></symbol>
-  <symbol id="i-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></symbol>
-  <symbol id="i-moon" viewBox="0 0 24 24"><path d="M20 14.5A8 8 0 1 1 9.5 4a6.5 6.5 0 0 0 10.5 10.5z"/></symbol>
   <symbol id="i-book" viewBox="0 0 24 24"><path d="M4 5a2 2 0 0 1 2-2h13v16H6a2 2 0 0 0-2 2z"/><path d="M4 21V5M8 7h7"/></symbol>
-  <symbol id="i-check" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></symbol>
   <symbol id="i-x" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></symbol>
   <symbol id="i-door" viewBox="0 0 24 24"><path d="M6 21V4a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v17M3 21h18"/><circle cx="14.5" cy="12" r=".9" fill="currentColor"/></symbol>
 </svg>
 
-<header class="chrome on-stage" id="chrome">
-  <a class="brand" href="#s01" data-go="0" aria-label="Back to the cover"><b>Bloom Holding</b><small>Digital Ecosystem · Proposal</small></a>
-  <div class="capsule-wrap">
-    <button class="capsule frost" id="capsule" type="button" aria-expanded="false" aria-controls="jump" aria-label="Jump to a chapter"><span class="capsule__num" id="cap-num">01</span><span class="capsule__name" id="cap-name">One Bloom</span><svg class="ico"><use href="#i-chev"/></svg></button>
-    <nav class="jump" id="jump" aria-label="Chapters" hidden><ol id="jump-list"></ol></nav>
-  </div>
-  <div class="tools">
-    <button class="src-btn frost" type="button" id="src-btn" aria-controls="drawer" aria-expanded="false"><svg class="ico"><use href="#i-book"/></svg><span>Sources</span></button>
-    <button class="icon-btn frost theme-btn" id="theme-btn" type="button" aria-label="Switch between light and dark"><svg class="ico i-moon"><use href="#i-moon"/></svg><svg class="ico i-sun"><use href="#i-sun"/></svg></button>
-  </div>
-</header>
+<div class="viewport" id="viewport">
+<div class="canvas" id="canvas">
 
-<main class="deck" id="deck" aria-roledescription="presentation" aria-label="Bloom Digital Ecosystem proposal">
+<main id="deck" aria-roledescription="presentation" aria-label="Bloom Digital Ecosystem proposal">
 
 <!-- 01 INTENT -->
-<section class="slide stage invert is-current" data-title="One Bloom" aria-roledescription="slide">
-  <div class="stage__bg" aria-hidden="true"><i class="blob blob--1"></i><i class="blob blob--2"></i></div>
-  <div class="slide__in">
-    <div class="cover">
-      <div class="cover__text">
-        <p class="eyebrow rv">Bloom Digital Ecosystem · Proposal · October 2026</p>
-        <h1 class="mega rv" style="--d:1">One Bloom. <em class="s">Every</em> experience.</h1>
-        <p class="lead rv" style="--d:2">Bloom already has the pieces. The opportunity is to connect them into one experience.</p>
-        <div class="cover__act rv" style="--d:3">
-          <button class="btn" type="button" data-go="next">See the proposal<svg class="ico"><use href="#i-arrow-r"/></svg></button>
-          <span class="hint">Arrow keys or swipe to move</span>
-        </div>
-      </div>
-      <div class="orbit rv" style="--d:2" id="orbit" role="img" aria-label="Bloom's businesses and the people it serves, moving from scattered pieces into one connected Bloom">
-        <svg viewBox="0 0 100 100" aria-hidden="true" id="orbit-svg"></svg>
-        <div class="o-core"><strong>One Bloom</strong><small>Every experience</small></div>
-      </div>
+<section class="slide slide--red is-current" data-title="One Bloom" data-cat="" aria-roledescription="slide">
+  <div class="cover">
+    <div class="cover__text">
+      <p class="label rv">Bloom Digital Ecosystem · Proposal · October 2026</p>
+      <h1 class="display rv" style="--d:1">One Bloom.<br><span class="serif">Every</span><br>experience.</h1>
+      <p class="lede rv" style="--d:2">Bloom already has the pieces. The opportunity is to connect them into one experience.</p>
+      <button class="cta rv" style="--d:3" type="button" data-go="next">See the proposal<svg class="ico"><use href="#i-arrow-r"/></svg></button>
     </div>
+    <figure class="bloom" id="bloom" role="img" aria-label="Bloom's businesses drawn as overlapping petals that meet in one Bloom at the centre"></figure>
   </div>
 </section>
 
 <!-- 02 BLOOM TODAY -->
-<section class="slide" data-title="Bloom today" aria-roledescription="slide">
-  <div class="slide__in">
-    <header class="head">
-      <p class="eyebrow rv"><b>02</b> Bloom today <span class="tag tag--fact">Fact</span></p>
-      <h2 class="title rv" style="--d:1">Bloom is not starting from <em class="s">zero.</em></h2>
-    </header>
-    <div class="nums rv" style="--d:2">
-      <div class="num"><b data-count="5000" data-fmt="plus">5,000<sup>+</sup></b><p>homes developed and delivered<button class="src" type="button" data-s="1">1</button></p></div>
-      <div class="num"><b data-count="20000" data-fmt="plus">20,000<sup>+</sup></b><p>more homes in the pipeline<button class="src" type="button" data-s="1">1</button></p></div>
-      <div class="num"><b data-count="2247">2,247</b><p>villas for Emirati citizens at Al Metlaa, Al Ain, developed by Bloom under ADHA supervision<button class="src" type="button" data-s="2">2</button></p></div>
-      <div class="num"><b data-count="3">3</b><p>hotels: The Abu Dhabi EDITION, Marriott Hotel Downtown Abu Dhabi and Bloom Arjaan by Rotana<button class="src" type="button" data-s="3">3</button></p></div>
-      <div class="num"><b>2011</b><p>Bloom Education opens its first school, Brighton College Abu Dhabi<button class="src" type="button" data-s="4">4</button></p></div>
-      <div class="num"><b data-count="3">3</b><p>apps launched in 2026, for brokers, owners and residents<button class="src" type="button" data-s="5">5</button></p></div>
+<section class="slide" data-title="Bloom today" data-cat="fact" aria-roledescription="slide">
+  <header class="s-head">
+    <h2 class="h1 rv">Bloom is not starting from <span class="hl">zero.</span></h2>
+  </header>
+  <div class="s-body">
+    <div class="figs">
+      <div class="fig rv" style="--d:1"><b data-count="5000" data-plus>5,000<sup>+</sup></b><p>homes developed and delivered<a class="src" href="#src-1" data-s="1">1</a></p></div>
+      <div class="fig rv" style="--d:2"><b data-count="20000" data-plus>20,000<sup>+</sup></b><p>more homes in the pipeline<a class="src" href="#src-1" data-s="1">1</a></p></div>
+      <div class="fig rv" style="--d:3"><b data-count="2247">2,247</b><p>villas for Emirati citizens at Al Metlaa, Al Ain, developed by Bloom under ADHA supervision<a class="src" href="#src-2" data-s="2">2</a></p></div>
+      <div class="fig rv" style="--d:4"><b data-count="3">3</b><p>hotels: The Abu Dhabi EDITION, Marriott Hotel Downtown Abu Dhabi and Bloom Arjaan by Rotana<a class="src" href="#src-3" data-s="3">3</a></p></div>
+      <div class="fig rv" style="--d:5"><b>2011</b><p>Bloom Education opens its first school, Brighton College Abu Dhabi<a class="src" href="#src-4" data-s="4">4</a></p></div>
+      <div class="fig rv" style="--d:6"><b data-count="3">3</b><p>apps launched in 2026, for brokers, owners and residents<a class="src" href="#src-5" data-s="5">5</a></p></div>
     </div>
-    <p class="foot rv" style="--d:3">Figures as published by Bloom Holding, Bloom Education and the Abu Dhabi Housing Authority. Tap a number marker for its source.</p>
   </div>
 </section>
 
 <!-- 03 ECOSYSTEM -->
-<section class="slide" data-title="The ecosystem" aria-roledescription="slide">
-  <div class="slide__in">
-    <div class="map-head">
-      <header class="head">
-        <p class="eyebrow rv"><b>03</b> The ecosystem <span class="tag tag--fact">Fact</span></p>
-        <h2 class="title rv" style="--d:1">Many businesses. The same <em class="s">people.</em></h2>
-      </header>
-      <div class="caption rv" style="--d:3" id="m-cap" aria-live="polite"></div>
+<section class="slide" data-title="The ecosystem" data-cat="fact" aria-roledescription="slide">
+  <header class="s-head">
+    <h2 class="h1 rv">Many businesses. The same <span class="hl">people.</span></h2>
+    <p class="sub rv" style="--d:1">Choose a person to see where they meet Bloom.</p>
+  </header>
+  <div class="s-body rv" style="--d:2">
+    <div class="matrix" id="matrix">
+      <div class="mrow mrow--group"><span class="mk">Group</span><span class="span5 group-name">Bloom Holding</span></div>
+      <div class="mrow mrow--biz" id="m-biz"></div>
+      <div class="mrow mrow--items" id="m-items"></div>
+      <div class="mrow"><span class="mk">Digital</span><div class="span5 items items--inline" id="m-digital"></div></div>
+      <div class="mrow"><span class="mk">People</span><div class="span5 who" id="m-who" role="tablist" aria-label="Choose a person"></div></div>
     </div>
-    <div class="map rv" style="--d:2" id="map">
-      <svg aria-hidden="true" id="map-svg"></svg>
-      <div class="layer layer--core"><span class="layer__k">Group</span><div class="layer__row"><span class="core-pill" id="m-core">Bloom Holding</span></div></div>
-      <div class="layer"><span class="layer__k">Businesses</span><div class="layer__row" id="m-biz"></div></div>
-      <div class="layer"><span class="layer__k">Places &amp; products</span><div class="groups" id="m-groups"></div></div>
-      <div class="layer"><span class="layer__k">People</span><div class="layer__row people chips" id="m-people" role="tablist" aria-label="Choose a person"></div></div>
-    </div>
+    <div class="mcap" id="m-cap" aria-live="polite"></div>
   </div>
 </section>
 
 <!-- 04 OPPORTUNITY -->
-<section class="slide" data-title="The opportunity" aria-roledescription="slide">
-  <div class="slide__in">
-    <header class="head">
-      <p class="eyebrow rv"><b>04</b> The opportunity <span class="tag tag--opp">Opportunity</span></p>
-      <h2 class="title rv" style="--d:1">The biggest opportunity sits <em class="s">between</em> the products.</h2>
-    </header>
+<section class="slide" data-title="The opportunity" data-cat="opp" aria-roledescription="slide">
+  <header class="s-head">
+    <h2 class="h1 rv">The biggest opportunity sits<br><span class="hl">between</span> the products.</h2>
+  </header>
+  <div class="s-body">
     <div class="opp">
-      <div class="ground rv" style="--d:2">
+      <div class="ground rv" style="--d:1">
         <h3>On the ground, Bloom's businesses already meet.</h3>
         <ul class="places">
-          <li><b>Bloom Living<button class="src" type="button" data-s="7">7</button></b><span>Homes, two international schools and a town centre</span></li>
-          <li><b>Bloom Central<button class="src" type="button" data-s="8">8</button></b><span>Apartments, offices and Marriott Hotel Downtown Abu Dhabi</span></li>
-          <li><b>Bloom Gardens<button class="src" type="button" data-s="4">4</button></b><span>Homes and Bloom Nurseries</span></li>
+          <li><b>Bloom Living<a class="src" href="#src-7" data-s="7">7</a></b><span>Homes, two international schools and a town centre</span></li>
+          <li><b>Bloom Central<a class="src" href="#src-8" data-s="8">8</a></b><span>Apartments, offices and Marriott Hotel Downtown Abu Dhabi</span></li>
+          <li><b>Bloom Gardens<a class="src" href="#src-4" data-s="4">4</a></b><span>Homes and Bloom Nurseries</span></li>
         </ul>
         <p class="online">Online, each one still opens its own front door.</p>
       </div>
-      <div class="flow-wrap rv" style="--d:3">
-        <div class="flow-top">
-          <div class="seg" role="tablist" aria-label="View" id="flow-view">
-            <button type="button" role="tab" aria-selected="true" data-v="today">Today</button>
-            <button type="button" role="tab" aria-selected="false" tabindex="-1" data-v="eco">Connected</button>
-          </div>
-          <span class="hint" id="flow-hint">Switch to Connected</span>
+      <div class="flow rv" style="--d:2" id="flow">
+        <div class="seg" role="tablist" aria-label="View" id="flow-seg">
+          <button type="button" role="tab" aria-selected="true" data-v="today">Today</button>
+          <button type="button" role="tab" aria-selected="false" tabindex="-1" data-v="eco">Connected</button>
         </div>
-        <div class="flow" id="flow">
+        <div class="stage">
           <div class="band" aria-hidden="true"><span>Bloom experience layer</span></div>
-          <div class="note note--today" id="note-today">Super App and Community App both handle service charges<span class="srcs-inline"><button class="src" type="button" data-s="5">5</button><button class="src" type="button" data-s="9">9</button></span></div>
-          <div class="note note--eco" id="note-eco" aria-hidden="true">One relationship, from first visit to everyday life</div>
-          <ol class="stations" id="stations"></ol>
+          <div class="track" id="track"></div>
         </div>
-        <div class="shift" aria-live="polite">
-          <ul id="shift-today"><li class="k">Today</li><li>Individual products</li><li>Individual journeys</li><li>Individual entry points</li></ul>
-          <span class="shift__arrow" aria-hidden="true"><svg class="ico"><use href="#i-arrow-r"/></svg></span>
-          <ul class="tomorrow is-dim" id="shift-eco"><li class="k">Connected</li><li>Connected experiences</li><li>Shared foundations</li><li>Recognisable Bloom language</li><li>Seamless movement between services</li></ul>
+        <div class="annot">
+          <i class="brk" aria-hidden="true"></i>
+          <p class="today">Super App and Community App both handle service charges<a class="src" href="#src-5" data-s="5">5</a><a class="src" href="#src-9" data-s="9">9</a></p>
+          <p class="eco">One relationship, from first visit to everyday life</p>
+        </div>
+        <div class="compare">
+          <ul id="cmp-today"><li class="label">Today</li><li>Individual products</li><li>Individual journeys</li><li>Individual entry points</li></ul>
+          <ul class="to dim" id="cmp-eco"><li class="label">Connected</li><li>Connected experiences and shared foundations</li><li>A recognisable Bloom language</li><li>Seamless movement between services</li></ul>
         </div>
       </div>
     </div>
@@ -590,90 +514,95 @@ em.s { font-family: var(--font-serif); font-style: italic; font-weight: 600; fon
 </section>
 
 <!-- 05 PROPOSAL -->
-<section class="slide" data-title="The proposal" aria-roledescription="slide">
-  <div class="slide__in">
-    <header class="head">
-      <p class="eyebrow rv"><b>05</b> The proposal <span class="tag tag--prop">Proposal</span></p>
-      <h2 class="title rv" style="--d:1">One <em class="s">experience layer</em> across everything Bloom does.</h2>
-    </header>
+<section class="slide" data-title="The proposal" data-cat="prop" aria-roledescription="slide">
+  <header class="s-head">
+    <h2 class="h1 rv">One <span class="hl">experience layer</span><br>across everything Bloom does.</h2>
+  </header>
+  <div class="s-body">
     <div class="prop">
-      <div class="stack" id="stack">
-        <div class="plane rv" style="--d:2"><span class="plane__k">People</span><div class="plane__row" id="pl-people"></div></div>
-        <div class="plane plane--layer rv" style="--d:3"><span class="plane__k"><b>Bloom experience layer</b><small>Shared by every product</small></span><div class="plane__row"><span>Recognisable Bloom language</span><span>One relationship with Bloom</span><span>Connected journeys</span><span>Shared foundations</span></div></div>
-        <div class="plane plane--products rv" style="--d:4"><span class="plane__k">Products &amp; services<small>Each keeps its purpose</small></span><div class="plane__row" id="pl-products"></div></div>
-        <div class="plane plane--biz rv" style="--d:5"><span class="plane__k">Businesses &amp; partners</span><div class="plane__row" id="pl-biz"></div></div>
+      <div class="layers">
+        <div class="lay rv" style="--d:1"><span class="lay__k">People</span><div class="lay__v"><span>Buyers</span><span>Owners</span><span>Residents</span><span>Parents &amp; students</span><span>Guests</span><span>Brokers</span><span>Employees</span></div></div>
+        <div class="lay lay--core rv" style="--d:2"><span class="lay__k"><b>Bloom experience layer</b><small>Shared by every product</small></span><div class="lay__v"><span>Recognisable Bloom language</span><span>One relationship with Bloom</span><span>Connected journeys</span><span>Shared foundations</span></div></div>
+        <div class="lay rv" style="--d:3"><span class="lay__k">Products<small>Each keeps its purpose</small></span><div class="lay__v" id="pl-products"></div></div>
+        <div class="lay lay--base rv" style="--d:4"><span class="lay__k">Businesses &amp; partners</span><div class="lay__v"><span>Properties</span><span>Education</span><span>Hospitality</span><span>Facilities</span><span>Landscape</span><i class="br" aria-hidden="true"></i><span class="partner">Partners:</span><span class="partner">ADHA</span><span class="partner">Marriott International</span><span class="partner">Rotana</span><span class="partner">Brighton College</span></div></div>
       </div>
-      <div class="side rv" style="--d:4">
-        <div class="split">
-          <div class="one"><h3>One ecosystem</h3><ul><li>A language people recognise as Bloom</li><li>One relationship, whatever their role</li><li>Journeys that carry on between products</li><li>Foundations designed once, used everywhere</li></ul></div>
-          <div class="many"><h3>Distinct experiences</h3><ul><li>Each product keeps its job and its audience</li><li>Partner brands keep leading: Marriott, Rotana, Brighton College, ADHA</li><li>Each business keeps its expertise</li></ul></div>
-        </div>
-        <blockquote class="quote"><p>“…our long-term vision to create smarter, more integrated communities.”</p><cite>Bloom Holding, launching its three apps, April 2026<button class="src" type="button" data-s="5">5</button></cite></blockquote>
+      <div class="side rv" style="--d:3">
+        <div><h3>One ecosystem</h3><ul><li>A language people recognise as Bloom</li><li>One relationship, whatever their role</li><li>Journeys that carry on between products</li><li>Foundations designed once, used everywhere</li></ul></div>
+        <div class="many"><h3>Distinct experiences</h3><ul><li>Each product keeps its job and its audience</li><li>Partner brands keep leading their own experiences</li><li>Each business keeps its expertise</li></ul></div>
+        <blockquote class="quote"><p>“…our long-term vision to create smarter, more integrated communities.”</p><cite>Bloom Holding, launching its three apps, April 2026<a class="src" href="#src-5" data-s="5">5</a></cite></blockquote>
       </div>
     </div>
   </div>
 </section>
 
 <!-- 06 PILLARS -->
-<section class="slide" data-title="Strategic pillars" aria-roledescription="slide">
-  <div class="slide__in">
-    <header class="head">
-      <p class="eyebrow rv"><b>06</b> Strategic pillars <span class="tag tag--prop">Proposal</span></p>
-      <h2 class="title rv" style="--d:1">Five pillars hold the ecosystem <em class="s">together.</em></h2>
-    </header>
+<section class="slide" data-title="Strategic pillars" data-cat="prop" aria-roledescription="slide">
+  <header class="s-head">
+    <h2 class="h1 rv">Five pillars hold the ecosystem <span class="hl">together.</span></h2>
+  </header>
+  <div class="s-body">
     <div class="temple">
-      <div class="lintel rv" style="--d:2"><b>One Bloom. Every experience.</b><span>Bloom experience layer</span></div>
-      <div class="pillars" id="pillars"></div>
-      <div class="base rv" style="--d:3" aria-hidden="true"></div>
+      <div class="lintel rv" style="--d:1"><b>One Bloom. Every experience.</b><span>Bloom experience layer</span></div>
+      <div class="cols">
+        <article class="col" style="--i:0"><span>01</span><h3>One recognisable Bloom</h3><p>Every touchpoint feels unmistakably Bloom, whatever its job.</p></article>
+        <article class="col" style="--i:1"><span>02</span><h3>Connected journeys</h3><p>People move between Bloom services without starting again.</p></article>
+        <article class="col" style="--i:2"><span>03</span><h3>A shared foundation</h3><p>Patterns, components and principles designed once, used everywhere.</p></article>
+        <article class="col" style="--i:3"><span>04</span><h3>Distinct by purpose</h3><p>Each product and partner brand keeps its job and its identity.</p></article>
+        <article class="col" style="--i:4"><span>05</span><h3>Ready to grow</h3><p>New communities, products and partners join without a rebuild.</p></article>
+      </div>
+      <div class="plinth rv" style="--d:3" aria-hidden="true"></div>
     </div>
   </div>
 </section>
 
 <!-- 07 EXPERIENCE -->
-<section class="slide" data-title="The experience" aria-roledescription="slide">
-  <div class="slide__in">
-    <header class="head">
-      <p class="eyebrow rv"><b>07</b> The experience <span class="tag tag--fact">Today</span><span class="tag tag--prop">Proposed</span></p>
-      <h2 class="title rv" style="--d:1">People meet Bloom through <em class="s">moments</em>, not business units.</h2>
-    </header>
-    <div class="jhead rv" style="--d:2">
-      <div class="chips" role="tablist" aria-label="Choose a person" id="j-tabs"></div>
+<section class="slide" data-title="The experience" data-cat="mixed" aria-roledescription="slide">
+  <header class="s-head">
+    <h2 class="h1 rv">People meet Bloom through <span class="hl">moments</span>,<br>not business units.</h2>
+  </header>
+  <div class="s-body">
+    <div class="jwrap">
+      <div class="who rv" style="--d:1" role="tablist" aria-label="Choose a person" id="j-who"></div>
+      <div class="journey rv" style="--d:2" id="journey" aria-live="polite"></div>
+      <p class="jnote rv" style="--d:3">Today: as Bloom and its partners publish it. Proposed: what the experience layer adds.</p>
     </div>
-    <div class="journey rv" style="--d:3" id="journey" aria-live="polite"></div>
-    <p class="truth rv" style="--d:4">“Today” lines describe products as Bloom and its partners publish them. “Proposed” lines show what the experience layer would add.</p>
   </div>
 </section>
 
 <!-- 08 PRINCIPLES -->
-<section class="slide" data-title="Experience principles" aria-roledescription="slide">
-  <div class="slide__in">
-    <header class="head">
-      <p class="eyebrow rv"><b>08</b> Experience principles <span class="tag tag--prop">Proposal</span></p>
-      <h2 class="title rv" style="--d:1">Five principles for every Bloom <em class="s">experience.</em></h2>
-    </header>
-    <div class="princ rv" style="--d:2" id="princ"></div>
+<section class="slide" data-title="Experience principles" data-cat="prop" aria-roledescription="slide">
+  <header class="s-head">
+    <h2 class="h1 rv">Five principles for every Bloom <span class="hl">experience.</span></h2>
+  </header>
+  <div class="s-body">
+    <div class="princ rv" style="--d:1">
+      <div class="pr"><h3>Connected</h3><p>Related, never isolated.</p><small>A handover leads straight into community life.</small></div>
+      <div class="pr"><h3>Effortless</h3><p>Complexity stays behind the experience.</p><small>Share details once, not again for each part of Bloom.</small></div>
+      <div class="pr"><h3>Recognisable</h3><p>Always Bloom, even under a partner's brand.</p><small>The EDITION stays the EDITION. Bloom is still felt around it.</small></div>
+      <div class="pr"><h3>Relevant</h3><p>What matters to this person, at this moment.</p><small>An owner waiting for handover sees progress first.</small></div>
+      <div class="pr"><h3>Human</h3><p>Technology serves the relationship.</p><small>A real person is one step away when it matters.</small></div>
+    </div>
   </div>
 </section>
 
-<!-- 09 ENABLES -->
-<section class="slide" data-title="What this enables" aria-roledescription="slide">
-  <div class="slide__in">
-    <header class="head">
-      <p class="eyebrow rv"><b>09</b> What this enables <span class="tag tag--opp">Opportunity</span></p>
-      <h2 class="title rv" style="--d:1">Simpler for people. Stronger for <em class="s">Bloom.</em></h2>
-    </header>
+<!-- 09 VALUE -->
+<section class="slide" data-title="What this enables" data-cat="opp" aria-roledescription="slide">
+  <header class="s-head">
+    <h2 class="h1 rv">Simpler for people.<br>Stronger for <span class="hl">Bloom.</span></h2>
+  </header>
+  <div class="s-body">
     <div class="value">
-      <div class="vcol vcol--people rv" style="--d:2"><h3>For people</h3><ul>
+      <div class="vcol vcol--people rv" style="--d:1"><p class="label">For people</p><ul>
         <li><span>01</span>Simpler journeys</li>
         <li><span>02</span>Less repeating themselves</li>
         <li><span>03</span>Easier discovery of what Bloom offers</li>
         <li><span>04</span>Moments that fit their life stage</li>
       </ul></div>
-      <div class="vcol vcol--bloom rv" style="--d:3"><h3>For Bloom</h3><ul>
+      <div class="vcol vcol--bloom rv" style="--d:2"><p class="label">For Bloom</p><ul>
         <li><span>01</span>A stronger digital identity</li>
         <li><span>02</span>Foundations built once, reused everywhere</li>
         <li><span>03</span>Products that strengthen each other</li>
-        <li><span>04</span>New communities and products launch faster</li>
+        <li><span>04</span>Faster launches for new communities and products</li>
         <li><span>05</span>Relationships that grow across businesses</li>
       </ul></div>
     </div>
@@ -681,63 +610,75 @@ em.s { font-family: var(--font-serif); font-style: italic; font-weight: 600; fon
 </section>
 
 <!-- 10 NEXT -->
-<section class="slide stage invert" data-title="What's next" aria-roledescription="slide">
-  <div class="stage__bg" aria-hidden="true"><i class="blob blob--1"></i><i class="blob blob--2"></i></div>
-  <div class="slide__in">
-    <header class="head">
-      <p class="eyebrow rv"><b>10</b> What's next <span class="tag tag--prop">Proposal</span></p>
-      <h2 class="title rv" style="--d:1">The beginning of a longer <em class="s">journey.</em></h2>
-    </header>
-    <ol class="road rv" style="--d:2">
-      <li class="step step--now"><span class="step__dot"><svg class="ico" style="stroke-width:2.6"><use href="#i-check"/></svg></span><span class="step__k">Now</span><h3>Understand the ecosystem</h3><p>Businesses, people, products and journeys mapped.</p></li>
-      <li class="step"><span class="step__dot">02</span><span class="step__k">Next</span><h3>Define the ecosystem architecture</h3><p>Roles, relationships and how products hand over to each other.</p></li>
-      <li class="step"><span class="step__dot">03</span><span class="step__k">Then</span><h3>Build the shared experience foundation</h3><p>One Bloom language, patterns, components and principles.</p></li>
-      <li class="step"><span class="step__dot">04</span><span class="step__k">Future</span><h3>Connect products, services and intelligence</h3><p>Experiences that anticipate what people need next.</p></li>
-    </ol>
-    <p class="close rv" style="--d:3">Bloom already has the pieces. Now we can connect them into <em class="s">one experience.</em></p>
+<section class="slide slide--red" data-title="What's next" data-cat="prop" aria-roledescription="slide">
+  <header class="s-head">
+    <h2 class="h1 rv">The beginning of a longer journey.</h2>
+  </header>
+  <div class="s-body">
+    <div class="next">
+      <ol class="road rv" style="--d:1">
+        <li class="step step--now"><span class="dot">01</span><span class="label">Now · Phase 1</span><h3>Understand the ecosystem</h3><p>Businesses, people, products and journeys mapped.</p></li>
+        <li class="step"><span class="dot">02</span><span class="label">Next</span><h3>Define the ecosystem architecture</h3><p>Roles, relationships and how products hand over to each other.</p></li>
+        <li class="step"><span class="dot">03</span><span class="label">Then</span><h3>Build the shared experience foundation</h3><p>One Bloom language, patterns, components and principles.</p></li>
+        <li class="step"><span class="dot">04</span><span class="label">Future</span><h3>Connect products, services and intelligence</h3><p>Experiences that anticipate what people need next.</p></li>
+      </ol>
+      <p class="close rv" style="--d:2">Bloom already has the pieces. Now we can connect them into <span class="serif">one experience.</span></p>
+    </div>
   </div>
 </section>
 
 <!-- 11 SOURCES -->
-<section class="slide" data-title="Sources and notes" aria-roledescription="slide">
-  <div class="slide__in">
-    <header class="head">
-      <p class="eyebrow rv"><b>Appendix</b> Sources and notes</p>
-      <h2 class="title rv" style="--d:1">Every figure has a <em class="s">source.</em></h2>
-    </header>
+<section class="slide" data-title="Sources and notes" data-cat="" aria-roledescription="slide">
+  <header class="s-head">
+    <h2 class="h1 rv">Every figure has a <span class="hl">source.</span></h2>
+  </header>
+  <div class="s-body">
     <div class="appx">
-      <div class="keys rv" style="--d:2">
+      <div class="rv" style="--d:1">
         <ul class="keys">
-          <li><span class="tag tag--fact">Fact</span><p>Published by Bloom Holding, its businesses or its partners. Numbered sources alongside.</p></li>
-          <li><span class="tag tag--opp">Opportunity</span><p>Our reading of what those facts make possible.</p></li>
-          <li><span class="tag tag--prop">Proposal</span><p>What we recommend Bloom does next.</p></li>
+          <li><span class="cat cat--fact">Fact</span><p>Published by Bloom Holding, its businesses or its partners, with a numbered source.</p></li>
+          <li><span class="cat cat--opp">Opportunity</span><p>Our reading of what those facts make possible.</p></li>
+          <li><span class="cat cat--prop">Proposal</span><p>What we recommend Bloom does next.</p></li>
         </ul>
         <div class="notes">
-          <p><b>Left out on purpose.</b> Bloom's own pages publish different school counts (15 and 20), student totals (19,000+ and 22,000+) and hotel room totals, so this proposal shows none of them until Bloom confirms one figure.</p>
-          <p><b>Logos.</b> The Abu Dhabi EDITION and Marriott marks and the Bloom Multiverse mark are reproduced from the Phase 1 material. Other brands are set as plain text labels until official files are supplied.</p>
-          <p><b>Bloom Multiverse</b> details come from Bloom team materials shared during Phase 1.</p>
+          <p><b>Left out on purpose.</b> Bloom's own pages publish different school counts (15 and 20), student totals (19,000+ and 22,000+) and hotel room totals. None are shown until Bloom confirms one figure.</p>
+          <p><b>Logos.</b> The Abu Dhabi EDITION, Marriott and Bloom Multiverse marks come from the Phase 1 material. Other brands are plain text until official files are supplied.</p>
         </div>
       </div>
-      <ol class="srclist rv" style="--d:3" id="src-appx"></ol>
+      <ol class="slist rv" style="--d:2" id="src-list"></ol>
     </div>
   </div>
 </section>
 
 </main>
 
-<footer class="rail on-stage" id="rail">
-  <div class="rail-foot frost">
-    <span class="progress" aria-hidden="true"><i id="rail-fill"></i></span>
-    <span class="counter" id="counter" aria-live="polite">01 / 11</span>
-    <button class="icon-btn" type="button" id="prev" data-go="prev" aria-label="Previous chapter"><svg class="ico"><use href="#i-arrow-l"/></svg></button>
-    <button class="icon-btn" type="button" id="next" data-go="next" aria-label="Next chapter"><svg class="ico"><use href="#i-arrow-r"/></svg></button>
+<div class="chrome" id="chrome" data-tone="red">
+  <div class="bar bar--top">
+    <button class="toc-btn" type="button" id="toc-btn" aria-expanded="false" aria-controls="toc"><b id="c-num">01</b><span id="c-name">One Bloom</span><svg class="ico"><use href="#i-chev"/></svg></button>
+    <span id="c-cat"></span>
+    <span class="runner">Bloom Holding · Digital Ecosystem Proposal</span>
   </div>
-</footer>
+  <nav class="toc" id="toc" aria-label="Chapters" hidden><ol id="toc-list"></ol></nav>
+  <div class="bar bar--bottom">
+    <button class="link-btn" type="button" id="src-btn" aria-controls="drawer" aria-expanded="false"><svg class="ico"><use href="#i-book"/></svg>Sources</button>
+    <div class="pager">
+      <ol class="ticks" id="ticks" aria-label="Go to chapter"></ol>
+      <span class="counter" id="counter" aria-live="polite">01 / 11</span>
+      <div class="arrows">
+        <button class="arrow" type="button" id="prev" data-go="prev" aria-label="Previous chapter"><svg class="ico"><use href="#i-arrow-l"/></svg></button>
+        <button class="arrow" type="button" id="next" data-go="next" aria-label="Next chapter"><svg class="ico"><use href="#i-arrow-r"/></svg></button>
+      </div>
+    </div>
+  </div>
+</div>
+
+</div>
+</div>
 
 <div class="drawer" id="drawer" hidden>
   <aside class="drawer__panel" role="dialog" aria-modal="true" aria-labelledby="drawer-h">
-    <div class="drawer__top"><h2 id="drawer-h">Sources</h2><button class="icon-btn" type="button" id="drawer-x" aria-label="Close sources"><svg class="ico"><use href="#i-x"/></svg></button></div>
-    <ol class="srclist" id="src-drawer"></ol>
+    <div class="drawer__top"><h2 id="drawer-h">Sources</h2><button class="arrow" type="button" id="drawer-x" aria-label="Close sources"><svg class="ico"><use href="#i-x"/></svg></button></div>
+    <ol class="dlist" id="drawer-list"></ol>
   </aside>
 </div>
 
@@ -749,15 +690,16 @@ em.s { font-family: var(--font-serif); font-style: italic; font-weight: 600; fon
   const pad = (n) => String(n).padStart(2, "0");
   const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
   const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
-  const src = (...n) => n.map((k) => `<button class="src" type="button" data-s="${k}">${k}</button>`).join("");
+  const src = (...n) => n.map((k) => `<a class="src" href="#src-${k}" data-s="${k}">${k}</a>`).join("");
+  const restart = (el, cls) => { el.classList.remove(cls); void el.offsetWidth; el.classList.add(cls); };
 
   /* ================= SOURCES ================= */
   const SOURCES = [
     ["Bloom Holding · Who we are", "https://bloomholding.com/who-we-are", "Over 5,000 homes developed and delivered, with more than 20,000 in the pipeline."],
-    ["Abu Dhabi Housing Authority · Booking and sale begins at Al Metlaa (2026)", "https://www.iskan.abudhabi/en/Media-Center/News/2026_Q3_ADHA_Commences_Booking_and_Sale_of_Housing_Units_at_Al_Metlaa_Project", "2,247 villas for Emirati citizens, developed by Bloom Holding under ADHA and ADPIC supervision. Viewing from 30 September 2026, booking and purchase from 7 October 2026, all digital. Construction expected to complete in Q4 2028."],
+    ["Abu Dhabi Housing Authority · Booking and sale begins at Al Metlaa", "https://www.iskan.abudhabi/en/Media-Center/News/2026_Q3_ADHA_Commences_Booking_and_Sale_of_Housing_Units_at_Al_Metlaa_Project", "2,247 villas for Emirati citizens, developed by Bloom Holding under ADHA and ADPIC supervision. Viewing from 30 September 2026, booking and purchase from 7 October 2026, all digital. Construction expected to complete in Q4 2028."],
     ["Bloom Holding · Bloom Hospitality", "https://bloomholding.com/what-we-do/hospitality", "The Abu Dhabi EDITION (with 57 serviced residences), Marriott Hotel Downtown Abu Dhabi in Bloom Central, and Bloom Arjaan by Rotana, in association with Marriott International and Rotana."],
     ["Bloom Education · About us", "https://www.bloomeducation.com/who-we-are/about-us/", "First school, Brighton College Abu Dhabi, in 2011. Bloom Nurseries at Bloom Gardens in 2021. Bloom World Academy in 2022."],
-    ["Bloom Holding · Next-generation digital solutions for brokers, owners and residents (press release, 27 April 2026)", "https://bloomholding.com/press-releases/bloom-holding-introduces-next-generation-digital-solutions-to-elevate-broker-owner-and-resident-experiences-1", "Launch of Bloom Partners, the Bloom Community App and the Bloom Holding Super App, described as redefining how brokers, owners and residents engage with the company's ecosystem. Super App: instalments, maintenance and service charges."],
+    ["Bloom Holding · Digital solutions for brokers, owners and residents (27 April 2026)", "https://bloomholding.com/press-releases/bloom-holding-introduces-next-generation-digital-solutions-to-elevate-broker-owner-and-resident-experiences-1", "Launch of Bloom Partners, the Bloom Community App and the Bloom Holding Super App, described as redefining how brokers, owners and residents engage with the company's ecosystem. The Super App covers instalments, maintenance and service charges."],
     ["Bloom Holding · What we do", "https://bloomholding.com/what-we-do", "Communities including Bloom Gardens, Bloom Living in Zayed City, Bloom Marina, Saadiyat Island and Jumeirah Village Circle; education, hospitality, landscape and facilities management."],
     ["Bloom Holding · Bloom Living", "https://bloomholding.com/what-we-do/properties/bloom-living", "2.2 million sqm and more than 4,500 homes, with a town centre, places of worship and two international schools."],
     ["Bloom Holding · Bloom Central", "https://bloomholding.com/what-we-do/properties/bloom-central", "Apartments and offices for rent in the mixed-use Bloom Central, home of Marriott Hotel Downtown Abu Dhabi."],
@@ -765,20 +707,20 @@ em.s { font-family: var(--font-serif); font-style: italic; font-weight: 600; fon
     ["Bloom Holding · Bloom Partners App", "https://bloomholding.com/bloom-partners-app", "Agency and agent onboarding, real-time inventory, leads, commission tracking, a personalised dashboard, service requests and marketing materials."],
     ["Bloom Facilities Management", "https://bloomholding.com/what-we-do/bfm", "Integrated facilities and community management in Abu Dhabi and Dubai, for Bloom and third-party clients. See also bfm.ae."],
     ["Bloom Holding · Bloom Education", "https://bloomholding.com/what-we-do/education", "Partnership with Brighton College UK, Bloom World Academy (IB), ADEK Charter Schools and Al Ghad Public Nurseries."],
-    ["Bloom Holding · Bloom Arjaan by Rotana hotel apartments for investors", "https://bloomholding.com/press-releases/bloom-arjaan-rotana-hotel-apartments", "Hotel apartments on Saadiyat Island offered to investors, managed by Rotana."],
+    ["Bloom Holding · Bloom Arjaan by Rotana hotel apartments", "https://bloomholding.com/press-releases/bloom-arjaan-rotana-hotel-apartments", "Hotel apartments on Saadiyat Island offered to investors, managed by Rotana."],
     ["Bloom team materials · Phase 1", "", "Bloom Multiverse, the employee platform: work apps, approvals, people and policies in one place."]
   ];
-  const srcItems = SOURCES.map(([t, u, n], i) => `<li data-n="${i + 1}"><span>${pad(i + 1)}</span><div><b>${esc(t)}</b>${u ? `<a href="${esc(u)}" target="_blank" rel="noopener">${esc(u.replace(/^https:\/\/(www\.)?/, ""))}</a>` : ""}<p>${esc(n)}</p></div></li>`).join("");
-  $("#src-drawer").innerHTML = srcItems;
-  $("#src-appx").innerHTML = srcItems;
+  const short = (u) => u.replace(/^https:\/\/(www\.)?/, "").replace(/\/$/, "");
+  $("#src-list").innerHTML = SOURCES.map(([t, u], i) => `<li><span>${pad(i + 1)}</span><div><b>${esc(t)}</b>${u ? `<a href="${esc(u)}" target="_blank" rel="noopener">${esc(short(u).split("/")[0])}</a>` : `<a>Shared with the Bloom team</a>`}</div></li>`).join("");
+  $("#drawer-list").innerHTML = SOURCES.map(([t, u, n], i) => `<li data-n="${i + 1}"><span>${pad(i + 1)}</span><div><b>${esc(t)}</b>${u ? `<a href="${esc(u)}" target="_blank" rel="noopener">${esc(short(u))}</a>` : ""}<p>${esc(n)}</p></div></li>`).join("");
 
   const drawer = $("#drawer"), srcBtn = $("#src-btn");
   let lastFocus = null;
   function openSources(n) {
     lastFocus = document.activeElement;
     drawer.hidden = false; srcBtn.setAttribute("aria-expanded", "true");
-    $$("#src-drawer li").forEach((li) => li.classList.toggle("is-hit", Number(li.dataset.n) === n));
-    const hit = n && $(`#src-drawer li[data-n="${n}"]`);
+    $$("#drawer-list li").forEach((li) => li.classList.toggle("is-hit", Number(li.dataset.n) === n));
+    const hit = n && $(`#drawer-list li[data-n="${n}"]`);
     if (hit) hit.scrollIntoView({ block: "center" });
     $("#drawer-x").focus({ preventScroll: true });
   }
@@ -786,197 +728,116 @@ em.s { font-family: var(--font-serif); font-style: italic; font-weight: 600; fon
   srcBtn.addEventListener("click", () => (drawer.hidden ? openSources(0) : closeSources()));
   $("#drawer-x").addEventListener("click", closeSources);
   drawer.addEventListener("click", (e) => { if (e.target === drawer) closeSources(); });
-  document.addEventListener("click", (e) => { const s = e.target.closest(".src"); if (s) { e.stopPropagation(); openSources(Number(s.dataset.s)); } }, true);
+  document.addEventListener("click", (e) => { const s = e.target.closest(".src"); if (s) { e.preventDefault(); e.stopPropagation(); openSources(Number(s.dataset.s)); } }, true);
 
-  /* Brand labels: genuine logo files for the three marks we hold, plain text for every other brand. */
-  const LOGO = { edition: "logo--edition", marriott: "logo--marriott", mark: "logo--mark" };
-  const lbl = (name, opts = {}) => `<span class="lbl${opts.cls ? " " + opts.cls : ""}"${opts.attrs || ""}${opts.c ? ` style="--c:${opts.c}"` : ""}>${opts.logo ? `<i class="logo ${LOGO[opts.logo]}" role="img" aria-label="${esc(opts.alt || name)}"></i>` : ""}${esc(name)}</span>`;
-
-  /* ================= 01 ORBIT ================= */
-  (function orbit() {
-    const el = $("#orbit"), svg = $("#orbit-svg");
-    const inner = ["Properties", "Education", "Hospitality", "Facilities", "Landscape"];
-    const outer = ["Buyers", "Owners", "Residents", "Brokers", "Parents", "Students", "Guests", "Partners", "Employees"];
-    const scatter = [[8, 12, -8], [88, 8, 6], [4, 52, 5], [94, 46, -6], [16, 92, 7], [70, 96, -4], [42, 4, 4], [60, 30, -9], [30, 70, 8], [84, 78, 5], [22, 30, -5], [52, 62, 6], [76, 58, -7], [36, 46, 3]];
-    let html = "", lines = "", i = 0;
-    const place = (list, r, start, cls) => list.forEach((n, k) => {
-      const a = (start + (k * 360) / list.length) * Math.PI / 180;
-      const x = 50 + r * Math.cos(a), y = 50 + r * Math.sin(a);
-      const [x0, y0, r0] = scatter[i % scatter.length];
-      html += `<span class="o-node ${cls}" style="--i:${i};--x0:${x0};--y0:${y0};--r0:${r0}deg;--x1:${x.toFixed(2)};--y1:${y.toFixed(2)}"><i></i>${n}</span>`;
-      lines += `<line class="spoke" x1="50" y1="50" x2="${x.toFixed(2)}" y2="${y.toFixed(2)}" pathLength="220"/>`;
-      i += 1;
-    });
-    place(inner, 28, -90, "o-node--b");
-    place(outer, 44, -70, "o-node--p");
-    svg.innerHTML = `<circle class="ring" cx="50" cy="50" r="28"/><circle class="ring ring--dash" cx="50" cy="50" r="44"/>${lines}
-      <circle class="pulse" r=".9"><animateMotion dur="9s" repeatCount="indefinite" path="M50,6 a44,44 0 1,1 -0.01,0"/></circle>
-      <circle class="pulse" r=".7"><animateMotion dur="6s" repeatCount="indefinite" path="M50,22 a28,28 0 1,0 0.01,0"/></circle>`;
-    el.insertAdjacentHTML("beforeend", html);
+  /* ================= 01 BLOOM ================= */
+  (function bloom() {
+    const NAMES = ["Properties", "Education", "Hospitality", "Facilities", "Landscape"];
+    const cx = 340, cy = 300, R = 122, D = 90, L = 238;
+    const petals = NAMES.map((n, k) => {
+      const a = (-90 + k * 72) * Math.PI / 180, c = Math.cos(a), s = Math.sin(a);
+      const anchor = c > .3 ? "start" : c < -.3 ? "end" : "middle";
+      const dy = s < -.9 ? -2 : 6;
+      return `<g class="petal" style="--k:${k};--tx:${(c * 70).toFixed(1)}px;--ty:${(s * 70).toFixed(1)}px">
+        <circle cx="${(cx + D * c).toFixed(1)}" cy="${(cy + D * s).toFixed(1)}" r="${R}"/>
+        <text x="${(cx + L * c).toFixed(1)}" y="${(cy + L * s + dy).toFixed(1)}" text-anchor="${anchor}">${n}</text></g>`;
+    }).join("");
+    $("#bloom").innerHTML = `<svg viewBox="0 0 680 600" aria-hidden="true">${petals}<g class="bloom__core"><circle cx="${cx}" cy="${cy}" r="58"/><text x="${cx}" y="${cy + 5}" text-anchor="middle">ONE BLOOM</text></g></svg>`;
   })();
-  const orbitOn = (on) => { const o = $("#orbit"); clearTimeout(orbitOn.t); if (on) orbitOn.t = setTimeout(() => o.classList.add("is-on"), reduce ? 0 : 450); else o.classList.remove("is-on"); };
+  const bloomOn = (on) => { const b = $("#bloom"); clearTimeout(bloomOn.t); if (on) bloomOn.t = setTimeout(() => b.classList.add("is-on"), reduce ? 0 : 300); else b.classList.remove("is-on"); };
 
   /* ================= 02 NUMBERS ================= */
-  const fmt = (n, f) => n.toLocaleString("en-US") + (f === "plus" ? "<sup>+</sup>" : "");
   function countUp(slide) {
     if (reduce) return;
     $$("[data-count]", slide).forEach((b) => {
-      const to = Number(b.dataset.count), f = b.dataset.fmt, t0 = performance.now(), dur = to > 100 ? 1400 : 700;
-      const tick = (t) => { const p = Math.min(1, (t - t0) / dur), e = 1 - Math.pow(1 - p, 3); b.innerHTML = fmt(Math.round(to * e), f); if (p < 1) requestAnimationFrame(tick); };
+      const to = Number(b.dataset.count), plus = b.hasAttribute("data-plus"), t0 = performance.now(), dur = to > 100 ? 1300 : 600;
+      const tick = (t) => { const p = Math.min(1, (t - t0) / dur), e = 1 - Math.pow(1 - p, 3); b.innerHTML = Math.round(to * e).toLocaleString("en-US") + (plus ? "<sup>+</sup>" : ""); if (p < 1) requestAnimationFrame(tick); };
       requestAnimationFrame(tick);
     });
   }
 
-  /* ================= 03 ECOSYSTEM MAP ================= */
-  const BIZ = { props: "Bloom Properties", edu: "Bloom Education", hos: "Bloom Hospitality", bfm: "Bloom Facilities Management", land: "Bloom Landscape" };
-  const GROUPS = [
-    ["Communities", [["living", "Bloom Living", ["props"]], ["gardens", "Bloom Gardens", ["props"]], ["central", "Bloom Central", ["props", "hos"]], ["metlaa", "Al Metlaa", ["props"]], ["saadiyat", "Saadiyat Island", ["props"]], ["jvc", "Jumeirah Village Circle", ["props"], null, "Jumeirah Village Circle"]]],
-    ["Schools", [["brighton", "Brighton College", ["edu"]], ["bwa", "Bloom World Academy", ["edu"]], ["nurseries", "Bloom Nurseries", ["edu"]]]],
-    ["Hotels", [["edition", "The Abu Dhabi EDITION", ["hos"], "edition"], ["marriott", "Marriott Hotel Downtown Abu Dhabi", ["hos"], "marriott", "Downtown Abu Dhabi"], ["arjaan", "Bloom Arjaan by Rotana", ["hos"]]]],
-    ["Services", [["fm", "Community management", ["bfm"]], ["landscape", "Landscaping", ["land"]]]],
-    ["Digital", [["web", "bloomholding.com", ["props"]], ["partners", "Bloom Partners", ["props"]], ["super", "Bloom Holding Super App", ["props"], null, "Super App"], ["community", "Bloom Community App", ["props"], null, "Community App"], ["multiverse", "Bloom Multiverse", ["props", "edu", "hos", "bfm", "land"], "mark"]]]
+  /* ================= 03 ECOSYSTEM ================= */
+  // Columns follow Bloom's businesses; each item belongs to the business above it.
+  const BIZ = [
+    ["props", "Bloom Properties", [["living", "Bloom Living"], ["gardens", "Bloom Gardens"], ["central", "Bloom Central"], ["metlaa", "Al Metlaa"], ["saadiyat", "Saadiyat Island"], ["jvc", "Jumeirah Village Circle"]]],
+    ["edu", "Bloom Education", [["brighton", "Brighton College"], ["bwa", "Bloom World Academy"], ["nurseries", "Bloom Nurseries"]]],
+    ["hos", "Bloom Hospitality", [["edition", "The Abu Dhabi EDITION", "edition"], ["marriott", "Downtown Abu Dhabi", "marriott"], ["arjaan", "Bloom Arjaan by Rotana"]]],
+    ["bfm", "Bloom Facilities Management", [["fm", "Community management"], ["services", "Facilities services"]]],
+    ["land", "Bloom Landscape", [["landscape", "Landscaping"]]]
   ];
-  const ITEM = {}; GROUPS.forEach(([g, items]) => items.forEach(([k, n, b, logo]) => { ITEM[k] = { n, b, g, logo }; }));
+  const DIGITAL = [["web", "bloomholding.com", ["props"]], ["partners", "Bloom Partners", ["props"]], ["super", "Bloom Holding Super App", ["props"]], ["community", "Bloom Community App", ["props"]], ["multiverse", "Bloom Multiverse", ["props", "edu", "hos", "bfm", "land"], "mark"]];
+  const OWNER = {}; BIZ.forEach(([b, , items]) => items.forEach(([k]) => { OWNER[k] = [b]; })); DIGITAL.forEach(([k, , b]) => { OWNER[k] = b; });
   const PEOPLE = [
-    ["buyers", "Buyers & investors", ["web", "partners", "living", "saadiyat", "jvc", "arjaan"], "Discover homes on bloomholding.com or through a broker on Bloom Partners. Investors can also own hotel apartments at Bloom Arjaan by Rotana.", [1, 10, 13]],
-    ["emirati", "Emirati families", ["metlaa"], "View, book and buy Al Metlaa villas digitally, with ADHA overseeing and Bloom Holding as developer.", [2]],
-    ["brokers", "Brokers & agencies", ["partners"], "Register, see real-time inventory, manage leads and track commission on Bloom Partners.", [10]],
-    ["owners", "Owners", ["super", "community", "living", "gardens"], "Pay instalments, maintenance and service charges in the Super App, then run daily life in the Community App.", [5, 9]],
-    ["residents", "Residents", ["community", "living", "gardens", "central", "saadiyat", "fm"], "Move in, book amenities, pay service charges and raise requests in the Community App, with bfm managing the community.", [9, 11]],
-    ["parents", "Parents & students", ["brighton", "bwa", "nurseries", "gardens"], "Brighton College, Bloom World Academy and Bloom Nurseries, each with its own front door. Bloom Nurseries sits inside Bloom Gardens.", [4, 12]],
-    ["guests", "Guests", ["edition", "marriott", "arjaan"], "Stay at hotels run with Marriott International and Rotana, where the operator's brand leads.", [3]],
-    ["employees", "Employees", ["multiverse"], "Bloom Multiverse brings work apps, approvals and colleagues together for staff across the group.", [14]]
+    ["buyers", "Buyers", ["web", "partners", "living", "saadiyat", "jvc", "arjaan"], "Buyers and investors", "Discover homes on bloomholding.com or through a broker on Bloom Partners. Investors can also own hotel apartments at Bloom Arjaan by Rotana.", [1, 10, 13]],
+    ["emirati", "Emirati families", ["metlaa"], "Emirati families", "View, book and buy Al Metlaa villas digitally, with ADHA overseeing and Bloom Holding as developer.", [2]],
+    ["brokers", "Brokers", ["partners"], "Brokers and agencies", "Register, see real-time inventory, manage leads and track commission on Bloom Partners.", [10]],
+    ["owners", "Owners", ["super", "community", "living", "gardens"], "Owners", "Pay instalments, maintenance and service charges in the Super App, then run daily life in the Community App.", [5, 9]],
+    ["residents", "Residents", ["community", "living", "gardens", "central", "saadiyat", "fm"], "Residents", "Move in, book amenities, pay service charges and raise requests in the Community App, with bfm managing the community.", [9, 11]],
+    ["parents", "Parents", ["brighton", "bwa", "nurseries", "gardens"], "Parents and students", "Brighton College, Bloom World Academy and Bloom Nurseries, each with its own front door. Bloom Nurseries sits inside Bloom Gardens.", [4, 12]],
+    ["guests", "Guests", ["edition", "marriott", "arjaan"], "Guests", "Stay at hotels run with Marriott International and Rotana, where the operator's brand leads.", [3]],
+    ["employees", "Employees", ["multiverse"], "Employees", "Bloom Multiverse brings work apps, approvals and colleagues together for staff across the group.", [14]]
   ];
   const HOUSE = ["owners", "residents", "parents", "guests"];
-  const map = $("#map"), mapSvg = $("#map-svg");
-  $("#m-biz").innerHTML = Object.entries(BIZ).map(([k, n]) => lbl(n, { cls: "biz", attrs: ` data-b="${k}"` })).join("");
-  $("#m-groups").innerHTML = GROUPS.map(([g, items]) => `<div class="grp" data-g="${esc(g)}"><span class="grp__k">${esc(g)}</span>${items.map(([k, n, , logo, short]) => logo === "edition" ? `<span class="lbl lbl--logo" data-k="${k}"><i class="logo logo--edition" role="img" aria-label="${esc(n)}"></i></span>` : lbl(short || n, { logo, alt: logo === "marriott" ? "Marriott" : n, attrs: ` data-k="${k}"` })).join("")}</div>`).join("");
-  $("#m-people").innerHTML = PEOPLE.map(([k, n], i) => `<button class="chip" type="button" role="tab" aria-selected="${i === 4}" tabindex="${i === 4 ? 0 : -1}" data-p="${k}">${esc(n)}</button>`).join("")
-    + `<button class="chip chip--house" type="button" role="tab" aria-selected="false" tabindex="-1" data-p="house">One household</button>`;
-  let mapSel = "residents";
-  function mapState() {
-    const ps = mapSel === "house" ? PEOPLE.filter((p) => HOUSE.includes(p[0])) : PEOPLE.filter((p) => p[0] === mapSel);
+  const matrix = $("#matrix");
+  const itemHtml = (k, n, logo) => logo === "edition" ? `<span class="it" data-k="${k}"><i class="logo logo--edition" role="img" aria-label="${esc(n)}"></i></span>`
+    : `<span class="it" data-k="${k}">${logo === "marriott" ? '<i class="logo logo--marriott" role="img" aria-label="Marriott"></i>' : logo === "mark" ? '<i class="logo logo--mark" aria-hidden="true"></i>' : ""}${esc(n)}</span>`;
+  $("#m-biz").innerHTML = `<span class="mk">Businesses</span>` + BIZ.map(([b, n]) => `<span class="biz" data-b="${b}">${esc(n)}</span>`).join("");
+  $("#m-items").innerHTML = `<span class="mk">Places &amp; services</span>` + BIZ.map(([b, n, items]) => `<div class="items" data-of="${b}" data-biz="${esc(n)}">${items.map(([k, t, logo]) => itemHtml(k, t, logo)).join("")}</div>`).join("");
+  $("#m-digital").innerHTML = DIGITAL.map(([k, n, , logo]) => itemHtml(k, n, logo)).join("");
+  $("#m-who").innerHTML = PEOPLE.map(([k, n]) => `<button type="button" role="tab" aria-selected="${k === "residents"}" tabindex="${k === "residents" ? 0 : -1}" data-p="${k}">${esc(n)}</button>`).join("")
+    + `<button type="button" role="tab" class="house" aria-selected="false" tabindex="-1" data-p="house">One household</button>`;
+  function renderMatrix(sel) {
+    const ps = sel === "house" ? PEOPLE.filter((p) => HOUSE.includes(p[0])) : PEOPLE.filter((p) => p[0] === sel);
     const items = new Set(ps.flatMap((p) => p[2]));
-    const biz = new Set([...items].flatMap((k) => ITEM[k].b));
-    const groups = new Set([...items].map((k) => ITEM[k].g));
-    return { ps, items, biz, groups };
-  }
-  function renderMap() {
-    const { ps, items, biz, groups } = mapState();
-    map.classList.add("has-sel");
-    $$("[data-k]", map).forEach((e) => e.classList.toggle("is-on", items.has(e.dataset.k)));
-    $$("[data-b]", map).forEach((e) => e.classList.toggle("is-on", biz.has(e.dataset.b)));
-    $$(".grp", map).forEach((e) => e.classList.toggle("is-on", groups.has(e.dataset.g)));
+    const biz = new Set([...items].flatMap((k) => OWNER[k]));
+    matrix.classList.add("has-sel");
+    $$("[data-k]", matrix).forEach((e) => e.classList.toggle("is-on", items.has(e.dataset.k)));
+    $$("[data-b]", matrix).forEach((e) => e.classList.toggle("is-on", biz.has(e.dataset.b)));
+    $$(".items[data-of]", matrix).forEach((e) => e.classList.toggle("has-on", biz.has(e.dataset.of)));
     const cap = $("#m-cap");
-    if (mapSel === "house") cap.innerHTML = `<strong>One household</strong><span class="tag tag--opp">Opportunity</span><p>One household can own a home, live in a community, send a child to a Bloom school and stay at a Bloom hotel. Today, each of those is a separate relationship.</p>`;
-    else { const p = ps[0]; cap.innerHTML = `<strong>${esc(p[1])}</strong><p>${esc(p[3])}${src(...p[4])}</p>`; }
-    cap.classList.remove("pop"); void cap.offsetWidth; cap.classList.add("pop");
-    drawMap();
+    cap.innerHTML = sel === "house"
+      ? `<strong>One household</strong><p><span class="cat cat--opp">Opportunity</span>The same family can own a home, live in a community, send a child to a Bloom school and stay at a Bloom hotel. Today each is a separate relationship.</p>`
+      : `<strong>${esc(ps[0][3])}</strong><p>${esc(ps[0][4])}${src(...ps[0][5])}</p>`;
+    restart(cap, "pop");
   }
-  function drawMap() {
-    const box = map.getBoundingClientRect();
-    if (!box.width || getComputedStyle(mapSvg).display === "none") { mapSvg.innerHTML = ""; return; }
-    const { ps, biz, groups } = mapState();
-    const at = (el, edge) => { const r = el.getBoundingClientRect(); return [r.left - box.left + r.width / 2, (edge === "top" ? r.top : r.bottom) - box.top]; };
-    const curve = ([x1, y1], [x2, y2]) => { const m = (y1 + y2) / 2; return `M${x1.toFixed(1)},${y1.toFixed(1)} C${x1.toFixed(1)},${m.toFixed(1)} ${x2.toFixed(1)},${m.toFixed(1)} ${x2.toFixed(1)},${y2.toFixed(1)}`; };
-    const paths = [];
-    const house = $('[data-p="house"]', map);
-    ps.forEach((p) => {
-      const chip = mapSel === "house" ? house : $(`[data-p="${p[0]}"]`, map);
-      new Set(p[2].map((k) => ITEM[k].g)).forEach((g) => paths.push(curve(at(chip, "top"), at($(`.grp[data-g="${g}"]`, map), "bottom"))));
-    });
-    const { items } = mapState();
-    groups.forEach((g) => {
-      const gEl = $(`.grp[data-g="${g}"]`, map);
-      new Set([...items].filter((k) => ITEM[k].g === g).flatMap((k) => ITEM[k].b)).forEach((b) => paths.push(curve(at(gEl, "top"), at($(`[data-b="${b}"]`, map), "bottom"))));
-    });
-    biz.forEach((b) => paths.push(curve(at($(`[data-b="${b}"]`, map), "top"), at($("#m-core"), "bottom"))));
-    mapSvg.setAttribute("viewBox", `0 0 ${box.width.toFixed(0)} ${box.height.toFixed(0)}`);
-    mapSvg.innerHTML = [...new Set(paths)].map((d, i) => `<path d="${d}" style="animation-delay:${i * 25}ms"/>`).join("");
-    $$("path", mapSvg).forEach((p) => p.style.setProperty("--len", Math.ceil(p.getTotalLength())));
-  }
-  $("#m-people").addEventListener("click", (e) => {
+  const who = $("#m-who");
+  who.addEventListener("click", (e) => {
     const b = e.target.closest("[data-p]"); if (!b) return;
-    $$("[data-p]", map).forEach((x) => { const on = x === b; x.setAttribute("aria-selected", String(on)); x.tabIndex = on ? 0 : -1; });
-    mapSel = b.dataset.p; renderMap();
+    $$("[data-p]", who).forEach((x) => { const on = x === b; x.setAttribute("aria-selected", String(on)); x.tabIndex = on ? 0 : -1; });
+    renderMatrix(b.dataset.p);
   });
-  $("#m-people").addEventListener("keydown", (e) => {
-    if (!["ArrowLeft", "ArrowRight"].includes(e.key)) return;
-    e.preventDefault(); e.stopPropagation();
-    const bs = $$("[data-p]", map), i = bs.indexOf(document.activeElement);
-    const n = bs[(i + (e.key === "ArrowRight" ? 1 : -1) + bs.length) % bs.length]; n.focus(); n.click();
-  });
+  renderMatrix("residents");
 
   /* ================= 04 OPPORTUNITY ================= */
   const STATIONS = [
-    ["Discover", "bloomholding\u200B.com", "corporate website", 10, -2],
-    ["Buy", "Bloom Partners", "with a broker", -14, 3],
-    ["Own", "Bloom Holding Super App", "for owners", 16, -3],
-    ["Live", "Bloom Community App", "for residents", -6, 2],
-    ["Learn", "School websites", "one per school", 18, -2],
-    ["Stay", "Marriott · Rotana", "operator channels", -12, 3]
+    ["Discover", "bloomholding​.com", "Bloom's website", 10, -1.5],
+    ["Buy", "Bloom Partners", "with a broker", -12, 1.5],
+    ["Own", "Bloom Holding Super App", "for owners", 14, -2],
+    ["Live", "Bloom Community App", "for residents", -6, 1.5],
+    ["Learn", "School websites", "one per school", 16, -1.5],
+    ["Stay", "Marriott · Rotana", "operator channels", -10, 2]
   ];
-  $("#stations").innerHTML = STATIONS.map(([k, n, s, dy, r], i) => `<li class="st" style="--i:${i};--dy:${dy}px;--rot:${r}deg"><span class="st__k">${k}</span><span class="st__card"><svg class="ico st__door" aria-hidden="true"><use href="#i-door"/></svg>${esc(n)}<small>${esc(s)}</small></span></li>`).join("");
-  const flow = $("#flow");
-  function placeLinks() {
-    flow.querySelector(".links")?.remove();
-    const cards = $$(".st__card", flow);
-    if (!cards.length || getComputedStyle($("#note-today")).display === "none") return;
-    const fb = flow.getBoundingClientRect();
-    const wrap = document.createElement("div"); wrap.className = "links"; wrap.style.top = "0"; wrap.style.height = "0";
-    for (let i = 0; i < cards.length - 1; i += 1) {
-      const a = cards[i].closest(".st").getBoundingClientRect(), b = cards[i + 1].closest(".st").getBoundingClientRect();
-      const ca = cards[i].getBoundingClientRect();
-      const g = document.createElement("i"); g.className = "gap";
-      const y = ca.top - fb.top + ca.height / 2;
-      g.style.left = `${a.right - fb.left - 6}px`; g.style.width = `${b.left - a.right + 12}px`; g.style.top = `${y}px`;
-      wrap.append(g);
-    }
-    flow.insertBefore(wrap, $("#stations"));
-    const own = cards[2].closest(".st").getBoundingClientRect(), live = cards[3].closest(".st").getBoundingClientRect();
-    const mid = (own.right + live.left) / 2 - fb.left;
-    [$("#note-today"), $("#note-eco")].forEach((n) => { n.style.left = `${Math.max(12, Math.min(fb.width - n.offsetWidth - 12, mid - n.offsetWidth / 2))}px`; });
-  }
+  $("#track").innerHTML = STATIONS.map(([k, n, s, dy, r], i) => `${i ? '<i class="lk" aria-hidden="true"></i>' : ""}<div class="st" style="--i:${i};--dy:${dy}px;--r:${r}deg"><span class="st__k">${k}</span><span class="st__box"><svg class="ico" aria-hidden="true"><use href="#i-door"/></svg>${esc(n)}<small>${esc(s)}</small></span></div>`).join("");
+  const flow = $("#flow"), seg = $("#flow-seg");
   function setFlow(eco) {
     flow.classList.toggle("is-eco", eco);
-    $("#shift-today").classList.toggle("is-dim", eco);
-    $("#shift-eco").classList.toggle("is-dim", !eco);
-    $("#note-eco").setAttribute("aria-hidden", String(!eco)); $("#note-today").setAttribute("aria-hidden", String(eco));
-    $("#flow-hint").hidden = eco;
-    flow.querySelector(".links")?.remove();
-    clearTimeout(setFlow.t); setFlow.t = setTimeout(placeLinks, reduce ? 0 : 950);
+    $("#cmp-today").classList.toggle("dim", eco);
+    $("#cmp-eco").classList.toggle("dim", !eco);
+    $$("[role=tab]", seg).forEach((x) => { const on = (x.dataset.v === "eco") === eco; x.setAttribute("aria-selected", String(on)); x.tabIndex = on ? 0 : -1; });
   }
-  const flowTabs = $("#flow-view");
-  flowTabs.addEventListener("click", (e) => {
-    const b = e.target.closest("[role=tab]"); if (!b) return;
-    $$("[role=tab]", flowTabs).forEach((x) => { const on = x === b; x.setAttribute("aria-selected", String(on)); x.tabIndex = on ? 0 : -1; });
-    setFlow(b.dataset.v === "eco");
-  });
-  flowTabs.addEventListener("keydown", (e) => { if (!["ArrowLeft", "ArrowRight"].includes(e.key)) return; e.preventDefault(); e.stopPropagation(); const o = $$("[role=tab]", flowTabs).find((x) => x.getAttribute("aria-selected") !== "true"); o.focus(); o.click(); });
+  seg.addEventListener("click", (e) => { const b = e.target.closest("[role=tab]"); if (b) setFlow(b.dataset.v === "eco"); });
 
   /* ================= 05 PROPOSAL ================= */
-  $("#pl-people").innerHTML = ["Buyers", "Owners", "Residents", "Parents & students", "Guests", "Brokers", "Employees"].map((n) => lbl(n)).join("");
   $("#pl-products").innerHTML = [
     ["bloomholding.com", "#B6000E"], ["Bloom Partners", "#2F5BFF"], ["Super App", "#0E9FB5"], ["Community App", "#17754A"],
-    ["School websites", "#D9722A"], ["Hotel channels", "#9A45C8"], ["Bloom Multiverse", "#1E2A5A", "mark"]
-  ].map(([n, c, logo]) => lbl(n, { c, logo })).join("") + lbl("Future products", { cls: "lbl--dash" });
-  $("#pl-biz").innerHTML = ["Properties", "Education", "Hospitality", "Facilities", "Landscape"].map((n) => lbl(n)).join("")
-    + ["ADHA", "Marriott International", "Rotana", "Brighton College"].map((n) => lbl(n, { cls: "lbl--partner" })).join("");
-
-  /* ================= 06 PILLARS ================= */
-  const PILLARS = [
-    ["One recognisable Bloom", "Every touchpoint feels unmistakably Bloom, whatever its job."],
-    ["Connected journeys", "People move between Bloom services without starting again."],
-    ["A shared foundation", "Patterns, components and principles designed once, used everywhere."],
-    ["Distinct by purpose", "Each product and partner brand keeps its job and its identity."],
-    ["Ready to grow", "New communities, products and partners join without a rebuild."]
-  ];
-  $("#pillars").innerHTML = PILLARS.map(([t, p], i) => `<article class="pillar" style="--i:${i}"><span>${pad(i + 1)}</span><h3>${esc(t)}</h3><p>${esc(p)}</p></article>`).join("");
+    ["School websites", "#D9722A"], ["Hotel channels", "#9A45C8"]
+  ].map(([n, c]) => `<span class="pd" style="--c:${c}">${esc(n)}</span>`).join("")
+    + `<span class="pd pd--mark"><i class="logo logo--mark" aria-hidden="true"></i>Bloom Multiverse</span><span class="pd pd--future">Future products</span>`;
 
   /* ================= 07 JOURNEYS ================= */
-  // Each moment: { t: what exists today (with sources), e: what the experience layer adds }
+  // Each moment: t = what exists today (with sources), e = what the experience layer adds.
   const JOURNEYS = [
-    { n: "Emirati family", where: "Buying at Al Metlaa, Al Ain", m: [
+    { n: "Emirati family", where: "Buying a villa at Al Metlaa, Al Ain", m: [
       { h: "Choose and buy", t: "View villas and plans online, then book and buy digitally, guided by Bloom Holding.", s: [2] },
       { h: "Wait for the build", t: "Construction is expected to complete in Q4 2028.", s: [2], e: "Progress, payments and milestones in one Bloom place." },
       { h: "Move in", e: "Handover flows straight into community life: access, services, neighbours." }],
@@ -984,7 +845,7 @@ em.s { font-family: var(--font-serif); font-style: italic; font-weight: 600; fon
     { n: "Owner", where: "A home at Bloom Living", m: [
       { h: "Pay", t: "Instalments, maintenance and service charges in the Bloom Holding Super App.", s: [5] },
       { h: "Receive the keys", e: "Handover carries on in the same relationship, with nothing to re-enter." },
-      { h: "Live", t: "Amenities, access cards and service requests in the Bloom Community App.", s: [9], e: "One place for what they own and how they live." }],
+      { h: "Live", t: "Amenities, access cards and requests in the Bloom Community App.", s: [9], e: "One place for what they own and how they live." }],
       out: "Owner and resident are one person. The experience should know it." },
     { n: "Family", where: "Living at Bloom Gardens", m: [
       { h: "Home", t: "The Bloom Community App handles requests, payments and news for Bloom residents.", s: [5, 9] },
@@ -1007,71 +868,76 @@ em.s { font-family: var(--font-serif); font-style: italic; font-weight: 600; fon
       { h: "Live", e: "Staff who are also residents or parents are recognised as one person, with consent." }],
       out: "Bloom's own people experience the ecosystem first." }
   ];
-  const journeyEl = $("#journey");
-  $("#j-tabs").innerHTML = JOURNEYS.map((j, i) => `<button class="chip" type="button" role="tab" aria-selected="${i === 0}" tabindex="${i === 0 ? 0 : -1}" data-i="${i}">${esc(j.n)}</button>`).join("");
+  const journey = $("#journey"), jWho = $("#j-who");
+  jWho.innerHTML = JOURNEYS.map((j, i) => `<button type="button" role="tab" aria-selected="${i === 0}" tabindex="${i === 0 ? 0 : -1}" data-i="${i}">${esc(j.n)}</button>`).join("");
   function renderJourney(i) {
     const j = JOURNEYS[i];
-    journeyEl.innerHTML = `<div class="jcard jcard--who" style="--i:0"><span class="jcard__n" style="color:inherit;opacity:.7">Person</span><b>${esc(j.n)}</b><small>${esc(j.where)}</small></div>`
-      + j.m.map((mo, x) => `<div class="jcard" style="--i:${x + 1}"><span class="jcard__n">Moment ${pad(x + 1)}</span><h3>${esc(mo.h)}</h3>${mo.t ? `<div class="jline"><span class="tag tag--fact">Today</span><p>${esc(mo.t)}${src(...mo.s)}</p></div>` : ""}${mo.e ? `<div class="jline jline--eco"><span class="tag tag--prop">Proposed</span><p>${esc(mo.e)}</p></div>` : ""}</div>`).join("")
-      + `<div class="jcard jcard--out" style="--i:4"><span class="jcard__n" style="color:inherit;opacity:.8">Connected experience</span><p>${esc(j.out)}</p></div>`;
-    if (!reduce) { journeyEl.classList.remove("swap"); void journeyEl.offsetWidth; journeyEl.classList.add("swap"); }
+    journey.innerHTML = `<div class="jc" style="--i:0"><span class="label">Person</span><div class="jperson"><b>${esc(j.n)}</b><small>${esc(j.where)}</small></div></div>`
+      + j.m.map((mo, x) => `<div class="jc" style="--i:${x + 1}"><span class="label">Moment ${pad(x + 1)}</span><h3>${esc(mo.h)}</h3>`
+        + (mo.t ? `<div class="jl"><span class="chip-t chip-t--today">Today</span><p>${esc(mo.t)}${src(...mo.s)}</p></div>` : "")
+        + (mo.e ? `<div class="jl jl--prop"><span class="chip-t chip-t--prop">Proposed</span><p>${esc(mo.e)}</p></div>` : "") + `</div>`).join("")
+      + `<div class="jc jc--out" style="--i:4"><span class="label">Connected experience</span><div class="jout"><p>${esc(j.out)}</p></div></div>`;
+    if (!reduce) restart(journey, "swap");
   }
-  const jTabs = $("#j-tabs");
-  jTabs.addEventListener("click", (e) => {
+  jWho.addEventListener("click", (e) => {
     const b = e.target.closest("[role=tab]"); if (!b) return;
-    $$("[role=tab]", jTabs).forEach((x) => { const on = x === b; x.setAttribute("aria-selected", String(on)); x.tabIndex = on ? 0 : -1; });
+    $$("[role=tab]", jWho).forEach((x) => { const on = x === b; x.setAttribute("aria-selected", String(on)); x.tabIndex = on ? 0 : -1; });
     renderJourney(Number(b.dataset.i));
-  });
-  jTabs.addEventListener("keydown", (e) => {
-    if (!["ArrowLeft", "ArrowRight"].includes(e.key)) return;
-    e.preventDefault(); e.stopPropagation();
-    const bs = $$("[role=tab]", jTabs), i = bs.indexOf(document.activeElement);
-    const n = bs[(i + (e.key === "ArrowRight" ? 1 : -1) + bs.length) % bs.length]; n.focus(); n.click();
   });
   renderJourney(0);
 
-  /* ================= 08 PRINCIPLES ================= */
-  const PRINCIPLES = [
-    ["Connected", "Related, never isolated.", "A handover leads straight into community life."],
-    ["Effortless", "Complexity stays behind the experience.", "Share details once, not again for each part of Bloom."],
-    ["Recognisable", "Always Bloom, even under a partner's brand.", "The EDITION stays the EDITION. Bloom is still felt around it."],
-    ["Relevant", "What matters to this person, at this moment.", "An owner waiting for handover sees progress first."],
-    ["Human", "Technology serves the relationship.", "A real person is one step away when it matters."]
-  ];
-  $("#princ").innerHTML = PRINCIPLES.map(([t, p, x]) => `<div class="pr"><h3><em>${esc(t)}</em></h3><p>${esc(p)}</p><small>${esc(x)}</small></div>`).join("");
+  // Arrow keys move within any tab row without changing chapter.
+  $$('[role="tablist"]').forEach((list) => list.addEventListener("keydown", (e) => {
+    if (!["ArrowLeft", "ArrowRight"].includes(e.key)) return;
+    e.preventDefault(); e.stopPropagation();
+    const bs = $$('[role="tab"]', list), i = bs.indexOf(document.activeElement);
+    const n = bs[(i + (e.key === "ArrowRight" ? 1 : -1) + bs.length) % bs.length]; n.focus(); n.click();
+  }));
 
   /* ================= DECK ================= */
-  const root = document.documentElement, slides = $$(".slide"), N = slides.length;
-  const chrome = $("#chrome"), rail = $("#rail"), capsule = $("#capsule"), jump = $("#jump");
+  const root = document.documentElement, canvas = $("#canvas"), chrome = $("#chrome");
+  const slides = $$(".slide"), N = slides.length;
+  const CAT = { fact: '<span class="cat cat--fact">Fact</span>', opp: '<span class="cat cat--opp">Opportunity</span>', prop: '<span class="cat cat--prop">Proposal</span>', mixed: '<span class="tagset"><span class="cat cat--fact">Today</span><span class="cat cat--prop">Proposed</span></span>' };
   let cur = -1;
-  $("#jump-list").innerHTML = slides.map((s, i) => `<li><button type="button" data-go="${i}"><span>${pad(i + 1)}</span>${esc(s.dataset.title)}</button></li>`).join("");
+  $("#toc-list").innerHTML = slides.map((s, i) => `<li><button type="button" data-go="${i}"><span>${pad(i + 1)}</span>${esc(s.dataset.title)}</button></li>`).join("");
+  $("#ticks").innerHTML = slides.map((s, i) => `<li><button type="button" data-go="${i}" aria-label="${pad(i + 1)}: ${esc(s.dataset.title)}"></button></li>`).join("");
   slides.forEach((s, i) => { s.id = `s${pad(i + 1)}`; s.setAttribute("aria-label", `${pad(i + 1)} of ${pad(N)}: ${s.dataset.title}`); });
+
+  function fit() {
+    const w = innerWidth, h = innerHeight;
+    const narrow = w < 900 || h > w * 1.02;
+    root.classList.toggle("is-narrow", narrow);
+    $("#bloom svg").setAttribute("viewBox", narrow ? "-60 0 800 600" : "0 0 680 600");
+    if (narrow) { canvas.style.transform = ""; return; }
+    const s = Math.min(w / 1600, h / 900);
+    canvas.style.transform = `translate(${((w - 1600 * s) / 2).toFixed(2)}px, ${((h - 900 * s) / 2).toFixed(2)}px) scale(${s.toFixed(4)})`;
+  }
   function go(i) {
     i = Math.max(0, Math.min(N - 1, i)); if (i === cur) return; cur = i;
-    slides.forEach((s, k) => { const o = k === i; s.classList.toggle("is-current", o); s.classList.toggle("is-before", k < i); s.inert = !o; s.setAttribute("aria-hidden", String(!o)); });
+    slides.forEach((s, k) => { const o = k === i; s.classList.toggle("is-current", o); s.inert = !o; s.setAttribute("aria-hidden", String(!o)); });
     const s = slides[i]; s.scrollTop = 0;
-    $("#cap-num").textContent = pad(i + 1); $("#cap-name").textContent = s.dataset.title;
+    const tone = s.classList.contains("slide--red") ? "red" : "paper";
+    document.body.dataset.tone = tone; chrome.dataset.tone = tone;
+    $("#c-num").textContent = pad(i + 1); $("#c-name").textContent = s.dataset.title;
+    $("#c-cat").innerHTML = CAT[s.dataset.cat] || "";
     $("#counter").textContent = `${pad(i + 1)} / ${pad(N)}`;
-    $("#rail-fill").style.transform = `scaleX(${(i + 1) / N})`;
-    const st = s.classList.contains("stage"); chrome.classList.toggle("on-stage", st); rail.classList.toggle("on-stage", st);
     $("#prev").disabled = i === 0; $("#next").disabled = i === N - 1;
-    $$("#jump-list button").forEach((b, k) => b.setAttribute("aria-current", String(k === i)));
+    $$("#toc-list button, #ticks button").forEach((b) => b.setAttribute("aria-current", String(Number(b.dataset.go) === i)));
     try { history.replaceState(null, "", `#s${pad(i + 1)}`); } catch { /* sandboxed */ }
-    orbitOn(i === 0);
-    if (s.contains($("#m-cap"))) setTimeout(renderMap, 380);
+    bloomOn(i === 0);
     if (s.querySelector("[data-count]")) countUp(s);
-    if (s.contains(flow)) setTimeout(placeLinks, 650);
   }
-  const setJump = (open) => { jump.hidden = !open; capsule.setAttribute("aria-expanded", String(open)); };
-  capsule.addEventListener("click", () => setJump(jump.hidden));
+  const toc = $("#toc"), tocBtn = $("#toc-btn");
+  const setToc = (open) => { toc.hidden = !open; tocBtn.setAttribute("aria-expanded", String(open)); };
+  tocBtn.addEventListener("click", () => setToc(toc.hidden));
   document.addEventListener("click", (e) => {
     const g = e.target.closest("[data-go]");
-    if (g) { e.preventDefault(); const v = g.dataset.go; if (v === "next") go(cur + 1); else if (v === "prev") go(cur - 1); else go(Number(v)); setJump(false); return; }
-    if (!jump.hidden && !e.target.closest(".capsule-wrap")) setJump(false);
+    if (g) { e.preventDefault(); const v = g.dataset.go; go(v === "next" ? cur + 1 : v === "prev" ? cur - 1 : Number(v)); setToc(false); return; }
+    if (!toc.hidden && !e.target.closest("#toc, #toc-btn")) setToc(false);
   });
   document.addEventListener("keydown", (e) => {
     if (e.altKey || e.ctrlKey || e.metaKey) return;
-    if (e.key === "Escape") { if (!drawer.hidden) closeSources(); setJump(false); return; }
+    if (e.key === "Escape") { if (!drawer.hidden) closeSources(); setToc(false); return; }
     if (!drawer.hidden) return;
     if (e.key === "ArrowRight" || e.key === "PageDown") { e.preventDefault(); go(cur + 1); }
     else if (e.key === "ArrowLeft" || e.key === "PageUp") { e.preventDefault(); go(cur - 1); }
@@ -1079,19 +945,11 @@ em.s { font-family: var(--font-serif); font-style: italic; font-weight: 600; fon
     else if (e.key === "End") go(N - 1);
   });
   let tx = 0, ty = 0, skip = false;
-  const deck = $("#deck");
-  deck.addEventListener("touchstart", (e) => { const t = e.touches[0]; tx = t.clientX; ty = t.clientY; skip = !!e.target.closest(".chips, .seg"); }, { passive: true });
-  deck.addEventListener("touchend", (e) => { if (skip) return; const t = e.changedTouches[0], dx = t.clientX - tx, dy = t.clientY - ty; if (Math.abs(dx) > 60 && Math.abs(dx) > Math.abs(dy) * 1.5) go(cur + (dx < 0 ? 1 : -1)); }, { passive: true });
-  let rz = 0;
-  addEventListener("resize", () => { clearTimeout(rz); rz = setTimeout(() => { drawMap(); placeLinks(); }, 120); });
-  const sysDark = matchMedia("(prefers-color-scheme: dark)");
-  try { const t = localStorage.getItem("bloom-proposal-theme"); if (t === "light" || t === "dark") root.dataset.theme = t; } catch { /* storage unavailable */ }
-  $("#theme-btn").addEventListener("click", () => {
-    const t = (root.dataset.theme || (sysDark.matches ? "dark" : "light")) === "dark" ? "light" : "dark";
-    root.dataset.theme = t;
-    try { localStorage.setItem("bloom-proposal-theme", t); } catch { /* storage unavailable */ }
-  });
-  renderMap();
+  const vp = $("#viewport");
+  vp.addEventListener("touchstart", (e) => { const t = e.touches[0]; tx = t.clientX; ty = t.clientY; skip = !!e.target.closest(".who, .seg"); }, { passive: true });
+  vp.addEventListener("touchend", (e) => { if (skip) return; const t = e.changedTouches[0], dx = t.clientX - tx, dy = t.clientY - ty; if (Math.abs(dx) > 60 && Math.abs(dx) > Math.abs(dy) * 1.5) go(cur + (dx < 0 ? 1 : -1)); }, { passive: true });
+  addEventListener("resize", fit);
+  fit();
   const m = /^#s(\d{2})$/.exec(location.hash);
   go(m ? Number(m[1]) - 1 : 0);
 })();
