@@ -223,16 +223,24 @@ a { color: inherit; }
 /* ---------- 05a-05d products today ---------- */
 /* crop: shows region (x, y, w, h) of a screenshot of natural width iw, at scale s */
 .crop { display: block; flex: none; width: calc(var(--w) * var(--s) * 1px); height: calc(var(--h) * var(--s) * 1px); border-radius: 6px; background-image: var(--img); background-repeat: no-repeat; background-size: calc(var(--iw) * var(--s) * 1px) auto; background-position: calc(var(--x) * var(--s) * -1px) calc(var(--y) * var(--s) * -1px); box-shadow: 0 0 0 1px var(--rule); }
+.slide--ink { background: radial-gradient(80% 90% at 100% 0%, #1D2C72 0%, rgba(29, 44, 114, 0) 62%), radial-gradient(60% 70% at 0% 100%, #131F55 0%, rgba(19, 31, 85, 0) 70%), var(--ink); color: #FFFFFF; }
+.slide--ink .hl { color: #FF7A86; }
+body[data-tone="ink"] { background: var(--ink); }
 .lineup { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); column-gap: 32px; }
 .shot { display: grid; gap: 16px; align-content: start; }
-.shot__frame { border-radius: 14px; overflow: hidden; background: #FFFFFF; box-shadow: 0 0 0 1px var(--rule), 0 26px 50px -32px rgba(11, 22, 64, .5); }
-.shot__bar { display: flex; align-items: center; gap: 6px; height: 26px; padding: 0 12px; background: var(--paper-2); border-bottom: 1px solid var(--rule); }
-.shot__bar i { width: 8px; height: 8px; border-radius: 50%; background: var(--rule); }
+.shot__frame { display: block; width: 100%; border-radius: 14px; overflow: hidden; background: #FFFFFF; text-align: left; box-shadow: 0 0 0 1px rgba(255, 255, 255, .14), 0 34px 60px -30px rgba(0, 0, 0, .7); transition: transform .4s var(--spring), box-shadow .4s; }
+.shot__frame:hover { transform: translateY(-6px); box-shadow: 0 0 0 1px rgba(255, 255, 255, .3), 0 44px 70px -30px rgba(0, 0, 0, .8); }
+.shot__frame .crop { border-radius: 0; box-shadow: none; }
+.shot__bar { display: flex; align-items: center; gap: 6px; height: 28px; padding: 0 12px; background: #E9E6E0; }
+.shot__bar i { width: 8px; height: 8px; border-radius: 50%; background: #CBC6BC; }
+.shot__bar em { margin-left: auto; font-style: normal; font-size: 11px; font-weight: 700; letter-spacing: .04em; color: var(--muted); opacity: 0; transition: opacity .3s; }
+.shot__frame:hover .shot__bar em, .shot__frame:focus-visible .shot__bar em { opacity: 1; }
 .shot__img { height: 330px; background-image: var(--img); background-repeat: no-repeat; background-size: 100% auto; background-position: center top; }
 .shot figcaption { display: grid; gap: 3px; }
-.shot figcaption b { font-size: 18px; font-weight: 700; }
-.shot figcaption span { font-size: 15px; color: var(--muted); }
-.shot-note { margin-top: 26px; font-size: 14px; color: var(--muted); }
+.shot figcaption b { font-size: 19px; font-weight: 700; }
+.shot figcaption span { font-size: 15px; color: rgba(255, 255, 255, .7); }
+.shot-note { margin-top: 34px; font-size: 14px; color: rgba(255, 255, 255, .7); }
+.slide--ink .src { color: #FF9AA3; }
 .pal { display: grid; gap: 20px; }
 .pal__row { display: grid; grid-template-columns: 300px minmax(0, 1fr); column-gap: 32px; align-items: start; padding-top: 16px; border-top: 1px solid var(--rule); }
 .pal__who b { display: block; font-size: 18px; font-weight: 700; }
@@ -254,14 +262,14 @@ a { color: inherit; }
 .same p { align-self: center; font-size: 15px; line-height: 1.45; color: var(--ink-2); }
 .same p b { color: var(--red); }
 .mx { display: grid; grid-template-columns: 170px repeat(3, minmax(0, 1fr)); column-gap: 28px; }
-.mx > * { padding: 14px 0; border-top: 1px solid var(--rule); min-width: 0; }
+.mx > * { padding: 10px 0; border-top: 1px solid var(--rule); min-width: 0; }
 .mx__h { padding-top: 12px; border-top: 2px solid var(--ink); font-size: 15px; font-weight: 800; }
 .mx__h small { display: block; margin-top: 2px; font-size: 13px; font-weight: 500; color: var(--muted); }
-.mx__k { padding-top: 17px; font-size: 12px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); }
-.mx__c { display: grid; gap: 10px; align-content: start; justify-items: start; }
+.mx__k { padding-top: 13px; font-size: 12px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); }
+.mx__c { display: grid; gap: 8px; align-content: start; justify-items: start; }
 .mx__c small { font-size: 14px; line-height: 1.35; color: var(--ink-2); }
-.mx__mark { display: flex; align-items: center; height: 40px; }
-.mx__mark .logo--mark { width: 42px; height: 38px; }
+.mx__tile { display: flex; align-items: center; width: 100%; height: var(--th); padding: 0 16px; border-radius: 10px; background: var(--tbg, #FFFFFF); box-shadow: inset 0 0 0 1px var(--rule); overflow: hidden; }
+.mx__tile .crop { border-radius: 0; box-shadow: none; }
 .tally { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); column-gap: 32px; }
 .tally div { display: grid; gap: 10px; padding-top: 20px; border-top: 1px solid var(--rule); }
 .tally div:first-child { border-top: 2px solid var(--red); padding-top: 19px; }
@@ -272,6 +280,16 @@ a { color: inherit; }
 .cost div { display: grid; gap: 8px; }
 .cost p { font-size: 22px; font-weight: 600; line-height: 1.35; letter-spacing: -.01em; max-width: 32ch; }
 .bridge { margin-top: 40px; padding-top: 24px; border-top: 1px solid var(--rule); font-size: 30px; font-weight: 600; line-height: 1.2; letter-spacing: -.02em; }
+
+/* full-size screen viewer (05a), drawn inside the content zone */
+.zoom { position: absolute; z-index: 15; left: 112px; right: 112px; top: 112px; bottom: 96px; display: flex; flex-direction: column; gap: 14px; padding: 16px 20px 20px; border-radius: 18px; background: #101C52; color: #FFFFFF; box-shadow: 0 0 0 1px rgba(255, 255, 255, .12), 0 40px 80px -30px rgba(0, 0, 0, .8); animation: rise .45s var(--ease); }
+.zoom__top { display: flex; align-items: baseline; gap: 14px; }
+.zoom__top b { font-size: 20px; font-weight: 700; }
+.zoom__top span { font-size: 15px; color: rgba(255, 255, 255, .7); }
+.zoom__top .arrow { margin-left: auto; align-self: center; color: #FFFFFF; box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .3); }
+.zoom__top .arrow:hover { background: #FFFFFF; color: var(--ink); }
+.zoom__scroll { flex: 1; min-height: 0; overflow-y: auto; border-radius: 10px; background: #FFFFFF; }
+.zoom__img { width: 100%; aspect-ratio: var(--ar); background-image: var(--img); background-size: 100% auto; background-repeat: no-repeat; }
 
 /* ---------- 05 proposal ---------- */
 .prop { display: grid; grid-template-columns: 907px 437px; column-gap: 32px; height: 100%; }
@@ -465,7 +483,10 @@ a { color: inherit; }
 .is-narrow .close { margin-top: 40px; font-size: 36px; }
 .is-narrow .next { display: block; }
 .is-narrow .lineup, .is-narrow .tally, .is-narrow .cost, .is-narrow .same { grid-template-columns: minmax(0, 1fr); row-gap: 28px; }
-.is-narrow .shot__img { height: 260px; }
+.is-narrow .shot .crop { width: 100%; height: auto; aspect-ratio: 437 / 300; background-size: calc(var(--iw) / var(--w) * 100%) auto; background-position: var(--px) 0; }
+.is-narrow .chrome[data-bg="ink"] .bar { background: var(--ink); border-color: rgba(255, 255, 255, .16); }
+.is-narrow .zoom { position: fixed; z-index: 60; inset: calc(60px + env(safe-area-inset-top, 0px)) 0 calc(64px + env(safe-area-inset-bottom, 0px)); border-radius: 0; }
+.is-narrow .mx__tile { height: auto; min-height: var(--th); padding: 10px 14px; }
 .is-narrow .pal__row { grid-template-columns: minmax(0, 1fr); row-gap: 14px; }
 .is-narrow .sws { flex-wrap: wrap; }
 .is-narrow .mx { grid-template-columns: minmax(0, 1fr); }
@@ -584,17 +605,15 @@ a { color: inherit; }
 </section>
 
 <!-- 05a PRODUCTS TODAY -->
-<section class="slide" data-num="05a" data-title="Products today" data-cat="fact" aria-roledescription="slide">
+<section class="slide slide--ink" data-num="05a" data-title="Products today" data-cat="fact" aria-roledescription="slide">
   <header class="s-head">
     <h2 class="h1 rv">Three Bloom products.<br>Three different <span class="hl">Blooms.</span></h2>
   </header>
   <div class="s-body">
     <div class="lineup">
-      <figure class="shot rv" style="--d:1"><div class="shot__frame"><span class="shot__bar" aria-hidden="true"><i></i><i></i><i></i></span><div class="shot__img" style="--img:var(--shot-home)" role="img" aria-label="Home-buying platform: Al Metlaa unit details page"></div></div><figcaption><b>Home-buying platform</b><span>Emirati buyers · Al Metlaa</span></figcaption></figure>
-      <figure class="shot rv" style="--d:2"><div class="shot__frame"><span class="shot__bar" aria-hidden="true"><i></i><i></i><i></i></span><div class="shot__img" style="--img:var(--shot-partners)" role="img" aria-label="Bloom Partners: Your Requests page"></div></div><figcaption><b>Bloom Partners</b><span>Brokers and agencies</span></figcaption></figure>
-      <figure class="shot rv" style="--d:3"><div class="shot__frame"><span class="shot__bar" aria-hidden="true"><i></i><i></i><i></i></span><div class="shot__img" style="--img:var(--shot-multiverse)" role="img" aria-label="Bloom Multiverse: employee home page"></div></div><figcaption><b>Bloom Multiverse</b><span>Employees</span></figcaption></figure>
+      <figure class="shot rv" style="--d:1"><button class="shot__frame" type="button" data-zoom="home" aria-label="View Home-buying platform full size"><span class="shot__bar" aria-hidden="true"><i></i><i></i><i></i><em>View full size</em></span><i class="crop" style="--img:var(--shot-home);--iw:1930;--x:0;--y:0;--w:1930;--h:1325;--s:0.2264;--px:0%" role="img" aria-label="Home-buying platform: Al Metlaa unit details page"></i></button><figcaption><b>Home-buying platform</b><span>Emirati buyers · Al Metlaa</span></figcaption></figure><figure class="shot rv" style="--d:2"><button class="shot__frame" type="button" data-zoom="partners" aria-label="View Bloom Partners full size"><span class="shot__bar" aria-hidden="true"><i></i><i></i><i></i><em>View full size</em></span><i class="crop" style="--img:var(--shot-partners);--iw:1333;--x:0;--y:0;--w:1333;--h:915;--s:0.3278;--px:0%" role="img" aria-label="Bloom Partners: Your Requests page"></i></button><figcaption><b>Bloom Partners</b><span>Brokers and agencies</span></figcaption></figure><figure class="shot rv" style="--d:3"><button class="shot__frame" type="button" data-zoom="multiverse" aria-label="View Bloom Multiverse full size"><span class="shot__bar" aria-hidden="true"><i></i><i></i><i></i><em>View full size</em></span><i class="crop" style="--img:var(--shot-multiverse);--iw:2000;--x:52;--y:0;--w:1895;--h:1301;--s:0.2306;--px:50%" role="img" aria-label="Bloom Multiverse: employee home page"></i></button><figcaption><b>Bloom Multiverse</b><span>Employees</span></figcaption></figure>
     </div>
-    <p class="shot-note rv" style="--d:4">Screens as supplied by the Bloom team, top of each page.<a class="src" href="#src-16" data-s="16">16</a></p>
+    <p class="shot-note rv" style="--d:4">Screens supplied by the Bloom team. Select any screen to see it full size.<a class="src" href="#src-16" data-s="16">16</a></p>
   </div>
 </section>
 
@@ -614,7 +633,7 @@ a { color: inherit; }
     <h2 class="h1 rv">And its own type and <span class="hl">components.</span></h2>
   </header>
   <div class="s-body">
-    <div class="mx rv" style="--d:1"><span class="mx__h"></span><span class="mx__h">Home-buying platform</span><span class="mx__h">Bloom Partners</span><span class="mx__h">Bloom Multiverse</span><span class="mx__k">Brand mark</span><div class="mx__c" data-p="Home-buying platform"><i class="crop" style="--img:var(--shot-home);--iw:1930;--x:55;--y:55;--w:170;--h:65;--s:0.62" role="img" aria-label="Bloom wordmark on the home-buying platform"></i><small>Bloom wordmark</small></div><div class="mx__c" data-p="Bloom Partners"><i class="crop" style="--img:var(--shot-partners);--iw:1333;--x:65;--y:8;--w:120;--h:52;--s:0.78" role="img" aria-label="Bloom wordmark on Bloom Partners"></i><small>Bloom wordmark</small></div><div class="mx__c" data-p="Bloom Multiverse"><span class="mx__mark"><i class="logo logo--mark" role="img" aria-label="Bloom Multiverse mark"></i></span><small>Its own Bloom Multiverse mark</small></div><span class="mx__k">Headlines</span><div class="mx__c" data-p="Home-buying platform"><i class="crop" style="--img:var(--shot-home);--iw:1930;--x:300;--y:50;--w:222;--h:50;--s:1" role="img" aria-label="Unit Details heading"></i><small>Sans serif titles</small></div><div class="mx__c" data-p="Bloom Partners"><i class="crop" style="--img:var(--shot-partners);--iw:1333;--x:100;--y:690;--w:245;--h:48;--s:1" role="img" aria-label="Other request types heading"></i><small>Serif display titles</small></div><div class="mx__c" data-p="Bloom Multiverse"><i class="crop" style="--img:var(--shot-multiverse);--iw:263;--x:10;--y:34;--w:136;--h:40;--s:1.25" role="img" aria-label="Good afternoon, Rashid heading"></i><small>Bold sans, name picked out in blue</small></div><span class="mx__k">Primary action</span><div class="mx__c" data-p="Home-buying platform"><i class="crop" style="--img:var(--shot-home);--iw:1930;--x:1176;--y:540;--w:682;--h:72;--s:0.5" role="img" aria-label="Book Appointment button"></i><small>Full-width black button</small></div><div class="mx__c" data-p="Bloom Partners"><i class="crop" style="--img:var(--shot-partners);--iw:1333;--x:203;--y:545;--w:165;--h:36;--s:1" role="img" aria-label="Raise a Request link"></i><small>Underlined text link</small></div><div class="mx__c" data-p="Bloom Multiverse"><i class="crop" style="--img:var(--shot-multiverse);--iw:263;--x:8;--y:104;--w:92;--h:20;--s:1.75" role="img" aria-label="Blue pill button"></i><small>Blue pill button</small></div><span class="mx__k">Sections</span><div class="mx__c" data-p="Home-buying platform"><i class="crop" style="--img:var(--shot-home);--iw:1930;--x:40;--y:165;--w:1810;--h:715;--s:0.168" role="img" aria-label="Unit page layout"></i><small>White cards on light grey</small></div><div class="mx__c" data-p="Bloom Partners"><i class="crop" style="--img:var(--shot-partners);--iw:1333;--x:0;--y:66;--w:1333;--h:554;--s:0.217" role="img" aria-label="Requests page layout"></i><small>Dark hero band with floating cards</small></div><div class="mx__c" data-p="Bloom Multiverse"><i class="crop" style="--img:var(--shot-multiverse);--iw:263;--x:2;--y:148;--w:260;--h:186;--s:0.645" role="img" aria-label="Attention panel"></i><small>Full-bleed navy and blue panels</small></div></div>
+    <div class="mx rv" style="--d:1"><span class="mx__h"></span><span class="mx__h">Home-buying platform</span><span class="mx__h">Bloom Partners</span><span class="mx__h">Bloom Multiverse</span><span class="mx__k">Brand mark</span><div class="mx__c" data-p="Home-buying platform"><span class="mx__tile" style="--th:56px;--tbg:#F6F6F6"><i class="crop" style="--img:var(--shot-home);--iw:1930;--x:55;--y:55;--w:170;--h:65;--s:0.62" role="img" aria-label="Bloom wordmark on the home-buying platform"></i></span><small>Bloom wordmark</small></div><div class="mx__c" data-p="Bloom Partners"><span class="mx__tile" style="--th:56px;--tbg:#FFFFFF"><i class="crop" style="--img:var(--shot-partners);--iw:1333;--x:65;--y:8;--w:120;--h:52;--s:0.78" role="img" aria-label="Bloom wordmark on Bloom Partners"></i></span><small>Bloom wordmark</small></div><div class="mx__c" data-p="Bloom Multiverse"><span class="mx__tile" style="--th:56px;--tbg:#FEFEFE"><i class="crop" style="--img:var(--shot-multiverse);--iw:2000;--x:492;--y:34;--w:228;--h:58;--s:0.7" role="img" aria-label="Bloom Multiverse lockup"></i></span><small>Its own Bloom Multiverse lockup</small></div><span class="mx__k">Headlines</span><div class="mx__c" data-p="Home-buying platform"><span class="mx__tile" style="--th:72px;--tbg:#F6F6F6"><i class="crop" style="--img:var(--shot-home);--iw:1930;--x:300;--y:50;--w:222;--h:50;--s:1" role="img" aria-label="Unit Details heading"></i></span><small>Sans serif titles</small></div><div class="mx__c" data-p="Bloom Partners"><span class="mx__tile" style="--th:72px;--tbg:#FFFFFF"><i class="crop" style="--img:var(--shot-partners);--iw:1333;--x:100;--y:690;--w:245;--h:48;--s:1" role="img" aria-label="Other request types heading"></i></span><small>Serif display titles</small></div><div class="mx__c" data-p="Bloom Multiverse"><span class="mx__tile" style="--th:72px;--tbg:#F6F4F0"><i class="crop" style="--img:var(--shot-multiverse);--iw:2000;--x:96;--y:282;--w:990;--h:248;--s:0.21" role="img" aria-label="Good afternoon, Rashid heading"></i></span><small>Heavy grotesque, gradient name</small></div><span class="mx__k">Primary action</span><div class="mx__c" data-p="Home-buying platform"><span class="mx__tile" style="--th:56px;--tbg:#F6F6F6"><i class="crop" style="--img:var(--shot-home);--iw:1930;--x:1176;--y:540;--w:682;--h:72;--s:0.46" role="img" aria-label="Book Appointment button"></i></span><small>Full-width black button</small></div><div class="mx__c" data-p="Bloom Partners"><span class="mx__tile" style="--th:56px;--tbg:#FFFFFF"><i class="crop" style="--img:var(--shot-partners);--iw:1333;--x:203;--y:545;--w:165;--h:36;--s:1" role="img" aria-label="Raise a Request link"></i></span><small>Underlined text link</small></div><div class="mx__c" data-p="Bloom Multiverse"><span class="mx__tile" style="--th:56px;--tbg:#F6F4F0"><i class="crop" style="--img:var(--shot-multiverse);--iw:2000;--x:96;--y:826;--w:525;--h:84;--s:0.5" role="img" aria-label="Review 32 actions and Open inbox buttons"></i></span><small>Blue pill with an outlined partner</small></div><span class="mx__k">Sections</span><div class="mx__c" data-p="Home-buying platform"><i class="crop" style="--img:var(--shot-home);--iw:1930;--x:40;--y:165;--w:1810;--h:715;--s:0.1455" role="img" aria-label="Unit page layout"></i><small>White cards on light grey</small></div><div class="mx__c" data-p="Bloom Partners"><i class="crop" style="--img:var(--shot-partners);--iw:1333;--x:0;--y:66;--w:1333;--h:554;--s:0.1877" role="img" aria-label="Requests page layout"></i><small>Dark hero band, floating cards</small></div><div class="mx__c" data-p="Bloom Multiverse"><i class="crop" style="--img:var(--shot-multiverse);--iw:2000;--x:0;--y:0;--w:2000;--h:790;--s:0.1316" role="img" aria-label="Employee home layout"></i><small>Floating glass bars, orbit visual</small></div></div>
   </div>
 </section>
 
@@ -777,6 +796,11 @@ a { color: inherit; }
 </section>
 
 </main>
+
+<div class="zoom" id="zoom" role="dialog" aria-modal="true" aria-labelledby="zoom-t" hidden>
+  <div class="zoom__top"><b id="zoom-t"></b><span id="zoom-a"></span><button class="arrow" type="button" id="zoom-x" aria-label="Close full-size view"><svg class="ico"><use href="#i-x"/></svg></button></div>
+  <div class="zoom__scroll" id="zoom-scroll"><div class="zoom__img" id="zoom-img"></div></div>
+</div>
 
 <div class="chrome" id="chrome" data-tone="red">
   <div class="bar bar--top">
@@ -967,18 +991,36 @@ a { color: inherit; }
       ["Surface", [["#F9F9F9", "Page"], ["#333333", "Hero band"], ["#EAF7F9", "Contact card"]]],
       ["Text and action", [["#1C1A19", "Headings"], ["#000000", "Active tab"], ["#9D292C", "Bloom wordmark"]]],
       ["Accents", [["#7058E0", "Label text"], ["#EAECFF", "Label"], ["#FFD7D7", "Pink tile"], ["#FFE7D6", "Peach tile"], ["#EFD6FE", "Lavender tile"], ["#D7F5FF", "Blue tile"], ["#D8FFD6", "Green tile"], ["#1FB4E6", "Wave"], ["#F1908E", "Avatar"]]]] },
-    { n: "Bloom Multiverse", a: "Employees", o: "Deep navy and royal blue on a warm off-white.", g: [
-      ["Surface", [["#F6F4F0", "Page"], ["#0D173F", "Navy panel"], ["#1446F9", "Blue section"]]],
-      ["Text and action", [["#131B3B", "Headings"], ["#2A51E6", "Primary button"]]],
-      ["Accents", [["#1E5BCF", "Name highlight"]]]] }
+    { n: "Bloom Multiverse", a: "Employees", o: "Deep navy and electric blue on warm off-white, with a gradient name.", g: [
+      ["Surface", [["#F6F4F0", "Page"], ["#FEFEFE", "Floating bars"], ["#0A1236", "Navy panel"]]],
+      ["Text and action", [["#0B1641", "Headings"], ["#535464", "Body text"], ["#1F4DFF", "Primary button"]]],
+      ["Accents", [["#1A76E5", "Name gradient"], ["#13B1D5", "Name gradient"], ["#2445D3", "Italic accent"], ["#16A570", "Status dot"], ["#D25773", "Count badge"], ["#A51D1C", "Mark red"]]]] }
   ];
   const sw = ([c, t], sub) => `<span class="sw" title="${esc(t)}"><i style="--c:${c}"></i><code>${c}</code>${sub ? `<small>${esc(sub)}</small>` : ""}</span>`;
   $("#pal").innerHTML = PAL.map((p) => `<div class="pal__row"><div class="pal__who"><b>${esc(p.n)}</b><span>${esc(p.a)}</span><p>${esc(p.o)}</p></div>`
     + `<div class="pal__groups">${p.g.map(([k, cs]) => `<div class="pal__grp"><span>${esc(k)}</span><div class="sws">${cs.map((c) => sw(c)).join("")}</div></div>`).join("")}</div></div>`).join("")
-    + `<div class="same"><div><span class="same__k">Primary action</span><div class="sws">${sw(["#1A1A1A", "Home-buying"], "Home-buying")}${sw(["#000000", "Partners"], "Partners")}${sw(["#2A51E6", "Multiverse"], "Multiverse")}</div></div>`
-    + `<div><span class="same__k">Heading text</span><div class="sws">${sw(["#333333", "Home-buying"], "Home-buying")}${sw(["#1C1A19", "Partners"], "Partners")}${sw(["#131B3B", "Multiverse"], "Multiverse")}</div></div>`
+    + `<div class="same"><div><span class="same__k">Primary action</span><div class="sws">${sw(["#1A1A1A", "Home-buying"], "Home-buying")}${sw(["#000000", "Partners"], "Partners")}${sw(["#1F4DFF", "Multiverse"], "Multiverse")}</div></div>`
+    + `<div><span class="same__k">Heading text</span><div class="sws">${sw(["#333333", "Home-buying"], "Home-buying")}${sw(["#1C1A19", "Partners"], "Partners")}${sw(["#0B1641", "Multiverse"], "Multiverse")}</div></div>`
     + `<div><span class="same__k">Green tile</span><div class="sws">${sw(["#C8E6CA", "Home-buying"], "Home-buying")}${sw(["#D8FFD6", "Partners"], "Partners")}</div></div>`
     + `<p>Same job, different values. <b>Bloom red</b> appears in the wordmark, but none of the three uses it as its action colour.</p></div>`;
+
+  /* ================= 05a FULL-SIZE VIEWER ================= */
+  const SCREENS = {
+    home: ["Home-buying platform", "Emirati buyers · Al Metlaa unit details", "var(--shot-home)", "1930 / 2000"],
+    partners: ["Bloom Partners", "Brokers and agencies · Your Requests", "var(--shot-partners)", "1333 / 2000"],
+    multiverse: ["Bloom Multiverse", "Employees · Home", "var(--shot-multiverse)", "2000 / 1300"]
+  };
+  const zoom = $("#zoom");
+  let zoomFrom = null;
+  function openZoom(k, from) {
+    const [t, a, img, ar] = SCREENS[k];
+    $("#zoom-t").textContent = t; $("#zoom-a").textContent = a;
+    const z = $("#zoom-img"); z.style.setProperty("--img", img); z.style.setProperty("--ar", ar); z.setAttribute("role", "img"); z.setAttribute("aria-label", `${t}, full screen`);
+    zoomFrom = from; zoom.hidden = false; $("#zoom-scroll").scrollTop = 0; $("#zoom-x").focus({ preventScroll: true });
+  }
+  function closeZoom() { if (zoom.hidden) return; zoom.hidden = true; if (zoomFrom) zoomFrom.focus({ preventScroll: true }); }
+  document.addEventListener("click", (e) => { const z = e.target.closest("[data-zoom]"); if (z) openZoom(z.dataset.zoom, z); });
+  $("#zoom-x").addEventListener("click", closeZoom);
 
   /* ================= 05 PROPOSAL ================= */
   $("#pl-products").innerHTML = [
@@ -1071,8 +1113,9 @@ a { color: inherit; }
     i = Math.max(0, Math.min(N - 1, i)); if (i === cur) return; cur = i;
     slides.forEach((s, k) => { const o = k === i; s.classList.toggle("is-current", o); s.inert = !o; s.setAttribute("aria-hidden", String(!o)); });
     const s = slides[i]; s.scrollTop = 0;
-    const tone = s.classList.contains("slide--red") ? "red" : "paper";
-    document.body.dataset.tone = tone; chrome.dataset.tone = tone;
+    closeZoom();
+    const tone = s.classList.contains("slide--red") ? "red" : s.classList.contains("slide--ink") ? "ink" : "paper";
+    document.body.dataset.tone = tone; chrome.dataset.tone = tone === "paper" ? "paper" : "red"; chrome.dataset.bg = tone;
     $("#c-num").textContent = s.dataset.num; $("#c-name").textContent = s.dataset.title;
     $("#c-cat").innerHTML = CAT[s.dataset.cat] || "";
     $("#counter").textContent = s.dataset.num === "A" ? "Appendix" : `${s.dataset.num} / ${LAST}`;
@@ -1092,8 +1135,8 @@ a { color: inherit; }
   });
   document.addEventListener("keydown", (e) => {
     if (e.altKey || e.ctrlKey || e.metaKey) return;
-    if (e.key === "Escape") { if (!drawer.hidden) closeSources(); setToc(false); return; }
-    if (!drawer.hidden) return;
+    if (e.key === "Escape") { if (!drawer.hidden) closeSources(); else closeZoom(); setToc(false); return; }
+    if (!drawer.hidden || !zoom.hidden) return;
     if (e.key === "ArrowRight" || e.key === "PageDown") { e.preventDefault(); go(cur + 1); }
     else if (e.key === "ArrowLeft" || e.key === "PageUp") { e.preventDefault(); go(cur - 1); }
     else if (e.key === "Home") go(0);
