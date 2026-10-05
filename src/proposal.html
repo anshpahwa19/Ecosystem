@@ -186,27 +186,30 @@ a { color: inherit; }
 .seg button { height: 36px; padding: 0 20px; border-radius: 18px; font-size: 14px; font-weight: 700; color: var(--muted); transition: background-color .3s, color .3s; }
 .seg button[aria-selected="true"] { background: var(--ink); color: #FFFFFF; }
 .seg button[data-v="eco"][aria-selected="true"] { background: var(--red); }
-.stage { position: relative; margin-top: 22px; height: 204px; }
-.band { position: absolute; inset: 0; border-radius: 20px; background: var(--red-soft); box-shadow: inset 0 0 0 1px rgba(182, 0, 14, .18); opacity: 0; transform: scale(.97); transition: opacity .6s, transform .8s var(--ease); }
-.band span { position: absolute; left: 22px; bottom: 12px; font-size: 12px; font-weight: 800; letter-spacing: .14em; text-transform: uppercase; color: var(--red); }
-.flow.is-eco .band { opacity: 1; transform: none; }
-.track { position: absolute; left: 0; right: 0; top: 14px; display: flex; align-items: flex-start; }
-.st { flex: 0 0 125px; display: grid; gap: 10px; justify-items: center; text-align: center; transform: translateY(var(--dy)) rotate(var(--r)); transition: transform .9s var(--spring); transition-delay: calc(var(--i) * 45ms); }
-.flow.is-eco .st { transform: none; }
-.st__k { font-size: 11px; font-weight: 800; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); }
-.st__box { display: grid; place-items: center; align-content: center; gap: 6px; width: 125px; height: 122px; padding: 12px 10px; border-radius: 14px; background: #FFFFFF; box-shadow: 0 1px 2px rgba(11, 22, 64, .06), 0 16px 32px -18px rgba(11, 22, 64, .3); font-size: 14.5px; font-weight: 700; line-height: 1.2; overflow-wrap: anywhere; }
-.st__box small { font-size: 12px; font-weight: 600; color: var(--muted); }
-.st__box .ico { width: 20px; height: 20px; color: var(--muted); transition: color .4s; }
-.flow.is-eco .st__box .ico { color: var(--red); }
-.lk { flex: 1 1 0; position: relative; height: 122px; margin-top: 26px; }
-.lk::before { content: ""; position: absolute; left: 2px; right: 2px; top: 60px; border-top: 2px dashed var(--rule); transition: border-color .4s; }
-.lk::after { content: ""; position: absolute; left: 50%; top: 54px; width: 2px; height: 14px; background: var(--red); transform: translateX(-50%) rotate(28deg); transition: transform .4s, height .4s, top .4s, width .4s, border-radius .4s; }
-.flow.is-eco .lk::before { border-top: 2px solid var(--red); }
-.flow.is-eco .lk::after { width: 8px; height: 8px; top: 57px; border-radius: 50%; transform: translateX(-50%); }
-.annot { position: relative; height: 46px; margin-top: 6px; }
-.brk { position: absolute; top: 0; left: calc(2 * 150px + 62px); width: 150px; height: 12px; border: 2px solid var(--red); border-top: 0; border-radius: 0 0 8px 8px; transition: opacity .3s; }
-.annot p { position: absolute; top: 18px; left: calc(2 * 150px + 137px); transform: translateX(-50%); white-space: nowrap; font-size: 15px; font-weight: 600; color: var(--ink); transition: opacity .3s; }
-.annot .eco { left: 50%; color: var(--red); font-weight: 700; opacity: 0; }
+/* rail: six equal columns inside a padded band. Every stop has the same four rows
+   (label 16 / node 48 / name 40 = two lines / caption 18, 12px apart), so labels,
+   nodes, names and captions share one baseline each. The line runs through the node
+   centres (y = 22 + 16 + 12 + 24 = 74); break marks sit on the column boundaries. */
+.rail { --pad: 24px; --col: calc((100% - 2 * var(--pad)) / 6); position: relative; margin-top: 22px; padding: 22px var(--pad) 18px; border-radius: 18px; box-shadow: inset 0 0 0 1px var(--rule); transition: background-color .5s, box-shadow .5s; }
+.flow.is-eco .rail { background: var(--red-soft); box-shadow: inset 0 0 0 1px rgba(182, 0, 14, .22); }
+.rail__line { position: absolute; top: 73px; left: calc(var(--pad) + var(--col) / 2); right: calc(var(--pad) + var(--col) / 2); border-top: 2px dashed var(--rule); }
+.flow.is-eco .rail__line { border-top: 2px solid var(--red); }
+.rail__mk { position: absolute; top: 66px; left: calc(var(--pad) + var(--col) * var(--k)); width: 2px; height: 16px; margin-left: -1px; border-radius: 1px; background: var(--red); transform: rotate(28deg); transition: transform .4s var(--ease), width .4s, height .4s, top .4s, margin .4s, border-radius .4s; }
+.flow.is-eco .rail__mk { top: 70px; width: 8px; height: 8px; margin-left: -4px; border-radius: 50%; transform: none; }
+.rail__grid { position: relative; display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); }
+.stop { display: grid; grid-template-rows: 16px 48px 40px 18px; row-gap: 12px; justify-items: center; align-items: start; padding: 0 6px; text-align: center; min-width: 0; }
+.stop__k { font-size: 11px; font-weight: 800; line-height: 16px; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); }
+.stop__node { display: grid; place-items: center; width: 48px; height: 48px; border-radius: 50%; background: #FFFFFF; color: var(--muted); box-shadow: inset 0 0 0 1.5px var(--rule), 0 8px 18px -10px rgba(11, 22, 64, .4); transition: color .4s, box-shadow .4s; transition-delay: calc(var(--i) * 60ms); }
+.stop__node .ico { width: 20px; height: 20px; }
+.flow.is-eco .stop__node { color: var(--red); box-shadow: inset 0 0 0 2px var(--red), 0 10px 20px -10px rgba(182, 0, 14, .55); }
+.stop__name { font-size: 15px; font-weight: 700; line-height: 20px; letter-spacing: -.005em; text-wrap: balance; }
+.stop__sub { font-size: 12.5px; font-weight: 600; line-height: 18px; color: var(--muted); white-space: nowrap; }
+.rail__label { display: block; margin-top: 14px; text-align: center; font-size: 11px; font-weight: 800; line-height: 16px; letter-spacing: .16em; text-transform: uppercase; color: var(--red); opacity: 0; transition: opacity .4s; }
+.flow.is-eco .rail__label { opacity: 1; }
+.annot { --pad: 24px; --col: calc((100% - 2 * var(--pad)) / 6); position: relative; height: 46px; margin-top: 8px; }
+.brk { position: absolute; top: 0; left: calc(var(--pad) + var(--col) * 2.5); width: var(--col); height: 12px; border: 2px solid var(--red); border-top: 0; border-radius: 0 0 8px 8px; transition: opacity .3s; }
+.annot p { position: absolute; top: 18px; left: 50%; transform: translateX(-50%); white-space: nowrap; font-size: 15px; font-weight: 600; color: var(--ink); transition: opacity .3s; }
+.annot .eco { color: var(--red); font-weight: 700; opacity: 0; }
 .flow.is-eco .brk, .flow.is-eco .annot .today { opacity: 0; }
 .flow.is-eco .annot .eco { opacity: 1; }
 .compare { display: grid; grid-template-columns: 1fr 1fr; column-gap: 32px; margin-top: auto; padding-top: 14px; border-top: 1px solid var(--rule); }
@@ -376,11 +379,10 @@ a { color: inherit; }
 .is-narrow .mrow--items .items.has-on::before { color: var(--red); }
 .is-narrow .mcap { grid-template-columns: minmax(0, 1fr); row-gap: 4px; }
 .is-narrow .online { margin-top: 8px; font-size: 28px; }
-.is-narrow .stage { height: auto; margin-top: 20px; }
-.is-narrow .track { position: relative; top: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; padding: 16px 16px 48px; }
-.is-narrow .st { flex: none; }
-.is-narrow .st__box { width: 100%; }
-.is-narrow .lk, .is-narrow .brk { display: none; }
+.is-narrow .rail { padding: 20px 12px 16px; }
+.is-narrow .rail__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); row-gap: 26px; }
+.is-narrow .rail__line, .is-narrow .rail__mk, .is-narrow .brk { display: none; }
+.is-narrow .stop__sub { white-space: normal; }
 .is-narrow .annot { height: auto; }
 .is-narrow .annot p { position: static; transform: none; white-space: normal; }
 .is-narrow .annot .eco { display: none; }
@@ -495,9 +497,11 @@ a { color: inherit; }
           <button type="button" role="tab" aria-selected="true" data-v="today">Today</button>
           <button type="button" role="tab" aria-selected="false" tabindex="-1" data-v="eco">Connected</button>
         </div>
-        <div class="stage">
-          <div class="band" aria-hidden="true"><span>Bloom experience layer</span></div>
-          <div class="track" id="track"></div>
+        <div class="rail">
+          <i class="rail__line" aria-hidden="true"></i>
+          <i class="rail__mk" style="--k:1" aria-hidden="true"></i><i class="rail__mk" style="--k:2" aria-hidden="true"></i><i class="rail__mk" style="--k:3" aria-hidden="true"></i><i class="rail__mk" style="--k:4" aria-hidden="true"></i><i class="rail__mk" style="--k:5" aria-hidden="true"></i>
+          <ol class="rail__grid" id="stops"></ol>
+          <span class="rail__label">Bloom experience layer</span>
         </div>
         <div class="annot">
           <i class="brk" aria-hidden="true"></i>
@@ -809,15 +813,15 @@ a { color: inherit; }
   renderMatrix("residents");
 
   /* ================= 04 OPPORTUNITY ================= */
-  const STATIONS = [
-    ["Discover", "bloomholding​.com", "Bloom's website", 10, -1.5],
-    ["Buy", "Bloom Partners", "with a broker", -12, 1.5],
-    ["Own", "Bloom Holding Super App", "for owners", 14, -2],
-    ["Live", "Bloom Community App", "for residents", -6, 1.5],
-    ["Learn", "School websites", "one per school", 16, -1.5],
-    ["Stay", "Marriott · Rotana", "operator channels", -10, 2]
+  const STOPS = [
+    ["Discover", "Bloom Holding website", "bloomholding.com"],
+    ["Buy", "Bloom Partners", "with a broker"],
+    ["Own", "Bloom Holding Super App", "for owners"],
+    ["Live", "Bloom Community App", "for residents"],
+    ["Learn", "School websites", "one per school"],
+    ["Stay", "Hotel channels", "Marriott, Rotana"]
   ];
-  $("#track").innerHTML = STATIONS.map(([k, n, s, dy, r], i) => `${i ? '<i class="lk" aria-hidden="true"></i>' : ""}<div class="st" style="--i:${i};--dy:${dy}px;--r:${r}deg"><span class="st__k">${k}</span><span class="st__box"><svg class="ico" aria-hidden="true"><use href="#i-door"/></svg>${esc(n)}<small>${esc(s)}</small></span></div>`).join("");
+  $("#stops").innerHTML = STOPS.map(([k, n, sub], i) => `<li class="stop"><span class="stop__k">${k}</span><span class="stop__node" style="--i:${i}"><svg class="ico" aria-hidden="true"><use href="#i-door"/></svg></span><span class="stop__name">${esc(n)}</span><span class="stop__sub">${esc(sub)}</span></li>`).join("");
   const flow = $("#flow"), seg = $("#flow-seg");
   function setFlow(eco) {
     flow.classList.toggle("is-eco", eco);
