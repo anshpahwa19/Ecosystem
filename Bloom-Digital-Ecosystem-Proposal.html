@@ -328,8 +328,8 @@ a { color: inherit; }
 .keys p { font-size: 15.5px; line-height: 1.45; color: var(--ink-2); }
 .notes { display: grid; gap: 10px; margin-top: 28px; padding-top: 20px; border-top: 1px solid var(--rule); font-size: 14px; line-height: 1.5; color: var(--ink-2); }
 .notes b { color: var(--ink); }
-.slist { display: grid; grid-template-columns: 1fr 1fr; grid-auto-flow: column; grid-template-rows: repeat(7, auto); column-gap: 40px; align-content: start; }
-.slist li { display: grid; grid-template-columns: 30px 1fr; padding: 10px 0; border-top: 1px solid var(--rule); }
+.slist { display: grid; grid-template-columns: 1fr 1fr; grid-auto-flow: column; grid-template-rows: repeat(8, auto); column-gap: 40px; align-content: start; }
+.slist li { display: grid; grid-template-columns: 30px 1fr; padding: 8px 0; border-top: 1px solid var(--rule); }
 .slist li > span { font-size: 12px; font-weight: 800; color: var(--red); font-variant-numeric: tabular-nums; padding-top: 3px; }
 .slist b { display: block; font-size: 14.5px; font-weight: 700; line-height: 1.3; }
 .slist a { font-size: 12.5px; color: var(--muted); text-decoration: none; overflow-wrap: anywhere; }
@@ -713,7 +713,8 @@ a { color: inherit; }
     ["Bloom Facilities Management", "https://bloomholding.com/what-we-do/bfm", "Integrated facilities and community management in Abu Dhabi and Dubai, for Bloom and third-party clients. See also bfm.ae."],
     ["Bloom Holding · Bloom Education", "https://bloomholding.com/what-we-do/education", "Partnership with Brighton College UK, Bloom World Academy (IB), ADEK Charter Schools and Al Ghad Public Nurseries."],
     ["Bloom Holding · Bloom Arjaan by Rotana hotel apartments", "https://bloomholding.com/press-releases/bloom-arjaan-rotana-hotel-apartments", "Hotel apartments on Saadiyat Island offered to investors, managed by Rotana."],
-    ["Bloom team materials · Phase 1", "", "Bloom Multiverse, the employee platform: work apps, approvals, people and policies in one place."]
+    ["Bloom team materials · Phase 1", "", "Bloom Multiverse, the employee platform: work apps, approvals, people and policies in one place."],
+    ["Bloom Holding · Bloom Landscape", "https://bloomholding.com/what-we-do/bloomscape", "Landscape design, construction and maintenance for local and international clients: public parks, sports facilities, resorts, hotels, palaces, residential complexes, commercial centres and large urban developments, in Abu Dhabi and Dubai."]
   ];
   const short = (u) => u.replace(/^https:\/\/(www\.)?/, "").replace(/\/$/, "");
   $("#src-list").innerHTML = SOURCES.map(([t, u], i) => `<li><span>${pad(i + 1)}</span><div><b>${esc(t)}</b>${u ? `<a href="${esc(u)}" target="_blank" rel="noopener">${esc(short(u).split("/")[0])}</a>` : `<a>Shared with the Bloom team</a>`}</div></li>`).join("");
@@ -780,7 +781,8 @@ a { color: inherit; }
     ["residents", "Residents", ["community", "living", "gardens", "central", "saadiyat", "fm"], "Residents", "Move in, book amenities, pay service charges and raise requests in the Community App, with bfm managing the community.", [9, 11]],
     ["parents", "Parents", ["brighton", "bwa", "nurseries", "gardens"], "Parents and students", "Brighton College, Bloom World Academy and Bloom Nurseries, each with its own front door. Bloom Nurseries sits inside Bloom Gardens.", [4, 12]],
     ["guests", "Guests", ["edition", "marriott", "arjaan"], "Guests", "Stay at hotels run with Marriott International and Rotana, where the operator's brand leads.", [3]],
-    ["employees", "Employees", ["multiverse"], "Employees", "Bloom Multiverse brings work apps, approvals and colleagues together for staff across the group.", [14]]
+    ["employees", "Employees", ["multiverse"], "Employees", "Bloom Multiverse brings work apps, approvals and colleagues together for staff across the group.", [14]],
+    ["clients", "Business clients", ["services", "landscape"], "Business clients", "Companies and developments across Abu Dhabi and Dubai hire bfm for facilities management and Bloom Landscape to design, build and maintain their landscapes.", [11, 15]]
   ];
   const HOUSE = ["owners", "residents", "parents", "guests"];
   const matrix = $("#matrix");
