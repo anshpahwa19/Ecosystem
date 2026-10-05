@@ -19,6 +19,7 @@
   --serif: "Cormorant Garamond", "Iowan Old Style", Georgia, "Times New Roman", serif;
   --ease: cubic-bezier(.16, 1, .3, 1);
   --spring: cubic-bezier(.34, 1.4, .64, 1);
+  --shot-home: url({{SHOT_HOME}}); --shot-partners: url({{SHOT_PARTNERS}}); --shot-multiverse: url({{SHOT_MULTIVERSE}});
 }
 
 /* ---------- base ---------- */
@@ -92,8 +93,8 @@ a { color: inherit; }
 .toc-btn[aria-expanded="true"] .ico { transform: rotate(180deg); }
 .chrome .cat { opacity: .85; }
 .runner { margin-left: auto; font-size: 13px; font-weight: 600; letter-spacing: .01em; opacity: .7; white-space: nowrap; }
-.toc { position: absolute; top: 92px; left: 100px; width: 360px; padding: 10px; border-radius: 14px; background: #FFFFFF; color: var(--ink); box-shadow: 0 2px 6px rgba(11, 22, 64, .06), 0 28px 60px -24px rgba(11, 22, 64, .35); }
-.toc button { display: grid; grid-template-columns: 30px 1fr; align-items: center; width: 100%; padding: 10px 12px; border-radius: 8px; text-align: left; font-size: 15px; font-weight: 600; }
+.toc { position: absolute; top: 92px; left: 100px; width: 360px; max-height: 700px; overflow-y: auto; padding: 10px; border-radius: 14px; background: #FFFFFF; color: var(--ink); box-shadow: 0 2px 6px rgba(11, 22, 64, .06), 0 28px 60px -24px rgba(11, 22, 64, .35); }
+.toc button { display: grid; grid-template-columns: 38px 1fr; align-items: center; width: 100%; padding: 10px 12px; border-radius: 8px; text-align: left; font-size: 15px; font-weight: 600; }
 .toc button span { font-size: 12px; font-weight: 800; color: var(--muted); font-variant-numeric: tabular-nums; }
 .toc button:hover { background: var(--paper-2); }
 .toc button[aria-current="true"] { background: var(--ink); color: #FFFFFF; }
@@ -106,7 +107,7 @@ a { color: inherit; }
 .ticks button::before { content: ""; position: absolute; left: 0; right: 0; top: 9px; height: 3px; border-radius: 2px; background: currentColor; opacity: .2; transition: opacity .3s, background-color .3s; }
 .ticks button[aria-current="true"]::before { opacity: 1; background: var(--red); }
 .chrome[data-tone="red"] .ticks button[aria-current="true"]::before { background: #FFFFFF; }
-.counter { font-size: 14px; font-weight: 700; font-variant-numeric: tabular-nums; min-width: 58px; text-align: right; }
+.counter { font-size: 14px; font-weight: 700; font-variant-numeric: tabular-nums; min-width: 76px; text-align: right; }
 .arrows { display: flex; gap: 6px; }
 .arrow { display: grid; place-items: center; width: 44px; height: 44px; border-radius: 50%; box-shadow: inset 0 0 0 1px var(--rule); transition: background-color .2s, box-shadow .2s, color .2s; }
 .arrow:hover { background: var(--ink); color: #FFFFFF; box-shadow: none; }
@@ -218,6 +219,59 @@ a { color: inherit; }
 .compare li.label { margin-bottom: 4px; }
 .compare .to li:not(.label) { color: var(--red); }
 .compare .dim { opacity: .35; }
+
+/* ---------- 05a-05d products today ---------- */
+/* crop: shows region (x, y, w, h) of a screenshot of natural width iw, at scale s */
+.crop { display: block; flex: none; width: calc(var(--w) * var(--s) * 1px); height: calc(var(--h) * var(--s) * 1px); border-radius: 6px; background-image: var(--img); background-repeat: no-repeat; background-size: calc(var(--iw) * var(--s) * 1px) auto; background-position: calc(var(--x) * var(--s) * -1px) calc(var(--y) * var(--s) * -1px); box-shadow: 0 0 0 1px var(--rule); }
+.lineup { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); column-gap: 32px; }
+.shot { display: grid; gap: 16px; align-content: start; }
+.shot__frame { border-radius: 14px; overflow: hidden; background: #FFFFFF; box-shadow: 0 0 0 1px var(--rule), 0 26px 50px -32px rgba(11, 22, 64, .5); }
+.shot__bar { display: flex; align-items: center; gap: 6px; height: 26px; padding: 0 12px; background: var(--paper-2); border-bottom: 1px solid var(--rule); }
+.shot__bar i { width: 8px; height: 8px; border-radius: 50%; background: var(--rule); }
+.shot__img { height: 330px; background-image: var(--img); background-repeat: no-repeat; background-size: 100% auto; background-position: center top; }
+.shot figcaption { display: grid; gap: 3px; }
+.shot figcaption b { font-size: 18px; font-weight: 700; }
+.shot figcaption span { font-size: 15px; color: var(--muted); }
+.shot-note { margin-top: 26px; font-size: 14px; color: var(--muted); }
+.pal { display: grid; gap: 20px; }
+.pal__row { display: grid; grid-template-columns: 300px minmax(0, 1fr); column-gap: 32px; align-items: start; padding-top: 16px; border-top: 1px solid var(--rule); }
+.pal__who b { display: block; font-size: 18px; font-weight: 700; }
+.pal__who span { display: block; margin-top: 2px; font-size: 14px; color: var(--muted); }
+.pal__who p { margin-top: 8px; font-size: 15px; line-height: 1.4; color: var(--ink-2); max-width: 34ch; }
+.pal__groups { display: flex; flex-wrap: wrap; gap: 14px 30px; }
+.pal__grp { display: grid; gap: 8px; align-content: start; }
+.pal__grp > span { font-size: 11px; font-weight: 800; line-height: 14px; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); }
+.sws { display: flex; gap: 8px; }
+.sw { display: grid; gap: 6px; width: 52px; }
+.sw i { width: 52px; height: 40px; border-radius: 8px; background: var(--c); box-shadow: inset 0 0 0 1px rgba(11, 22, 64, .12); }
+.sw code { font: 600 10px/1 var(--sans); letter-spacing: .01em; color: var(--ink-2); }
+.same { display: grid; grid-template-columns: 1fr 1fr 1fr 1.15fr; column-gap: 32px; margin-top: 4px; padding: 18px 24px; border-radius: 14px; background: var(--paper-2); }
+.same__k { display: block; margin-bottom: 10px; font-size: 11px; font-weight: 800; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); }
+.same .sws { gap: 10px; }
+.same .sw { width: 80px; }
+.same .sw i { width: 80px; height: 30px; }
+.same .sw small { font-size: 11px; font-weight: 600; color: var(--muted); }
+.same p { align-self: center; font-size: 15px; line-height: 1.45; color: var(--ink-2); }
+.same p b { color: var(--red); }
+.mx { display: grid; grid-template-columns: 170px repeat(3, minmax(0, 1fr)); column-gap: 28px; }
+.mx > * { padding: 14px 0; border-top: 1px solid var(--rule); min-width: 0; }
+.mx__h { padding-top: 12px; border-top: 2px solid var(--ink); font-size: 15px; font-weight: 800; }
+.mx__h small { display: block; margin-top: 2px; font-size: 13px; font-weight: 500; color: var(--muted); }
+.mx__k { padding-top: 17px; font-size: 12px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); }
+.mx__c { display: grid; gap: 10px; align-content: start; justify-items: start; }
+.mx__c small { font-size: 14px; line-height: 1.35; color: var(--ink-2); }
+.mx__mark { display: flex; align-items: center; height: 40px; }
+.mx__mark .logo--mark { width: 42px; height: 38px; }
+.tally { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); column-gap: 32px; }
+.tally div { display: grid; gap: 10px; padding-top: 20px; border-top: 1px solid var(--rule); }
+.tally div:first-child { border-top: 2px solid var(--red); padding-top: 19px; }
+.tally b { font-size: 104px; font-weight: 300; line-height: .9; letter-spacing: -.045em; }
+.tally span { font-size: 19px; color: var(--ink-2); }
+.tally-note { margin-top: 14px; font-size: 14px; color: var(--muted); }
+.cost { display: grid; grid-template-columns: 1fr 1fr; column-gap: 32px; margin-top: 44px; }
+.cost div { display: grid; gap: 8px; }
+.cost p { font-size: 22px; font-weight: 600; line-height: 1.35; letter-spacing: -.01em; max-width: 32ch; }
+.bridge { margin-top: 40px; padding-top: 24px; border-top: 1px solid var(--rule); font-size: 30px; font-weight: 600; line-height: 1.2; letter-spacing: -.02em; }
 
 /* ---------- 05 proposal ---------- */
 .prop { display: grid; grid-template-columns: 907px 437px; column-gap: 32px; height: 100%; }
@@ -410,6 +464,18 @@ a { color: inherit; }
 .is-narrow .road::before, .is-narrow .road::after { display: none; }
 .is-narrow .close { margin-top: 40px; font-size: 36px; }
 .is-narrow .next { display: block; }
+.is-narrow .lineup, .is-narrow .tally, .is-narrow .cost, .is-narrow .same { grid-template-columns: minmax(0, 1fr); row-gap: 28px; }
+.is-narrow .shot__img { height: 260px; }
+.is-narrow .pal__row { grid-template-columns: minmax(0, 1fr); row-gap: 14px; }
+.is-narrow .sws { flex-wrap: wrap; }
+.is-narrow .mx { grid-template-columns: minmax(0, 1fr); }
+.is-narrow .mx__k { padding-top: 22px; color: var(--red); }
+.is-narrow .mx__h { display: none; }
+.is-narrow .mx__c::before { content: attr(data-p); font-size: 12px; font-weight: 800; color: var(--muted); }
+.is-narrow .crop { max-width: 100%; }
+.is-narrow .tally b { font-size: 64px; }
+.is-narrow .cost p { font-size: 19px; }
+.is-narrow .bridge { font-size: 24px; }
 .is-narrow .slist { grid-template-columns: minmax(0, 1fr); grid-auto-flow: row; grid-template-rows: none; }
 @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation: none !important; transition: none !important; } }
 </style>
@@ -429,7 +495,7 @@ a { color: inherit; }
 <main id="deck" aria-roledescription="presentation" aria-label="Bloom Digital Ecosystem proposal">
 
 <!-- 01 INTENT -->
-<section class="slide slide--red is-current" data-title="One Bloom" data-cat="" aria-roledescription="slide">
+<section class="slide slide--red is-current" data-num="01" data-title="One Bloom" data-cat="" aria-roledescription="slide">
   <div class="cover">
     <div class="cover__text">
       <p class="label rv">Bloom Digital Ecosystem · Proposal · October 2026</p>
@@ -442,7 +508,7 @@ a { color: inherit; }
 </section>
 
 <!-- 02 BLOOM TODAY -->
-<section class="slide" data-title="Bloom today" data-cat="fact" aria-roledescription="slide">
+<section class="slide" data-num="02" data-title="Bloom today" data-cat="fact" aria-roledescription="slide">
   <header class="s-head">
     <h2 class="h1 rv">Bloom is not starting from <span class="hl">zero.</span></h2>
   </header>
@@ -459,7 +525,7 @@ a { color: inherit; }
 </section>
 
 <!-- 03 ECOSYSTEM -->
-<section class="slide" data-title="The ecosystem" data-cat="fact" aria-roledescription="slide">
+<section class="slide" data-num="03" data-title="The ecosystem" data-cat="fact" aria-roledescription="slide">
   <header class="s-head">
     <h2 class="h1 rv">Many businesses. The same <span class="hl">people.</span></h2>
     <p class="sub rv" style="--d:1">Choose a person to see where they meet Bloom.</p>
@@ -477,7 +543,7 @@ a { color: inherit; }
 </section>
 
 <!-- 04 OPPORTUNITY -->
-<section class="slide" data-title="The opportunity" data-cat="opp" aria-roledescription="slide">
+<section class="slide" data-num="04" data-title="The opportunity" data-cat="opp" aria-roledescription="slide">
   <header class="s-head">
     <h2 class="h1 rv">The biggest opportunity sits<br><span class="hl">between</span> the products.</h2>
   </header>
@@ -517,8 +583,64 @@ a { color: inherit; }
   </div>
 </section>
 
+<!-- 05a PRODUCTS TODAY -->
+<section class="slide" data-num="05a" data-title="Products today" data-cat="fact" aria-roledescription="slide">
+  <header class="s-head">
+    <h2 class="h1 rv">Three Bloom products.<br>Three different <span class="hl">Blooms.</span></h2>
+  </header>
+  <div class="s-body">
+    <div class="lineup">
+      <figure class="shot rv" style="--d:1"><div class="shot__frame"><span class="shot__bar" aria-hidden="true"><i></i><i></i><i></i></span><div class="shot__img" style="--img:var(--shot-home)" role="img" aria-label="Home-buying platform: Al Metlaa unit details page"></div></div><figcaption><b>Home-buying platform</b><span>Emirati buyers · Al Metlaa</span></figcaption></figure>
+      <figure class="shot rv" style="--d:2"><div class="shot__frame"><span class="shot__bar" aria-hidden="true"><i></i><i></i><i></i></span><div class="shot__img" style="--img:var(--shot-partners)" role="img" aria-label="Bloom Partners: Your Requests page"></div></div><figcaption><b>Bloom Partners</b><span>Brokers and agencies</span></figcaption></figure>
+      <figure class="shot rv" style="--d:3"><div class="shot__frame"><span class="shot__bar" aria-hidden="true"><i></i><i></i><i></i></span><div class="shot__img" style="--img:var(--shot-multiverse)" role="img" aria-label="Bloom Multiverse: employee home page"></div></div><figcaption><b>Bloom Multiverse</b><span>Employees</span></figcaption></figure>
+    </div>
+    <p class="shot-note rv" style="--d:4">Screens as supplied by the Bloom team, top of each page.<a class="src" href="#src-16" data-s="16">16</a></p>
+  </div>
+</section>
+
+<!-- 05b COLOUR -->
+<section class="slide" data-num="05b" data-title="Colour today" data-cat="fact" aria-roledescription="slide">
+  <header class="s-head">
+    <h2 class="h1 rv">Each product chose its own <span class="hl">colours.</span></h2>
+  </header>
+  <div class="s-body">
+    <div class="pal rv" style="--d:1" id="pal"></div>
+  </div>
+</section>
+
+<!-- 05c TYPE AND COMPONENTS -->
+<section class="slide" data-num="05c" data-title="Components today" data-cat="fact" aria-roledescription="slide">
+  <header class="s-head">
+    <h2 class="h1 rv">And its own type and <span class="hl">components.</span></h2>
+  </header>
+  <div class="s-body">
+    <div class="mx rv" style="--d:1"><span class="mx__h"></span><span class="mx__h">Home-buying platform</span><span class="mx__h">Bloom Partners</span><span class="mx__h">Bloom Multiverse</span><span class="mx__k">Brand mark</span><div class="mx__c" data-p="Home-buying platform"><i class="crop" style="--img:var(--shot-home);--iw:1930;--x:55;--y:55;--w:170;--h:65;--s:0.62" role="img" aria-label="Bloom wordmark on the home-buying platform"></i><small>Bloom wordmark</small></div><div class="mx__c" data-p="Bloom Partners"><i class="crop" style="--img:var(--shot-partners);--iw:1333;--x:65;--y:8;--w:120;--h:52;--s:0.78" role="img" aria-label="Bloom wordmark on Bloom Partners"></i><small>Bloom wordmark</small></div><div class="mx__c" data-p="Bloom Multiverse"><span class="mx__mark"><i class="logo logo--mark" role="img" aria-label="Bloom Multiverse mark"></i></span><small>Its own Bloom Multiverse mark</small></div><span class="mx__k">Headlines</span><div class="mx__c" data-p="Home-buying platform"><i class="crop" style="--img:var(--shot-home);--iw:1930;--x:300;--y:50;--w:222;--h:50;--s:1" role="img" aria-label="Unit Details heading"></i><small>Sans serif titles</small></div><div class="mx__c" data-p="Bloom Partners"><i class="crop" style="--img:var(--shot-partners);--iw:1333;--x:100;--y:690;--w:245;--h:48;--s:1" role="img" aria-label="Other request types heading"></i><small>Serif display titles</small></div><div class="mx__c" data-p="Bloom Multiverse"><i class="crop" style="--img:var(--shot-multiverse);--iw:263;--x:10;--y:34;--w:136;--h:40;--s:1.25" role="img" aria-label="Good afternoon, Rashid heading"></i><small>Bold sans, name picked out in blue</small></div><span class="mx__k">Primary action</span><div class="mx__c" data-p="Home-buying platform"><i class="crop" style="--img:var(--shot-home);--iw:1930;--x:1176;--y:540;--w:682;--h:72;--s:0.5" role="img" aria-label="Book Appointment button"></i><small>Full-width black button</small></div><div class="mx__c" data-p="Bloom Partners"><i class="crop" style="--img:var(--shot-partners);--iw:1333;--x:203;--y:545;--w:165;--h:36;--s:1" role="img" aria-label="Raise a Request link"></i><small>Underlined text link</small></div><div class="mx__c" data-p="Bloom Multiverse"><i class="crop" style="--img:var(--shot-multiverse);--iw:263;--x:8;--y:104;--w:92;--h:20;--s:1.75" role="img" aria-label="Blue pill button"></i><small>Blue pill button</small></div><span class="mx__k">Sections</span><div class="mx__c" data-p="Home-buying platform"><i class="crop" style="--img:var(--shot-home);--iw:1930;--x:40;--y:165;--w:1810;--h:715;--s:0.168" role="img" aria-label="Unit page layout"></i><small>White cards on light grey</small></div><div class="mx__c" data-p="Bloom Partners"><i class="crop" style="--img:var(--shot-partners);--iw:1333;--x:0;--y:66;--w:1333;--h:554;--s:0.217" role="img" aria-label="Requests page layout"></i><small>Dark hero band with floating cards</small></div><div class="mx__c" data-p="Bloom Multiverse"><i class="crop" style="--img:var(--shot-multiverse);--iw:263;--x:2;--y:148;--w:260;--h:186;--s:0.645" role="img" aria-label="Attention panel"></i><small>Full-bleed navy and blue panels</small></div></div>
+  </div>
+</section>
+
+<!-- 05d WHAT IT MEANS -->
+<section class="slide" data-num="05d" data-title="What it means" data-cat="opp" aria-roledescription="slide">
+  <header class="s-head">
+    <h2 class="h1 rv">Each product works on its own.<br>Together, they don't read as one <span class="hl">Bloom.</span></h2>
+  </header>
+  <div class="s-body">
+    <div class="tally rv" style="--d:1">
+      <div><b>2</b><span>brand marks</span></div>
+      <div><b>3</b><span>headline styles</span></div>
+      <div><b>3</b><span>primary action styles</span></div>
+      <div><b>3</b><span>colour systems</span></div>
+    </div>
+    <p class="tally-note rv" style="--d:1">Counted across the three product screens on 05a to 05c.</p>
+    <div class="cost rv" style="--d:2">
+      <div><span class="label">For people</span><p>Moving between Bloom products feels like moving between companies.</p></div>
+      <div><span class="label">For Bloom</span><p>The same parts are designed, built and maintained more than once.</p></div>
+    </div>
+    <p class="bridge rv" style="--d:3">The answer is not one look for everything. It is <span class="hl">one shared language.</span></p>
+  </div>
+</section>
+
 <!-- 05 PROPOSAL -->
-<section class="slide" data-title="The proposal" data-cat="prop" aria-roledescription="slide">
+<section class="slide" data-num="06" data-title="The proposal" data-cat="prop" aria-roledescription="slide">
   <header class="s-head">
     <h2 class="h1 rv">One <span class="hl">experience layer</span><br>across everything Bloom does.</h2>
   </header>
@@ -540,7 +662,7 @@ a { color: inherit; }
 </section>
 
 <!-- 06 PILLARS -->
-<section class="slide" data-title="Strategic pillars" data-cat="prop" aria-roledescription="slide">
+<section class="slide" data-num="07" data-title="Strategic pillars" data-cat="prop" aria-roledescription="slide">
   <header class="s-head">
     <h2 class="h1 rv">Five pillars hold the ecosystem <span class="hl">together.</span></h2>
   </header>
@@ -560,7 +682,7 @@ a { color: inherit; }
 </section>
 
 <!-- 07 EXPERIENCE -->
-<section class="slide" data-title="The experience" data-cat="mixed" aria-roledescription="slide">
+<section class="slide" data-num="08" data-title="The experience" data-cat="mixed" aria-roledescription="slide">
   <header class="s-head">
     <h2 class="h1 rv">People meet Bloom through <span class="hl">moments</span>,<br>not business units.</h2>
   </header>
@@ -574,7 +696,7 @@ a { color: inherit; }
 </section>
 
 <!-- 08 PRINCIPLES -->
-<section class="slide" data-title="Experience principles" data-cat="prop" aria-roledescription="slide">
+<section class="slide" data-num="09" data-title="Experience principles" data-cat="prop" aria-roledescription="slide">
   <header class="s-head">
     <h2 class="h1 rv">Five principles for every Bloom <span class="hl">experience.</span></h2>
   </header>
@@ -590,7 +712,7 @@ a { color: inherit; }
 </section>
 
 <!-- 09 VALUE -->
-<section class="slide" data-title="What this enables" data-cat="opp" aria-roledescription="slide">
+<section class="slide" data-num="10" data-title="What this enables" data-cat="opp" aria-roledescription="slide">
   <header class="s-head">
     <h2 class="h1 rv">Simpler for people.<br>Stronger for <span class="hl">Bloom.</span></h2>
   </header>
@@ -614,7 +736,7 @@ a { color: inherit; }
 </section>
 
 <!-- 10 NEXT -->
-<section class="slide slide--red" data-title="What's next" data-cat="prop" aria-roledescription="slide">
+<section class="slide slide--red" data-num="11" data-title="What's next" data-cat="prop" aria-roledescription="slide">
   <header class="s-head">
     <h2 class="h1 rv">The beginning of a longer journey.</h2>
   </header>
@@ -632,7 +754,7 @@ a { color: inherit; }
 </section>
 
 <!-- 11 SOURCES -->
-<section class="slide" data-title="Sources and notes" data-cat="" aria-roledescription="slide">
+<section class="slide" data-num="A" data-title="Sources and notes" data-cat="" aria-roledescription="slide">
   <header class="s-head">
     <h2 class="h1 rv">Every figure has a <span class="hl">source.</span></h2>
   </header>
@@ -713,7 +835,8 @@ a { color: inherit; }
     ["Bloom Holding · Bloom Education", "https://bloomholding.com/what-we-do/education", "Partnership with Brighton College UK, Bloom World Academy (IB), ADEK Charter Schools and Al Ghad Public Nurseries."],
     ["Bloom Holding · Bloom Arjaan by Rotana hotel apartments", "https://bloomholding.com/press-releases/bloom-arjaan-rotana-hotel-apartments", "Hotel apartments on Saadiyat Island offered to investors, managed by Rotana."],
     ["Bloom team materials · Phase 1", "", "Bloom Multiverse, the employee platform: work apps, approvals, people and policies in one place."],
-    ["Bloom Holding · Bloom Landscape", "https://bloomholding.com/what-we-do/bloomscape", "Landscape design, construction and maintenance for local and international clients: public parks, sports facilities, resorts, hotels, palaces, residential complexes, commercial centres and large urban developments, in Abu Dhabi and Dubai."]
+    ["Bloom Holding · Bloom Landscape", "https://bloomholding.com/what-we-do/bloomscape", "Landscape design, construction and maintenance for local and international clients: public parks, sports facilities, resorts, hotels, palaces, residential complexes, commercial centres and large urban developments, in Abu Dhabi and Dubai."],
+    ["Bloom product screens · supplied by the Bloom team", "", "Home-buying platform (Al Metlaa unit details), Bloom Partners (Your Requests) and Bloom Multiverse (home), October 2026. Colours on 05b are sampled directly from these screens; image compression can shift values slightly."]
   ];
   const short = (u) => u.replace(/^https:\/\/(www\.)?/, "").replace(/\/$/, "");
   $("#src-list").innerHTML = SOURCES.map(([t, u], i) => `<li><span>${pad(i + 1)}</span><div><b>${esc(t)}</b>${u ? `<a href="${esc(u)}" target="_blank" rel="noopener">${esc(short(u).split("/")[0])}</a>` : `<a>Shared with the Bloom team</a>`}</div></li>`).join("");
@@ -833,6 +956,30 @@ a { color: inherit; }
   }
   seg.addEventListener("click", (e) => { const b = e.target.closest("[role=tab]"); if (b) setFlow(b.dataset.v === "eco"); });
 
+  /* ================= 05b COLOUR ================= */
+  // Colours sampled from the supplied screens (median of a 3x3 patch, or the most frequent ink colour in a text region).
+  const PAL = [
+    { n: "Home-buying platform", a: "Emirati buyers · Al Metlaa", o: "Neutral greys, black actions, orange and green accents.", g: [
+      ["Surface", [["#F6F6F6", "Page"], ["#FFFFFF", "Cards"]]],
+      ["Text and action", [["#333333", "Headings"], ["#1A1A1A", "Primary button"], ["#922B23", "Bloom wordmark"]]],
+      ["Accents", [["#F45D2C", "Calendar icon"], ["#F9EAD6", "Calendar tile"], ["#408945", "Home icon"], ["#C8E6CA", "Home tile"], ["#1A5D24", "Loan text"]]]] },
+    { n: "Bloom Partners", a: "Brokers and agencies", o: "A charcoal hero, a purple label and a spread of pastel tiles.", g: [
+      ["Surface", [["#F9F9F9", "Page"], ["#333333", "Hero band"], ["#EAF7F9", "Contact card"]]],
+      ["Text and action", [["#1C1A19", "Headings"], ["#000000", "Active tab"], ["#9D292C", "Bloom wordmark"]]],
+      ["Accents", [["#7058E0", "Label text"], ["#EAECFF", "Label"], ["#FFD7D7", "Pink tile"], ["#FFE7D6", "Peach tile"], ["#EFD6FE", "Lavender tile"], ["#D7F5FF", "Blue tile"], ["#D8FFD6", "Green tile"], ["#1FB4E6", "Wave"], ["#F1908E", "Avatar"]]]] },
+    { n: "Bloom Multiverse", a: "Employees", o: "Deep navy and royal blue on a warm off-white.", g: [
+      ["Surface", [["#F6F4F0", "Page"], ["#0D173F", "Navy panel"], ["#1446F9", "Blue section"]]],
+      ["Text and action", [["#131B3B", "Headings"], ["#2A51E6", "Primary button"]]],
+      ["Accents", [["#1E5BCF", "Name highlight"]]]] }
+  ];
+  const sw = ([c, t], sub) => `<span class="sw" title="${esc(t)}"><i style="--c:${c}"></i><code>${c}</code>${sub ? `<small>${esc(sub)}</small>` : ""}</span>`;
+  $("#pal").innerHTML = PAL.map((p) => `<div class="pal__row"><div class="pal__who"><b>${esc(p.n)}</b><span>${esc(p.a)}</span><p>${esc(p.o)}</p></div>`
+    + `<div class="pal__groups">${p.g.map(([k, cs]) => `<div class="pal__grp"><span>${esc(k)}</span><div class="sws">${cs.map((c) => sw(c)).join("")}</div></div>`).join("")}</div></div>`).join("")
+    + `<div class="same"><div><span class="same__k">Primary action</span><div class="sws">${sw(["#1A1A1A", "Home-buying"], "Home-buying")}${sw(["#000000", "Partners"], "Partners")}${sw(["#2A51E6", "Multiverse"], "Multiverse")}</div></div>`
+    + `<div><span class="same__k">Heading text</span><div class="sws">${sw(["#333333", "Home-buying"], "Home-buying")}${sw(["#1C1A19", "Partners"], "Partners")}${sw(["#131B3B", "Multiverse"], "Multiverse")}</div></div>`
+    + `<div><span class="same__k">Green tile</span><div class="sws">${sw(["#C8E6CA", "Home-buying"], "Home-buying")}${sw(["#D8FFD6", "Partners"], "Partners")}</div></div>`
+    + `<p>Same job, different values. <b>Bloom red</b> appears in the wordmark, but none of the three uses it as its action colour.</p></div>`;
+
   /* ================= 05 PROPOSAL ================= */
   $("#pl-products").innerHTML = [
     ["bloomholding.com", "#B6000E"], ["Bloom Partners", "#2F5BFF"], ["Super App", "#0E9FB5"], ["Community App", "#17754A"],
@@ -905,9 +1052,11 @@ a { color: inherit; }
   const slides = $$(".slide"), N = slides.length;
   const CAT = { fact: '<span class="cat cat--fact">Fact</span>', opp: '<span class="cat cat--opp">Opportunity</span>', prop: '<span class="cat cat--prop">Proposal</span>', mixed: '<span class="tagset"><span class="cat cat--fact">Today</span><span class="cat cat--prop">Proposed</span></span>' };
   let cur = -1;
-  $("#toc-list").innerHTML = slides.map((s, i) => `<li><button type="button" data-go="${i}"><span>${pad(i + 1)}</span>${esc(s.dataset.title)}</button></li>`).join("");
-  $("#ticks").innerHTML = slides.map((s, i) => `<li><button type="button" data-go="${i}" aria-label="${pad(i + 1)}: ${esc(s.dataset.title)}"></button></li>`).join("");
-  slides.forEach((s, i) => { s.id = `s${pad(i + 1)}`; s.setAttribute("aria-label", `${pad(i + 1)} of ${pad(N)}: ${s.dataset.title}`); });
+  // Chapters are numbered 01-11 with 05a-05d as sub-slides and A for the appendix.
+  const LAST = slides.filter((s) => /^\d+$/.test(s.dataset.num)).pop().dataset.num;
+  $("#toc-list").innerHTML = slides.map((s, i) => `<li><button type="button" data-go="${i}"><span>${esc(s.dataset.num)}</span>${esc(s.dataset.title)}</button></li>`).join("");
+  $("#ticks").innerHTML = slides.map((s, i) => `<li><button type="button" data-go="${i}" aria-label="${esc(s.dataset.num)}: ${esc(s.dataset.title)}"></button></li>`).join("");
+  slides.forEach((s) => { s.id = `s${s.dataset.num}`; s.setAttribute("aria-label", `${s.dataset.num === "A" ? "Appendix" : s.dataset.num + " of " + LAST}: ${s.dataset.title}`); });
 
   function fit() {
     const w = innerWidth, h = innerHeight;
@@ -924,12 +1073,12 @@ a { color: inherit; }
     const s = slides[i]; s.scrollTop = 0;
     const tone = s.classList.contains("slide--red") ? "red" : "paper";
     document.body.dataset.tone = tone; chrome.dataset.tone = tone;
-    $("#c-num").textContent = pad(i + 1); $("#c-name").textContent = s.dataset.title;
+    $("#c-num").textContent = s.dataset.num; $("#c-name").textContent = s.dataset.title;
     $("#c-cat").innerHTML = CAT[s.dataset.cat] || "";
-    $("#counter").textContent = `${pad(i + 1)} / ${pad(N)}`;
+    $("#counter").textContent = s.dataset.num === "A" ? "Appendix" : `${s.dataset.num} / ${LAST}`;
     $("#prev").disabled = i === 0; $("#next").disabled = i === N - 1;
     $$("#toc-list button, #ticks button").forEach((b) => b.setAttribute("aria-current", String(Number(b.dataset.go) === i)));
-    try { history.replaceState(null, "", `#s${pad(i + 1)}`); } catch { /* sandboxed */ }
+    try { history.replaceState(null, "", `#s${s.dataset.num}`); } catch { /* sandboxed */ }
     bloomOn(i === 0);
     if (s.querySelector("[data-count]")) countUp(s);
   }
@@ -956,7 +1105,7 @@ a { color: inherit; }
   vp.addEventListener("touchend", (e) => { if (skip) return; const t = e.changedTouches[0], dx = t.clientX - tx, dy = t.clientY - ty; if (Math.abs(dx) > 60 && Math.abs(dx) > Math.abs(dy) * 1.5) go(cur + (dx < 0 ? 1 : -1)); }, { passive: true });
   addEventListener("resize", fit);
   fit();
-  const m = /^#s(\d{2})$/.exec(location.hash);
-  go(m ? Number(m[1]) - 1 : 0);
+  const m = /^#s(\w+)$/.exec(location.hash);
+  go(Math.max(0, m ? slides.findIndex((s) => s.dataset.num === m[1]) : 0));
 })();
 </script>

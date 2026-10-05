@@ -8,16 +8,22 @@ import pathlib
 
 ROOT = pathlib.Path(__file__).parent
 ASSETS = {
-    "{{IMG_EDITION}}": "the-abu-dhabi-edition.png",
-    "{{IMG_MARRIOTT}}": "marriott.png",
-    "{{IMG_MARK}}": "bloom-multiverse-mark.png",
+    "{{IMG_EDITION}}": "assets/the-abu-dhabi-edition.png",
+    "{{IMG_MARRIOTT}}": "assets/marriott.png",
+    "{{IMG_MARK}}": "assets/bloom-multiverse-mark.png",
+    # Product screens supplied by the Bloom team (slides 05a-05c)
+    "{{SHOT_HOME}}": "screens/home-buying-platform.webp",
+    "{{SHOT_PARTNERS}}": "screens/bloom-partners-requests.webp",
+    "{{SHOT_MULTIVERSE}}": "screens/bloom-multiverse-home.webp",
 }
+MIME = {".png": "image/png", ".webp": "image/webp"}
 
 page = (ROOT / "src" / "proposal.html").read_text(encoding="utf-8")
 for token, name in ASSETS.items():
-    data = base64.b64encode((ROOT / "src" / "assets" / name).read_bytes()).decode()
-    page = page.replace(token, f"data:image/png;base64,{data}")
-assert "{{IMG_" not in page
+    path = ROOT / "src" / name
+    data = base64.b64encode(path.read_bytes()).decode()
+    page = page.replace(token, f"data:{MIME[path.suffix]};base64,{data}")
+assert "{{IMG_" not in page and "{{SHOT_" not in page
 
 (ROOT / "dist").mkdir(exist_ok=True)
 (ROOT / "dist" / "bloom-digital-ecosystem.html").write_text(page, encoding="utf-8")
