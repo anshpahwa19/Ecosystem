@@ -68,9 +68,6 @@ a { color: inherit; }
 .cat--prop::before { background: var(--red); }
 .chrome[data-tone="red"] .cat--prop::before { background: #FFFFFF; }
 .tagset { display: inline-flex; gap: 18px; }
-.chip-t { display: inline-flex; align-items: center; height: 22px; padding: 0 8px; border-radius: 4px; font-size: 11px; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; white-space: nowrap; }
-.chip-t--today { color: var(--ink-2); box-shadow: inset 0 0 0 1px var(--rule); }
-.chip-t--prop { background: var(--red); color: #FFFFFF; }
 
 /* source markers */
 .src { display: inline; margin-left: 2px; font-size: .62em; font-weight: 800; line-height: 1; color: var(--red); vertical-align: super; letter-spacing: .02em; text-decoration: none; border-bottom: 1px solid transparent; transition: border-color .2s; }
@@ -638,7 +635,7 @@ body[data-tone="ink"] { background: var(--ink); }
 .balegend { display: flex; align-items: center; gap: 10px; font-size: 11px; font-weight: 800; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); white-space: nowrap; }
 .balegend i { display: block; width: 28px; height: 2px; background: var(--rule); }
 .balegend b { color: var(--red); }
-.ba { --pos: 50%; position: relative; width: 100%; aspect-ratio: 874 / 454; overflow: hidden; border-radius: 16px; background: #FFFFFF; box-shadow: 0 0 0 1px var(--rule), 0 34px 60px -38px rgba(11, 22, 64, .55); cursor: ew-resize; touch-action: pan-y; user-select: none; -webkit-user-select: none; }
+.ba { --pos: 93%; position: relative; width: 100%; aspect-ratio: 874 / 454; overflow: hidden; border-radius: 16px; background: #FFFFFF; box-shadow: 0 0 0 1px var(--rule), 0 34px 60px -38px rgba(11, 22, 64, .55); cursor: ew-resize; touch-action: pan-y; user-select: none; -webkit-user-select: none; }
 .ba__before { position: absolute; inset: 0; background: var(--img) 0 0 / 100% auto no-repeat #FFFFFF; }
 .ba__after { position: absolute; inset: 0; clip-path: inset(0 0 0 var(--pos)); }
 .ba__line { position: absolute; top: 0; bottom: 0; left: var(--pos); width: 2px; margin-left: -1px; background: #FFFFFF; box-shadow: 0 0 0 1px rgba(11, 22, 64, .2); pointer-events: none; }
@@ -730,18 +727,21 @@ body[data-tone="ox"] { background: var(--ox); }
 .bx-fam__h { display: flex; align-items: baseline; justify-content: space-between; padding-bottom: 10px; }
 .bx-fam__h p { font-family: var(--serif); font-size: 25px; font-weight: 600; letter-spacing: -.005em; color: var(--bx-ink); }
 .bx-fam__h p em { color: var(--ox); }
-.bx-row { flex: 1; display: grid; grid-template-columns: 30px auto minmax(0, 1fr) auto; align-items: center; column-gap: 14px; border-top: 1px solid var(--rule); }
+.sig { display: block; flex: none; aspect-ratio: 1; fill: currentColor; stroke: currentColor; stroke-linecap: round; stroke-linejoin: round; overflow: visible; }
+.bx-row .sig { width: 28px; justify-self: start; color: var(--ct); }
+.bx-row { flex: 1; display: grid; grid-template-columns: 30px auto auto minmax(0, 1fr) auto; align-items: center; column-gap: 14px; border-top: 1px solid var(--rule); }
 .bx-row .sym { width: 28px; color: var(--ox); }
 .bx-row .wm { width: 88px; --wm-c: var(--ox); }
-.bx-row em { padding-left: 14px; border-left: 1px solid var(--rule); font-family: var(--serif); font-size: 30px; font-weight: 600; line-height: 1.05; color: var(--ct); }
+.bx-row em { padding-left: 14px; border-left: 1px solid var(--rule); font-family: var(--serif); font-size: 30px; font-weight: 600; line-height: 1.05; color: var(--bx-ink); }
 .bx-row small { font-size: 13.5px; color: var(--muted); text-align: right; }
 .bx-bot { display: grid; grid-template-columns: minmax(0, 1fr) 372px; column-gap: 22px; }
 .bx-apps { display: flex; flex-direction: column; justify-content: center; gap: 16px; padding: 0 26px; border-radius: 18px; background: var(--bx-ink); color: #FFFFFF; }
 .bx-apps .label { color: rgba(255, 255, 255, .6); }
 .bx-apps__row { display: flex; justify-content: space-between; }
 .bx-app { display: grid; justify-items: center; gap: 10px; }
-.bx-app__ic { display: grid; place-items: center; width: 72px; height: 72px; border-radius: 18px; background: var(--c); box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .1), 0 18px 30px -16px rgba(0, 0, 0, .9); }
-.bx-app__ic .sym { width: 48px; color: #FFFFFF; }
+.bx-app__ic { position: relative; display: grid; place-items: center; width: 72px; height: 72px; border-radius: 18px; overflow: hidden; background: var(--ox); box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .1), 0 18px 30px -16px rgba(0, 0, 0, .9); }
+.bx-app__ic .sym { position: relative; width: 44px; color: #FFFFFF; }
+.bx-app__sig { position: absolute; inset: 0; width: 100%; height: 100%; color: rgba(255, 255, 255, .46); }
 .bx-app > span { font-size: 12.5px; font-weight: 600; color: rgba(255, 255, 255, .84); }
 .bx-endorse { display: flex; flex-direction: column; gap: 6px; padding: 14px 16px; border-radius: 18px; background: var(--paper-2); }
 .bx-en { display: flex; align-items: center; gap: 12px; height: 42px; padding: 0 14px; border-radius: 10px; background: #FFFFFF; }
@@ -864,7 +864,7 @@ body[data-tone="ox"] { background: var(--ox); }
 .bx-band .bx-apps__row { gap: 16px; }
 .bx-band .bx-app > span { color: var(--ink-2); }
 .bx-band .bx-app__ic { width: 60px; height: 60px; border-radius: 15px; box-shadow: 0 14px 24px -16px rgba(28, 26, 25, .7); }
-.bx-band .bx-app__ic .sym { width: 40px; }
+.bx-band .bx-app__ic .sym { width: 37px; }
 .bx-band p { text-wrap: balance; font-family: var(--serif); font-size: 29px; font-weight: 600; line-height: 1.08; letter-spacing: -.01em; color: var(--bx-ink); }
 .bx-band p em { color: var(--ox); }
 .bx-band small { display: block; margin-top: 8px; font-family: var(--sans); font-size: 13px; font-weight: 500; letter-spacing: 0; color: var(--muted); }
@@ -880,7 +880,8 @@ body[data-tone="ox"] { background: var(--ox); }
 .bn__brand { display: flex; align-items: center; gap: 8px; color: var(--ox); }
 .bn__brand .sym { width: 24px; }
 .bn__brand .wm { width: 64px; --wm-c: var(--ox); }
-.bn__desc { padding-left: 13px; border-left: 1px solid var(--bx-line); font-family: var(--serif); font-style: italic; font-size: 22px; font-weight: 600; line-height: 1; color: var(--ct); }
+.bn__desc { display: flex; align-items: center; gap: 9px; padding-left: 13px; border-left: 1px solid var(--bx-line); font-family: var(--serif); font-style: italic; font-size: 22px; font-weight: 600; line-height: 1; color: var(--bx-ink); }
+.bn__desc .sig { width: 19px; color: var(--ct); }
 .bn__links { display: flex; gap: 20px; margin-left: 14px; font-size: 12.5px; font-weight: 600; color: var(--bx-mute); }
 .bn__links b { position: relative; font-weight: 700; color: var(--bx-ink); }
 .bn__links b::after { content: ""; position: absolute; left: 0; right: 0; bottom: -8px; height: 2px; background: var(--ox); }
@@ -1004,33 +1005,6 @@ body[data-tone="ox"] { background: var(--ox); }
 .col p { align-self: end; font-size: 17px; line-height: 1.45; color: var(--muted); }
 .plinth { height: 14px; border-radius: 0 0 14px 14px; background: var(--paper-3); }
 
-/* ---------- 07 journeys ---------- */
-.jwrap { display: flex; flex-direction: column; gap: 30px; height: 100%; }
-.journey { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); column-gap: 20px; flex: 1; position: relative; }
-.journey::before { content: ""; position: absolute; left: 0; right: 0; top: 7px; height: 2px; background: linear-gradient(90deg, var(--rule), var(--red)); }
-.jc { position: relative; display: flex; flex-direction: column; gap: 14px; padding-top: 34px; min-width: 0; }
-.jc::before { content: ""; position: absolute; left: 0; top: 0; width: 16px; height: 16px; border-radius: 50%; background: var(--paper); box-shadow: inset 0 0 0 2px var(--ink); }
-.jc--out::before { background: var(--red); box-shadow: none; }
-.jc h3 { font-size: 24px; font-weight: 700; line-height: 1.15; letter-spacing: -.015em; }
-.jl { display: grid; gap: 8px; justify-items: start; }
-.jl p { font-size: 15.5px; line-height: 1.45; color: var(--ink-2); }
-.jl--prop p { color: var(--ink); font-weight: 650; }
-.jperson { flex: 1; display: flex; flex-direction: column; justify-content: space-between; gap: 16px; padding: 24px; border-radius: 14px; background: var(--ink); color: #FFFFFF; }
-.jperson b { font-size: 30px; font-weight: 700; line-height: 1.1; letter-spacing: -.02em; }
-.jperson small { font-size: 15px; line-height: 1.4; opacity: .75; }
-.jout { flex: 1; display: flex; flex-direction: column; justify-content: flex-end; padding: 24px; border-radius: 14px; background: var(--red); color: #FFFFFF; }
-.jout p { font-family: var(--serif); font-style: italic; font-weight: 600; font-size: 31px; line-height: 1.08; letter-spacing: -.01em; }
-.journey.swap .jc { animation: rise .5s var(--ease) both; animation-delay: calc(var(--i) * 60ms); }
-.jnote { font-size: 14px; color: var(--muted); }
-
-/* ---------- 08 principles ---------- */
-.princ { display: grid; border-bottom: 1px solid var(--rule); }
-.pr { display: grid; grid-template-columns: 469px 437px 1fr; column-gap: 32px; align-items: baseline; padding: 20px 0 18px; border-top: 1px solid var(--rule); }
-.pr h3 { font-size: 50px; font-weight: 600; line-height: 1; letter-spacing: -.035em; transition: color .3s; }
-.pr:hover h3 { color: var(--red); }
-.pr p { font-size: 20px; font-weight: 700; line-height: 1.3; }
-.pr small { font-size: 16.5px; line-height: 1.45; color: var(--muted); }
-
 /* ---------- 09 value ---------- */
 .value { display: grid; grid-template-columns: 1fr 1fr; column-gap: 32px; align-items: start; }
 .vcol { display: grid; align-content: start; gap: 18px; padding: 36px 40px; border-radius: 16px; }
@@ -1137,13 +1111,6 @@ body[data-tone="ox"] { background: var(--ox); }
 .is-narrow .lintel { height: auto; padding: 18px 20px; flex-direction: column; align-items: flex-start; gap: 6px; border-radius: 14px; }
 .is-narrow .lintel b { font-size: 26px; }
 .is-narrow .plinth { display: none; }
-.is-narrow .jwrap { height: auto; }
-.is-narrow .journey { grid-template-columns: minmax(0, 1fr); row-gap: 26px; }
-.is-narrow .journey::before { left: 7px; right: auto; top: 0; bottom: 0; width: 2px; height: auto; background: linear-gradient(var(--rule), var(--red)); }
-.is-narrow .jc { padding: 0 0 0 34px; }
-.is-narrow .jperson, .is-narrow .jout { min-height: 150px; }
-.is-narrow .pr { grid-template-columns: minmax(0, 1fr); row-gap: 6px; }
-.is-narrow .pr h3 { font-size: 38px; }
 .is-narrow .vcol { padding: 24px; }
 .is-narrow .vcol li { font-size: 20px; }
 .is-narrow .road { grid-template-columns: minmax(0, 1fr); row-gap: 28px; }
@@ -1221,7 +1188,8 @@ body[data-tone="ox"] { background: var(--ox); }
 .is-narrow .bx-cs b { left: 32px; top: 7px; }
 .is-narrow .bx-side { grid-template-rows: none; row-gap: 24px; }
 .is-narrow .bx-fam__h { flex-direction: column; gap: 4px; }
-.is-narrow .bx-row { grid-template-columns: 24px auto minmax(0, 1fr); row-gap: 2px; padding: 10px 0; }
+.is-narrow .bx-row { grid-template-columns: 24px auto auto minmax(0, 1fr); row-gap: 2px; padding: 10px 0; }
+.is-narrow .bx-row .sig { width: 22px; }
 .is-narrow .bx-row .sym { width: 22px; }
 .is-narrow .bx-row .wm { width: 66px; }
 .is-narrow .bx-row em { font-size: 24px; }
@@ -1229,7 +1197,7 @@ body[data-tone="ox"] { background: var(--ox); }
 .is-narrow .bx-apps { padding: 20px; }
 .is-narrow .bx-apps__row { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px 12px; }
 .is-narrow .bx-app__ic { width: 56px; height: 56px; border-radius: 14px; }
-.is-narrow .bx-app__ic .sym { width: 38px; }
+.is-narrow .bx-app__ic .sym { width: 34px; }
 .is-narrow .bx-en { height: auto; min-height: 42px; flex-wrap: wrap; padding: 10px 14px; }
 .is-narrow .bx-ox__src { min-height: 180px; }
 .is-narrow .bx-wins { grid-template-columns: repeat(2, minmax(0, 1fr)); row-gap: 28px; column-gap: 16px; }
@@ -1610,7 +1578,7 @@ body[data-tone="ox"] { background: var(--ox); }
           <div class="ba__before" id="ba-before" role="img"></div>
           <div class="ba__after" id="ba-after"></div>
           <i class="ba__line" aria-hidden="true"></i>
-          <div class="ba__knob" id="ba-knob" role="slider" tabindex="0" aria-label="Compare today with the concept" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50" aria-valuetext="Half today, half concept"><svg class="ico" aria-hidden="true"><use href="#i-swap"/></svg></div>
+          <div class="ba__knob" id="ba-knob" role="slider" tabindex="0" aria-label="Compare today with the concept" aria-valuemin="0" aria-valuemax="100" aria-valuenow="93" aria-valuetext="7% concept"><svg class="ico" aria-hidden="true"><use href="#i-swap"/></svg></div>
         </div>
       </div>
       <div class="bainfo rv" style="--d:2" id="ba-info" aria-live="polite"></div>
@@ -1665,11 +1633,11 @@ body[data-tone="ox"] { background: var(--ox); }
       </div>
       <div class="bx-side">
         <div class="bx-fam rv" style="--d:2">
-          <div class="bx-fam__h"><p>Bloom, plus <em>what it does.</em></p><span class="label">Product lockups · working titles</span></div>
+          <div class="bx-fam__h"><p>Bloom, plus <em>what it does.</em></p><span class="label">Bloom + product signature · working titles</span></div>
           <div id="bx-rows" style="display:contents"></div>
         </div>
         <div class="bx-bot rv" style="--d:3">
-          <div class="bx-apps"><span class="label">App icons · white symbol, product colour</span><div class="bx-apps__row" id="bx-apps"></div></div>
+          <div class="bx-apps"><span class="label">App icons · one Bloom, a signature per product</span><div class="bx-apps__row" id="bx-apps"></div></div>
           <div class="bx-endorse">
             <span class="label">Partner brands lead</span>
             <div class="bx-en"><i class="logo logo--edition" role="img" aria-label="The Abu Dhabi EDITION"></i><i class="bx-en__div" aria-hidden="true"></i><span class="bx-sig" role="img" aria-label="Bloom"><span data-sym></span><i class="wm"></i></span></div>
@@ -1747,7 +1715,7 @@ body[data-tone="ox"] { background: var(--ox); }
           <div class="ba__before" id="bb-before" role="img"></div>
           <div class="ba__after" id="bb-after"></div>
           <i class="ba__line" aria-hidden="true"></i>
-          <div class="ba__knob" id="bb-knob" role="slider" tabindex="0" aria-label="Compare today with direction B" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50" aria-valuetext="Half today, half concept"><svg class="ico" aria-hidden="true"><use href="#i-swap"/></svg></div>
+          <div class="ba__knob" id="bb-knob" role="slider" tabindex="0" aria-label="Compare today with direction B" aria-valuemin="0" aria-valuemax="100" aria-valuenow="93" aria-valuetext="7% concept"><svg class="ico" aria-hidden="true"><use href="#i-swap"/></svg></div>
         </div>
       </div>
       <div class="bainfo rv" style="--d:2" id="bb-info" aria-live="polite"></div>
@@ -1784,38 +1752,8 @@ body[data-tone="ox"] { background: var(--ox); }
   </div>
 </section>
 
-<!-- 07 EXPERIENCE -->
-<section class="slide" data-num="09" data-title="The experience" data-cat="mixed" aria-roledescription="slide">
-  <header class="s-head">
-    <h2 class="h1 rv">People meet Bloom through <span class="hl">moments</span>,<br>not business units.</h2>
-  </header>
-  <div class="s-body">
-    <div class="jwrap">
-      <div class="who rv" style="--d:1" role="tablist" aria-label="Choose a person" id="j-who"></div>
-      <div class="journey rv" style="--d:2" id="journey" aria-live="polite"></div>
-      <p class="jnote rv" style="--d:3">Today: as Bloom and its partners publish it. Proposed: what the experience layer adds.</p>
-    </div>
-  </div>
-</section>
-
-<!-- 08 PRINCIPLES -->
-<section class="slide" data-num="10" data-title="Experience principles" data-cat="prop" aria-roledescription="slide">
-  <header class="s-head">
-    <h2 class="h1 rv">Five principles for every Bloom <span class="hl">experience.</span></h2>
-  </header>
-  <div class="s-body">
-    <div class="princ rv" style="--d:1">
-      <div class="pr"><h3>Connected</h3><p>Related, never isolated.</p><small>A handover leads straight into community life.</small></div>
-      <div class="pr"><h3>Effortless</h3><p>Complexity stays behind the experience.</p><small>Share details once, not again for each part of Bloom.</small></div>
-      <div class="pr"><h3>Recognisable</h3><p>Always Bloom, even under a partner's brand.</p><small>The EDITION stays the EDITION. Bloom is still felt around it.</small></div>
-      <div class="pr"><h3>Relevant</h3><p>What matters to this person, at this moment.</p><small>An owner waiting for handover sees progress first.</small></div>
-      <div class="pr"><h3>Human</h3><p>Technology serves the relationship.</p><small>A real person is one step away when it matters.</small></div>
-    </div>
-  </div>
-</section>
-
 <!-- 09 VALUE -->
-<section class="slide" data-num="11" data-title="What this enables" data-cat="opp" aria-roledescription="slide">
+<section class="slide" data-num="09" data-title="What this enables" data-cat="opp" aria-roledescription="slide">
   <header class="s-head">
     <h2 class="h1 rv">Simpler for people.<br>Stronger for <span class="hl">Bloom.</span></h2>
   </header>
@@ -1839,7 +1777,7 @@ body[data-tone="ox"] { background: var(--ox); }
 </section>
 
 <!-- 10 NEXT -->
-<section class="slide slide--red" data-num="12" data-title="What's next" data-cat="prop" aria-roledescription="slide">
+<section class="slide slide--red" data-num="10" data-title="What's next" data-cat="prop" aria-roledescription="slide">
   <header class="s-head">
     <h2 class="h1 rv">The beginning of a longer journey.</h2>
   </header>
@@ -2248,32 +2186,21 @@ body[data-tone="ox"] { background: var(--ox); }
     partners: [["One type pairing replaces the serif titles", "Raise a request becomes one red link style", "Pastel tiles become one Partners accent", "The same navigation and cards"], ["Request types and their wording", "Home, Leads, Inventory and My Team"]],
     multiverse: [["The Bloom wordmark with a Multiverse descriptor", "Blue becomes the accent; actions turn Bloom red", "The gradient name becomes the italic Bloom moment", "Shared chips, buttons and cards"], ["The orbit of work apps and its counts", "Bloom GPT and quick search"]]
   };
-  // A before/after slider: drag, keys and a short sweep that shows the screen can be compared.
-  const SLIDERS = [];
+  // A before/after slider, moved only by the presenter (drag or arrow keys). It opens with today's screen in view.
+  const BA_START = 93;
   function makeBA(ba, knob) {
-    let pos = 50;
+    let pos = BA_START;
     const setPos = (v) => { pos = Math.max(0, Math.min(100, v)); ba.style.setProperty("--pos", `${pos}%`); knob.setAttribute("aria-valuenow", String(Math.round(pos))); knob.setAttribute("aria-valuetext", `${Math.round(100 - pos)}% concept`); };
     const dragTo = (e) => { const r = ba.getBoundingClientRect(); setPos((e.clientX - r.left) / r.width * 100); };
-    ba.addEventListener("pointerdown", (e) => { cancelAnimationFrame(sweep.raf); ba.setPointerCapture(e.pointerId); ba.classList.add("is-drag"); dragTo(e); });
+    ba.addEventListener("pointerdown", (e) => { ba.setPointerCapture(e.pointerId); ba.classList.add("is-drag"); dragTo(e); });
     ba.addEventListener("pointermove", (e) => { if (ba.hasPointerCapture(e.pointerId)) dragTo(e); });
     ["pointerup", "pointercancel"].forEach((t) => ba.addEventListener(t, () => ba.classList.remove("is-drag")));
     knob.addEventListener("keydown", (e) => {
       const d = { ArrowLeft: -5, ArrowRight: 5, Home: -100, End: 100, PageUp: -20, PageDown: 20 }[e.key]; if (d === undefined) return;
-      e.preventDefault(); e.stopPropagation(); cancelAnimationFrame(sweep.raf); setPos(pos + d);
+      e.preventDefault(); e.stopPropagation(); setPos(pos + d);
     });
-    function sweep() {
-      cancelAnimationFrame(sweep.raf); if (reduce) { setPos(50); return; }
-      const t0 = performance.now(), from = pos, keys = [[0, from], [.38, 82], [.72, 26], [1, 50]];
-      const step = (t) => {
-        const p = Math.min(1, (t - t0) / 2200); let i = 0; while (i < keys.length - 2 && p > keys[i + 1][0]) i++;
-        const [a, va] = keys[i], [b, vb] = keys[i + 1], q = (p - a) / (b - a), e = q < .5 ? 2 * q * q : 1 - Math.pow(-2 * q + 2, 2) / 2;
-        setPos(va + (vb - va) * e); if (p < 1) sweep.raf = requestAnimationFrame(step);
-      };
-      sweep.raf = requestAnimationFrame(step);
-    }
-    const api = { el: ba, sweep, setPos };
-    SLIDERS.push(api);
-    return api;
+    setPos(BA_START);
+    return { reset: () => setPos(BA_START) };
   }
   const baTabs = $("#ba-tabs"), baA = makeBA($("#ba"), $("#ba-knob"));
   baTabs.innerHTML = Object.entries(PRODUCTS).map(([k, p], i) => `<button type="button" role="tab" aria-selected="${i === 0}" tabindex="${i ? -1 : 0}" data-k="${k}"><i style="--c:${FAM[p.f][0]}"></i>${esc(p.n.replace(/^Bloom /, "").replace("Al Metlaa master plan", "Master plan").replace("-buying platform", "-buying"))}</button>`).join("");
@@ -2287,7 +2214,7 @@ body[data-tone="ox"] { background: var(--ox); }
     if (animate && !reduce) restart(info, "swap");
   }
   renderBA("universal", false);
-  baTabs.addEventListener("click", (e) => { const b = e.target.closest("[role=tab]"); if (!b) return; selectTab(baTabs, b); renderBA(b.dataset.k, true); baA.sweep(); });
+  baTabs.addEventListener("click", (e) => { const b = e.target.closest("[role=tab]"); if (!b) return; selectTab(baTabs, b); renderBA(b.dataset.k, true); baA.reset(); });
 
   /* 07f: the family portrait, mirroring 05a */
   $("#family").innerHTML = Object.entries(PRODUCTS).map(([k, p], i) => `<figure class="shot rv" style="--d:${i + 1}"><div class="shot__frame shot__frame--mock"><span class="shot__bar"><i></i><i></i><i></i><b>${esc(p.n)}</b><span>Concept${p.n === `Bloom ${p.d}` ? "" : ` · Bloom ${esc(p.d)}`}</span><svg class="ico" aria-hidden="true"><use href="#i-expand"/></svg></span>`
@@ -2305,6 +2232,18 @@ body[data-tone="ox"] { background: var(--ox); }
   // fill, text tone, tint. Base colours sampled from Bloom (see 07c); tints mixed with paper.
   const FAMB = { group: ["#932A23", "#932A23", "#F3E4E2"], homes: ["#85674B", "#85674B", "#EEE6DD"], community: ["#4B5715", "#4B5715", "#E6E8D6"], partners: ["#A79DBF", "#6F5C9E", "#ECE9F2"], people: ["#0B1641", "#0B1641", "#E4E6EF"] };
   const famB = (f) => `--c:${FAMB[f][0]};--ct:${FAMB[f][1]};--t:${FAMB[f][2]}`;
+  // Product signatures: Bloom + [product signature]. The flower and wordmark never change; a secondary mark beside or
+  // behind them tells products apart. Drawn on a 100 x 100 grid around the centre; w is the line weight.
+  const HEX = [0, 1, 2, 3, 4, 5].map((k) => { const a = (k * 60 - 90) * Math.PI / 180; return [(50 + 38 * Math.cos(a)).toFixed(1), (50 + 38 * Math.sin(a)).toFixed(1)]; });
+  const SIGS = {
+    group: (w) => `<circle cx="50" cy="50" r="40" fill="none" stroke-width="${w}"/><circle cx="80.6" cy="24.3" r="${(w * 1.8).toFixed(1)}" stroke="none"/>`, // orbit
+    homes: (w) => `<path fill="none" stroke-width="${w}" d="M12 12h76v76H12zM37.3 12v76M62.7 12v76M12 37.3h76M12 62.7h76"/>`, // architectural grid
+    community: (w) => `<path fill="none" stroke-width="${(w * .8).toFixed(2)}" d="M${HEX.join("L")}ZM${[HEX[0], HEX[2], HEX[4]].join("L")}Z"/>${HEX.map(([x, y]) => `<circle cx="${x}" cy="${y}" r="${(w * 1.7).toFixed(1)}" stroke="none"/>`).join("")}`, // connected nodes
+    partners: (w) => `<circle cx="34" cy="34" r="28" fill="none" stroke-width="${w}"/><circle cx="66" cy="66" r="28" fill="none" stroke-width="${w}"/>`, // interlocking links
+    people: (w) => [[16, 1], [30, .7], [44, .4]].map(([r, o]) => `<circle cx="50" cy="${94 - r}" r="${r}" fill="none" stroke-width="${w}" stroke-opacity="${o}"/>`).join("") // layered rings, expanding from one point
+  };
+  const sig = (f, w, cls = "") => `<svg class="sig${cls ? ` ${cls}` : ""}" viewBox="0 0 100 100" aria-hidden="true">${SIGS[f](w)}</svg>`;
+  const SIGF = { Universal: "group", Homes: "homes", Community: "community", Partners: "partners", Multiverse: "people" };
   // A photograph seen through the counter of the wordmark's o, centred on (cx, cy) of the source at scale s.
   const owin = (img, iw, cx, cy, s, ow, ring, pick) => `<span class="ow" style="--ow:${ow};--ring:${ring}"><i class="ow__img" style="--img:var(--shot-${img});--iw:${iw};--cx:${cx};--cy:${cy};--s:${s}"></i><svg class="ow__ring" viewBox="-49.7 -50 99.4 100" aria-hidden="true"><use href="#b-o"/></svg><i class="ow__pick" style="--px:${pick[0]};--py:${pick[1]};--c:${pick[2]}"></i></span>`;
 
@@ -2343,9 +2282,9 @@ body[data-tone="ox"] { background: var(--ox); }
 
   /* 07b: lockups and icons */
   const BXP = [["group", "Universal", "Gateway to six Bloom businesses"], ["homes", "Homes", "Buyers and owners · master plans, home-buying"], ["community", "Community", "Residents"], ["partners", "Partners", "Brokers and agencies"], ["people", "Multiverse", "Bloom's employees"]];
-  const bxIcon = ([f, d]) => `<span class="bx-app"><span class="bx-app__ic" style="--c:${FAMB[f][1]}" role="img" aria-label="Bloom ${d} icon">${sym()}</span><span>${d}</span></span>`;
+  const bxIcon = ([f, d]) => `<span class="bx-app"><span class="bx-app__ic" role="img" aria-label="Bloom ${d} app icon: the Bloom symbol with the ${d} signature behind it">${sig(f, 3, "bx-app__sig")}${sym()}</span><span>${d}</span></span>`;
   if ($("#bx-rows")) {
-    $("#bx-rows").innerHTML = BXP.map(([f, d, w]) => `<div class="bx-row" style="${famB(f)}" role="img" aria-label="Bloom ${d} lockup">${sym()}<i class="wm"></i><em>${d}</em><small>${esc(w)}</small></div>`).join("");
+    $("#bx-rows").innerHTML = BXP.map(([f, d, w]) => `<div class="bx-row" style="${famB(f)}" role="img" aria-label="Bloom ${d} lockup with its product signature">${sym()}<i class="wm"></i><em>${d}</em>${sig(f, 6)}<small>${esc(w)}</small></div>`).join("");
     $("#bx-apps").innerHTML = BXP.map(bxIcon).join("");
   }
 
@@ -2369,7 +2308,7 @@ body[data-tone="ox"] { background: var(--ox); }
   const bars = (list, top) => `<ul class="bx-bars">${list.map(([n, c], i) => `<li><span>${n}${top && !i ? ` <em class="bchip bchip--ox">${top}</em>` : ""}</span><b>${pad(c)}</b><i style="--v:${(c / list[0][1] * 100).toFixed(1)}%"></i></li>`).join("")}</ul>`;
   if ($("#bx-rules")) {
     const RULES = [
-      [1, "Whole, in one colour", "Oxblood, or white on a dark field. Lockups, app icons, favicons.", `${sym()}<span class="bx-rv__dark">${sym()}</span>`],
+      [1, "Whole, in one colour", "Oxblood, or white on a dark field. Products add a signature beside it, never inside.", `${sym()}<span class="bx-rv__dark">${sym()}</span>`],
       [0, "Never recoloured in parts", "One colour for the whole symbol, every time.", sym(["fill:#932A23", "fill:#85674B", "fill:#4B5715", "fill:#A79DBF", "fill:#0B1641"])],
       [0, "Never a chart or loader", "In products, its petals never stand for data, steps or progress.", `<span class="bx-rv__chart">${sym(wlStyle)}<i>32</i></span>`],
       [0, "Never a bullet in text", "It never decorates labels, lists or running text.", `<span class="bx-rv__list">${["Your requests", "Unit price", "Documents"].map((t) => `<span>${sym()}${t}</span>`).join("")}</span>`]
@@ -2384,7 +2323,7 @@ body[data-tone="ox"] { background: var(--ox); }
   }
 
   /* concept screens, direction B. Content is taken from today's screens (05a) or Bloom's published features. */
-  const bnav = (d, links, end) => `<div class="bn"><span class="bn__brand">${sym()}<i class="wm"></i></span><span class="bn__desc">${d}</span><span class="bn__links">${links.map((l, i) => i ? `<span>${l}</span>` : `<b>${l}</b>`).join("")}</span><span class="bn__end">${end}</span></div>`;
+  const bnav = (d, links, end) => `<div class="bn"><span class="bn__brand">${sym()}<i class="wm"></i></span><span class="bn__desc">${d}${sig(SIGF[d], 7)}</span><span class="bn__links">${links.map((l, i) => i ? `<span>${l}</span>` : `<b>${l}</b>`).join("")}</span><span class="bn__end">${end}</span></div>`;
   const blang = `<span class="bn__lang"><b>EN</b> · عربي</span>`, bbell = `<span class="bn__icb">${ic("bell")}</span>`;
   const bav = (t) => `<span class="bn__av">${t}</span>`, bkbd = `<span class="bn__kbd">${ic("search")}Search ⌘K</span>`;
   const scrB = (f, label, inner) => `<div class="scr scr--b" style="${famB(f)}" role="img" aria-label="${esc(label)}">${inner}</div>`;
@@ -2437,13 +2376,13 @@ body[data-tone="ox"] { background: var(--ox); }
       if (animate && !reduce) restart(info, "swap");
     };
     renderBB("universal", false);
-    bbTabs.addEventListener("click", (e) => { const b = e.target.closest("[role=tab]"); if (!b) return; selectTab(bbTabs, b); renderBB(b.dataset.k, true); baB.sweep(); });
+    bbTabs.addEventListener("click", (e) => { const b = e.target.closest("[role=tab]"); if (!b) return; selectTab(bbTabs, b); renderBB(b.dataset.k, true); baB.reset(); });
   }
 
   /* 07f: the family, direction B */
   if ($("#bx-mosaic")) {
     $("#bx-mosaic").innerHTML = ["universal", "masterplan", "home", "partners", "multiverse"].map((k, i) => `<div class="bx-frame rv${i ? "" : " bx-frame--hero"}" style="--d:${i + 1}"><div class="fit">${MOCKS_B[k]()}</div><button class="shot__hit" type="button" data-zoom="mockb:${k}" aria-label="View the ${esc(PRODUCTS[k].n)} direction B concept full size"></button></div>`).join("")
-      + `<div class="bx-band rv" style="--d:6"><div class="bx-apps__row">${BXP.map(bxIcon).join("")}</div><p>One wordmark. One symbol. One action colour. <em>Eight colours, all from Bloom.</em><small>Concepts for discussion, written with content from today's screens. Select a screen to see it full size.</small></p></div>`;
+      + `<div class="bx-band rv" style="--d:6"><div class="bx-apps__row">${BXP.map(bxIcon).join("")}</div><p>One wordmark, one symbol, one action colour. <em>A signature for every product.</em><small>Concepts for discussion, written with content from today's screens. Select a screen to see it full size.</small></p></div>`;
     fitAll($("#bx-mosaic"));
   }
 
@@ -2453,58 +2392,6 @@ body[data-tone="ox"] { background: var(--ox); }
     ["School websites", "#D9722A"], ["Hotel channels", "#9A45C8"]
   ].map(([n, c]) => `<span class="pd" style="--c:${c}">${esc(n)}</span>`).join("")
     + `<span class="pd pd--mark"><i class="logo logo--mark" aria-hidden="true"></i>Bloom Multiverse</span><span class="pd pd--future">Future products</span>`;
-
-  /* ================= 07 JOURNEYS ================= */
-  // Each moment: t = what exists today (with sources), e = what the experience layer adds.
-  const JOURNEYS = [
-    { n: "Emirati family", where: "Buying a villa at Al Metlaa, Al Ain", m: [
-      { h: "Choose and buy", t: "View villas and plans online, then book and buy digitally, guided by Bloom Holding.", s: [2] },
-      { h: "Wait for the build", t: "Construction is expected to complete in Q4 2028.", s: [2], e: "Progress, payments and milestones in one Bloom place." },
-      { h: "Move in", e: "Handover flows straight into community life: access, services, neighbours." }],
-      out: "One Bloom relationship, from booking to belonging." },
-    { n: "Owner", where: "A home at Bloom Living", m: [
-      { h: "Pay", t: "Instalments, maintenance and service charges in the Bloom Holding Super App.", s: [5] },
-      { h: "Receive the keys", e: "Handover carries on in the same relationship, with nothing to re-enter." },
-      { h: "Live", t: "Amenities, access cards and requests in the Bloom Community App.", s: [9], e: "One place for what they own and how they live." }],
-      out: "Owner and resident are one person. The experience should know it." },
-    { n: "Family", where: "Living at Bloom Gardens", m: [
-      { h: "Home", t: "The Bloom Community App handles requests, payments and news for Bloom residents.", s: [5, 9] },
-      { h: "Nursery", t: "Bloom Nurseries opened inside Bloom Gardens in 2021, run by Bloom Education.", s: [4] },
-      { h: "Together", e: "Home, nursery and services recognise the same family, with their consent." }],
-      out: "Home, school and services feel like one Bloom." },
-    { n: "Broker", where: "Selling Bloom homes", m: [
-      { h: "Join", t: "UAE and international brokers register on Bloom Partners.", s: [5] },
-      { h: "Sell", t: "Real-time inventory, leads and commission in one dashboard.", s: [10] },
-      { h: "Hand over", e: "The buyer continues with Bloom without starting again, and the broker sees progress." }],
-      out: "A sale becomes the start of an ownership relationship." },
-    { n: "Guest", where: "Staying at a Bloom hotel", m: [
-      { h: "Stay", t: "Hotels run with Marriott International and Rotana, where the operator's brand leads.", s: [3] },
-      { h: "Stay longer", t: "The Abu Dhabi EDITION includes 57 serviced residences.", s: [3] },
-      { h: "Discover", e: "Bloom places become visible around the stay, without competing with the partner's brand." }],
-      out: "The partner brand leads the stay. Bloom is recognisable around it." },
-    { n: "Employee", where: "Working across the group", m: [
-      { h: "Work", t: "Bloom Multiverse brings work apps, approvals and colleagues together.", s: [14] },
-      { h: "Belong", e: "Group news, benefits and Bloom places in the same Bloom language." },
-      { h: "Live", e: "Staff who are also residents or parents are recognised as one person, with consent." }],
-      out: "Bloom's own people experience the ecosystem first." }
-  ];
-  const journey = $("#journey"), jWho = $("#j-who");
-  jWho.innerHTML = JOURNEYS.map((j, i) => `<button type="button" role="tab" aria-selected="${i === 0}" tabindex="${i === 0 ? 0 : -1}" data-i="${i}">${esc(j.n)}</button>`).join("");
-  function renderJourney(i) {
-    const j = JOURNEYS[i];
-    journey.innerHTML = `<div class="jc" style="--i:0"><span class="label">Person</span><div class="jperson"><b>${esc(j.n)}</b><small>${esc(j.where)}</small></div></div>`
-      + j.m.map((mo, x) => `<div class="jc" style="--i:${x + 1}"><span class="label">Moment ${pad(x + 1)}</span><h3>${esc(mo.h)}</h3>`
-        + (mo.t ? `<div class="jl"><span class="chip-t chip-t--today">Today</span><p>${esc(mo.t)}${src(...mo.s)}</p></div>` : "")
-        + (mo.e ? `<div class="jl jl--prop"><span class="chip-t chip-t--prop">Proposed</span><p>${esc(mo.e)}</p></div>` : "") + `</div>`).join("")
-      + `<div class="jc jc--out" style="--i:4"><span class="label">Connected experience</span><div class="jout"><p>${esc(j.out)}</p></div></div>`;
-    if (!reduce) restart(journey, "swap");
-  }
-  jWho.addEventListener("click", (e) => {
-    const b = e.target.closest("[role=tab]"); if (!b) return;
-    $$("[role=tab]", jWho).forEach((x) => { const on = x === b; x.setAttribute("aria-selected", String(on)); x.tabIndex = on ? 0 : -1; });
-    renderJourney(Number(b.dataset.i));
-  });
-  renderJourney(0);
 
   // Arrow keys move within any tab row without changing chapter.
   $$('[role="tablist"]').forEach((list) => list.addEventListener("keydown", (e) => {
@@ -2520,7 +2407,7 @@ body[data-tone="ox"] { background: var(--ox); }
   const deck = $("#deck"), DIR = deck.dataset.dir === "b" ? "b" : "a";
   $$("[data-dir]").forEach((e) => { if (e !== deck && e.dataset.dir !== DIR) e.remove(); });
   const slides = $$(".slide"), N = slides.length;
-  const CAT = { fact: '<span class="cat cat--fact">Fact</span>', opp: '<span class="cat cat--opp">Opportunity</span>', prop: '<span class="cat cat--prop">Proposal</span>', mixed: '<span class="tagset"><span class="cat cat--fact">Today</span><span class="cat cat--prop">Proposed</span></span>' };
+  const CAT = { fact: '<span class="cat cat--fact">Fact</span>', opp: '<span class="cat cat--opp">Opportunity</span>', prop: '<span class="cat cat--prop">Proposal</span>' };
   let cur = -1;
   // Chapters are numbered 01-12 with 05a-05d and 07a-07f as sub-slides and A for the appendix.
   const LAST = slides.filter((s) => /^\d+$/.test(s.dataset.num)).pop().dataset.num;
@@ -2553,7 +2440,6 @@ body[data-tone="ox"] { background: var(--ox); }
     bloomOn(i === 0);
     ENTER.forEach((f) => f(s));
     if (s.querySelector("[data-count]")) countUp(s);
-    clearTimeout(go.sweep); const sl = SLIDERS.find((x) => s.contains(x.el)); if (sl) go.sweep = setTimeout(sl.sweep, 900);
   }
   const toc = $("#toc"), tocBtn = $("#toc-btn");
   const setToc = (open) => { toc.hidden = !open; tocBtn.setAttribute("aria-expanded", String(open)); };
