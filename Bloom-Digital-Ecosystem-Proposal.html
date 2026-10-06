@@ -665,7 +665,7 @@ body[data-tone="ink"] { background: var(--ink); }
 /* ---------- 07a-07f direction B: drawn from Bloom (concepts) ---------- */
 /* Every base colour is sampled from Bloom: oxblood from the wordmark, ink from Bloom Partners, paper from Bloom Multiverse,
    sandstone, dusk and garden from the photography on Bloom Universal, navy from Bloom Multiverse. Tints are mixed from them. */
-:root { --ox: #932A23; --bx-ink: #1C1A19; --bx-mute: #666462; --bx-line: #E3DED6; --bx-line-2: #D3CDC3; --bx-sand: #85674B; --bx-garden: #4B5715; --bx-dusk: #A79DBF; --bx-dusk-t: #6F5C9E; --bx-navy: #0B1641; }
+:root { --ox: #932A23; --bx-ink: #1C1A19; --bx-mute: #666462; --bx-line: #E3DED6; --bx-line-2: #D3CDC3; --bx-sand: #85674B; --bx-garden: #4B5715; --bx-navy: #0B1641; }
 .slide[data-dir="b"] .hl { color: var(--ox); }
 .slide[data-dir="b"] .s-head { max-width: none; }
 .slide--ox { background: radial-gradient(110% 90% at 100% 0%, #A9372E 0%, rgba(169, 55, 46, 0) 58%), radial-gradient(80% 90% at 0% 100%, #651A14 0%, rgba(101, 26, 20, 0) 70%), var(--ox); color: #FFFFFF; }
@@ -676,10 +676,10 @@ body[data-tone="ox"] { background: var(--ox); }
 .sym { display: block; flex: none; aspect-ratio: 200 / 196; fill: currentColor; overflow: visible; }
 .bx-o { display: block; flex: none; aspect-ratio: 99.4 / 100; fill: currentColor; }
 /* o-window: a photograph seen through the counter of the wordmark's o */
-.ow { position: relative; display: block; flex: none; width: calc(var(--ow) * 1px); aspect-ratio: 99.4 / 100; }
-.ow__img { position: absolute; inset: 0; clip-path: url(#b-ocl); background-image: var(--img); background-repeat: no-repeat; background-size: calc(var(--iw) * var(--s) * 1px) auto; background-position: calc(var(--ow) * .5px - var(--cx) * var(--s) * 1px) calc(var(--ow) * .503px - var(--cy) * var(--s) * 1px); }
+.ow { --k: calc(var(--ow) / 216); position: relative; display: block; flex: none; width: calc(var(--ow) * 1px); aspect-ratio: 99.4 / 100; }
+.ow__img { position: absolute; inset: 0; clip-path: url(#b-ocl); background-image: var(--img); background-repeat: no-repeat; background-size: calc(var(--iw) * var(--s) * var(--k) * 1px) auto; background-position: calc(var(--ow) * .5px - var(--cx) * var(--s) * var(--k) * 1px) calc(var(--ow) * .503px - var(--cy) * var(--s) * var(--k) * 1px); }
 .ow__ring { position: absolute; inset: 0; width: 100%; height: 100%; fill: var(--ring, var(--ox)); }
-.ow__pick { position: absolute; left: calc(50% + var(--px) * 1px); top: calc(50% + var(--py) * 1px); width: 22px; height: 22px; margin: -11px 0 0 -11px; border-radius: 50%; background: var(--c); box-shadow: 0 0 0 2.5px #FFFFFF, 0 0 0 4px rgba(28, 26, 25, .55), 0 8px 16px -6px rgba(0, 0, 0, .6); }
+.ow__pick { position: absolute; left: calc(50% + var(--px) * var(--k) * 1px); top: calc(50% + var(--py) * var(--k) * 1px); width: calc(22px * var(--k)); height: calc(22px * var(--k)); margin: calc(-11px * var(--k)) 0 0 calc(-11px * var(--k)); border-radius: 50%; background: var(--c); box-shadow: 0 0 0 2.5px #FFFFFF, 0 0 0 4px rgba(28, 26, 25, .55), 0 8px 16px -6px rgba(0, 0, 0, .6); }
 /* 07a symbol */
 .bx-hero { display: grid; grid-template-columns: 610px minmax(0, 1fr); column-gap: 24px; height: 100%; }
 .bx-hero__text { display: flex; flex-direction: column; justify-content: center; gap: 26px; }
@@ -695,7 +695,7 @@ body[data-tone="ox"] { background: var(--ox); }
 .bx-arrow { width: 22px; height: 22px; margin-top: 19px; color: rgba(255, 255, 255, .55); }
 .bx-wmw { position: relative; width: 186px; aspect-ratio: 762 / 237; }
 .bx-wmw .wm { display: block; width: 100%; --wm-c: #FFFFFF; }
-.bx-wmw i.bx-ring { position: absolute; left: 52px; top: 18.2px; width: 41px; height: 41px; border-radius: 50%; box-shadow: 0 0 0 1.5px #FFFFFF; }
+.bx-wmw i.bx-ring { position: absolute; left: 27.96%; top: 31.47%; width: 22.04%; aspect-ratio: 1; border-radius: 50%; box-shadow: 0 0 0 1.5px #FFFFFF; }
 .bx-fine { font-size: 13.5px; line-height: 1.45; color: rgba(255, 255, 255, .7); max-width: 52ch; }
 .bx-bloom { position: relative; align-self: center; justify-self: end; width: 720px; height: 680px; margin: -10px -40px 0 0; }
 .bx-bloom svg { display: block; width: 100%; height: 100%; overflow: visible; }
@@ -721,10 +721,10 @@ body[data-tone="ox"] { background: var(--ox); }
 .bx-lock .sym { width: 92px; color: #FFFFFF; }
 .bx-lock .wm { width: 228px; --wm-c: #FFFFFF; }
 .bx-cs { position: absolute; display: grid; place-items: center; color: rgba(255, 255, 255, .42); }
-.bx-cs .bx-o { height: 30px; }
-.bx-cs--t { left: 50%; top: 6px; margin-left: -15px; }
-.bx-cs--l { left: 6px; top: 50%; margin-top: -15px; }
-.bx-cs b { position: absolute; left: 38px; top: 7px; font-size: 11px; font-weight: 700; letter-spacing: .04em; white-space: nowrap; }
+.bx-cs .bx-o { height: 42px; }
+.bx-cs--t { left: 50%; top: 0; margin-left: -21px; }
+.bx-cs--l { left: 0; top: 50%; margin-top: -21px; }
+.bx-cs b { position: absolute; left: 50px; top: 14px; font-size: 11px; font-weight: 700; letter-spacing: .04em; white-space: nowrap; }
 .bx-side { display: grid; grid-template-rows: minmax(0, 1fr) 190px; row-gap: 22px; min-width: 0; }
 .bx-fam { display: flex; flex-direction: column; padding: 16px 26px 6px; border-radius: 18px; background: #FFFFFF; box-shadow: inset 0 0 0 1px var(--rule); }
 .bx-fam__h { display: flex; align-items: baseline; justify-content: space-between; padding-bottom: 10px; }
@@ -756,7 +756,7 @@ body[data-tone="ox"] { background: var(--ox); }
 .bx-core { display: flex; flex-direction: column; gap: 12px; min-width: 0; }
 .bx-ox { flex: 1; display: grid; grid-template-rows: minmax(0, 1fr) auto; border-radius: 18px; overflow: hidden; box-shadow: inset 0 0 0 1px var(--rule); }
 .bx-ox__src { position: relative; display: grid; place-items: center; background: #FFFFFF; }
-.bx-ox__wm { position: relative; width: 236px; aspect-ratio: 762 / 237; }
+.bx-ox__wm { --k: 1; position: relative; width: 236px; aspect-ratio: 762 / 237; }
 .bx-ox__wm .wm { display: block; width: 100%; --wm-c: var(--ox); }
 .bx-ox__wm .ow__pick { --c: var(--ox); left: 57.9px; top: 34.5px; margin: -11px 0 0 -11px; }
 .bx-ox__src small { position: absolute; left: 20px; bottom: 14px; font-size: 12px; color: var(--muted); }
@@ -775,7 +775,7 @@ body[data-tone="ox"] { background: var(--ox); }
 .bx-win { display: grid; gap: 5px; align-content: start; }
 .bx-win .ow { margin-bottom: 14px; }
 .bx-win code { color: var(--ink-2); }
-.bx-win small { font-size: 12px; line-height: 1.35; color: var(--muted); }
+.bx-win small { min-height: 2.7em; font-size: 12px; line-height: 1.35; color: var(--muted); }
 .bx-for i { width: 8px; height: 8px; border-radius: 50%; background: var(--c); flex: none; }
 .bx-win .bx-for { justify-self: start; margin-top: 6px; display: inline-flex; align-items: center; gap: 7px; height: 26px; padding: 0 11px 0 9px; border-radius: 13px; background: var(--t); color: var(--ct); font-size: 12px; font-weight: 700; }
 .bx-count { display: grid; grid-template-columns: auto minmax(0, 1fr); column-gap: 24px; align-items: center; margin-top: auto; padding-top: 14px; border-top: 1px solid var(--rule); }
@@ -791,7 +791,7 @@ body[data-tone="ox"] { background: var(--ox); }
 .bx-type__pair b.sans { font-family: var(--sans); font-size: 76px; letter-spacing: -.04em; line-height: 1.02; }
 .bx-type__pair span { margin-top: 8px; font-size: 13.5px; font-weight: 700; }
 .bx-type__pair small { font-size: 12.5px; line-height: 1.35; color: var(--muted); }
-.bx-type__demo { padding: 14px 0; border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); font-family: var(--serif); font-size: 39px; font-weight: 600; line-height: 1; letter-spacing: -.01em; color: var(--bx-ink); }
+.bx-type__demo { text-wrap: balance; padding: 14px 0; border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); font-family: var(--serif); font-size: 39px; font-weight: 600; line-height: 1; letter-spacing: -.01em; color: var(--bx-ink); }
 .bx-type__demo em { color: var(--bx-sand); }
 .bx-type__scale { display: grid; gap: 5px; }
 .bx-type__scale li { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; }
@@ -824,7 +824,7 @@ body[data-tone="ox"] { background: var(--ox); }
 .bx-part { display: flex; flex-direction: column; gap: 8px; min-width: 0; padding: 18px 20px; }
 .bx-part .bx-serif-h { font-size: 34px; }
 .bx-part .bx-steps { margin-top: 4px; column-gap: 8px; }
-.bx-part .bx-steps small { font-size: 11.5px; }
+.bx-part .bx-steps small { min-height: 2.8em; font-size: 11.5px; }
 .bx-trk-src { margin-top: auto; font-size: 11.5px; line-height: 1.4; color: var(--muted); }
 .bx-big { display: flex; align-items: center; gap: 12px; }
 .bx-big b { font-family: var(--serif); font-size: 52px; font-weight: 600; line-height: .9; color: var(--ct); }
@@ -843,7 +843,7 @@ body[data-tone="ox"] { background: var(--ox); }
 .bx-part--done small { font-size: 12.5px; line-height: 1.4; color: var(--muted); }
 .bx-part--done .bl { margin-top: auto; align-self: flex-start; }
 .bx-card { border-radius: 18px; background: #FFFFFF; box-shadow: inset 0 0 0 1px var(--rule); }
-.bx-eyebrow { display: inline-flex; align-items: center; gap: 8px; font-size: 11px; font-weight: 800; letter-spacing: .16em; text-transform: uppercase; color: var(--ct, var(--ox)); }
+.bx-eyebrow { font-size: 11px; font-weight: 800; letter-spacing: .16em; text-transform: uppercase; color: var(--ct, var(--ox)); }
 .bx-serif-h { font-family: var(--serif); font-size: 38px; font-weight: 600; line-height: 1; letter-spacing: -.01em; color: var(--bx-ink); }
 .bx-serif-h em { color: var(--ct, var(--ox)); }
 .bx-steps { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); column-gap: 10px; margin-top: 10px; }
@@ -1200,19 +1200,25 @@ body[data-tone="ox"] { background: var(--ox); }
 .is-narrow .bx-hero, .is-narrow .bx-names, .is-narrow .bx-pal, .is-narrow .bx-work, .is-narrow .bx-bot, .is-narrow .bx-parts, .is-narrow .bx-count { grid-template-columns: minmax(0, 1fr); grid-template-rows: none; row-gap: 24px; height: auto; }
 .is-narrow .bx-display { font-size: 44px; }
 .is-narrow .bx-lede { font-size: 18px; }
-.is-narrow .bx-derive { flex-wrap: wrap; row-gap: 18px; }
+.is-narrow .bx-derive { gap: 8px; }
+.is-narrow .bx-wmw { width: 120px; }
+.is-narrow .bx-step__v { height: 44px; }
+.is-narrow .bx-step .bx-o { height: 28px; }
+.is-narrow .bx-step .sym { height: 40px; }
+.is-narrow .bx-step small { font-size: 9.5px; letter-spacing: .08em; }
+.is-narrow .bx-arrow { width: 16px; height: 16px; margin-top: 14px; }
 .is-narrow .bx-bloom { justify-self: stretch; width: 100%; height: auto; aspect-ratio: 330 / 272; margin: 0; }
-.is-narrow .bx-lab text { font-size: 11px; }
-.is-narrow .bx-lab text.bx-lab__c { font-size: 8.5px; }
+.is-narrow .bx-lab text { font-size: 10.5px; }
+.is-narrow .bx-lab text.bx-lab__c { font-size: 10px; }
 .is-narrow .bx-master { gap: 24px; }
 .is-narrow .bx-lock { padding: 26px; gap: 12px; }
 .is-narrow .bx-lock::after { inset: 26px; }
 .is-narrow .bx-lock .sym { width: 56px; }
 .is-narrow .bx-lock .wm { width: 140px; }
-.is-narrow .bx-cs .bx-o { height: 18px; }
-.is-narrow .bx-cs--t { top: 4px; margin-left: -9px; }
-.is-narrow .bx-cs--l { left: 4px; margin-top: -9px; }
-.is-narrow .bx-cs b { left: 24px; top: 2px; }
+.is-narrow .bx-cs .bx-o { height: 26px; }
+.is-narrow .bx-cs--t { top: 0; margin-left: -13px; }
+.is-narrow .bx-cs--l { left: 0; margin-top: -13px; }
+.is-narrow .bx-cs b { left: 32px; top: 7px; }
 .is-narrow .bx-side { grid-template-rows: none; row-gap: 24px; }
 .is-narrow .bx-fam__h { flex-direction: column; gap: 4px; }
 .is-narrow .bx-row { grid-template-columns: 24px auto minmax(0, 1fr); row-gap: 2px; padding: 10px 0; }
@@ -1221,7 +1227,7 @@ body[data-tone="ox"] { background: var(--ox); }
 .is-narrow .bx-row em { font-size: 24px; }
 .is-narrow .bx-row small { grid-column: 1 / -1; text-align: left; }
 .is-narrow .bx-apps { padding: 20px; }
-.is-narrow .bx-apps__row { flex-wrap: wrap; gap: 14px; justify-content: flex-start; }
+.is-narrow .bx-apps__row { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px 12px; }
 .is-narrow .bx-app__ic { width: 56px; height: 56px; border-radius: 14px; }
 .is-narrow .bx-app__ic .sym { width: 38px; }
 .is-narrow .bx-en { height: auto; min-height: 42px; flex-wrap: wrap; padding: 10px 14px; }
@@ -1233,9 +1239,17 @@ body[data-tone="ox"] { background: var(--ox); }
 .is-narrow .bx-type__pair b.sans { font-size: 58px; }
 .is-narrow .bx-type__demo { font-size: 32px; }
 .is-narrow .bx-jobs { grid-template-rows: none; row-gap: 20px; }
-.is-narrow .bx-steps { grid-template-columns: repeat(2, minmax(0, 1fr)); row-gap: 14px; }
+.is-narrow .bx-steps { grid-template-columns: repeat(3, minmax(0, 1fr)); row-gap: 14px; }
 .is-narrow .bx-rules__h { flex-direction: column; gap: 4px; }
 .is-narrow .bx-rules__row { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.is-narrow .bx-do { min-width: 0; }
+.is-narrow .bx-rv { gap: 10px; padding: 0 26px 0 10px; overflow: hidden; }
+.is-narrow .bx-rv .sym { width: 44px; }
+.is-narrow .bx-rv__dark { width: 46px; height: 46px; border-radius: 12px; }
+.is-narrow .bx-rv__dark .sym { width: 30px; }
+.is-narrow .bx-rv__list span { font-size: 9px; letter-spacing: .1em; }
+.is-narrow .bx-rv__list .sym { width: 11px; }
+.is-narrow .bx-rv__b { right: 6px; top: 6px; }
 .is-narrow .bx-mosaic { grid-template-columns: minmax(0, 1fr); grid-template-rows: none; height: auto; }
 .is-narrow .bx-frame--hero { grid-row: auto; }
 .is-narrow .bx-band { grid-column: auto; grid-template-columns: minmax(0, 1fr); row-gap: 20px; padding: 22px 20px; }
@@ -1628,9 +1642,9 @@ body[data-tone="ox"] { background: var(--ox); }
         <svg class="ico bx-arrow" aria-hidden="true"><use href="#i-arrow-r"/></svg>
         <div class="bx-step"><span class="bx-step__v" data-sym></span><small>Five, woven</small></div>
       </div>
-      <p class="bx-fine rv" style="--d:4">Proposal. The wordmark stays exactly as it is. The symbol is new, traced from its letter o, and never replaces it. The petals follow the five businesses Bloom Holding lists.<a class="src" href="#src-6" data-s="6">6</a></p>
+      <p class="bx-fine rv" style="--d:4">Proposal. The wordmark stays exactly as it is. The symbol is new, traced from its letter o, and never replaces it. The petals echo the five business lines Bloom Holding lists.<a class="src" href="#src-6" data-s="6">6</a> It is a symbol, not a count: Bloom Universal also shows Bloom Retail.</p>
     </div>
-    <figure class="bx-bloom" id="bx-bloom" role="img" aria-label="The proposed Bloom symbol: five o's woven around one centre, one for each Bloom business, with the person at the centre"></figure>
+    <figure class="bx-bloom" id="bx-bloom" role="img" aria-label="The proposed Bloom symbol: five o's woven around one centre, echoing Bloom's five business lines, with the person at the centre"></figure>
   </div>
 </section>
 
@@ -1647,7 +1661,7 @@ body[data-tone="ox"] { background: var(--ox); }
           <span class="bx-cs bx-cs--t" aria-hidden="true"><svg class="bx-o" viewBox="-49.7 -50 99.4 100"><use href="#b-o"/></svg><b>clear space = one o</b></span>
           <span class="bx-cs bx-cs--l" aria-hidden="true"><svg class="bx-o" viewBox="-49.7 -50 99.4 100"><use href="#b-o"/></svg></span>
         </div>
-        <p>The wordmark already on Bloom Universal, Bloom Partners and the home-buying platform leads, unchanged.<a class="src" href="#src-16" data-s="16">16</a> The symbol signs beside it, and stands alone where the wordmark cannot fit: app icons, favicons, loading.</p>
+        <p>The wordmark already on Bloom Universal, Bloom Partners and the home-buying platform leads, unchanged.<a class="src" href="#src-16" data-s="16">16</a> The symbol signs beside it, and stands alone where the wordmark cannot fit: app icons and favicons.</p>
       </div>
       <div class="bx-side">
         <div class="bx-fam rv" style="--d:2">
@@ -1655,7 +1669,7 @@ body[data-tone="ox"] { background: var(--ox); }
           <div id="bx-rows" style="display:contents"></div>
         </div>
         <div class="bx-bot rv" style="--d:3">
-          <div class="bx-apps"><span class="label">App icons · one symbol, the product's colour</span><div class="bx-apps__row" id="bx-apps"></div></div>
+          <div class="bx-apps"><span class="label">App icons · white symbol, product colour</span><div class="bx-apps__row" id="bx-apps"></div></div>
           <div class="bx-endorse">
             <span class="label">Partner brands lead</span>
             <div class="bx-en"><i class="logo logo--edition" role="img" aria-label="The Abu Dhabi EDITION"></i><i class="bx-en__div" aria-hidden="true"></i><span class="bx-sig" role="img" aria-label="Bloom"><span data-sym></span><i class="wm"></i></span></div>
@@ -1859,7 +1873,7 @@ body[data-tone="ox"] { background: var(--ox); }
           <p><b>Left out on purpose.</b> Bloom's own pages publish different school counts (15 and 20), student totals (19,000+ and 22,000+) and hotel room totals. None are shown until Bloom confirms one figure.</p>
           <p data-dir="a"><b>Logos.</b> The Abu Dhabi EDITION, Marriott and Bloom Multiverse marks come from the Phase 1 material. The Bloom wordmark on 07a to 07f is taken from the Bloom Universal screen. Other brands are plain text until official files are supplied.</p>
           <p data-dir="a"><b>Concepts.</b> 07a to 07f are design concepts for discussion, written with content from today's screens. Descriptor names, accents and the type pairing are proposals, not Bloom decisions.</p>
-          <p data-dir="b"><b>Logos.</b> The Abu Dhabi EDITION, Marriott and Bloom Multiverse marks come from the Phase 1 material; the Bloom wordmark is taken from the Bloom Universal screen. The Bloom symbol on 07a to 07f is new: a proposal traced from the wordmark's letter o, not an existing Bloom mark.</p>
+          <p data-dir="b"><b>Logos.</b> The Abu Dhabi EDITION, Marriott and Bloom Multiverse marks come from the Phase 1 material; the Bloom wordmark is taken from the Bloom Universal screen. The Bloom symbol on 07a to 07f is new: a proposal traced from the wordmark's letter o, not an existing Bloom mark. Other brands are plain text until official files are supplied.</p>
           <p data-dir="b"><b>Concepts.</b> 07a to 07f show direction B, for discussion, written with content from today's screens. Its colours are sampled from those screens and the Bloom Universal photography (median of a 13 × 13 pixel patch). The symbol, colour roles, descriptor names and type pairing are proposals, not Bloom decisions.</p>
         </div>
       </div>
@@ -2286,13 +2300,13 @@ body[data-tone="ox"] { background: var(--ox); }
   // Rule: the symbol only signs (lockups, app icons, favicons), whole and in one colour: oxblood, or white on a dark field.
   // It is never recoloured petal by petal, never encodes data or progress, and never decorates text. Interfaces use their own parts.
   const SYMVB = "-100 -102 200 196";
-  const sym = (st, cls = "", extra = "") => `<svg class="sym${cls ? ` ${cls}` : ""}" viewBox="${SYMVB}" aria-hidden="true">${[0, 1, 2, 3, 4].map((k) => `<use href="#b-p${k}"${st && st[k] ? ` style="${st[k]}"` : ""}/>`).join("")}${extra}</svg>`;
+  const sym = (st) => `<svg class="sym" viewBox="${SYMVB}" aria-hidden="true">${[0, 1, 2, 3, 4].map((k) => `<use href="#b-p${k}"${st && st[k] ? ` style="${st[k]}"` : ""}/>`).join("")}</svg>`; // st: per-petal styles, only for the misuse examples on 07d
   $$("[data-sym]").forEach((e) => { e.innerHTML = sym(); });
   // fill, text tone, tint. Base colours sampled from Bloom (see 07c); tints mixed with paper.
   const FAMB = { group: ["#932A23", "#932A23", "#F3E4E2"], homes: ["#85674B", "#85674B", "#EEE6DD"], community: ["#4B5715", "#4B5715", "#E6E8D6"], partners: ["#A79DBF", "#6F5C9E", "#ECE9F2"], people: ["#0B1641", "#0B1641", "#E4E6EF"] };
   const famB = (f) => `--c:${FAMB[f][0]};--ct:${FAMB[f][1]};--t:${FAMB[f][2]}`;
   // A photograph seen through the counter of the wordmark's o, centred on (cx, cy) of the source at scale s.
-  const owin = (img, iw, cx, cy, s, ow, ring, pick) => `<span class="ow" style="--ow:${ow};--ring:${ring}"><i class="ow__img" style="--img:var(--shot-${img});--iw:${iw};--cx:${cx};--cy:${cy};--s:${s}"></i><svg class="ow__ring" viewBox="-49.7 -50 99.4 100" aria-hidden="true"><use href="#b-o"/></svg>${pick ? `<i class="ow__pick" style="--px:${pick[0]};--py:${pick[1]};--c:${pick[2]}"></i>` : ""}</span>`;
+  const owin = (img, iw, cx, cy, s, ow, ring, pick) => `<span class="ow" style="--ow:${ow};--ring:${ring}"><i class="ow__img" style="--img:var(--shot-${img});--iw:${iw};--cx:${cx};--cy:${cy};--s:${s}"></i><svg class="ow__ring" viewBox="-49.7 -50 99.4 100" aria-hidden="true"><use href="#b-o"/></svg><i class="ow__pick" style="--px:${pick[0]};--py:${pick[1]};--c:${pick[2]}"></i></span>`;
 
   /* 07a: the symbol opens out of one o */
   const bloomB = $("#bx-bloom");
@@ -2340,7 +2354,7 @@ body[data-tone="ox"] { background: var(--ox); }
     ["homes", "Sandstone", "#85674B", "Bloom Properties photograph, building facade", "universal", 2000, 115, 760, 1, [-35, 0], "Homes"],
     ["community", "Garden", "#4B5715", "Bloom Landscape photograph, lawn", "universal", 2000, 900, 890, 1.3, [0, -52], "Community"],
     ["partners", "Dusk", "#A79DBF", "Bloom Properties photograph, evening sky · text tone #6F5C9E", "universal", 2000, 300, 580, 1, [0, -60], "Partners"],
-    ["people", "Navy", "#0B1641", "Bloom Multiverse headings, kept from today", "multiverse", 2000, 160, 450, .9, [-34, 18], "Multiverse"]
+    ["people", "Navy", "#0B1641", "Bloom Multiverse headings, kept from today", "multiverse", 2000, 140, 468, 1.3, [-23, 3], "Multiverse"]
   ];
   if ($("#bx-wins")) {
     $("#bx-neu").innerHTML = [["#1C1A19", "Ink", "Bloom Partners headings"], ["#F6F4F0", "Paper", "Bloom Multiverse page"], ["#FFFFFF", "White", "Bloom Universal page"]]
@@ -2356,15 +2370,15 @@ body[data-tone="ox"] { background: var(--ox); }
   if ($("#bx-rules")) {
     const RULES = [
       [1, "Whole, in one colour", "Oxblood, or white on a dark field. Lockups, app icons, favicons.", `${sym()}<span class="bx-rv__dark">${sym()}</span>`],
-      [0, "Never recoloured petal by petal", "One colour for the whole symbol, every time.", sym(["fill:#932A23", "fill:#85674B", "fill:#4B5715", "fill:#A79DBF", "fill:#0B1641"])],
-      [0, "Never a chart, tracker or loader", "Its petals never stand for data, steps or progress.", `<span class="bx-rv__chart">${sym(wlStyle)}<i>32</i></span>`],
-      [0, "Never a bullet or an icon", "It never decorates labels, lists or running text.", `<span class="bx-rv__list">${["Your requests", "Unit price", "Six businesses"].map((t) => `<span>${sym()}${t}</span>`).join("")}</span>`]
+      [0, "Never recoloured in parts", "One colour for the whole symbol, every time.", sym(["fill:#932A23", "fill:#85674B", "fill:#4B5715", "fill:#A79DBF", "fill:#0B1641"])],
+      [0, "Never a chart or loader", "In products, its petals never stand for data, steps or progress.", `<span class="bx-rv__chart">${sym(wlStyle)}<i>32</i></span>`],
+      [0, "Never a bullet in text", "It never decorates labels, lists or running text.", `<span class="bx-rv__list">${["Your requests", "Unit price", "Documents"].map((t) => `<span>${sym()}${t}</span>`).join("")}</span>`]
     ];
     $("#bx-rules").innerHTML = RULES.map(([ok, t, d, v]) => `<div class="bx-do${ok ? " is-ok" : ""}"><span class="bx-rv" role="img" aria-label="${ok ? "Correct" : "Incorrect"}: ${esc(t)}">${v}<i class="bx-rv__b">${ic(ok ? "check" : "x")}</i></span><b>${t}</b><small>${d}</small></div>`).join("");
-    const STEPS = [["View", "30 Sep 2026", "done"], ["Book", "7 Oct 2026", "done"], ["Buy", "Digital", "done"], ["Build", "45% · Q4 2028", "now"], ["Move in", "By Dec 2028", ""]];
-    $("#bx-parts").innerHTML = `<div class="bx-card bx-part" style="${famB("homes")}"><span class="bx-k">Journey tracker · Homes</span><span class="bx-eyebrow">A1-401 · Al Metlaa, Al Ain</span><p class="bx-serif-h">Your home is 45% <em>built.</em></p>`
+    const STEPS = [["View", "Opens 30 Sep 2026", "done"], ["Book", "Opens 7 Oct 2026", "done"], ["Buy", "Digital, from 7 Oct 2026", "done"], ["Build", "45%, due Q4 2028", "now"], ["Move in", "Handover by Dec 2028", ""]];
+    $("#bx-parts").innerHTML = `<div class="bx-card bx-part" style="${famB("homes")}"><span class="bx-k">Journey tracker · after purchase</span><span class="bx-eyebrow">A1-401 · Al Metlaa, Al Ain</span><p class="bx-serif-h">Your home is 45% <em>built.</em></p>`
       + `<ol class="bx-steps">${STEPS.map(([n, d, st], i) => `<li${st ? ` class="is-${st}"` : ""}><b>${n}</b><small>${d}</small></li>`).join("")}</ol>`
-      + `<small class="bx-trk-src">Concept. Steps and dates as ADHA publishes them${src(2)}; progress and handover from today's screen${src(16)}.</small></div>`
+      + `<small class="bx-trk-src">Concept. Steps and dates as ADHA publishes them${src(2)}<span>; progress and handover from today's screen</span>${src(16)}.</small></div>`
       + `<div class="bx-card bx-part" style="${famB("people")}"><span class="bx-k">Workload · Multiverse</span><p class="bx-big"><b>32</b><span>actions waiting<br>across four apps</span></p>${bars(WLS)}</div>`
       + `<div class="bx-card bx-part bx-part--done" style="${famB("partners")}"><span class="bx-k">Confirmed · Partners</span><span class="bx-tick">${ic("check")}</span><b>Request raised</b><small>Open house. Our team will get back to you.</small><span class="bl">Track request${ic("arrow-r")}</span></div>`;
   }
@@ -2378,7 +2392,7 @@ body[data-tone="ox"] { background: var(--ox); }
   const MOCKS_B = {
     universal: () => scrB("group", "Direction B concept: Bloom Universal, the gateway to six Bloom businesses", bnav("Universal", ["Home", "Businesses"], blang)
       + `<div class="bbody"><div class="bu"><div class="bu__text">${eb("The Bloom experience")}<h4 class="bh">More than a place <em>to live.</em></h4><p class="bp">Homes, schools, hotels and services. Six Bloom businesses, one place to start.</p><div class="bbtns"><span class="bb">Let's get started${ic("arrow-r")}</span></div></div>`
-      + `<figure class="bu__photo">${crop("universal", 2000, 112, 490, 318, 350, .9434)}<figcaption><span>01</span>Bloom Properties</figcaption></figure>`
+      + `<figure class="bu__photo">${crop("universal", 2000, 112, 640, 318, 350, .9434)}<figcaption><span>01</span>Bloom Properties</figcaption></figure>`
       + `<div class="bu__idx">${eb("Six businesses")}<ul>${["Properties", "Education", "Retail", "Hospitality", "Landscape", "Facilities"].map((n, i) => `<li${i ? "" : ' class="is-on"'}><span>${pad(i + 1)}</span><b>${n}</b>${ic("arrow-r")}</li>`).join("")}</ul></div></div></div>`),
     masterplan: () => scrB("homes", "Direction B concept: Al Metlaa master plan as a Bloom Homes screen", crop("masterplan", 2000, 424, 0, 1576, 819, .5546, "bm__map") + bnav("Homes", ["Masterplan", "Units", "Documents"], blang)
       + `<div class="bm__panel bcard">${eb("Al Metlaa · Al Ain")}<h4 class="bh bh--s">2,247 <em>villas.</em></h4><span class="bm__k">Facade option</span>`
@@ -2405,7 +2419,7 @@ body[data-tone="ox"] { background: var(--ox); }
   /* 07e: before and after, direction B */
   const BB = {
     universal: [["The symbol and wordmark sign the screen", "The headline sets in the Bloom serif", "Photography previews the business you choose", "Six businesses become one numbered index"], ["The six businesses and their photography", "The Arabic language switch"]],
-    masterplan: [["The Bloom symbol and wordmark appear", "Filters sit in one Bloom Homes panel", "Book appointment takes oxblood", "Sandstone, from Bloom's photography, marks the selection"], ["The satellite master plan", "Facade types and unit counts"]],
+    masterplan: [["The Bloom symbol and wordmark appear", "Filters sit in one Bloom Homes panel", "Book appointment takes oxblood", "Sandstone marks the chosen facade"], ["The satellite master plan", "Facade types and unit counts"]],
     home: [["Oxblood replaces the black buttons", "A five-step tracker shows the buying step", "Price and Iskan loan sit in one card", "The unit name sets in the Bloom serif"], ["Unit photography and details", "Book appointment and reserve unit"]],
     partners: [["One serif replaces the mixed headings", "Dusk replaces five pastel tiles", "Raise a request becomes one oxblood link", "The Bloom symbol signs the navigation"], ["Request types and their wording", "Home, Leads, Inventory and My Team"]],
     multiverse: [["The Bloom wordmark and symbol replace today's Multiverse mark", "The orbit becomes a ranked list of what waits", "Navy stays; main actions take oxblood", "The gradient name becomes the Bloom serif"], ["The four work apps and their counts", "Bloom GPT and quick search"]]
