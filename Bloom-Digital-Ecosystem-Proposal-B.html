@@ -731,7 +731,7 @@ body[data-tone="ox"] { background: var(--ox); }
 .bx-fam__h p { font-family: var(--serif); font-size: 25px; font-weight: 600; letter-spacing: -.005em; color: var(--bx-ink); }
 .bx-fam__h p em { color: var(--ox); }
 .bx-row { flex: 1; display: grid; grid-template-columns: 30px auto minmax(0, 1fr) auto; align-items: center; column-gap: 14px; border-top: 1px solid var(--rule); }
-.bx-row .sym { width: 28px; color: var(--ct); }
+.bx-row .sym { width: 28px; color: var(--ox); }
 .bx-row .wm { width: 88px; --wm-c: var(--ox); }
 .bx-row em { padding-left: 14px; border-left: 1px solid var(--rule); font-family: var(--serif); font-size: 30px; font-weight: 600; line-height: 1.05; color: var(--ct); }
 .bx-row small { font-size: 13.5px; color: var(--muted); text-align: right; }
@@ -776,8 +776,8 @@ body[data-tone="ox"] { background: var(--ox); }
 .bx-win .ow { margin-bottom: 14px; }
 .bx-win code { color: var(--ink-2); }
 .bx-win small { font-size: 12px; line-height: 1.35; color: var(--muted); }
+.bx-for i { width: 8px; height: 8px; border-radius: 50%; background: var(--c); flex: none; }
 .bx-win .bx-for { justify-self: start; margin-top: 6px; display: inline-flex; align-items: center; gap: 7px; height: 26px; padding: 0 11px 0 9px; border-radius: 13px; background: var(--t); color: var(--ct); font-size: 12px; font-weight: 700; }
-.bx-for .sym { width: 13px; color: var(--ct); }
 .bx-count { display: grid; grid-template-columns: auto minmax(0, 1fr); column-gap: 24px; align-items: center; margin-top: auto; padding-top: 14px; border-top: 1px solid var(--rule); }
 .bx-count b { font-size: 56px; font-weight: 300; line-height: 1.1; letter-spacing: -.04em; white-space: nowrap; }
 .bx-count b span { margin: 0 6px; color: var(--ox); font-weight: 400; }
@@ -797,16 +797,53 @@ body[data-tone="ox"] { background: var(--ox); }
 .bx-type__scale li { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; }
 .bx-type__scale small { font-size: 12px; color: var(--muted); font-variant-numeric: tabular-nums; }
 .bx-type__note { margin-top: auto; font-size: 12.5px; line-height: 1.45; color: var(--muted); }
-.bx-jobs { display: grid; grid-template-rows: auto minmax(0, 1fr) 198px; row-gap: 14px; min-width: 0; }
-.bx-rule { display: flex; align-items: center; gap: 12px; font-size: 15px; font-weight: 600; color: var(--ink-2); }
-.bx-rule .sym { width: 22px; color: var(--ox); }
-.bx-rule b { color: var(--bx-ink); }
+.bx-jobs { display: grid; grid-template-rows: auto minmax(0, 1fr); row-gap: 16px; min-width: 0; }
+.bx-k { font-size: 11px; font-weight: 800; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); }
+/* symbol rules: one correct use, three misuses */
+.bx-rules { display: flex; flex-direction: column; gap: 14px; padding: 18px 22px 20px; }
+.bx-rules__h { display: flex; align-items: baseline; justify-content: space-between; gap: 16px; }
+.bx-rules__h > span:last-child { font-size: 13.5px; font-weight: 600; color: var(--ink-2); }
+.bx-rules__row { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px; }
+.bx-do { display: grid; gap: 3px; align-content: start; }
+.bx-do b { font-size: 14px; font-weight: 700; }
+.bx-do small { font-size: 12px; line-height: 1.4; color: var(--muted); }
+.bx-rv { position: relative; display: flex; align-items: center; justify-content: center; gap: 16px; height: 96px; margin-bottom: 8px; border-radius: 12px; background: var(--paper-2); }
+.bx-rv .sym { width: 62px; color: var(--ox); }
+.bx-rv__dark { display: grid; place-items: center; width: 62px; height: 62px; border-radius: 15px; background: var(--ox); }
+.bx-rv__dark .sym { width: 42px; color: #FFFFFF; }
+.bx-rv__chart { position: relative; }
+.bx-rv__chart i { position: absolute; left: 50%; top: 50%; display: grid; place-items: center; width: 24px; height: 24px; margin: -13px 0 0 -12px; border-radius: 50%; background: #FFFFFF; box-shadow: 0 0 0 1px var(--bx-line); font: 600 13px/1 var(--serif); font-style: normal; color: var(--bx-navy); }
+.bx-rv__list { display: grid; gap: 8px; }
+.bx-rv__list span { display: flex; align-items: center; gap: 7px; font-size: 10px; font-weight: 800; letter-spacing: .14em; text-transform: uppercase; color: var(--bx-ink); }
+.bx-rv__list .sym { width: 12px; }
+.bx-rv__b { position: absolute; right: 8px; top: 8px; display: grid; place-items: center; width: 22px; height: 22px; border-radius: 50%; background: var(--ox); color: #FFFFFF; }
+.bx-do.is-ok .bx-rv__b { background: var(--bx-garden); }
+.bx-rv__b .ico { width: 12px; height: 12px; stroke-width: 3; }
+/* components that do the work instead */
+.bx-parts { display: grid; grid-template-columns: minmax(0, 2fr) minmax(0, 1fr) minmax(0, 1fr); column-gap: 18px; }
+.bx-part { display: flex; flex-direction: column; gap: 8px; min-width: 0; padding: 18px 20px; }
+.bx-part .bx-serif-h { font-size: 34px; }
+.bx-part .bx-steps { margin-top: 4px; column-gap: 8px; }
+.bx-part .bx-steps small { font-size: 11.5px; }
+.bx-trk-src { margin-top: auto; font-size: 11.5px; line-height: 1.4; color: var(--muted); }
+.bx-big { display: flex; align-items: center; gap: 12px; }
+.bx-big b { font-family: var(--serif); font-size: 52px; font-weight: 600; line-height: .9; color: var(--ct); }
+.bx-big span { font-size: 12.5px; line-height: 1.35; color: var(--muted); }
+.bx-bars { display: grid; gap: 9px; }
+.bx-parts .bx-bars { margin-top: auto; }
+.bx-bars li { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: center; row-gap: 5px; font-size: 12.5px; font-weight: 600; }
+.bx-bars em { font-style: normal; }
+.bx-bars li > span { display: flex; align-items: center; gap: 6px; min-width: 0; }
+.bx-bars b { font-weight: 700; font-variant-numeric: tabular-nums lining-nums; }
+.bx-bars i { grid-column: 1 / -1; height: 6px; border-radius: 3px; background: linear-gradient(var(--ct) 0 0) 0 0 / var(--v) 100% no-repeat, var(--t); }
+.bx-tick { display: grid; place-items: center; width: 52px; height: 52px; margin: 4px 0; border-radius: 50%; background: var(--t); color: var(--ct); }
+.bx-tick .ico { width: 24px; height: 24px; stroke-width: 2.4; }
+.is-current .bx-tick { animation: bxpop .9s var(--spring) .6s both; }
+.bx-part--done b { font-size: 16px; font-weight: 700; }
+.bx-part--done small { font-size: 12.5px; line-height: 1.4; color: var(--muted); }
+.bx-part--done .bl { margin-top: auto; align-self: flex-start; }
 .bx-card { border-radius: 18px; background: #FFFFFF; box-shadow: inset 0 0 0 1px var(--rule); }
-.bx-track { display: grid; grid-template-columns: 196px minmax(0, 1fr); column-gap: 30px; align-items: center; padding: 18px 28px; }
-.bx-track > .sym { width: 196px; }
-.bx-track__t { display: grid; gap: 8px; }
 .bx-eyebrow { display: inline-flex; align-items: center; gap: 8px; font-size: 11px; font-weight: 800; letter-spacing: .16em; text-transform: uppercase; color: var(--ct, var(--ox)); }
-.bx-eyebrow .sym { width: 12px; }
 .bx-serif-h { font-family: var(--serif); font-size: 38px; font-weight: 600; line-height: 1; letter-spacing: -.01em; color: var(--bx-ink); }
 .bx-serif-h em { color: var(--ct, var(--ox)); }
 .bx-steps { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); column-gap: 10px; margin-top: 10px; }
@@ -816,25 +853,7 @@ body[data-tone="ox"] { background: var(--ox); }
 .bx-steps b { font-size: 14px; font-weight: 700; }
 .bx-steps small { font-size: 12px; line-height: 1.35; color: var(--muted); }
 .bx-steps li.is-now b { color: var(--bx-sand); }
-.bx-trk-src { margin-top: 4px; font-size: 12px; line-height: 1.4; color: var(--muted); }
-.bx-trio { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); column-gap: 18px; }
-.bx-mini { display: flex; flex-direction: column; gap: 5px; padding: 15px 20px; }
-.bx-mini__v { display: flex; align-items: center; gap: 14px; height: 80px; }
-.bx-mini__v .sym { width: 78px; }
-.bx-mini b { font-size: 15px; font-weight: 700; }
-.bx-mini small { font-size: 12.5px; line-height: 1.4; color: var(--muted); }
-.bx-mini .bx-k { font-size: 11px; font-weight: 800; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); }
-.bx-load use { fill: var(--ox); opacity: .14; }
-.is-current .bx-load use { animation: bxweave 2.6s var(--ease) infinite; animation-delay: calc(var(--k) * 190ms); }
-@keyframes bxweave { 0%, 6% { opacity: .14; } 22%, 74% { opacity: 1; } 92%, 100% { opacity: .14; } }
-.bx-done .sym { color: var(--bx-dusk-t); }
-.is-current .bx-done .sym { animation: bxpop .9s var(--spring) .6s both; }
 @keyframes bxpop { from { transform: scale(.6) rotate(-40deg); opacity: 0; } }
-.bx-load-l { display: grid; gap: 4px; }
-.bx-wl { display: grid; gap: 3px; font-size: 12px; color: var(--ink-2); }
-.bx-wl span { display: flex; align-items: center; gap: 7px; }
-.bx-wl i { width: 9px; height: 9px; border-radius: 3px; background: var(--bx-navy); opacity: var(--o); flex: none; }
-.bx-wl b { margin-left: auto; font-size: 12px; font-variant-numeric: tabular-nums; }
 /* 07e/07f frames */
 .bx-mosaic { display: grid; grid-template-columns: 685px minmax(0, 1fr) minmax(0, 1fr); grid-template-rows: 170px 170px minmax(0, 1fr); gap: 16px; height: 100%; }
 .bx-frame { position: relative; border-radius: 10px; overflow: hidden; background: #FFFFFF; box-shadow: 0 0 0 1px var(--bx-line-2), 0 30px 50px -36px rgba(28, 26, 25, .55); transition: transform .4s var(--spring), box-shadow .4s; }
@@ -878,8 +897,8 @@ body[data-tone="ox"] { background: var(--ox); }
 .bh em { color: var(--em, var(--ct)); }
 .bh--s { font-size: 34px; }
 .bh--l { font-size: 56px; }
-.be { display: inline-flex; align-items: center; gap: 7px; font-size: 10.5px; font-weight: 800; letter-spacing: .17em; text-transform: uppercase; color: var(--ct); }
-.be .sym { width: 11px; }
+.be::before { content: ""; width: 14px; height: 2px; border-radius: 1px; background: currentColor; }
+.be { display: inline-flex; align-items: center; gap: 8px; font-size: 10.5px; font-weight: 800; letter-spacing: .17em; text-transform: uppercase; color: var(--ct); }
 .bp { font-size: 13px; line-height: 1.5; color: #5B5856; }
 .bbtns { display: flex; align-items: center; gap: 14px; }
 .bb { display: inline-flex; align-items: center; justify-content: center; gap: 9px; height: 38px; padding: 0 18px; border-radius: 4px; background: var(--ox); color: #FFFFFF; font-size: 12.5px; font-weight: 700; white-space: nowrap; }
@@ -897,13 +916,18 @@ body[data-tone="ox"] { background: var(--ox); }
 .bu { display: grid; grid-template-columns: 290px 300px minmax(0, 1fr); column-gap: 22px; height: 100%; }
 .bu__text { display: flex; flex-direction: column; gap: 14px; padding-top: 18px; }
 .bu__text .bbtns { margin-top: auto; }
-.bu .ow { --ow: 300; align-self: center; --ring: var(--ox); }
+.bu__photo { position: relative; align-self: center; overflow: hidden; border-radius: 6px; }
+.bu__photo .crop { display: block; border-radius: 0; box-shadow: none; }
+.bu__photo figcaption { position: absolute; left: 12px; right: 12px; bottom: 12px; display: flex; align-items: center; gap: 10px; padding: 9px 12px; border-radius: 4px; background: rgba(255, 255, 255, .94); font-family: var(--serif); font-size: 17px; font-weight: 600; color: var(--bx-ink); }
+.bu__photo figcaption span { font-family: var(--sans); font-size: 10.5px; font-weight: 800; color: var(--ox); }
 .bu__idx { display: flex; flex-direction: column; padding-top: 8px; }
 .bu__idx .be { margin-bottom: 8px; }
 .bu__idx li { display: grid; grid-template-columns: 26px minmax(0, 1fr) 14px; align-items: center; height: 46px; border-top: 1px solid var(--bx-line); }
 .bu__idx li span { font-size: 10.5px; font-weight: 800; color: var(--ox); font-variant-numeric: tabular-nums; }
 .bu__idx li b { font-family: var(--serif); font-size: 21px; font-weight: 600; line-height: 1; }
 .bu__idx li .ico { width: 13px; height: 13px; color: var(--bx-mute); }
+.bu__idx li.is-on b { color: var(--ox); }
+.bu__idx li.is-on .ico { color: var(--ox); }
 /* master plan */
 .bm__map { position: absolute; left: 0; top: 0; }
 .bm__panel { position: absolute; left: 24px; top: 80px; bottom: 20px; width: 268px; display: flex; flex-direction: column; gap: 9px; padding: 18px 18px 16px; box-shadow: 0 0 0 1px var(--bx-line), 0 24px 40px -24px rgba(28, 26, 25, .6); }
@@ -927,15 +951,16 @@ body[data-tone="ox"] { background: var(--ox); }
 .bhm__row > div:first-child { display: grid; gap: 6px; }
 .bhm__specs { display: flex; gap: 6px; }
 .bhm__side { display: flex; flex-direction: column; gap: 10px; padding: 16px 18px; }
-.bhm__trk { display: flex; align-items: center; gap: 12px; padding-bottom: 12px; border-bottom: 1px solid var(--bx-line); }
-.bhm__trk .sym { width: 50px; }
-.bhm__trk div { display: grid; gap: 3px; }
-.bhm__trk b { font-size: 12.5px; font-weight: 700; }
-.bhm__trk small { font-size: 10.5px; color: var(--bx-mute); letter-spacing: .02em; }
 .bhm__price { font-family: var(--serif); font-size: 32px; font-weight: 600; line-height: 1; }
 .bhm__price small { margin-right: 6px; font-family: var(--sans); font-size: 12px; font-weight: 700; color: var(--bx-mute); }
 .bhm__loan { display: flex; align-items: center; gap: 9px; padding: 9px 11px; border-radius: 6px; background: var(--t); color: var(--ct); font-size: 11.5px; font-weight: 700; line-height: 1.35; }
 .bhm__loan .ico { width: 15px; height: 15px; }
+.bstep { display: grid; gap: 7px; padding-bottom: 12px; border-bottom: 1px solid var(--bx-line); }
+.bstep b { font-size: 12.5px; font-weight: 700; }
+.bstep__bar { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 4px; }
+.bstep__bar i { height: 5px; border-radius: 3px; background: var(--bx-line); }
+.bstep__bar i.is-on { background: var(--ct); }
+.bstep small { font-size: 10.5px; letter-spacing: .02em; color: var(--bx-mute); }
 .bhm__side .bb { width: 100%; }
 .bhm__side .bb:first-of-type { margin-top: auto; }
 /* Partners */
@@ -955,18 +980,15 @@ body[data-tone="ox"] { background: var(--ox); }
 .bpt__li .bic { width: 34px; height: 34px; }
 .bpt__li .ico.chev { width: 14px; height: 14px; margin-left: auto; color: var(--bx-mute); }
 /* Multiverse */
-.bmv { display: grid; grid-template-columns: 400px minmax(0, 1fr); column-gap: 10px; height: 100%; }
+.bmv { display: grid; grid-template-columns: 392px minmax(0, 1fr); column-gap: 28px; height: 100%; }
+.bmv__panel { display: flex; flex-direction: column; gap: 12px; align-self: center; padding: 18px 20px; }
+.bmv__panel .bchip { height: 20px; padding: 0 8px; font-size: 10px; }
+.bmv__note { display: flex; align-items: center; gap: 9px; padding-top: 12px; border-top: 1px solid var(--bx-line); font-size: 12px; color: var(--bx-ink); }
+.bmv__note > .ico { width: 15px; height: 15px; color: var(--bx-mute); }
+.bmv__note .bl { margin-left: auto; }
 .bmv__text { display: flex; flex-direction: column; align-items: flex-start; gap: 14px; padding-top: 6px; }
 .bmv__chips { display: flex; gap: 6px; }
 .bmv__text .bbtns { margin-top: auto; }
-.bmv__orbit { position: relative; }
-.bmv__orbit > .sym { position: absolute; left: 50%; top: 50%; width: 248px; transform: translate(-50%, -51%); }
-.bmv__core { position: absolute; left: 50%; top: 50%; display: grid; place-content: center; justify-items: center; width: 64px; height: 64px; margin: -34px 0 0 -32px; border-radius: 50%; background: #FFFFFF; box-shadow: 0 0 0 1px var(--bx-line), 0 14px 24px -14px rgba(11, 22, 65, .6); }
-.bmv__core b { font-family: var(--serif); font-size: 32px; font-weight: 600; line-height: .9; color: var(--bx-navy); }
-.bmv__core small { font-size: 8px; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; color: var(--bx-mute); }
-.bmv__node { position: absolute; display: flex; align-items: center; gap: 8px; height: 30px; padding: 0 6px 0 12px; border-radius: 15px; background: #FFFFFF; transform: translate(-50%, -50%); box-shadow: 0 0 0 1px var(--bx-line), 0 12px 20px -14px rgba(11, 22, 65, .55); font-size: 11.5px; font-weight: 700; white-space: nowrap; }
-.bmv__node i { display: grid; place-items: center; min-width: 22px; height: 20px; padding: 0 6px; border-radius: 10px; background: var(--ox); color: #FFFFFF; font-size: 10.5px; font-style: normal; font-weight: 800; }
-.bmv__node--q { padding-right: 12px; color: var(--bx-mute); }
 
 /* ---------- 06 pillars ---------- */
 .temple { display: grid; }
@@ -1175,7 +1197,7 @@ body[data-tone="ox"] { background: var(--ox); }
 .is-narrow .bainfo { padding-top: 0; }
 /* direction B reflow */
 .is-narrow .chrome[data-bg="ox"] .bar { background: var(--ox); border-color: rgba(255, 255, 255, .2); }
-.is-narrow .bx-hero, .is-narrow .bx-names, .is-narrow .bx-pal, .is-narrow .bx-work, .is-narrow .bx-bot, .is-narrow .bx-track, .is-narrow .bx-trio, .is-narrow .bx-count { grid-template-columns: minmax(0, 1fr); grid-template-rows: none; row-gap: 24px; height: auto; }
+.is-narrow .bx-hero, .is-narrow .bx-names, .is-narrow .bx-pal, .is-narrow .bx-work, .is-narrow .bx-bot, .is-narrow .bx-parts, .is-narrow .bx-count { grid-template-columns: minmax(0, 1fr); grid-template-rows: none; row-gap: 24px; height: auto; }
 .is-narrow .bx-display { font-size: 44px; }
 .is-narrow .bx-lede { font-size: 18px; }
 .is-narrow .bx-derive { flex-wrap: wrap; row-gap: 18px; }
@@ -1211,10 +1233,9 @@ body[data-tone="ox"] { background: var(--ox); }
 .is-narrow .bx-type__pair b.sans { font-size: 58px; }
 .is-narrow .bx-type__demo { font-size: 32px; }
 .is-narrow .bx-jobs { grid-template-rows: none; row-gap: 20px; }
-.is-narrow .bx-rule { align-items: flex-start; }
-.is-narrow .bx-track { padding: 20px; justify-items: start; }
-.is-narrow .bx-track > .sym { width: 150px; }
 .is-narrow .bx-steps { grid-template-columns: repeat(2, minmax(0, 1fr)); row-gap: 14px; }
+.is-narrow .bx-rules__h { flex-direction: column; gap: 4px; }
+.is-narrow .bx-rules__row { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 .is-narrow .bx-mosaic { grid-template-columns: minmax(0, 1fr); grid-template-rows: none; height: auto; }
 .is-narrow .bx-frame--hero { grid-row: auto; }
 .is-narrow .bx-band { grid-column: auto; grid-template-columns: minmax(0, 1fr); row-gap: 20px; padding: 22px 20px; }
@@ -1669,9 +1690,9 @@ body[data-tone="ox"] { background: var(--ox); }
   </div>
 </section>
 
-<section class="slide" data-dir="b" data-num="07d" data-title="Type and the symbol at work" data-cat="prop" aria-roledescription="slide">
+<section class="slide" data-dir="b" data-num="07d" data-title="Symbol rules and components" data-cat="prop" aria-roledescription="slide">
   <header class="s-head">
-    <h2 class="h1 rv">The symbol does a job in every <span class="serif hl">product.</span></h2>
+    <h2 class="h1 rv">The symbol signs. The product does the <span class="serif hl">work.</span></h2>
   </header>
   <div class="s-body">
     <div class="bx-work">
@@ -1690,9 +1711,11 @@ body[data-tone="ox"] { background: var(--ox); }
         <p class="bx-type__note">Both typefaces are open source. The pairing is a proposal, to confirm against Bloom's brand guidelines.</p>
       </div>
       <div class="bx-jobs">
-        <p class="bx-rule rv" style="--d:1"><span data-sym></span><span>One rule: <b>the centre is always the person.</b> The petals are what surrounds them: steps, tasks or businesses.</span></p>
-        <div class="bx-card bx-track rv" style="--d:2" id="bx-track"></div>
-        <div class="bx-trio rv" style="--d:3" id="bx-trio"></div>
+        <div class="bx-card bx-rules rv" style="--d:2">
+          <div class="bx-rules__h"><span class="label">Symbol rules</span><span>Whole, in one colour, as a signature. Never a working part of a screen.</span></div>
+          <div class="bx-rules__row" id="bx-rules"></div>
+        </div>
+        <div class="bx-parts rv" style="--d:3" id="bx-parts"></div>
       </div>
     </div>
   </div>
@@ -2260,7 +2283,8 @@ body[data-tone="ox"] { background: var(--ox); }
 
   /* ================= 07a-07f DIRECTION B: DRAWN FROM BLOOM (concepts) ================= */
   // The symbol: five o's traced from the wordmark (#b-p0 to #b-p4 in the sprite), petal k at k x 72deg clockwise from the top.
-  // Rule: the centre is always the person; the petals are what surrounds them.
+  // Rule: the symbol only signs (lockups, app icons, favicons), whole and in one colour: oxblood, or white on a dark field.
+  // It is never recoloured petal by petal, never encodes data or progress, and never decorates text. Interfaces use their own parts.
   const SYMVB = "-100 -102 200 196";
   const sym = (st, cls = "", extra = "") => `<svg class="sym${cls ? ` ${cls}` : ""}" viewBox="${SYMVB}" aria-hidden="true">${[0, 1, 2, 3, 4].map((k) => `<use href="#b-p${k}"${st && st[k] ? ` style="${st[k]}"` : ""}/>`).join("")}${extra}</svg>`;
   $$("[data-sym]").forEach((e) => { e.innerHTML = sym(); });
@@ -2321,22 +2345,28 @@ body[data-tone="ox"] { background: var(--ox); }
   if ($("#bx-wins")) {
     $("#bx-neu").innerHTML = [["#1C1A19", "Ink", "Bloom Partners headings"], ["#F6F4F0", "Paper", "Bloom Multiverse page"], ["#FFFFFF", "White", "Bloom Universal page"]]
       .map(([c, n, s]) => `<div><i style="--c:${c}"></i><b>${n}</b><code>${c}</code><small>${s}</small></div>`).join("");
-    $("#bx-wins").innerHTML = WINS.map(([f, n, c, from, img, iw, cx, cy, s, [px, py], who]) => `<div class="bx-win" style="${famB(f)}">${owin(img, iw, cx, cy, s, 216, c, [px, py, c])}<span class="bx-sw-name">${n}</span><code>${c}</code><small>${from}</small><span class="bx-for">${sym()}${who}</span></div>`).join("");
+    $("#bx-wins").innerHTML = WINS.map(([f, n, c, from, img, iw, cx, cy, s, [px, py], who]) => `<div class="bx-win" style="${famB(f)}">${owin(img, iw, cx, cy, s, 216, c, [px, py, c])}<span class="bx-sw-name">${n}</span><code>${c}</code><small>${from}</small><span class="bx-for"><i></i>${who}</span></div>`).join("");
   }
 
-  /* 07d: the symbol at work: a journey tracker, a loader, a confirmation, a workload */
+  /* 07d: symbol rules, and the logo-free parts that do the work */
   const WL = [["Salesforce", 15], ["UiPath", 10], ["SAP", 2], ["Darwinbox", 5]]; // from today's Multiverse screen, 32 in all
+  const WLS = [...WL].sort((a, b) => b[1] - a[1]);
   const wlStyle = [...WL.map(([, n]) => `fill:#0B1641;fill-opacity:${(.12 + .88 * n / 15).toFixed(2)}`), "fill:#0B1641;fill-opacity:.07"];
-  if ($("#bx-track")) {
-    const STEPS = [["View", "From 30 Sep 2026", "done"], ["Book", "From 7 Oct 2026", "done"], ["Buy", "Digital, from 7 Oct 2026", "done"], ["Build", "45% · due Q4 2028", "now"], ["Move in", "Handover by Dec 2028", ""]];
-    // done petals solid, the current step part-filled, steps to come as a line tint
-    $("#bx-track").innerHTML = sym(["fill:#85674B", "fill:#85674B", "fill:#85674B", "fill:#85674B;fill-opacity:.45", "fill:#E7E2DA"])
-      + `<div class="bx-track__t" style="${famB("homes")}"><span class="bx-eyebrow">${sym()}A1-401 · Al Metlaa, Al Ain · Journey tracker</span><p class="bx-serif-h">Your home is 45% <em>built.</em></p>`
-      + `<ol class="bx-steps">${STEPS.map(([n, d, st], i) => `<li${st ? ` class="is-${st}"` : ""}><b>${pad(i + 1)} ${n}</b><small>${d}</small></li>`).join("")}</ol>`
-      + `<small class="bx-trk-src">Concept: five petals, five steps of buying at Al Metlaa. Steps and dates as ADHA publishes them${src(2)}; progress and handover from today's screen${src(16)}.</small></div>`;
-    $("#bx-trio").innerHTML = `<div class="bx-card bx-mini"><span class="bx-k">Loading</span><div class="bx-mini__v">${sym([0, 1, 2, 3, 4].map((k) => `--k:${k}`), "bx-load")}</div><b>The petals weave in</b><small>One loader, shared by every product.</small></div>`
-      + `<div class="bx-card bx-mini bx-done" style="${famB("partners")}"><span class="bx-k">Confirmation · Partners</span><div class="bx-mini__v">${sym()}<span class="bl">Track request${ic("arrow-r")}</span></div><b>Request raised</b><small>Open house. Our team will get back to you.</small></div>`
-      + `<div class="bx-card bx-mini" style="${famB("people")}"><span class="bx-k">Workload · Multiverse</span><div class="bx-mini__v">${sym(wlStyle)}<div class="bx-wl">${WL.map(([n, c], k) => `<span><i style="--o:${(.12 + .88 * c / 15).toFixed(2)}"></i>${n}<b>${pad(c)}</b></span>`).join("")}</div></div><b>32 actions, at a glance</b><small>Each petal is an app. Depth shows what waits.</small></div>`;
+  const bars = (list, top) => `<ul class="bx-bars">${list.map(([n, c], i) => `<li><span>${n}${top && !i ? ` <em class="bchip bchip--ox">${top}</em>` : ""}</span><b>${pad(c)}</b><i style="--v:${(c / list[0][1] * 100).toFixed(1)}%"></i></li>`).join("")}</ul>`;
+  if ($("#bx-rules")) {
+    const RULES = [
+      [1, "Whole, in one colour", "Oxblood, or white on a dark field. Lockups, app icons, favicons.", `${sym()}<span class="bx-rv__dark">${sym()}</span>`],
+      [0, "Never recoloured petal by petal", "One colour for the whole symbol, every time.", sym(["fill:#932A23", "fill:#85674B", "fill:#4B5715", "fill:#A79DBF", "fill:#0B1641"])],
+      [0, "Never a chart, tracker or loader", "Its petals never stand for data, steps or progress.", `<span class="bx-rv__chart">${sym(wlStyle)}<i>32</i></span>`],
+      [0, "Never a bullet or an icon", "It never decorates labels, lists or running text.", `<span class="bx-rv__list">${["Your requests", "Unit price", "Six businesses"].map((t) => `<span>${sym()}${t}</span>`).join("")}</span>`]
+    ];
+    $("#bx-rules").innerHTML = RULES.map(([ok, t, d, v]) => `<div class="bx-do${ok ? " is-ok" : ""}"><span class="bx-rv" role="img" aria-label="${ok ? "Correct" : "Incorrect"}: ${esc(t)}">${v}<i class="bx-rv__b">${ic(ok ? "check" : "x")}</i></span><b>${t}</b><small>${d}</small></div>`).join("");
+    const STEPS = [["View", "30 Sep 2026", "done"], ["Book", "7 Oct 2026", "done"], ["Buy", "Digital", "done"], ["Build", "45% · Q4 2028", "now"], ["Move in", "By Dec 2028", ""]];
+    $("#bx-parts").innerHTML = `<div class="bx-card bx-part" style="${famB("homes")}"><span class="bx-k">Journey tracker · Homes</span><span class="bx-eyebrow">A1-401 · Al Metlaa, Al Ain</span><p class="bx-serif-h">Your home is 45% <em>built.</em></p>`
+      + `<ol class="bx-steps">${STEPS.map(([n, d, st], i) => `<li${st ? ` class="is-${st}"` : ""}><b>${n}</b><small>${d}</small></li>`).join("")}</ol>`
+      + `<small class="bx-trk-src">Concept. Steps and dates as ADHA publishes them${src(2)}; progress and handover from today's screen${src(16)}.</small></div>`
+      + `<div class="bx-card bx-part" style="${famB("people")}"><span class="bx-k">Workload · Multiverse</span><p class="bx-big"><b>32</b><span>actions waiting<br>across four apps</span></p>${bars(WLS)}</div>`
+      + `<div class="bx-card bx-part bx-part--done" style="${famB("partners")}"><span class="bx-k">Confirmed · Partners</span><span class="bx-tick">${ic("check")}</span><b>Request raised</b><small>Open house. Our team will get back to you.</small><span class="bl">Track request${ic("arrow-r")}</span></div>`;
   }
 
   /* concept screens, direction B. Content is taken from today's screens (05a) or Bloom's published features. */
@@ -2344,12 +2374,12 @@ body[data-tone="ox"] { background: var(--ox); }
   const blang = `<span class="bn__lang"><b>EN</b> · عربي</span>`, bbell = `<span class="bn__icb">${ic("bell")}</span>`;
   const bav = (t) => `<span class="bn__av">${t}</span>`, bkbd = `<span class="bn__kbd">${ic("search")}Search ⌘K</span>`;
   const scrB = (f, label, inner) => `<div class="scr scr--b" style="${famB(f)}" role="img" aria-label="${esc(label)}">${inner}</div>`;
-  const eb = (t) => `<span class="be">${sym()}${t}</span>`;
+  const eb = (t) => `<span class="be">${t}</span>`;
   const MOCKS_B = {
     universal: () => scrB("group", "Direction B concept: Bloom Universal, the gateway to six Bloom businesses", bnav("Universal", ["Home", "Businesses"], blang)
       + `<div class="bbody"><div class="bu"><div class="bu__text">${eb("The Bloom experience")}<h4 class="bh">More than a place <em>to live.</em></h4><p class="bp">Homes, schools, hotels and services. Six Bloom businesses, one place to start.</p><div class="bbtns"><span class="bb">Let's get started${ic("arrow-r")}</span></div></div>`
-      + owin("universal", 2000, 271, 740, .62, 300, "var(--ox)")
-      + `<div class="bu__idx">${eb("Six businesses")}<ul>${["Properties", "Education", "Retail", "Hospitality", "Landscape", "Facilities"].map((n, i) => `<li><span>${pad(i + 1)}</span><b>${n}</b>${ic("arrow-r")}</li>`).join("")}</ul></div></div></div>`),
+      + `<figure class="bu__photo">${crop("universal", 2000, 112, 490, 318, 350, .9434)}<figcaption><span>01</span>Bloom Properties</figcaption></figure>`
+      + `<div class="bu__idx">${eb("Six businesses")}<ul>${["Properties", "Education", "Retail", "Hospitality", "Landscape", "Facilities"].map((n, i) => `<li${i ? "" : ' class="is-on"'}><span>${pad(i + 1)}</span><b>${n}</b>${ic("arrow-r")}</li>`).join("")}</ul></div></div></div>`),
     masterplan: () => scrB("homes", "Direction B concept: Al Metlaa master plan as a Bloom Homes screen", crop("masterplan", 2000, 424, 0, 1576, 819, .5546, "bm__map") + bnav("Homes", ["Masterplan", "Units", "Documents"], blang)
       + `<div class="bm__panel bcard">${eb("Al Metlaa · Al Ain")}<h4 class="bh bh--s">2,247 <em>villas.</em></h4><span class="bm__k">Facade option</span>`
       + `<ul class="bm__f">${[["Type 1", 391], ["Type 2", 727, 1], ["Type 3", 740], ["Type 4", 389]].map(([t, n, on]) => `<li><i class="bm__cb${on ? " is-on" : ""}">${on ? ic("check") : ""}</i>${t}<b>${n}</b></li>`).join("")}</ul>`
@@ -2357,7 +2387,7 @@ body[data-tone="ox"] { background: var(--ox); }
     home: () => scrB("homes", "Direction B concept: Al Metlaa unit details as a Bloom Homes screen", bnav("Homes", ["Home", "Unit details", "Documents"], bbell + bav("JA"))
       + `<div class="bbody"><div class="bhm"><div class="bhm__main"><div class="bhm__photo">${crop("home", 1930, 42, 190, 1050, 470, .4762)}</div>`
       + `<div class="bhm__row"><div><h4 class="bh bh--s">A1-401, <em>Al Metlaa</em></h4><p class="bp">Al Ain · Handover by December 2028</p></div><div class="bhm__specs"><span class="bchip">3 bed</span><span class="bchip">3 bath</span><span class="bchip">1,260 sq ft</span></div></div></div>`
-      + `<div class="bhm__side bcard"><div class="bhm__trk">${sym(["fill:#85674B", "fill:#E7E2DA", "fill:#E7E2DA", "fill:#E7E2DA", "fill:#E7E2DA"])}<div><b>Step 1 of 5 · View</b><small>View · Book · Buy · Build · Move in</small></div></div>`
+      + `<div class="bhm__side bcard"><div class="bstep"><b>Step 1 of 5 · View</b><span class="bstep__bar"><i class="is-on"></i><i></i><i></i><i></i><i></i></span><small>View · Book · Buy · Build · Move in</small></div>`
       + `${eb("Unit price")}<b class="bhm__price"><small>AED</small>1,850,000</b><span class="bhm__loan">${ic("check")}Iskan loan of AED 2,000,000 covers this unit</span><span class="bb">Book appointment</span><span class="bb bb--o">Reserve unit</span></div></div></div>`),
     partners: () => scrB("partners", "Direction B concept: Bloom Partners requests screen", bnav("Partners", ["Home", "Leads", "Inventory", "My Team"], bbell + bav("JD"))
       + `<div class="bbody"><div class="bpt"><div class="bpt__head"><div>${eb("Your requests")}<h4 class="bh">How can we <em>assist you?</em></h4></div><p class="bp">Choose a request type to get started. Our team will get back to you.</p></div>`
@@ -2368,17 +2398,17 @@ body[data-tone="ox"] { background: var(--ox); }
     multiverse: () => scrB("people", "Direction B concept: Bloom Multiverse home for employees", bnav("Multiverse", ["Home", "Bloom GPT"], bkbd + bav("R"))
       + `<div class="bbody" style="--em:var(--ox)"><div class="bmv"><div class="bmv__text"><span class="bchip bchip--line">Friday 25 September</span><h4 class="bh bh--l">Good afternoon, <em>Rashid.</em></h4><p class="bp">32 things are waiting across four of your apps. Salesforce needs you most today.</p>`
       + `<div class="bmv__chips"><span class="bchip bchip--ox">2 overdue</span><span class="bchip bchip--line">3 due today</span><span class="bchip bchip--line">27 this week</span></div><div class="bbtns"><span class="bb">Review 32 actions${ic("arrow-r")}</span><span class="bb bb--o">${ic("inbox")}Open inbox</span></div></div>`
-      + `<div class="bmv__orbit">${sym(wlStyle)}<div class="bmv__core"><b>32</b><small>waiting</small></div>`
-      + [...WL, ["Data Security policy"]].map(([n, c], k) => { const a = k * 72 * Math.PI / 180; return `<span class="bmv__node${c ? "" : " bmv__node--q"}" style="left:${(50 + Math.sin(a) * 33.5).toFixed(1)}%;top:${(49 - Math.cos(a) * 39).toFixed(1)}%">${n}${c ? `<i>${pad(c)}</i>` : ""}</span>`; }).join("") + `</div></div></div>`)
+      + `<div class="bmv__panel bcard">${eb("Waiting in your apps")}<p class="bx-big"><b>32</b><span>actions<br>across four apps</span></p>${bars(WLS, "Most today")}`
+      + `<div class="bmv__note">${ic("doc")}<span><b>Policy updated</b> · Data Security</span><span class="bl">Read${ic("arrow-r")}</span></div></div></div></div>`)
   };
 
   /* 07e: before and after, direction B */
   const BB = {
-    universal: [["The symbol and wordmark sign the screen", "The headline sets in the Bloom serif", "Photography is seen through the wordmark's o", "Six businesses become one numbered index"], ["The six businesses and their photography", "The Arabic language switch"]],
+    universal: [["The symbol and wordmark sign the screen", "The headline sets in the Bloom serif", "Photography previews the business you choose", "Six businesses become one numbered index"], ["The six businesses and their photography", "The Arabic language switch"]],
     masterplan: [["The Bloom symbol and wordmark appear", "Filters sit in one Bloom Homes panel", "Book appointment takes oxblood", "Sandstone, from Bloom's photography, marks the selection"], ["The satellite master plan", "Facade types and unit counts"]],
-    home: [["Oxblood replaces the black buttons", "A five-petal tracker shows the buying step", "Price and Iskan loan sit in one card", "The unit name sets in the Bloom serif"], ["Unit photography and details", "Book appointment and reserve unit"]],
+    home: [["Oxblood replaces the black buttons", "A five-step tracker shows the buying step", "Price and Iskan loan sit in one card", "The unit name sets in the Bloom serif"], ["Unit photography and details", "Book appointment and reserve unit"]],
     partners: [["One serif replaces the mixed headings", "Dusk replaces five pastel tiles", "Raise a request becomes one oxblood link", "The Bloom symbol signs the navigation"], ["Request types and their wording", "Home, Leads, Inventory and My Team"]],
-    multiverse: [["The Bloom wordmark and symbol replace today's Multiverse mark", "The orbit of work apps becomes the Bloom symbol", "Navy stays; main actions take oxblood", "The gradient name becomes the Bloom serif"], ["The four work apps and their counts", "Bloom GPT and quick search"]]
+    multiverse: [["The Bloom wordmark and symbol replace today's Multiverse mark", "The orbit becomes a ranked list of what waits", "Navy stays; main actions take oxblood", "The gradient name becomes the Bloom serif"], ["The four work apps and their counts", "Bloom GPT and quick search"]]
   };
   if ($("#bb-ba")) {
     const bbTabs = $("#bb-tabs"), baB = makeBA($("#bb-ba"), $("#bb-knob"));
