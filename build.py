@@ -1,7 +1,10 @@
-"""Inline the logo files into the proposal and write two single-file builds.
+"""Inline the logo files into the proposal and write the single-file builds.
 
-dist/bloom-digital-ecosystem.html   page fragment published to the Claude artifact
-Bloom-Digital-Ecosystem-Proposal.html  standalone document that opens straight from disk
+One source, two design directions for the glimpse slides (07a-07f):
+  direction A  "One language"      dist/bloom-digital-ecosystem.html,   Bloom-Digital-Ecosystem-Proposal.html
+  direction B  "Drawn from Bloom"  dist/bloom-digital-ecosystem-b.html, Bloom-Digital-Ecosystem-Proposal-B.html
+
+dist/*.html are page fragments for the Claude artifact; the root files are standalone documents that open straight from disk.
 """
 import base64
 import pathlib
@@ -21,24 +24,27 @@ ASSETS = {
     "{{SHOT_UNIVERSAL}}": "screens/bloom-universal.webp",
 }
 MIME = {".png": "image/png", ".webp": "image/webp"}
+BUILDS = {"a": ("bloom-digital-ecosystem.html", "Bloom-Digital-Ecosystem-Proposal.html"),
+          "b": ("bloom-digital-ecosystem-b.html", "Bloom-Digital-Ecosystem-Proposal-B.html")}
 
-page = (ROOT / "src" / "proposal.html").read_text(encoding="utf-8")
+source = (ROOT / "src" / "proposal.html").read_text(encoding="utf-8")
 for token, name in ASSETS.items():
     path = ROOT / "src" / name
     data = base64.b64encode(path.read_bytes()).decode()
-    page = page.replace(token, f"data:{MIME[path.suffix]};base64,{data}")
-assert "{{IMG_" not in page and "{{SHOT_" not in page
+    source = source.replace(token, f"data:{MIME[path.suffix]};base64,{data}")
+assert "{{IMG_" not in source and "{{SHOT_" not in source and source.count("{{DIR}}") == 1
 
 (ROOT / "dist").mkdir(exist_ok=True)
-(ROOT / "dist" / "bloom-digital-ecosystem.html").write_text(page, encoding="utf-8")
-
-# Same skeleton the artifact host wraps around the fragment.
-standalone = (
-    '<!doctype html><html lang="en"><head><meta charset="utf-8">'
-    '<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">'
-    "<style>:root{color-scheme:light;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}"
-    "body{margin:0}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style>"
-    "</head><body>\n" + page + "\n</body></html>\n"
-)
-(ROOT / "Bloom-Digital-Ecosystem-Proposal.html").write_text(standalone, encoding="utf-8")
-print(f"built {len(page):,} bytes")
+for direction, (fragment, standalone_name) in BUILDS.items():
+    page = source.replace("{{DIR}}", direction)
+    (ROOT / "dist" / fragment).write_text(page, encoding="utf-8")
+    # Same skeleton the artifact host wraps around the fragment.
+    standalone = (
+        '<!doctype html><html lang="en"><head><meta charset="utf-8">'
+        '<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">'
+        "<style>:root{color-scheme:light;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}"
+        "body{margin:0}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style>"
+        "</head><body>\n" + page + "\n</body></html>\n"
+    )
+    (ROOT / standalone_name).write_text(standalone, encoding="utf-8")
+    print(f"direction {direction}: built {len(page):,} bytes -> {standalone_name}")
