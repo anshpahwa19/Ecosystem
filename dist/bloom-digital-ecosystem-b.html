@@ -57,7 +57,7 @@ a { color: inherit; }
 .label { font-size: 12px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); }
 .slide--red .label { color: var(--on-red-2); }
 .serif { font-family: var(--serif); font-style: italic; font-weight: 600; letter-spacing: -.01em; }
-.h1 .serif { font-size: 1.12em; line-height: .9; }
+.h1 .serif { font-size: 1.12em; line-height: 0; }
 
 /* category marks: fact, opportunity, proposal */
 .cat { display: inline-flex; align-items: center; gap: 8px; font-size: 12px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; white-space: nowrap; }
@@ -134,7 +134,7 @@ a { color: inherit; }
 .bloom__core text { fill: var(--red); font: 800 15px var(--sans); letter-spacing: .02em; }
 
 /* ---------- 02 numbers ---------- */
-.figs { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); grid-template-rows: 1fr 1fr; column-gap: 32px; row-gap: 40px; height: 100%; }
+.figs { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); grid-template-rows: 1fr 1fr; column-gap: 32px; row-gap: 30px; height: 100%; }
 .fig { display: grid; gap: 14px; align-content: start; padding-top: 22px; border-top: 1px solid var(--rule); }
 .fig b { font-size: 96px; font-weight: 300; line-height: .9; letter-spacing: -.045em; font-variant-numeric: tabular-nums; white-space: nowrap; }
 .fig b sup { font-size: .45em; font-weight: 500; vertical-align: .95em; margin-left: .04em; color: var(--red); letter-spacing: 0; }
@@ -150,7 +150,7 @@ a { color: inherit; }
 .mrow--biz > * { border-top: 2px solid var(--ink); }
 .mk { font-size: 12px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); }
 .span5 { grid-column: span 5; }
-.group-name { font-size: 22px; font-weight: 800; letter-spacing: -.01em; }
+.group-name { font-size: 22px; font-weight: 700; letter-spacing: -.01em; }
 .biz { font-size: 17px; font-weight: 700; line-height: 1.25; transition: color .3s, border-color .3s; }
 .biz.is-on { color: var(--red); border-top-color: var(--red) !important; }
 .items { display: grid; gap: 2px; align-content: start; }
@@ -168,7 +168,7 @@ a { color: inherit; }
 .who button.house[aria-selected="true"] { background: var(--red); color: #FFFFFF; }
 .mcap { display: grid; grid-template-columns: 168px minmax(0, 1fr); column-gap: 24px; align-items: baseline; margin-top: 14px; min-height: 52px; }
 .mcap strong { font-size: 17px; font-weight: 800; }
-.mcap p { font-size: 17px; line-height: 1.5; color: var(--ink-2); max-width: 92ch; }
+.mcap p { font-size: 16.5px; line-height: 1.5; color: var(--ink-2); max-width: 92ch; }
 .mcap .cat { margin-right: 10px; color: var(--ink-2); vertical-align: 1px; }
 .pop { animation: rise .45s var(--ease) both; }
 
@@ -204,7 +204,7 @@ a { color: inherit; }
 .flow.is-eco .stop__node { color: var(--red); box-shadow: inset 0 0 0 2px var(--red), 0 10px 20px -10px rgba(182, 0, 14, .55); }
 .stop__name { font-size: 15px; font-weight: 700; line-height: 20px; letter-spacing: -.005em; text-wrap: balance; }
 .stop__sub { font-size: 12.5px; font-weight: 600; line-height: 18px; color: var(--muted); white-space: nowrap; }
-.rail__label { display: block; margin-top: 14px; text-align: center; font-size: 11px; font-weight: 800; line-height: 16px; letter-spacing: .16em; text-transform: uppercase; color: var(--red); opacity: 0; transition: opacity .4s; }
+.rail__label { display: block; margin-top: 14px; text-align: center; font-size: 11px; font-weight: 800; line-height: 16px; letter-spacing: .14em; text-transform: uppercase; color: var(--red); opacity: 0; transition: opacity .4s; }
 .flow.is-eco .rail__label { opacity: 1; }
 .annot { --pad: 24px; --col: calc((100% - 2 * var(--pad)) / 6); position: relative; height: 46px; margin-top: 8px; }
 .brk { position: absolute; top: 0; left: calc(var(--pad) + var(--col) * 2.5); width: var(--col); height: 12px; border: 2px solid var(--red); border-top: 0; border-radius: 0 0 8px 8px; transition: opacity .3s; }
@@ -283,7 +283,7 @@ body[data-tone="ink"] { background: var(--ink); }
 .tally { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); column-gap: 32px; }
 .tally div { display: grid; gap: 10px; align-content: start; padding-top: 20px; border-top: 1px solid var(--rule); }
 .tally div:first-child { border-top: 2px solid var(--red); padding-top: 19px; }
-.tally b { font-size: 104px; font-weight: 300; line-height: .9; letter-spacing: -.045em; }
+.tally b { font-size: 96px; font-weight: 300; line-height: .9; letter-spacing: -.045em; }
 .tally span { font-size: 19px; line-height: 1.35; color: var(--ink-2); max-width: 16ch; }
 .tally-note { margin-top: 14px; font-size: 14px; color: var(--muted); }
 .cost { display: grid; grid-template-columns: 1fr 1fr; column-gap: 32px; margin-top: 40px; }
@@ -321,14 +321,14 @@ body[data-tone="ink"] { background: var(--ink); }
 .lay--base { background: var(--paper-2); box-shadow: none; }
 .lay__v .br { flex-basis: 100%; height: 0; }
 .lay__v .partner { color: var(--muted); font-weight: 500; }
-.side { display: grid; gap: 30px; align-content: start; }
-.side h3 { font-size: 22px; font-weight: 800; letter-spacing: -.01em; margin-bottom: 12px; }
+.side { display: grid; gap: 22px; align-content: start; }
+.side h3 { font-size: 22px; font-weight: 700; letter-spacing: -.01em; margin-bottom: 12px; }
 .side ul { display: grid; gap: 9px; }
 .side li { position: relative; padding-left: 20px; font-size: 16.5px; line-height: 1.4; color: var(--ink-2); }
 .side li::before { content: ""; position: absolute; left: 0; top: 8px; width: 8px; height: 8px; border-radius: 50%; background: var(--red); }
 .side .many li::before { background: none; box-shadow: inset 0 0 0 2px var(--red); }
-.quote { padding-top: 22px; border-top: 1px solid var(--rule); }
-.quote p { font-family: var(--serif); font-style: italic; font-weight: 600; font-size: 27px; line-height: 1.15; letter-spacing: -.01em; }
+.quote { padding-top: 18px; border-top: 1px solid var(--rule); }
+.quote p { font-family: var(--serif); font-style: italic; font-weight: 600; font-size: 25px; line-height: 1.15; letter-spacing: -.01em; }
 .quote cite { display: block; margin-top: 10px; font-style: normal; font-size: 14px; color: var(--muted); }
 
 /* ---------- 07a-07f one Bloom language (concepts) ---------- */
@@ -639,7 +639,7 @@ body[data-tone="ink"] { background: var(--ink); }
 .ba__knob:hover, .ba.is-drag .ba__knob { transform: scale(1.08); }
 .ba__knob .ico { width: 20px; height: 20px; }
 .bainfo { display: flex; flex-direction: column; gap: 22px; padding-top: 58px; }
-.bainfo h3 { font-size: 28px; font-weight: 700; line-height: 1.15; letter-spacing: -.02em; }
+.bainfo h3 { font-size: 26px; font-weight: 700; line-height: 1.15; letter-spacing: -.02em; }
 .bainfo h3 small { display: block; margin-top: 6px; font-size: 15px; font-weight: 500; letter-spacing: 0; color: var(--muted); }
 .bainfo ul { display: grid; gap: 9px; }
 .bainfo li { position: relative; padding-left: 20px; font-size: 15.5px; line-height: 1.4; color: var(--ink-2); }
@@ -656,8 +656,8 @@ body[data-tone="ink"] { background: var(--ink); }
 .zoom__mock .fit { width: var(--zw, 100%); border-radius: 12px; box-shadow: 0 0 0 1px var(--b-line), 0 30px 60px -30px rgba(11, 22, 64, .4); }
 
 /* ---------- 07a-07f direction B: drawn from Bloom (concepts) ---------- */
-/* Every base colour is sampled from Bloom: oxblood from the wordmark, ink from Bloom Partners and Bloom@Go headings, paper and
-   Go Blue from Bloom@Go, sandstone, dusk and garden from the photography on Bloom Universal. Tints are mixed from them. */
+/* Every base colour is sampled from Bloom: oxblood from the wordmark, ink from Bloom Partners and Bloom@Go headings, paper from
+   Bloom@Go, sandstone, dusk, garden and marina from the photography on Bloom Universal. Tints are mixed from them. */
 :root { --ox: #932A23; --bx-ink: #1C1A19; --bx-mute: #666462; --bx-line: #E3DED6; --bx-line-2: #D3CDC3; --bx-sand: #85674B; --bx-garden: #4B5715; --bx-paper: #F8F8F8; }
 .slide[data-dir="b"] .hl { color: var(--ox); }
 .slide[data-dir="b"] .s-head { max-width: none; }
@@ -692,16 +692,12 @@ body[data-tone="ox"] { background: var(--ox); }
 .bx-fine { font-size: 13.5px; line-height: 1.45; color: rgba(255, 255, 255, .7); max-width: 52ch; }
 .bx-bloom { position: relative; align-self: center; justify-self: end; width: 720px; height: 680px; margin: -10px -40px 0 0; }
 .bx-bloom svg { display: block; width: 100%; height: 100%; overflow: visible; }
-.bx-petal { fill: #FFFFFF; opacity: 0; }
-.bx-guide { fill: none; stroke: rgba(255, 255, 255, .34); stroke-width: .32; vector-effect: non-scaling-stroke; opacity: 0; transition: opacity .9s; }
+.bx-petal { fill: #FFFFFF; }
+.bx-guide { fill: none; stroke: rgba(255, 255, 255, .34); stroke-width: .32; vector-effect: non-scaling-stroke; }
 .bx-guide--dash { stroke-dasharray: 3 4; }
-.bx-dot { fill: #FFFFFF; opacity: 0; transition: opacity .6s; }
-.bx-lab { opacity: 0; transition: opacity .7s; }
+.bx-dot { fill: #FFFFFF; }
 .bx-lab text { fill: #FFFFFF; font: 600 7.2px var(--sans); letter-spacing: .01em; }
 .bx-lab text.bx-lab__c { font-size: 6.2px; font-weight: 800; letter-spacing: .14em; text-transform: uppercase; fill: rgba(255, 255, 255, .78); }
-.bx-bloom.is-on .bx-guide { opacity: 1; transition-delay: 1.1s; }
-.bx-bloom.is-on .bx-dot { opacity: 1; transition-delay: 1.3s; }
-.bx-bloom.is-on .bx-lab { opacity: 1; transition-delay: calc(1.4s + var(--k) * 90ms); }
 /* 07b lockups */
 .bx-names { display: grid; grid-template-columns: 488px minmax(0, 1fr); column-gap: 32px; height: 100%; }
 .bx-master { position: relative; display: flex; flex-direction: column; justify-content: space-between; padding: 24px 28px; border-radius: 18px; overflow: hidden; color: #FFFFFF; background: radial-gradient(110% 90% at 100% 0%, #A9372E 0%, rgba(169, 55, 46, 0) 60%), var(--ox); }
@@ -773,7 +769,7 @@ body[data-tone="ox"] { background: var(--ox); }
 .bx-win small { min-height: 2.7em; font-size: 12px; line-height: 1.35; color: var(--muted); }
 .bx-for i { width: 8px; height: 8px; border-radius: 50%; background: var(--c); flex: none; }
 .bx-win .bx-for { justify-self: start; margin-top: 6px; display: inline-flex; align-items: center; gap: 7px; height: 26px; padding: 0 11px 0 9px; border-radius: 13px; background: var(--t); color: var(--ct); font-size: 12px; font-weight: 700; }
-.bx-count { display: grid; grid-template-columns: auto minmax(0, 1fr); column-gap: 24px; align-items: center; margin-top: auto; padding-top: 14px; border-top: 1px solid var(--rule); }
+.bx-count { display: grid; grid-template-columns: auto minmax(0, 1fr); column-gap: 24px; align-items: center; margin-top: auto; padding-top: 10px; border-top: 1px solid var(--rule); }
 .bx-count b { font-size: 56px; font-weight: 300; line-height: 1.1; letter-spacing: -.04em; white-space: nowrap; }
 .bx-count b span { margin: 0 6px; color: var(--ox); font-weight: 400; }
 .bx-count p { font-size: 14px; line-height: 1.45; color: var(--ink-2); }
@@ -835,7 +831,7 @@ body[data-tone="ox"] { background: var(--ox); }
 .bx-part--done small { font-size: 12.5px; line-height: 1.4; color: var(--muted); }
 .bx-part--done .bl { margin-top: auto; align-self: flex-start; }
 .bx-card { border-radius: 18px; background: #FFFFFF; box-shadow: inset 0 0 0 1px var(--rule); }
-.bx-eyebrow { font-size: 11px; font-weight: 800; letter-spacing: .16em; text-transform: uppercase; color: var(--ct, var(--ox)); }
+.bx-eyebrow { font-size: 11px; font-weight: 800; letter-spacing: .14em; text-transform: uppercase; color: var(--ct, var(--ox)); }
 .bx-serif-h { font-family: var(--serif); font-size: 38px; font-weight: 600; line-height: 1; letter-spacing: -.01em; color: var(--bx-ink); }
 .bx-serif-h em { color: var(--ct, var(--ox)); }
 .bx-steps { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); column-gap: 10px; margin-top: 10px; }
@@ -980,8 +976,8 @@ body[data-tone="ox"] { background: var(--ox); }
 .is-current .col { animation: drop .8s var(--ease) both; animation-delay: calc(var(--i) * 80ms + 250ms); }
 @keyframes drop { from { opacity: 0; transform: translateY(-12px); } }
 .col span { font-size: 14px; font-weight: 800; color: var(--red); font-variant-numeric: tabular-nums; }
-.col h3 { font-size: 27px; font-weight: 700; line-height: 1.12; letter-spacing: -.02em; }
-.col p { align-self: end; font-size: 17px; line-height: 1.45; color: var(--muted); }
+.col h3 { font-size: 26px; font-weight: 700; line-height: 1.12; letter-spacing: -.02em; }
+.col p { align-self: end; font-size: 16.5px; line-height: 1.45; color: var(--muted); }
 .plinth { height: 14px; border-radius: 0 0 14px 14px; background: var(--paper-3); }
 
 /* ---------- 09 value ---------- */
@@ -1000,12 +996,15 @@ body[data-tone="ox"] { background: var(--ox); }
 .road { position: relative; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); column-gap: 32px; }
 .road::before, .road::after { content: ""; position: absolute; left: 0; right: 0; top: 19px; height: 2px; }
 .road::before { background: var(--on-red-rule); }
-.road::after { background: #FFFFFF; transform-origin: 0 50%; transform: scaleX(0); }
+.road::after { background: #FFFFFF; transform-origin: 0 50%; transform: scaleX(.2703); } /* reaches the centre of step 02 */
 .is-current .road::after { animation: fill 1.6s var(--ease) .5s forwards; }
-@keyframes fill { to { transform: scaleX(.25); } }
+@keyframes fill { from { transform: scaleX(0); } }
 .step { position: relative; display: grid; gap: 12px; align-content: start; }
 .dot { display: grid; place-items: center; width: 40px; height: 40px; border-radius: 50%; background: var(--red); box-shadow: inset 0 0 0 2px rgba(255, 255, 255, .55); font-size: 12px; font-weight: 800; }
-.step--now .dot { background: #FFFFFF; color: var(--red); box-shadow: none; }
+.step--done .dot { background: #FFFFFF; color: var(--red); box-shadow: none; }
+.step--done .dot .ico { width: 18px; height: 18px; stroke-width: 2.6; }
+.step--done h3, .step--done p { opacity: .62; }
+.step--now .dot { background: #FFFFFF; color: var(--red); box-shadow: 0 0 0 6px rgba(255, 255, 255, .22); }
 .step .label { margin-top: 8px; }
 .step h3 { font-size: 26px; font-weight: 700; line-height: 1.15; letter-spacing: -.015em; max-width: 14ch; }
 .step p { font-size: 16.5px; line-height: 1.45; color: var(--on-red-2); max-width: 28ch; }
@@ -1014,14 +1013,14 @@ body[data-tone="ox"] { background: var(--ox); }
 
 /* ---------- 11 sources ---------- */
 .appx { display: grid; grid-template-columns: 437px 1fr; column-gap: 64px; height: 100%; }
-.keys { display: grid; gap: 22px; align-content: start; }
+.keys { display: grid; gap: 16px; align-content: start; }
 .keys li { display: grid; gap: 6px; }
 .keys .cat { color: var(--ink); }
 .keys p { font-size: 15.5px; line-height: 1.45; color: var(--ink-2); }
-.notes { display: grid; gap: 10px; margin-top: 28px; padding-top: 20px; border-top: 1px solid var(--rule); font-size: 14px; line-height: 1.5; color: var(--ink-2); }
+.notes { display: grid; gap: 8px; margin-top: 22px; padding-top: 16px; border-top: 1px solid var(--rule); font-size: 14px; line-height: 1.5; color: var(--ink-2); }
 .notes b { color: var(--ink); }
 .slist { display: grid; grid-template-columns: 1fr 1fr; grid-auto-flow: column; grid-template-rows: repeat(8, auto); column-gap: 40px; align-content: start; }
-.slist li { display: grid; grid-template-columns: 30px 1fr; padding: 8px 0; border-top: 1px solid var(--rule); }
+.slist li { display: grid; grid-template-columns: 30px 1fr; padding: 6px 0; border-top: 1px solid var(--rule); }
 .slist li > span { font-size: 12px; font-weight: 800; color: var(--red); font-variant-numeric: tabular-nums; padding-top: 3px; }
 .slist b { display: block; font-size: 14.5px; font-weight: 700; line-height: 1.3; }
 .slist a { font-size: 12.5px; color: var(--muted); text-decoration: none; overflow-wrap: anywhere; }
@@ -1408,7 +1407,7 @@ body[data-tone="ox"] { background: var(--ox); }
       <div class="side rv" style="--d:3">
         <div><h3>One ecosystem</h3><ul><li>A language people recognise as Bloom</li><li>One relationship, whatever their role</li><li>Journeys that carry on between products</li><li>Foundations designed once, used everywhere</li></ul></div>
         <div class="many"><h3>Distinct experiences</h3><ul><li>Each product keeps its job and its audience</li><li>Partner brands keep leading their own experiences</li><li>Each business keeps its expertise</li></ul></div>
-        <blockquote class="quote"><p>“…our long-term vision to create smarter, more integrated communities.”</p><cite>Bloom Holding, launching its three apps, April 2026<a class="src" href="#src-5" data-s="5">5</a></cite></blockquote>
+        <blockquote class="quote"><p>“…our long-term vision to create smarter, more integrated communities.”</p><cite>Bloom Holding press release, “Bloom Holding introduces next-generation digital solutions to elevate broker, owner and resident experiences”, 27 April 2026<a class="src" href="#src-5" data-s="5">5</a></cite></blockquote>
       </div>
     </div>
   </div>
@@ -1580,7 +1579,7 @@ body[data-tone="ox"] { background: var(--ox); }
 <section class="slide slide--ox" data-dir="b" data-num="07a" data-title="The Bloom symbol" data-cat="prop" aria-roledescription="slide">
   <div class="bx-hero">
     <div class="bx-hero__text">
-      <p class="label rv">A glimpse of one Bloom · Direction B · Drawn from Bloom</p>
+      <p class="label rv">A glimpse of one Bloom · Drawn from Bloom</p>
       <h2 class="bx-display rv" style="--d:1">The idea is already in the <span class="serif">name.</span></h2>
       <p class="bx-lede rv" style="--d:2">Five o's from the Bloom wordmark, woven around one centre. Bloom's businesses are the petals. The person they serve is the centre.</p>
       <div class="bx-derive rv" style="--d:3" aria-label="The Bloom wordmark, its letter o, and five o's woven into the symbol">
@@ -1646,7 +1645,7 @@ body[data-tone="ox"] { background: var(--ox); }
       <div class="bx-places rv" style="--d:2">
         <span class="label" style="margin-bottom:14px">One accent per audience · sampled from Bloom's own photography and screens</span>
         <div class="bx-wins" id="bx-wins"></div>
-        <div class="bx-count"><b>38<span>→</span>8</b><p>distinct colours on today's five screens (05b), against 8 base colours here, each taken from something Bloom already owns. Tints are mixed from them; Dusk and Go Blue are deepened for text.<a class="src" href="#src-16" data-s="16">16</a></p></div>
+        <div class="bx-count"><b>38<span>→</span>8</b><p>distinct colours on today's five screens (05b), against 8 base colours here, each taken from something Bloom already owns. Tints are mixed from them; Dusk and Marina are deepened for text.<a class="src" href="#src-16" data-s="16">16</a></p></div>
       </div>
     </div>
   </div>
@@ -1690,12 +1689,12 @@ body[data-tone="ox"] { background: var(--ox); }
   <div class="s-body">
     <div class="bawrap">
       <div class="bastage rv" style="--d:1">
-        <div class="batop"><div class="seg seg--fam" role="tablist" aria-label="Choose a product" id="bb-tabs"></div><span class="balegend" aria-hidden="true">Today<i></i>drag<i></i><b>Direction B</b></span></div>
+        <div class="batop"><div class="seg seg--fam" role="tablist" aria-label="Choose a product" id="bb-tabs"></div><span class="balegend" aria-hidden="true">Today<i></i>drag<i></i><b>Concept</b></span></div>
         <div class="ba" id="bb-ba">
           <div class="ba__before" id="bb-before" role="img"></div>
           <div class="ba__after" id="bb-after"></div>
           <i class="ba__line" aria-hidden="true"></i>
-          <div class="ba__knob" id="bb-knob" role="slider" tabindex="0" aria-label="Compare today with direction B" aria-valuemin="0" aria-valuemax="100" aria-valuenow="93" aria-valuetext="7% concept"><svg class="ico" aria-hidden="true"><use href="#i-swap"/></svg></div>
+          <div class="ba__knob" id="bb-knob" role="slider" tabindex="0" aria-label="Compare today with the concept" aria-valuemin="0" aria-valuemax="100" aria-valuenow="93" aria-valuetext="7% concept"><svg class="ico" aria-hidden="true"><use href="#i-swap"/></svg></div>
         </div>
       </div>
       <div class="bainfo rv" style="--d:2" id="bb-info" aria-live="polite"></div>
@@ -1764,9 +1763,9 @@ body[data-tone="ox"] { background: var(--ox); }
   <div class="s-body">
     <div class="next">
       <ol class="road rv" style="--d:1">
-        <li class="step step--now"><span class="dot">01</span><span class="label">Now · Phase 1</span><h3>Understand the ecosystem</h3><p>Businesses, people, products and journeys mapped.</p></li>
-        <li class="step"><span class="dot">02</span><span class="label">Next</span><h3>Define the ecosystem architecture</h3><p>Roles, relationships and how products hand over to each other.</p></li>
-        <li class="step"><span class="dot">03</span><span class="label">Then</span><h3>Build the shared experience foundation</h3><p>One Bloom language, patterns, components and principles.</p></li>
+        <li class="step step--done"><span class="dot"><svg class="ico" aria-hidden="true"><use href="#i-check"/></svg></span><span class="label">Done · Phase 1</span><h3>Understand the ecosystem</h3><p>Businesses, people, products and journeys mapped.</p></li>
+        <li class="step step--now"><span class="dot">02</span><span class="label">Now · Phase 2</span><h3>Define the ecosystem architecture</h3><p>Roles, relationships and how products hand over to each other.</p></li>
+        <li class="step"><span class="dot">03</span><span class="label">Next</span><h3>Build the shared experience foundation</h3><p>One Bloom language, patterns, components and principles.</p></li>
         <li class="step"><span class="dot">04</span><span class="label">Future</span><h3>Connect products, services and intelligence</h3><p>Experiences that anticipate what people need next.</p></li>
       </ol>
       <p class="close rv" style="--d:2">Bloom already has the pieces. Now we can connect them into <span class="serif">one experience.</span></p>
@@ -1791,8 +1790,8 @@ body[data-tone="ox"] { background: var(--ox); }
           <p><b>Left out on purpose.</b> Bloom's own pages publish different school counts (15 and 20), student totals (19,000+ and 22,000+) and hotel room totals. None are shown until Bloom confirms one figure.</p>
           <p data-dir="a"><b>Logos.</b> The Abu Dhabi EDITION and Marriott marks come from the Phase 1 material. The Bloom wordmark on 07a to 07f is taken from the Bloom Universal screen. Other brands are plain text until official files are supplied.</p>
           <p data-dir="a"><b>Concepts.</b> 07a to 07f are design concepts for discussion, written with content from today's screens. Descriptor names, accents and the type pairing are proposals, not Bloom decisions.</p>
-          <p data-dir="b"><b>Logos.</b> The Abu Dhabi EDITION and Marriott marks come from the Phase 1 material; the Bloom wordmark is taken from the Bloom Universal screen. The Bloom symbol on 07a to 07f is new: a proposal traced from the wordmark's letter o, not an existing Bloom mark. Other brands are plain text until official files are supplied.</p>
-          <p data-dir="b"><b>Concepts.</b> 07a to 07f show direction B, for discussion, written with content from today's screens. Its colours are sampled from those screens, including Bloom@Go, and the Bloom Universal photography (median of a 13 × 13 pixel patch, or the most frequent ink colour for text). The symbol, colour roles, descriptor names and type pairing are proposals, not Bloom decisions.</p>
+          <p data-dir="b"><b>Logos.</b> The Abu Dhabi EDITION and Marriott marks come from the Phase 1 material, the Bloom wordmark from the Bloom Universal screen. The Bloom symbol on 07a to 07f is a new proposal traced from the wordmark's o. Other brands are plain text until official files are supplied.</p>
+          <p data-dir="b"><b>Concepts.</b> 07a to 07f are concepts for discussion, written with content from today's screens. Colours are sampled from those screens and the Bloom Universal photography (median of a 13 × 13 pixel patch; most frequent ink colour for text). The symbol, signatures, colour roles, names and type pairing are proposals, not Bloom decisions.</p>
         </div>
       </div>
       <ol class="slist rv" style="--d:2" id="src-list"></ol>
@@ -2020,7 +2019,7 @@ body[data-tone="ox"] { background: var(--ox); }
   function openZoom(k, from) {
     // "mock:<product>" opens a direction A concept, "mockb:<product>" a direction B concept, anything else a supplied screen.
     const [kind, mock] = k.includes(":") ? k.split(":") : ["", ""], b = kind === "mockb";
-    const [t, a, img, ar] = mock ? [`${PRODUCTS[mock].n} · ${b ? "direction B " : ""}concept`, `Bloom ${PRODUCTS[mock].d} · for discussion`] : SCREENS[k];
+    const [t, a, img, ar] = mock ? [`${PRODUCTS[mock].n} · concept`, `Bloom ${PRODUCTS[mock].d} · for discussion`] : SCREENS[k];
     $("#zoom-t").textContent = t; $("#zoom-a").textContent = a;
     const z = $("#zoom-img"), zm = $("#zoom-mock"), sc = $("#zoom-scroll");
     z.hidden = !!mock; zm.hidden = !mock; zm.innerHTML = mock ? `<div class="fit">${(b ? MOCKS_B : MOCKS)[mock]()}</div>` : "";
@@ -2214,7 +2213,7 @@ body[data-tone="ox"] { background: var(--ox); }
   const sym = (st) => `<svg class="sym" viewBox="${SYMVB}" aria-hidden="true">${[0, 1, 2, 3, 4].map((k) => `<use href="#b-p${k}"${st && st[k] ? ` style="${st[k]}"` : ""}/>`).join("")}</svg>`; // st: per-petal styles, only for the misuse examples on 07d
   $$("[data-sym]").forEach((e) => { e.innerHTML = sym(); });
   // fill, text tone, tint. Base colours sampled from Bloom (see 07c); tints mixed with paper.
-  const FAMB = { group: ["#932A23", "#932A23", "#F3E4E2"], homes: ["#85674B", "#85674B", "#EEE6DD"], community: ["#4B5715", "#4B5715", "#E6E8D6"], partners: ["#A79DBF", "#6F5C9E", "#ECE9F2"], people: ["#0282FD", "#0265C5", "#E9F2FF"] };
+  const FAMB = { group: ["#932A23", "#932A23", "#F3E4E2"], homes: ["#85674B", "#85674B", "#EEE6DD"], community: ["#4B5715", "#4B5715", "#E6E8D6"], partners: ["#A79DBF", "#6F5C9E", "#ECE9F2"], people: ["#7C8DA9", "#52698E", "#EAEDF1"] };
   const famB = (f) => `--c:${FAMB[f][0]};--ct:${FAMB[f][1]};--t:${FAMB[f][2]}`;
   // Product signatures: Bloom + [product signature]. One Bloom stroke, half of the wordmark's o (cut vertically: #b-half,
   // opens right; cut horizontally: #b-arch, opens down), arranged five ways. The flower and wordmark never change.
@@ -2248,27 +2247,7 @@ body[data-tone="ox"] { background: var(--ox); }
       + `<line class="bx-guide bx-guide--dash" y1="3" y2="112"/>`;
     const labels = NAMES.map((n, k) => { const [x, y] = at(k, 116), anchor = x > 20 ? "start" : x < -20 ? "end" : "middle"; return `<g class="bx-lab" style="--k:${k}"><text x="${x.toFixed(1)}" y="${(y + (k ? (y > 0 ? 8 : 3) : -2)).toFixed(1)}" text-anchor="${anchor}">${n}</text></g>`; }).join("")
       + `<g class="bx-lab" style="--k:5"><text class="bx-lab__c" y="124" text-anchor="middle">The centre · the person</text></g>`;
-    bloomB.innerHTML = `<svg viewBox="-165 -134 330 272" aria-hidden="true"><g>${guides}</g>${[0, 1, 2, 3, 4].map((k) => `<g class="bx-petal" transform="rotate(${-k * 72})"><use href="#b-p${k}"/></g>`).join("")}<circle class="bx-dot" r="2.2"/>${labels}</svg>`;
-    let raf = 0;
-    const open = (on) => {
-      cancelAnimationFrame(raf);
-      const gs = $$(".bx-petal", bloomB);
-      if (!on) { bloomB.classList.remove("is-on"); gs.forEach((g, k) => { g.setAttribute("transform", `rotate(${-k * 72})`); g.style.opacity = 0; }); return; }
-      bloomB.classList.add("is-on");
-      if (reduce) { gs.forEach((g) => { g.setAttribute("transform", ""); g.style.opacity = 1; }); return; }
-      const t0 = performance.now() + 380, ease = (t) => 1 - Math.pow(1 - t, 4);
-      const step = (t) => {
-        let more = false;
-        gs.forEach((g, k) => {
-          const p = Math.max(0, Math.min(1, (t - t0 - k * 110) / 1300)); if (p < 1) more = true;
-          g.setAttribute("transform", `rotate(${(-k * 72 * (1 - ease(p))).toFixed(2)})`); g.style.opacity = Math.min(1, .25 + p * 3);
-        });
-        if (more) raf = requestAnimationFrame(step);
-      };
-      raf = requestAnimationFrame(step);
-    };
-    open(false);
-    ENTER.push((s) => open(s.contains(bloomB)));
+    bloomB.innerHTML = `<svg viewBox="-165 -134 330 272" aria-hidden="true"><g>${guides}</g>${[0, 1, 2, 3, 4].map((k) => `<use class="bx-petal" href="#b-p${k}"/>`).join("")}<circle class="bx-dot" r="2.2"/>${labels}</svg>`;
   }
 
   /* 07b: lockups and icons */
@@ -2284,7 +2263,7 @@ body[data-tone="ox"] { background: var(--ox); }
     ["homes", "Sandstone", "#85674B", "Bloom Properties photograph, building facade", "universal", 2000, 115, 760, 1, [-35, 0], "Homes"],
     ["community", "Garden", "#4B5715", "Bloom Landscape photograph, lawn", "universal", 2000, 900, 890, 1.3, [0, -52], "Community"],
     ["partners", "Dusk", "#A79DBF", "Bloom Properties photograph, evening sky · text tone #6F5C9E", "universal", 2000, 300, 580, 1, [0, -60], "Partners"],
-    ["people", "Go Blue", "#0282FD", "Bloom@Go's action blue, kept from today · text tone #0265C5", "go", 2000, 126, 1058, 2.6, [0, 10], "Go"]
+    ["people", "Marina", "#7C8DA9", "Bloom Hospitality photograph, sky over the marina · text tone #52698E", "universal", 2000, 1590, 560, 1, [-30, -70], "Go"]
   ];
   if ($("#bx-wins")) {
     $("#bx-neu").innerHTML = [["#1C1A19", "Ink", "Bloom Partners and Bloom@Go headings"], ["#F8F8F8", "Paper", "Bloom@Go page"], ["#FFFFFF", "White", "Bloom Universal page"]]
@@ -2297,7 +2276,7 @@ body[data-tone="ox"] { background: var(--ox); }
   if ($("#bx-rules")) {
     const RULES = [
       [1, "Whole, in one colour", "Oxblood, or white on a dark field. Products add a signature beside it, never inside.", `${sym()}<span class="bx-rv__dark">${sym()}</span>`],
-      [0, "Never recoloured in parts", "One colour for the whole symbol, every time.", sym(["fill:#932A23", "fill:#85674B", "fill:#4B5715", "fill:#A79DBF", "fill:#0282FD"])],
+      [0, "Never recoloured in parts", "One colour for the whole symbol, every time.", sym(["fill:#932A23", "fill:#85674B", "fill:#4B5715", "fill:#A79DBF", "fill:#7C8DA9"])],
       [0, "Never a chart or loader", "In products, its petals never stand for data, steps or progress.", `<span class="bx-rv__chart">${sym(TRK)}<i>45%</i></span>`],
       [0, "Never a bullet in text", "It never decorates labels, lists or running text.", `<span class="bx-rv__list">${["Your requests", "Unit price", "Documents"].map((t) => `<span>${sym()}${t}</span>`).join("")}</span>`]
     ];
@@ -2420,6 +2399,7 @@ body[data-tone="ox"] { background: var(--ox); }
     $("#c-num").textContent = s.dataset.num; $("#c-name").textContent = s.dataset.title;
     $("#c-cat").innerHTML = CAT[s.dataset.cat] || "";
     $("#counter").textContent = s.dataset.num === "A" ? "Appendix" : `${s.dataset.num} / ${LAST}`;
+    srcBtn.style.visibility = s.dataset.num === "A" ? "hidden" : "";
     $("#prev").disabled = i === 0; $("#next").disabled = i === N - 1;
     $$("#toc-list button, #ticks button").forEach((b) => b.setAttribute("aria-current", String(Number(b.dataset.go) === i)));
     try { history.replaceState(null, "", `#s${s.dataset.num}`); } catch { /* sandboxed */ }
