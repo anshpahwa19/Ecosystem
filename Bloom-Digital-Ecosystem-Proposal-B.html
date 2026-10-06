@@ -999,7 +999,7 @@ body[data-tone="ox"] { background: var(--ox); }
 .is-current .road::after { animation: fill 1.6s var(--ease) .5s forwards; }
 @keyframes fill { from { transform: scaleX(0); } }
 .step { position: relative; display: grid; gap: 12px; align-content: start; }
-.dot { display: grid; place-items: center; width: 40px; height: 40px; border-radius: 50%; background: var(--red); box-shadow: inset 0 0 0 2px rgba(255, 255, 255, .55); font-size: 12px; font-weight: 800; }
+.dot { position: relative; z-index: 1; display: grid; place-items: center; width: 40px; height: 40px; border-radius: 50%; background: var(--red); box-shadow: inset 0 0 0 2px rgba(255, 255, 255, .55); font-size: 12px; font-weight: 800; }
 .step--done .dot { background: #FFFFFF; color: var(--red); box-shadow: none; }
 .step--done .dot .ico { width: 18px; height: 18px; stroke-width: 2.6; }
 .step--done h3, .step--done p { opacity: .62; }
