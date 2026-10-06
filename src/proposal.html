@@ -19,7 +19,7 @@
   --serif: "Cormorant Garamond", "Iowan Old Style", Georgia, "Times New Roman", serif;
   --ease: cubic-bezier(.16, 1, .3, 1);
   --spring: cubic-bezier(.34, 1.4, .64, 1);
-  --shot-home: url({{SHOT_HOME}}); --shot-partners: url({{SHOT_PARTNERS}}); --shot-multiverse: url({{SHOT_MULTIVERSE}}); --shot-masterplan: url({{SHOT_MASTERPLAN}}); --shot-universal: url({{SHOT_UNIVERSAL}});
+  --shot-home: url({{SHOT_HOME}}); --shot-partners: url({{SHOT_PARTNERS}}); --shot-go: url({{SHOT_GO}}); --shot-masterplan: url({{SHOT_MASTERPLAN}}); --shot-universal: url({{SHOT_UNIVERSAL}});
   --wordmark: url({{IMG_WORDMARK}});
   --b-paper: #F6F4F0; --b-line: #E6E1D8; --b-body: #535464;
 }
@@ -73,11 +73,10 @@ a { color: inherit; }
 .src:hover { border-bottom-color: currentColor; }
 .src + .src::before { content: ","; margin-right: 1px; }
 
-/* genuine logo files (the only three held); every other brand is a text label */
+/* genuine logo files (the only two held); every other brand is a text label */
 .logo { display: inline-block; vertical-align: middle; background-repeat: no-repeat; background-position: left center; background-size: contain; flex: none; }
 .logo--edition { width: 92px; height: 26px; background-image: url({{IMG_EDITION}}); }
 .logo--marriott { width: 24px; height: 22px; background-image: url({{IMG_MARRIOTT}}); }
-.logo--mark { width: 18px; height: 16px; background-image: url({{IMG_MARK}}); }
 
 /* ---------- chrome (inside the canvas, in reserved zones) ---------- */
 .chrome { position: absolute; inset: 0; z-index: 10; pointer-events: none; color: var(--ink); transition: color .4s; }
@@ -317,7 +316,6 @@ body[data-tone="ink"] { background: var(--ink); }
 .lay--core .lay__v span::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: #FFFFFF; flex: none; }
 .pd { display: inline-flex; align-items: center; gap: 9px; }
 .pd::before { content: ""; width: 9px; height: 9px; border-radius: 2px; background: var(--c); flex: none; }
-.pd--mark::before { display: none; }
 .pd--future { color: var(--muted); }
 .pd--future::before { background: none; box-shadow: inset 0 0 0 1.5px var(--muted); }
 .lay--base { background: var(--paper-2); box-shadow: none; }
@@ -348,9 +346,6 @@ body[data-tone="ink"] { background: var(--ink); }
 .scr__links { display: flex; gap: 18px; margin-left: 8px; font-size: 12.5px; font-weight: 600; color: var(--b-body); }
 .scr__links b { font-weight: 700; color: var(--ink); }
 .scr__end { display: flex; align-items: center; gap: 8px; margin-left: auto; }
-.scr__kbd { display: inline-flex; align-items: center; gap: 7px; height: 32px; padding: 0 12px; border-radius: 16px; background: var(--b-paper); font-size: 11.5px; font-weight: 600; color: var(--b-body); }
-.scr__kbd .ico { width: 13px; height: 13px; }
-.scr__kbd b { margin-left: 4px; font-size: 10.5px; font-weight: 800; }
 .scr__icb { display: grid; place-items: center; width: 32px; height: 32px; border-radius: 50%; background: var(--b-paper); color: var(--ink); }
 .scr__icb .ico { width: 15px; height: 15px; }
 .scr__av { display: grid; place-items: center; width: 32px; height: 32px; border-radius: 50%; background: var(--acc-soft); color: var(--acc); font-size: 11px; font-weight: 800; transition: background-color .5s, color .5s; }
@@ -447,20 +442,28 @@ body[data-tone="ink"] { background: var(--ink); }
 .mp__li { display: flex; align-items: center; gap: 12px; height: 44px; padding: 0 14px 0 8px; font-size: 12.5px; font-weight: 700; }
 .mp__li .scr__ic { width: 30px; height: 30px; border-radius: 9px; }
 .mp__li .scr__ic .ico { width: 15px; height: 15px; }
-/* Multiverse concept */
-.mv { display: grid; grid-template-columns: 410px minmax(0, 1fr); column-gap: 16px; height: 100%; }
-.mv__text { display: flex; flex-direction: column; align-items: flex-start; gap: 14px; padding: 14px 0 6px 10px; }
-.mv__chips { display: flex; gap: 6px; }
-.mv__text .scr__btns { margin-top: auto; }
-.mv__orbit { position: relative; }
-.mv__ring { position: absolute; left: 50%; top: 50%; border-radius: 50%; transform: translate(-50%, -50%); }
-.mv__ring--1 { width: 318px; height: 318px; box-shadow: inset 0 0 0 1px var(--acc); opacity: .35; }
-.mv__ring--2 { width: 212px; height: 212px; border: 1.5px dashed var(--acc); opacity: .35; }
-.mv__core { position: absolute; left: 50%; top: 50%; display: grid; place-content: center; justify-items: center; width: 118px; height: 118px; border-radius: 50%; background: #FFFFFF; transform: translate(-50%, -50%); box-shadow: 0 0 0 10px var(--acc-soft), 0 24px 40px -20px rgba(11, 22, 64, .45); }
-.mv__core b { font-size: 40px; font-weight: 650; line-height: 1; letter-spacing: -.03em; color: var(--acc); }
-.mv__core small { margin-top: 4px; font-size: 10.5px; font-weight: 700; color: var(--b-body); }
-.mv__node { position: absolute; display: flex; align-items: center; gap: 8px; height: 34px; padding: 0 12px 0 14px; border-radius: 17px; background: #FFFFFF; transform: translate(-50%, -50%); box-shadow: 0 0 0 1px var(--b-line), 0 12px 22px -14px rgba(11, 22, 64, .5); font-size: 12px; font-weight: 700; white-space: nowrap; }
-.mv__node i { display: grid; place-items: center; min-width: 22px; height: 20px; padding: 0 6px; border-radius: 10px; background: var(--red); color: #FFFFFF; font-size: 10.5px; font-style: normal; font-weight: 800; }
+/* Bloom Go concept (both directions): company news beside new joiners, written with content from today's Bloom@Go home */
+.gx { display: grid; grid-template-columns: 404px minmax(0, 1fr); column-gap: 24px; height: 100%; }
+.gx__news, .gx__people { display: flex; flex-direction: column; align-items: flex-start; gap: 10px; min-width: 0; }
+.gx__news > :last-child { margin-top: 4px; }
+.gx__photo { position: relative; overflow: hidden; border-radius: var(--gx-r, 14px); }
+.scr .gx__photo .crop { display: block; }
+.gx__dots { position: absolute; right: 12px; bottom: 12px; display: flex; gap: 5px; }
+.gx__dots i { width: 6px; height: 6px; border-radius: 3px; background: rgba(255, 255, 255, .55); }
+.gx__dots i:first-child { width: 18px; background: #FFFFFF; }
+.gx__soon { display: inline-grid; place-items: center; height: 16px; margin-left: 5px; padding: 0 6px; border-radius: 8px; background: var(--t, var(--acc-soft)); color: var(--ct, var(--acc)); font-size: 9px; font-style: normal; font-weight: 800; letter-spacing: .06em; text-transform: uppercase; vertical-align: 1px; }
+.gx__card { display: grid; grid-template-columns: 84px minmax(0, 1fr); column-gap: 14px; align-self: stretch; padding: 12px; }
+.gx__pic { overflow: hidden; border-radius: var(--gx-r-s, 10px); }
+.scr .gx__pic .crop { display: block; }
+.gx__who { display: flex; flex-direction: column; align-items: flex-start; gap: 6px; min-width: 0; }
+.gx__who > b { font-size: 15px; font-weight: 700; }
+.gx__meta { font-size: 11px; line-height: 1.45; color: var(--bx-mute, var(--b-body)); }
+.gx__who > :last-child { margin-top: 2px; height: 30px; padding: 0 14px; font-size: 11.5px; }
+.gx__thumbs { display: flex; align-items: center; gap: 9px; color: var(--bx-mute, var(--b-body)); }
+.scr .gx__thumbs .crop { border-radius: 50%; }
+.gx__thumbs .crop.is-on { box-shadow: 0 0 0 2px #FFFFFF, 0 0 0 3.5px var(--ct, var(--acc)); }
+.gx__thumbs .ico { width: 15px; height: 15px; margin-left: 4px; }
+.gx--b { --gx-r: 6px; --gx-r-s: 4px; }
 /* 07a tuner */
 .tune { display: grid; grid-template-columns: 404px minmax(0, 1fr); column-gap: 48px; height: 100%; }
 .rules { display: flex; flex-direction: column; gap: 22px; }
@@ -515,8 +518,6 @@ body[data-tone="ink"] { background: var(--ink); }
 .app__ic { display: grid; place-content: center; justify-items: center; gap: 6px; width: 88px; height: 88px; border-radius: 24px; background: var(--c); box-shadow: 0 16px 28px -18px rgba(11, 22, 64, .6); }
 .app__ic .wm { width: 60px; --wm-c: #FFFFFF; }
 .app__ic small { font-size: 8px; font-weight: 800; letter-spacing: .16em; text-transform: uppercase; color: rgba(255, 255, 255, .86); }
-.app__ic--mark { background: #FFFFFF; box-shadow: inset 0 0 0 1px var(--rule), 0 16px 28px -18px rgba(11, 22, 64, .6); }
-.app__ic--mark .logo--mark { width: 46px; height: 42px; }
 .app > span { font-size: 12.5px; font-weight: 700; color: var(--ink-2); }
 .apps__rule { display: grid; gap: 10px; }
 .apps__rule p { font-size: 30px; font-weight: 600; line-height: 1.1; letter-spacing: -.02em; }
@@ -611,12 +612,8 @@ body[data-tone="ink"] { background: var(--ink); }
 .kc .mh__bar { margin: 6px 0 2px; height: 8px; border-radius: 4px; }
 .kc .mh__bar i { border-radius: 4px; }
 .kc__top { display: flex; justify-content: space-between; align-items: baseline; }
+.kc__role { font-size: 12px; font-weight: 700; line-height: 1.35; color: var(--acc); transition: color .5s; }
 .kc__top span { font-size: 22px; font-weight: 650; letter-spacing: -.02em; color: var(--acc); transition: color .5s; }
-.kc__sum { flex-direction: row; align-items: center; gap: 16px; }
-.kc__ring { display: grid; place-content: center; justify-items: center; flex: none; width: 104px; height: 104px; border-radius: 50%; background: radial-gradient(closest-side, #FFFFFF 78%, transparent 79%), conic-gradient(var(--acc) 0 47%, var(--acc-soft) 47% 100%); transition: background .5s; }
-.kc__ring b { font-size: 30px; line-height: 1; font-weight: 650; letter-spacing: -.03em; }
-.kc__ring small { font-size: 9.5px; font-weight: 700; }
-.kc__sum > div:last-child { display: grid; gap: 6px; }
 .kit .scr__nav { transition: none; }
 .kit__row--s { grid-template-columns: 330px minmax(0, 1fr) 238px; }
 .kit__row .mp__li { height: 44px; }
@@ -659,9 +656,9 @@ body[data-tone="ink"] { background: var(--ink); }
 .zoom__mock .fit { width: var(--zw, 100%); border-radius: 12px; box-shadow: 0 0 0 1px var(--b-line), 0 30px 60px -30px rgba(11, 22, 64, .4); }
 
 /* ---------- 07a-07f direction B: drawn from Bloom (concepts) ---------- */
-/* Every base colour is sampled from Bloom: oxblood from the wordmark, ink from Bloom Partners, paper from Bloom Multiverse,
-   sandstone, dusk and garden from the photography on Bloom Universal, navy from Bloom Multiverse. Tints are mixed from them. */
-:root { --ox: #932A23; --bx-ink: #1C1A19; --bx-mute: #666462; --bx-line: #E3DED6; --bx-line-2: #D3CDC3; --bx-sand: #85674B; --bx-garden: #4B5715; --bx-navy: #0B1641; }
+/* Every base colour is sampled from Bloom: oxblood from the wordmark, ink from Bloom Partners and Bloom@Go headings, paper and
+   Go Blue from Bloom@Go, sandstone, dusk and garden from the photography on Bloom Universal. Tints are mixed from them. */
+:root { --ox: #932A23; --bx-ink: #1C1A19; --bx-mute: #666462; --bx-line: #E3DED6; --bx-line-2: #D3CDC3; --bx-sand: #85674B; --bx-garden: #4B5715; --bx-paper: #F8F8F8; }
 .slide[data-dir="b"] .hl { color: var(--ox); }
 .slide[data-dir="b"] .s-head { max-width: none; }
 .slide--ox { background: radial-gradient(110% 90% at 100% 0%, #A9372E 0%, rgba(169, 55, 46, 0) 58%), radial-gradient(80% 90% at 0% 100%, #651A14 0%, rgba(101, 26, 20, 0) 70%), var(--ox); color: #FFFFFF; }
@@ -811,7 +808,7 @@ body[data-tone="ox"] { background: var(--ox); }
 .bx-rv__dark { display: grid; place-items: center; width: 62px; height: 62px; border-radius: 15px; background: var(--ox); }
 .bx-rv__dark .sym { width: 42px; color: #FFFFFF; }
 .bx-rv__chart { position: relative; }
-.bx-rv__chart i { position: absolute; left: 50%; top: 50%; display: grid; place-items: center; width: 24px; height: 24px; margin: -13px 0 0 -12px; border-radius: 50%; background: #FFFFFF; box-shadow: 0 0 0 1px var(--bx-line); font: 600 13px/1 var(--serif); font-style: normal; color: var(--bx-navy); }
+.bx-rv__chart i { position: absolute; left: 50%; top: 50%; display: grid; place-items: center; min-width: 24px; height: 24px; margin: -13px 0 0 -18px; padding: 0 5px; border-radius: 50%; background: #FFFFFF; box-shadow: 0 0 0 1px var(--bx-line); font: 600 13px/1 var(--serif); font-style: normal; color: var(--bx-ink); }
 .bx-rv__list { display: grid; gap: 8px; }
 .bx-rv__list span { display: flex; align-items: center; gap: 7px; font-size: 10px; font-weight: 800; letter-spacing: .14em; text-transform: uppercase; color: var(--bx-ink); }
 .bx-rv__list .sym { width: 12px; }
@@ -825,19 +822,16 @@ body[data-tone="ox"] { background: var(--ox); }
 .bx-part .bx-steps { margin-top: 4px; column-gap: 8px; }
 .bx-part .bx-steps small { min-height: 2.8em; font-size: 11.5px; }
 .bx-trk-src { margin-top: auto; font-size: 11.5px; line-height: 1.4; color: var(--muted); }
-.bx-big { display: flex; align-items: center; gap: 12px; }
-.bx-big b { font-family: var(--serif); font-size: 52px; font-weight: 600; line-height: .9; color: var(--ct); }
-.bx-big span { font-size: 12.5px; line-height: 1.35; color: var(--muted); }
-.bx-bars { display: grid; gap: 9px; }
-.bx-parts .bx-bars { margin-top: auto; }
-.bx-bars li { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: center; row-gap: 5px; font-size: 12.5px; font-weight: 600; }
-.bx-bars em { font-style: normal; }
-.bx-bars li > span { display: flex; align-items: center; gap: 6px; min-width: 0; }
-.bx-bars b { font-weight: 700; font-variant-numeric: tabular-nums lining-nums; }
-.bx-bars i { grid-column: 1 / -1; height: 6px; border-radius: 3px; background: linear-gradient(var(--ct) 0 0) 0 0 / var(--v) 100% no-repeat, var(--t); }
 .bx-tick { display: grid; place-items: center; width: 52px; height: 52px; margin: 4px 0; border-radius: 50%; background: var(--t); color: var(--ct); }
 .bx-tick .ico { width: 24px; height: 24px; stroke-width: 2.4; }
 .is-current .bx-tick { animation: bxpop .9s var(--spring) .6s both; }
+.bx-join { display: flex; align-items: center; gap: 12px; }
+.bx-join .crop { border-radius: 50%; box-shadow: none; }
+.bx-join div { display: grid; gap: 2px; }
+.bx-join b { font-size: 15px; font-weight: 700; }
+.bx-join small { font-size: 12px; color: var(--muted); }
+.bx-part .bx-role { align-self: flex-start; height: auto; padding: 5px 10px; white-space: normal; line-height: 1.3; }
+.bx-part .bl { margin-top: auto; align-self: flex-start; }
 .bx-part--done b { font-size: 16px; font-weight: 700; }
 .bx-part--done small { font-size: 12.5px; line-height: 1.4; color: var(--muted); }
 .bx-part--done .bl { margin-top: auto; align-self: flex-start; }
@@ -872,7 +866,7 @@ body[data-tone="ox"] { background: var(--ox); }
 .slide[data-dir="b"] .ba__knob { background: var(--ox); }
 .slide[data-dir="b"] .balegend b { color: var(--ox); }
 /* concept screens, direction B: flat white bar, serif headlines, oxblood actions, one sampled accent */
-.scr--b { background: var(--b-paper); color: var(--bx-ink); }
+.scr--b { background: var(--bx-paper); color: var(--bx-ink); }
 /* lining figures: old-style figures read "A1-401" as "Aı-4oı" in the serif */
 .slide[data-dir="b"], .scr--b { font-variant-numeric: lining-nums; }
 .bn { position: absolute; z-index: 2; left: 0; right: 0; top: 0; display: flex; align-items: center; gap: 14px; height: 56px; padding: 0 22px 0 24px; background: #FFFFFF; box-shadow: 0 1px 0 var(--bx-line); white-space: nowrap; }
@@ -889,8 +883,6 @@ body[data-tone="ox"] { background: var(--ox); }
 .bn__lang b { color: var(--bx-ink); text-decoration: underline; text-decoration-color: var(--ox); text-decoration-thickness: 2px; text-underline-offset: 5px; }
 .bn__icb { display: grid; place-items: center; width: 30px; height: 30px; border-radius: 50%; box-shadow: inset 0 0 0 1px var(--bx-line); color: var(--bx-ink); }
 .bn__icb .ico { width: 14px; height: 14px; }
-.bn__kbd { display: inline-flex; align-items: center; gap: 7px; height: 30px; padding: 0 11px; border-radius: 4px; box-shadow: inset 0 0 0 1px var(--bx-line); font-size: 11.5px; font-weight: 600; color: var(--bx-mute); }
-.bn__kbd .ico { width: 13px; height: 13px; }
 .bn__av { display: grid; place-items: center; width: 30px; height: 30px; border-radius: 50%; background: var(--t); color: var(--ct); font-size: 11px; font-weight: 800; }
 .bbody { position: absolute; left: 28px; right: 28px; top: 82px; bottom: 24px; }
 .bh { font-family: var(--serif); font-size: 46px; font-weight: 600; line-height: .98; letter-spacing: -.012em; color: var(--bx-ink); }
@@ -979,16 +971,6 @@ body[data-tone="ox"] { background: var(--ox); }
 .bpt__li { display: flex; align-items: center; gap: 12px; height: 46px; padding: 0 14px 0 6px; font-size: 12.5px; font-weight: 700; }
 .bpt__li .bic { width: 34px; height: 34px; }
 .bpt__li .ico.chev { width: 14px; height: 14px; margin-left: auto; color: var(--bx-mute); }
-/* Multiverse */
-.bmv { display: grid; grid-template-columns: 392px minmax(0, 1fr); column-gap: 28px; height: 100%; }
-.bmv__panel { display: flex; flex-direction: column; gap: 12px; align-self: center; padding: 18px 20px; }
-.bmv__panel .bchip { height: 20px; padding: 0 8px; font-size: 10px; }
-.bmv__note { display: flex; align-items: center; gap: 9px; padding-top: 12px; border-top: 1px solid var(--bx-line); font-size: 12px; color: var(--bx-ink); }
-.bmv__note > .ico { width: 15px; height: 15px; color: var(--bx-mute); }
-.bmv__note .bl { margin-left: auto; }
-.bmv__text { display: flex; flex-direction: column; align-items: flex-start; gap: 14px; padding-top: 6px; }
-.bmv__chips { display: flex; gap: 6px; }
-.bmv__text .bbtns { margin-top: auto; }
 
 /* ---------- 06 pillars ---------- */
 .temple { display: grid; }
@@ -1157,7 +1139,7 @@ body[data-tone="ox"] { background: var(--ox); }
 .is-narrow .typo__demo { font-size: 26px; }
 .is-narrow .kit__top { flex-direction: column; align-items: flex-start; }
 .is-narrow .kit__row { grid-template-columns: minmax(0, 1fr); row-gap: 18px; }
-.is-narrow .kit .scr__nav .scr__links, .is-narrow .kit .scr__kbd { display: none; }
+.is-narrow .kit .scr__nav .scr__links { display: none; }
 .is-narrow .kc { height: auto; min-height: 140px; }
 .is-narrow .batop { flex-direction: column; align-items: flex-start; }
 .is-narrow .bainfo { padding-top: 0; }
@@ -1365,7 +1347,7 @@ body[data-tone="ox"] { background: var(--ox); }
   </header>
   <div class="s-body">
     <div class="lineup">
-      <figure class="shot rv" style="--d:1"><button class="shot__frame" type="button" data-zoom="universal" aria-label="View Bloom Universal full size"><span class="shot__bar"><i></i><i></i><i></i><b>Bloom Universal</b><span>Gateway to six Bloom businesses</span><svg class="ico" aria-hidden="true"><use href="#i-expand"/></svg></span><i class="crop" style="--img:var(--shot-universal);--iw:2000;--x:0;--y:0;--w:2000;--h:1039;--s:0.2185" role="img" aria-label="Bloom Universal: first screen"></i></button></figure><figure class="shot rv" style="--d:2"><button class="shot__frame" type="button" data-zoom="masterplan" aria-label="View Al Metlaa master plan full size"><span class="shot__bar"><i></i><i></i><i></i><b>Al Metlaa master plan</b><span>Buyers exploring Al Metlaa</span><svg class="ico" aria-hidden="true"><use href="#i-expand"/></svg></span><i class="crop" style="--img:var(--shot-masterplan);--iw:2000;--x:0;--y:0;--w:2000;--h:1039;--s:0.2185" role="img" aria-label="Al Metlaa master plan: first screen"></i></button></figure><figure class="shot rv" style="--d:3"><button class="shot__frame" type="button" data-zoom="home" aria-label="View Home-buying platform full size"><span class="shot__bar"><i></i><i></i><i></i><b>Home-buying platform</b><span>Emirati buyers · Al Metlaa</span><svg class="ico" aria-hidden="true"><use href="#i-expand"/></svg></span><i class="crop" style="--img:var(--shot-home);--iw:1930;--x:0;--y:0;--w:1930;--h:1003;--s:0.2264" role="img" aria-label="Home-buying platform: first screen"></i></button></figure><figure class="shot rv" style="--d:4"><button class="shot__frame" type="button" data-zoom="partners" aria-label="View Bloom Partners full size"><span class="shot__bar"><i></i><i></i><i></i><b>Bloom Partners</b><span>Brokers and agencies</span><svg class="ico" aria-hidden="true"><use href="#i-expand"/></svg></span><i class="crop" style="--img:var(--shot-partners);--iw:1333;--x:0;--y:0;--w:1333;--h:692;--s:0.3278" role="img" aria-label="Bloom Partners: first screen"></i></button></figure><figure class="shot rv" style="--d:5"><button class="shot__frame" type="button" data-zoom="multiverse" aria-label="View Bloom Multiverse full size"><span class="shot__bar"><i></i><i></i><i></i><b>Bloom Multiverse</b><span>Employees</span><svg class="ico" aria-hidden="true"><use href="#i-expand"/></svg></span><i class="crop" style="--img:var(--shot-multiverse);--iw:2000;--x:0;--y:0;--w:2000;--h:1039;--s:0.2185" role="img" aria-label="Bloom Multiverse: first screen"></i></button></figure><div class="shot-text rv" style="--d:6"><p>One company. Five ways of saying Bloom.</p><ul><li><b>3</b>show the Bloom wordmark</li><li><b>1</b>uses its own lockup</li><li><b>1</b>shows no Bloom mark in view</li></ul><small>Select a screen to see it full size.<a class="src" href="#src-16" data-s="16">16</a></small></div>
+      <figure class="shot rv" style="--d:1"><button class="shot__frame" type="button" data-zoom="universal" aria-label="View Bloom Universal full size"><span class="shot__bar"><i></i><i></i><i></i><b>Bloom Universal</b><span>Gateway to six Bloom businesses</span><svg class="ico" aria-hidden="true"><use href="#i-expand"/></svg></span><i class="crop" style="--img:var(--shot-universal);--iw:2000;--x:0;--y:0;--w:2000;--h:1039;--s:0.2185" role="img" aria-label="Bloom Universal: first screen"></i></button></figure><figure class="shot rv" style="--d:2"><button class="shot__frame" type="button" data-zoom="masterplan" aria-label="View Al Metlaa master plan full size"><span class="shot__bar"><i></i><i></i><i></i><b>Al Metlaa master plan</b><span>Buyers exploring Al Metlaa</span><svg class="ico" aria-hidden="true"><use href="#i-expand"/></svg></span><i class="crop" style="--img:var(--shot-masterplan);--iw:2000;--x:0;--y:0;--w:2000;--h:1039;--s:0.2185" role="img" aria-label="Al Metlaa master plan: first screen"></i></button></figure><figure class="shot rv" style="--d:3"><button class="shot__frame" type="button" data-zoom="home" aria-label="View Home-buying platform full size"><span class="shot__bar"><i></i><i></i><i></i><b>Home-buying platform</b><span>Emirati buyers · Al Metlaa</span><svg class="ico" aria-hidden="true"><use href="#i-expand"/></svg></span><i class="crop" style="--img:var(--shot-home);--iw:1930;--x:0;--y:0;--w:1930;--h:1003;--s:0.2264" role="img" aria-label="Home-buying platform: first screen"></i></button></figure><figure class="shot rv" style="--d:4"><button class="shot__frame" type="button" data-zoom="partners" aria-label="View Bloom Partners full size"><span class="shot__bar"><i></i><i></i><i></i><b>Bloom Partners</b><span>Brokers and agencies</span><svg class="ico" aria-hidden="true"><use href="#i-expand"/></svg></span><i class="crop" style="--img:var(--shot-partners);--iw:1333;--x:0;--y:0;--w:1333;--h:692;--s:0.3278" role="img" aria-label="Bloom Partners: first screen"></i></button></figure><figure class="shot rv" style="--d:5"><button class="shot__frame" type="button" data-zoom="go" aria-label="View Bloom@Go full size"><span class="shot__bar"><i></i><i></i><i></i><b>Bloom@Go</b><span>Employees · live today</span><svg class="ico" aria-hidden="true"><use href="#i-expand"/></svg></span><i class="crop" style="--img:var(--shot-go);--iw:2000;--x:0;--y:0;--w:2000;--h:1039;--s:0.2185" role="img" aria-label="Bloom@Go: first screen"></i></button></figure><div class="shot-text rv" style="--d:6"><p>One company. Five ways of saying Bloom.</p><ul><li><b>3</b>show the Bloom wordmark</li><li><b>1</b>uses its own lockup</li><li><b>1</b>shows no Bloom mark in view</li></ul><small>Select a screen to see it full size.<a class="src" href="#src-16" data-s="16">16</a></small></div>
     </div>
   </div>
 </section>
@@ -1386,7 +1368,7 @@ body[data-tone="ox"] { background: var(--ox); }
     <h2 class="h1 rv">And its own type and <span class="hl">components.</span></h2>
   </header>
   <div class="s-body">
-    <div class="mt rv" style="--d:1"><span class="mt__h"></span><span class="mt__h">Brand mark</span><span class="mt__h">Headline</span><span class="mt__h">Primary action</span><div class="mt__who"><b>Bloom Universal</b><span>Gateway to six Bloom businesses</span></div><div class="mt__c" data-role="Brand mark"><span class="mx__tile" style="--th:52px;--tbg:#FFFFFF"><i class="crop" style="--img:var(--shot-universal);--iw:2000;--x:48;--y:65;--w:252;--h:85;--s:0.5" role="img" aria-label="Bloom wordmark on Bloom Universal"></i></span><small>Bloom wordmark</small></div><div class="mt__c" data-role="Headline"><span class="mx__tile" style="--th:52px;--tbg:#FFFFFF"><i class="crop" style="--img:var(--shot-universal);--iw:2000;--x:46;--y:203;--w:442;--h:94;--s:0.46" role="img" aria-label="The Bloom Experience: More Than a Place to Live"></i></span><small>Sans headline, capitals label</small></div><div class="mt__c" data-role="Primary action"><span class="mx__tile" style="--th:52px;--tbg:#FFFFFF"><i class="crop" style="--img:var(--shot-universal);--iw:2000;--x:46;--y:316;--w:304;--h:76;--s:0.57" role="img" aria-label="Let us get started button"></i></span><small>Charcoal button with an arrow</small></div><div class="mt__who"><b>Al Metlaa master plan</b><span>Buyers exploring Al Metlaa</span></div><div class="mt__c" data-role="Brand mark"><span class="mx__tile" style="--th:52px;--tbg:#FFFFFF"><i class="crop" style="--img:var(--shot-masterplan);--iw:2000;--x:18;--y:20;--w:254;--h:54;--s:0.8" role="img" aria-label="Back button and Al Ain, Masterplan breadcrumb"></i></span><small>No Bloom mark in view</small></div><div class="mt__c" data-role="Headline"><span class="mx__tile" style="--th:52px;--tbg:#FFFFFF"><i class="crop" style="--img:var(--shot-masterplan);--iw:2000;--x:16;--y:122;--w:394;--h:60;--s:0.72" role="img" aria-label="Filters, showing 2247 of 2247 units"></i></span><small>Small bold sans panel title</small></div><div class="mt__c" data-role="Primary action"><span class="mx__tile" style="--th:52px;--tbg:#FFFFFF"><i class="crop" style="--img:var(--shot-masterplan);--iw:2000;--x:1860;--y:18;--w:124;--h:50;--s:0.86" role="img" aria-label="English and Arabic toggle"></i></span><small>Black toggle; filters as checkboxes</small></div><div class="mt__who"><b>Home-buying platform</b><span>Emirati buyers · Al Metlaa</span></div><div class="mt__c" data-role="Brand mark"><span class="mx__tile" style="--th:52px;--tbg:#F6F6F6"><i class="crop" style="--img:var(--shot-home);--iw:1930;--x:55;--y:55;--w:170;--h:65;--s:0.62" role="img" aria-label="Bloom wordmark on the home-buying platform"></i></span><small>Bloom wordmark</small></div><div class="mt__c" data-role="Headline"><span class="mx__tile" style="--th:52px;--tbg:#F6F6F6"><i class="crop" style="--img:var(--shot-home);--iw:1930;--x:300;--y:50;--w:222;--h:50;--s:0.86" role="img" aria-label="Unit Details heading"></i></span><small>Sans serif titles</small></div><div class="mt__c" data-role="Primary action"><span class="mx__tile" style="--th:52px;--tbg:#F6F6F6"><i class="crop" style="--img:var(--shot-home);--iw:1930;--x:1240;--y:540;--w:560;--h:72;--s:0.6" role="img" aria-label="Book Appointment button"></i></span><small>Full-width black button</small></div><div class="mt__who"><b>Bloom Partners</b><span>Brokers and agencies</span></div><div class="mt__c" data-role="Brand mark"><span class="mx__tile" style="--th:52px;--tbg:#FFFFFF"><i class="crop" style="--img:var(--shot-partners);--iw:1333;--x:65;--y:8;--w:120;--h:52;--s:0.78" role="img" aria-label="Bloom wordmark on Bloom Partners"></i></span><small>Bloom wordmark</small></div><div class="mt__c" data-role="Headline"><span class="mx__tile" style="--th:52px;--tbg:#FFFFFF"><i class="crop" style="--img:var(--shot-partners);--iw:1333;--x:100;--y:690;--w:245;--h:48;--s:0.9" role="img" aria-label="Other request types heading"></i></span><small>Serif display titles</small></div><div class="mt__c" data-role="Primary action"><span class="mx__tile" style="--th:52px;--tbg:#FFFFFF"><i class="crop" style="--img:var(--shot-partners);--iw:1333;--x:203;--y:545;--w:165;--h:36;--s:1" role="img" aria-label="Raise a Request link"></i></span><small>Underlined text link</small></div><div class="mt__who"><b>Bloom Multiverse</b><span>Employees</span></div><div class="mt__c" data-role="Brand mark"><span class="mx__tile" style="--th:52px;--tbg:#FEFEFE"><i class="crop" style="--img:var(--shot-multiverse);--iw:2000;--x:492;--y:34;--w:228;--h:58;--s:0.7" role="img" aria-label="Bloom Multiverse lockup"></i></span><small>Its own Bloom Multiverse lockup</small></div><div class="mt__c" data-role="Headline"><span class="mx__tile" style="--th:52px;--tbg:#F6F4F0"><i class="crop" style="--img:var(--shot-multiverse);--iw:2000;--x:96;--y:282;--w:990;--h:248;--s:0.175" role="img" aria-label="Good afternoon, Rashid heading"></i></span><small>Heavy grotesque, gradient name</small></div><div class="mt__c" data-role="Primary action"><span class="mx__tile" style="--th:52px;--tbg:#F6F4F0"><i class="crop" style="--img:var(--shot-multiverse);--iw:2000;--x:96;--y:826;--w:525;--h:84;--s:0.51" role="img" aria-label="Review 32 actions and Open inbox buttons"></i></span><small>Blue pill, outlined partner</small></div></div>
+    <div class="mt rv" style="--d:1"><span class="mt__h"></span><span class="mt__h">Brand mark</span><span class="mt__h">Headline</span><span class="mt__h">Primary action</span><div class="mt__who"><b>Bloom Universal</b><span>Gateway to six Bloom businesses</span></div><div class="mt__c" data-role="Brand mark"><span class="mx__tile" style="--th:52px;--tbg:#FFFFFF"><i class="crop" style="--img:var(--shot-universal);--iw:2000;--x:48;--y:65;--w:252;--h:85;--s:0.5" role="img" aria-label="Bloom wordmark on Bloom Universal"></i></span><small>Bloom wordmark</small></div><div class="mt__c" data-role="Headline"><span class="mx__tile" style="--th:52px;--tbg:#FFFFFF"><i class="crop" style="--img:var(--shot-universal);--iw:2000;--x:46;--y:203;--w:442;--h:94;--s:0.46" role="img" aria-label="The Bloom Experience: More Than a Place to Live"></i></span><small>Sans headline, capitals label</small></div><div class="mt__c" data-role="Primary action"><span class="mx__tile" style="--th:52px;--tbg:#FFFFFF"><i class="crop" style="--img:var(--shot-universal);--iw:2000;--x:46;--y:316;--w:304;--h:76;--s:0.57" role="img" aria-label="Let us get started button"></i></span><small>Charcoal button with an arrow</small></div><div class="mt__who"><b>Al Metlaa master plan</b><span>Buyers exploring Al Metlaa</span></div><div class="mt__c" data-role="Brand mark"><span class="mx__tile" style="--th:52px;--tbg:#FFFFFF"><i class="crop" style="--img:var(--shot-masterplan);--iw:2000;--x:18;--y:20;--w:254;--h:54;--s:0.8" role="img" aria-label="Back button and Al Ain, Masterplan breadcrumb"></i></span><small>No Bloom mark in view</small></div><div class="mt__c" data-role="Headline"><span class="mx__tile" style="--th:52px;--tbg:#FFFFFF"><i class="crop" style="--img:var(--shot-masterplan);--iw:2000;--x:16;--y:122;--w:394;--h:60;--s:0.72" role="img" aria-label="Filters, showing 2247 of 2247 units"></i></span><small>Small bold sans panel title</small></div><div class="mt__c" data-role="Primary action"><span class="mx__tile" style="--th:52px;--tbg:#FFFFFF"><i class="crop" style="--img:var(--shot-masterplan);--iw:2000;--x:1860;--y:18;--w:124;--h:50;--s:0.86" role="img" aria-label="English and Arabic toggle"></i></span><small>Black toggle; filters as checkboxes</small></div><div class="mt__who"><b>Home-buying platform</b><span>Emirati buyers · Al Metlaa</span></div><div class="mt__c" data-role="Brand mark"><span class="mx__tile" style="--th:52px;--tbg:#F6F6F6"><i class="crop" style="--img:var(--shot-home);--iw:1930;--x:55;--y:55;--w:170;--h:65;--s:0.62" role="img" aria-label="Bloom wordmark on the home-buying platform"></i></span><small>Bloom wordmark</small></div><div class="mt__c" data-role="Headline"><span class="mx__tile" style="--th:52px;--tbg:#F6F6F6"><i class="crop" style="--img:var(--shot-home);--iw:1930;--x:300;--y:50;--w:222;--h:50;--s:0.86" role="img" aria-label="Unit Details heading"></i></span><small>Sans serif titles</small></div><div class="mt__c" data-role="Primary action"><span class="mx__tile" style="--th:52px;--tbg:#F6F6F6"><i class="crop" style="--img:var(--shot-home);--iw:1930;--x:1240;--y:540;--w:560;--h:72;--s:0.6" role="img" aria-label="Book Appointment button"></i></span><small>Full-width black button</small></div><div class="mt__who"><b>Bloom Partners</b><span>Brokers and agencies</span></div><div class="mt__c" data-role="Brand mark"><span class="mx__tile" style="--th:52px;--tbg:#FFFFFF"><i class="crop" style="--img:var(--shot-partners);--iw:1333;--x:65;--y:8;--w:120;--h:52;--s:0.78" role="img" aria-label="Bloom wordmark on Bloom Partners"></i></span><small>Bloom wordmark</small></div><div class="mt__c" data-role="Headline"><span class="mx__tile" style="--th:52px;--tbg:#FFFFFF"><i class="crop" style="--img:var(--shot-partners);--iw:1333;--x:100;--y:690;--w:245;--h:48;--s:0.9" role="img" aria-label="Other request types heading"></i></span><small>Serif display titles</small></div><div class="mt__c" data-role="Primary action"><span class="mx__tile" style="--th:52px;--tbg:#FFFFFF"><i class="crop" style="--img:var(--shot-partners);--iw:1333;--x:203;--y:545;--w:165;--h:36;--s:1" role="img" aria-label="Raise a Request link"></i></span><small>Underlined text link</small></div><div class="mt__who"><b>Bloom@Go</b><span>Employees</span></div><div class="mt__c" data-role="Brand mark"><span class="mx__tile" style="--th:52px;--tbg:#FFFFFF"><i class="crop" style="--img:var(--shot-go);--iw:2000;--x:48;--y:30;--w:220;--h:56;--s:0.7" role="img" aria-label="Bloom@Go lockup"></i></span><small>Bloom wordmark in black, a blue @</small></div><div class="mt__c" data-role="Headline"><span class="mx__tile" style="--th:52px;--tbg:#F8F8F8"><i class="crop" style="--img:var(--shot-go);--iw:2000;--x:48;--y:1340;--w:790;--h:66;--s:0.4" role="img" aria-label="Welcome to the Bloom Family heading"></i></span><small>Bold serif headings, system sans body</small></div><div class="mt__c" data-role="Primary action"><span class="mx__tile" style="--th:52px;--tbg:#FFFFFF"><i class="crop" style="--img:var(--shot-go);--iw:2000;--x:101;--y:1010;--w:730;--h:97;--s:0.38" role="img" aria-label="Watch CEO's interview with CNBC button"></i></span><small>Bright blue block; outlined Say Hello</small></div></div>
   </div>
 </section>
 
@@ -1508,12 +1490,12 @@ body[data-tone="ox"] { background: var(--ox); }
         <div class="cores" id="cores"></div>
         <span class="label">Accents · one per audience, each with a light tint</span>
         <div class="accs" id="accs"></div>
-        <div class="count"><b>43<span>→</span>16</b><p>distinct colours on today's five screens, against one shared palette of 7 core colours, 4 accents and 5 tints.<a class="src" href="#src-16" data-s="16">16</a></p></div>
+        <div class="count"><b>38<span>→</span>16</b><p>distinct colours on today's five screens, against one shared palette of 7 core colours, 4 accents and 5 tints.<a class="src" href="#src-16" data-s="16">16</a></p></div>
       </div>
       <div class="pal-r rv" style="--d:2">
         <span class="label">Same recipe, a different accent</span>
         <div class="phs" id="phs" role="img" aria-label="Five product screens drawn with the same proportions of paper, white, ink and Bloom red, each with its own accent"></div>
-        <div class="legend"><span><i style="--c:#F6F4F0"></i>Paper</span><span><i style="--c:#FFFFFF"></i>White</span><span><i style="--c:#0B1640"></i>Ink</span><span><i style="--c:#B6000E"></i>Bloom red, actions only</span><span><i style="--c:linear-gradient(135deg,#8F5E24 0 25%,#3F7A55 25% 50%,#3F4FB8 50% 75%,#1F4DFF 75%)"></i>Accent</span></div>
+        <div class="legend"><span><i style="--c:#F6F4F0"></i>Paper</span><span><i style="--c:#FFFFFF"></i>White</span><span><i style="--c:#0B1640"></i>Ink</span><span><i style="--c:#B6000E"></i>Bloom red, actions only</span><span><i style="--c:linear-gradient(135deg,#8F5E24 0 25%,#3F7A55 25% 50%,#3F4FB8 50% 75%,#0265C5 75%)"></i>Accent</span></div>
       </div>
     </div>
   </div>
@@ -1531,7 +1513,7 @@ body[data-tone="ox"] { background: var(--ox); }
           <div><b aria-hidden="true">Aa</b><span>Plus Jakarta Sans</span><small>Interface, on every product</small></div>
           <div><b class="serif" aria-hidden="true">Aa</b><span>Cormorant Garamond Italic</span><small>One brand moment per screen</small></div>
         </div>
-        <p class="typo__demo">Good afternoon, <em>Rashid.</em></p>
+        <p class="typo__demo">Welcome, <em>Paras.</em></p>
         <ul class="typo__scale">
           <li><span style="font-size:30px;font-weight:650;letter-spacing:-.03em">Display</span><small>34 · Semibold</small></li>
           <li><span style="font-size:21px;font-weight:700;letter-spacing:-.015em">Title</span><small>22 · Bold</small></li>
@@ -1552,7 +1534,7 @@ body[data-tone="ox"] { background: var(--ox); }
         <div class="kit__row">
           <div class="kit__cell"><span class="kit__k">Request card</span><div class="scr__card kc"><span class="scr__ic"><svg class="ico" aria-hidden="true"><use href="#i-home"/></svg></span><b>Open house</b><small>Materials or sales agent support for your open house.</small><span class="scr__link">Raise a request<svg class="ico" aria-hidden="true"><use href="#i-arrow-r"/></svg></span></div></div>
           <div class="kit__cell"><span class="kit__k">Progress</span><div class="scr__card kc"><small>A1-401 · Al Metlaa, Al Ain</small><div class="kc__top"><b>Construction</b><span>45%</span></div><div class="mh__bar" style="--v:45%"><i></i></div><small>Handover by December 2028</small><span class="scr__link">View unit<svg class="ico" aria-hidden="true"><use href="#i-arrow-r"/></svg></span></div></div>
-          <div class="kit__cell"><span class="kit__k">Summary</span><div class="scr__card kc kc__sum"><div class="kc__ring"><b>32</b><small>actions</small></div><div><b>Salesforce</b><small>15 of 32 actions waiting</small></div></div></div>
+          <div class="kit__cell"><span class="kit__k">Welcome card</span><div class="scr__card kc"><small>New joiner · Finance</small><b>Paras Shah</b><span class="kc__role">Executive Director – Commercial</span><small>Joined 6 Jul 2026</small><span class="scr__link">Say hello<svg class="ico" aria-hidden="true"><use href="#i-arrow-r"/></svg></span></div></div>
         </div>
         <div class="kit__row">
           <div class="kit__cell"><span class="kit__k">List row</span><div class="scr__card mp__li"><span class="scr__ic"><svg class="ico" aria-hidden="true"><use href="#i-card"/></svg></span>Delayed commission payment<svg class="ico scr__chev" aria-hidden="true"><use href="#i-chev-r"/></svg></div></div>
@@ -1665,7 +1647,7 @@ body[data-tone="ox"] { background: var(--ox); }
       <div class="bx-places rv" style="--d:2">
         <span class="label" style="margin-bottom:14px">One accent per audience · sampled from Bloom's own photography and screens</span>
         <div class="bx-wins" id="bx-wins"></div>
-        <div class="bx-count"><b>43<span>→</span>8</b><p>distinct colours on today's five screens (05b), against 8 base colours here, each taken from something Bloom already owns. Tints are mixed from them; Dusk is deepened for text.<a class="src" href="#src-16" data-s="16">16</a></p></div>
+        <div class="bx-count"><b>38<span>→</span>8</b><p>distinct colours on today's five screens (05b), against 8 base colours here, each taken from something Bloom already owns. Tints are mixed from them; Dusk and Go Blue are deepened for text.<a class="src" href="#src-16" data-s="16">16</a></p></div>
       </div>
     </div>
   </div>
@@ -1808,10 +1790,10 @@ body[data-tone="ox"] { background: var(--ox); }
         </ul>
         <div class="notes">
           <p><b>Left out on purpose.</b> Bloom's own pages publish different school counts (15 and 20), student totals (19,000+ and 22,000+) and hotel room totals. None are shown until Bloom confirms one figure.</p>
-          <p data-dir="a"><b>Logos.</b> The Abu Dhabi EDITION, Marriott and Bloom Multiverse marks come from the Phase 1 material. The Bloom wordmark on 07a to 07f is taken from the Bloom Universal screen. Other brands are plain text until official files are supplied.</p>
+          <p data-dir="a"><b>Logos.</b> The Abu Dhabi EDITION and Marriott marks come from the Phase 1 material. The Bloom wordmark on 07a to 07f is taken from the Bloom Universal screen. Other brands are plain text until official files are supplied.</p>
           <p data-dir="a"><b>Concepts.</b> 07a to 07f are design concepts for discussion, written with content from today's screens. Descriptor names, accents and the type pairing are proposals, not Bloom decisions.</p>
-          <p data-dir="b"><b>Logos.</b> The Abu Dhabi EDITION, Marriott and Bloom Multiverse marks come from the Phase 1 material; the Bloom wordmark is taken from the Bloom Universal screen. The Bloom symbol on 07a to 07f is new: a proposal traced from the wordmark's letter o, not an existing Bloom mark. Other brands are plain text until official files are supplied.</p>
-          <p data-dir="b"><b>Concepts.</b> 07a to 07f show direction B, for discussion, written with content from today's screens. Its colours are sampled from those screens and the Bloom Universal photography (median of a 13 × 13 pixel patch). The symbol, colour roles, descriptor names and type pairing are proposals, not Bloom decisions.</p>
+          <p data-dir="b"><b>Logos.</b> The Abu Dhabi EDITION and Marriott marks come from the Phase 1 material; the Bloom wordmark is taken from the Bloom Universal screen. The Bloom symbol on 07a to 07f is new: a proposal traced from the wordmark's letter o, not an existing Bloom mark. Other brands are plain text until official files are supplied.</p>
+          <p data-dir="b"><b>Concepts.</b> 07a to 07f show direction B, for discussion, written with content from today's screens. Its colours are sampled from those screens, including Bloom@Go, and the Bloom Universal photography (median of a 13 × 13 pixel patch, or the most frequent ink colour for text). The symbol, colour roles, descriptor names and type pairing are proposals, not Bloom decisions.</p>
         </div>
       </div>
       <ol class="slist rv" style="--d:2" id="src-list"></ol>
@@ -1883,9 +1865,9 @@ body[data-tone="ox"] { background: var(--ox); }
     ["Bloom Facilities Management", "https://bloomholding.com/what-we-do/bfm", "Integrated facilities and community management in Abu Dhabi and Dubai, for Bloom and third-party clients. See also bfm.ae."],
     ["Bloom Holding · Bloom Education", "https://bloomholding.com/what-we-do/education", "Partnership with Brighton College UK, Bloom World Academy (IB), ADEK Charter Schools and Al Ghad Public Nurseries."],
     ["Bloom Holding · Bloom Arjaan by Rotana hotel apartments", "https://bloomholding.com/press-releases/bloom-arjaan-rotana-hotel-apartments", "Hotel apartments on Saadiyat Island offered to investors, managed by Rotana."],
-    ["Bloom team materials · Phase 1", "", "Bloom Multiverse, the employee platform: work apps, approvals, people and policies in one place."],
+    ["Bloom@Go · live employee platform", "", "Home screen shared by the Bloom team, October 2026: News (the CEO's interview with CNBC), Welcome to the Bloom Family (new joiners with role, reporting line, joining date and Say Hello) and Requests, marked coming soon."],
     ["Bloom Holding · Bloom Landscape", "https://bloomholding.com/what-we-do/bloomscape", "Landscape design, construction and maintenance for local and international clients: public parks, sports facilities, resorts, hotels, palaces, residential complexes, commercial centres and large urban developments, in Abu Dhabi and Dubai."],
-    ["Bloom product screens · supplied by the Bloom team", "", "Bloom Universal (home), Al Metlaa master plan, home-buying platform (Al Metlaa unit details), Bloom Partners (Your Requests) and Bloom Multiverse (home), October 2026. Colours on 05b are sampled directly from these screens; image compression can shift values slightly. The concept screens on 07a to 07f reuse their content, and 07e shows them as the 'today' view." + ($("#deck").dataset.dir === "b" ? " Direction B samples its colours on 07c from these screens, including the photography on Bloom Universal." : "")]
+    ["Bloom product screens · supplied by the Bloom team", "", "Bloom Universal (home), Al Metlaa master plan, home-buying platform (Al Metlaa unit details), Bloom Partners (Your Requests) and Bloom@Go (home), October 2026. Colours on 05b are sampled directly from these screens; image compression can shift values slightly. The concept screens on 07a to 07f reuse their content, and 07e shows them as the 'today' view." + ($("#deck").dataset.dir === "b" ? " Direction B samples its colours on 07c from these screens, including the photography on Bloom Universal." : "")]
   ];
   const short = (u) => u.replace(/^https:\/\/(www\.)?/, "").replace(/\/$/, "");
   $("#src-list").innerHTML = SOURCES.map(([t, u], i) => `<li><span>${pad(i + 1)}</span><div><b>${esc(t)}</b>${u ? `<a href="${esc(u)}" target="_blank" rel="noopener">${esc(short(u).split("/")[0])}</a>` : `<a>Shared with the Bloom team</a>`}</div></li>`).join("");
@@ -1942,7 +1924,7 @@ body[data-tone="ox"] { background: var(--ox); }
     ["bfm", "Bloom Facilities Management", [["fm", "Community management"], ["services", "Facilities services"]]],
     ["land", "Bloom Landscape", [["landscape", "Landscaping"]]]
   ];
-  const DIGITAL = [["web", "bloomholding.com", ["props"]], ["partners", "Bloom Partners", ["props"]], ["super", "Bloom Holding Super App", ["props"]], ["community", "Bloom Community App", ["props"]], ["multiverse", "Bloom Multiverse", ["props", "edu", "hos", "bfm", "land"], "mark"]];
+  const DIGITAL = [["web", "bloomholding.com", ["props"]], ["partners", "Bloom Partners", ["props"]], ["super", "Bloom Holding Super App", ["props"]], ["community", "Bloom Community App", ["props"]], ["go", "Bloom@Go", ["props", "edu", "hos", "bfm", "land"]]];
   const OWNER = {}; BIZ.forEach(([b, , items]) => items.forEach(([k]) => { OWNER[k] = [b]; })); DIGITAL.forEach(([k, , b]) => { OWNER[k] = b; });
   const PEOPLE = [
     ["buyers", "Buyers", ["web", "partners", "living", "saadiyat", "jvc", "arjaan"], "Buyers and investors", "Discover homes on bloomholding.com or through a broker on Bloom Partners. Investors can also own hotel apartments at Bloom Arjaan by Rotana.", [1, 10, 13]],
@@ -1952,13 +1934,13 @@ body[data-tone="ox"] { background: var(--ox); }
     ["residents", "Residents", ["community", "living", "gardens", "central", "saadiyat", "fm"], "Residents", "Move in, book amenities, pay service charges and raise requests in the Community App, with bfm managing the community.", [9, 11]],
     ["parents", "Parents", ["brighton", "bwa", "nurseries", "gardens"], "Parents and students", "Brighton College, Bloom World Academy and Bloom Nurseries, each with its own front door. Bloom Nurseries sits inside Bloom Gardens.", [4, 12]],
     ["guests", "Guests", ["edition", "marriott", "arjaan"], "Guests", "Stay at hotels run with Marriott International and Rotana, where the operator's brand leads.", [3]],
-    ["employees", "Employees", ["multiverse"], "Employees", "Bloom Multiverse brings work apps, approvals and colleagues together for staff across the group.", [14]],
+    ["employees", "Employees", ["go"], "Employees", "Bloom@Go, the live employee platform, carries company news and welcomes new joiners. Requests are marked coming soon.", [14]],
     ["clients", "Business clients", ["services", "landscape"], "Business clients", "Companies and developments across Abu Dhabi and Dubai hire bfm for facilities management and Bloom Landscape to design, build and maintain their landscapes.", [11, 15]]
   ];
   const HOUSE = ["owners", "residents", "parents", "guests"];
   const matrix = $("#matrix");
   const itemHtml = (k, n, logo) => logo === "edition" ? `<span class="it" data-k="${k}"><i class="logo logo--edition" role="img" aria-label="${esc(n)}"></i></span>`
-    : `<span class="it" data-k="${k}">${logo === "marriott" ? '<i class="logo logo--marriott" role="img" aria-label="Marriott"></i>' : logo === "mark" ? '<i class="logo logo--mark" aria-hidden="true"></i>' : ""}${esc(n)}</span>`;
+    : `<span class="it" data-k="${k}">${logo === "marriott" ? '<i class="logo logo--marriott" role="img" aria-label="Marriott"></i>' : ""}${esc(n)}</span>`;
   $("#m-biz").innerHTML = `<span class="mk">Businesses</span>` + BIZ.map(([b, n]) => `<span class="biz" data-b="${b}">${esc(n)}</span>`).join("");
   $("#m-items").innerHTML = `<span class="mk">Places &amp; services</span>` + BIZ.map(([b, n, items]) => `<div class="items" data-of="${b}" data-biz="${esc(n)}">${items.map(([k, t, logo]) => itemHtml(k, t, logo)).join("")}</div>`).join("");
   $("#m-digital").innerHTML = DIGITAL.map(([k, n, , logo]) => itemHtml(k, n, logo)).join("");
@@ -2014,17 +1996,17 @@ body[data-tone="ox"] { background: var(--ox); }
       a: [["#F45D2C", "Calendar icon"], ["#F9EAD6", "Calendar tile"], ["#408945", "Home icon"], ["#C8E6CA", "Home tile"], ["#1A5D24", "Loan text"]] },
     { n: "Bloom Partners", o: "Charcoal hero, purple label, pastel tiles", s: [["#F9F9F9", "Page"], ["#333333", "Hero band"], ["#EAF7F9", "Contact card"]], t: [["#1C1A19", "Headings"], ["#000000", "Active tab"], ["#9D292C", "Bloom wordmark"]],
       a: [["#7058E0", "Label text"], ["#EAECFF", "Label"], ["#FFD7D7", "Pink tile"], ["#FFE7D6", "Peach tile"], ["#EFD6FE", "Lavender tile"], ["#D7F5FF", "Blue tile"], ["#D8FFD6", "Green tile"], ["#1FB4E6", "Wave"], ["#F1908E", "Avatar"]] },
-    { n: "Bloom Multiverse", o: "Navy, electric blue, a gradient name", s: [["#F6F4F0", "Page"], ["#FEFEFE", "Floating bars"], ["#0A1236", "Navy panel"]], t: [["#0B1641", "Headings"], ["#535464", "Body text"], ["#1F4DFF", "Primary button"]],
-      a: [["#1A76E5", "Name gradient"], ["#13B1D5", "Name gradient"], ["#2445D3", "Italic accent"], ["#16A570", "Status dot"], ["#D25773", "Count badge"], ["#A51D1C", "Mark red"]] }
+    { n: "Bloom@Go", o: "White and grey, a black wordmark, electric blue", s: [["#FFFFFF", "Bar and cards"], ["#F8F8F8", "Page"]], t: [["#1C1A19", "Headings"], ["#000000", "Body text"], ["#0282FD", "Primary action"], ["#181818", "Bloom wordmark, in black"]],
+      a: [["#177BE2", "@ in the lockup"], ["#127FE3", "Active tab line"], ["#E9F2FF", "Role chip"], ["#AED7FF", "Selected photo"]] }
   ];
   const sw = ([c, t], sub) => `<span class="sw" title="${esc(t)}"><i style="--c:${c}"></i><code>${c}</code>${sub ? `<small>${esc(sub)}</small>` : ""}</span>`;
   const sws = (list, none) => list.length ? `<div class="sws">${list.map((c) => sw(c)).join("")}</div>` : `<span class="pt__none">${esc(none)}</span>`;
   $("#pal").innerHTML = `<div class="pt"><span class="pt__h">Product</span><span class="pt__h">Surface</span><span class="pt__h">Text and action</span><span class="pt__h">Accents</span>`
     + PAL.map((p) => `<div class="pt__who"><b>${esc(p.n)}</b><span>${esc(p.o)}</span></div><div data-role="Surface">${sws(p.s)}</div><div data-role="Text and action">${sws(p.t)}</div><div data-role="Accents">${sws(p.a, p.none)}</div>`).join("") + `</div>`
-    + `<div class="same"><div><span class="same__k">Primary action</span><div class="sws">${sw(["#333333", "Universal"], "Universal")}${sw(["#1A1A1A", "Home-buying"], "Home-buying")}${sw(["#000000", "Partners"], "Partners")}${sw(["#1F4DFF", "Multiverse"], "Multiverse")}</div></div>`
-    + `<div><span class="same__k">Heading text</span><div class="sws">${sw(["#333333", "Home-buying and Universal"], "Home-buying, Universal")}${sw(["#1C1C1C", "Partners and master plan"], "Partners, Master plan")}${sw(["#0B1641", "Multiverse"], "Multiverse")}</div></div>`
+    + `<div class="same"><div><span class="same__k">Primary action</span><div class="sws">${sw(["#333333", "Universal"], "Universal")}${sw(["#1A1A1A", "Home-buying"], "Home-buying")}${sw(["#000000", "Partners"], "Partners")}${sw(["#0282FD", "Bloom@Go"], "Bloom@Go")}</div></div>`
+    + `<div><span class="same__k">Heading text</span><div class="sws">${sw(["#333333", "Home-buying and Universal"], "Home-buying, Universal")}${sw(["#1C1C1C", "Master plan"], "Master plan")}${sw(["#1C1A19", "Partners and Bloom@Go"], "Partners, Bloom@Go")}</div></div>`
     + `<div><span class="same__k">Green tile</span><div class="sws">${sw(["#C8E6CA", "Home-buying"], "Home-buying")}${sw(["#D8FFD6", "Partners"], "Partners")}</div></div>`
-    + `<p>Same job, different values. Where the <b>Bloom wordmark</b> appears its red holds, but no product uses Bloom red for actions.</p></div>`;
+    + `<p>Same job, different values. The <b>Bloom wordmark</b> is red on three products and black on Bloom@Go, and no product uses Bloom red for actions.</p></div>`;
 
   /* ================= 05a FULL-SIZE VIEWER ================= */
   const SCREENS = {
@@ -2032,7 +2014,7 @@ body[data-tone="ox"] { background: var(--ox); }
     masterplan: ["Al Metlaa master plan", "Buyers exploring Al Metlaa", "var(--shot-masterplan)", "2000 / 1140"],
     home: ["Home-buying platform", "Emirati buyers · Al Metlaa unit details", "var(--shot-home)", "1930 / 2000"],
     partners: ["Bloom Partners", "Brokers and agencies · Your Requests", "var(--shot-partners)", "1333 / 2000"],
-    multiverse: ["Bloom Multiverse", "Employees · Home", "var(--shot-multiverse)", "2000 / 1300"]
+    go: ["Bloom@Go", "Employees · Home, live today", "var(--shot-go)", "2000 / 2264"]
   };
   const zoom = $("#zoom");
   let zoomFrom = null;
@@ -2056,7 +2038,7 @@ body[data-tone="ox"] { background: var(--ox); }
   // Fixed everywhere: wordmark, Bloom red for actions, type, shapes, voice. Tuned per audience: descriptor, one accent, content.
   const FAM = {
     group: ["#B6000E", "#FBE7E8"], homes: ["#8F5E24", "#F5EBDD"], community: ["#3F7A55", "#E3EFE6"],
-    partners: ["#3F4FB8", "#E6E8F8"], people: ["#1F4DFF", "#E5EBFF"]
+    partners: ["#3F4FB8", "#E6E8F8"], people: ["#0265C5", "#E9F2FF"]
   };
   const famVars = (f) => `--acc:${FAM[f][0]};--acc-soft:${FAM[f][1]}`;
   const ic = (n) => `<svg class="ico" aria-hidden="true"><use href="#i-${n}"/></svg>`;
@@ -2065,7 +2047,6 @@ body[data-tone="ox"] { background: var(--ox); }
   const crop = (img, iw, x, y, w, h, s, cls = "") => `<i class="crop ${cls}" style="--img:var(--shot-${img});--iw:${iw};--x:${x};--y:${y};--w:${w};--h:${h};--s:${s}"></i>`;
   const lang = `<span class="scr__lang"><b>EN</b><span>عربي</span></span>`;
   const av = (t) => `<span class="scr__av">${t}</span>`;
-  const kbd = `<span class="scr__kbd">${ic("search")}Search<b>⌘K</b></span>`;
   const bell = `<span class="scr__icb">${ic("bell")}</span>`;
   const navHtml = (d, links, end) => `<span class="scr__brand"><i class="wm"></i></span><span class="scr__desc">${d}</span><span class="scr__links">${links.map((l, i) => i ? `<span>${l}</span>` : `<b>${l}</b>`).join("")}</span><span class="scr__end">${end}</span>`;
   const nav = (d, links, end) => `<div class="scr__nav">${navHtml(d, links, end)}</div>`;
@@ -2077,8 +2058,16 @@ body[data-tone="ox"] { background: var(--ox); }
     masterplan: { f: "homes", d: "Homes", n: "Al Metlaa master plan", who: "Buyers exploring Al Metlaa", shot: "masterplan" },
     home: { f: "homes", d: "Homes", n: "Home-buying platform", who: "Emirati buyers · Al Metlaa", shot: "home" },
     partners: { f: "partners", d: "Partners", n: "Bloom Partners", who: "Brokers and agencies", shot: "partners" },
-    multiverse: { f: "people", d: "Multiverse", n: "Bloom Multiverse", who: "Employees", shot: "multiverse" }
+    go: { f: "people", d: "Go", n: "Bloom@Go", who: "Employees", shot: "go" }
   };
+  // Bloom Go concept parts, shared by both directions. Content from today's Bloom@Go home (source 14).
+  const GO_THUMBS = [787, 988, 1189, 1390, 1592].map((x, i) => crop("go", 2000, x, 2024, 170, 170, .2235, i ? "" : "is-on")).join("");
+  const goNews = (eyebrow, h, btn) => `<div class="gx__news"><div class="gx__photo">${crop("go", 2000, 300, 110, 1600, 880, .2525)}<span class="gx__dots"><i></i><i></i><i></i><i></i></span></div>`
+    + `<span class="${eyebrow}">News · 1 of 4</span><h4 class="${h}">The CEO on <em>CNBC.</em></h4><div>${btn}</div></div>`;
+  const goPeople = (eyebrow, h, card, chip, btn) => `<div class="gx__people"><span class="${eyebrow}">New joiners</span><h4 class="${h}">Welcome to the Bloom <em>family.</em></h4>`
+    + `<div class="${card} gx__card"><span class="gx__pic">${crop("go", 2000, 160, 1560, 520, 600, .1615)}</span><div class="gx__who"><b>Paras Shah</b><span class="${chip}">Executive Director – Commercial</span>`
+    + `<small class="gx__meta">Reports to Muhammad Usman<br>Joined 6 Jul 2026</small><span class="${btn}">Say hello</span></div></div>`
+    + `<div class="gx__thumbs">${GO_THUMBS}${ic("arrow-r")}</div></div>`;
   const TILES = [["Bloom Properties", 2000, 60, 560, 420, 446, .381], ["Bloom Education", 2000, 640, 468, 228, 242, .7018], ["Bloom Retail", 2000, 1080, 468, 228, 242, .7018],
     ["Bloom Hospitality", 2000, 1690, 468, 228, 242, .7018], ["Bloom Landscape", 2000, 620, 812, 228, 242, .7018], ["Bloom Facilities Management", 2000, 1540, 812, 228, 242, .7018]];
   const MOCKS = {
@@ -2100,11 +2089,9 @@ body[data-tone="ox"] { background: var(--ox); }
         .map(([i, t, s]) => `<div class="scr__card mp__card"><span class="scr__ic">${ic(i)}</span><b>${t}</b><small>${s}</small><span class="scr__link">Raise a request${ic("arrow-r")}</span></div>`).join("")}</div>`
       + `<div class="mp__list">${[["user", "Agency information update"], ["user", "Agent information update"], ["card", "Delayed commission payment"], ["card", "Incorrect commission payment"]]
         .map(([i, t]) => `<div class="scr__card mp__li"><span class="scr__ic">${ic(i)}</span>${t}<svg class="ico scr__chev" aria-hidden="true"><use href="#i-chev-r"/></svg></div>`).join("")}</div></div></div>`),
-    multiverse: () => scr("people", "Concept: Bloom Multiverse home for employees", nav("Multiverse", ["Home", "Bloom GPT"], kbd + av("R"))
-      + `<div class="scr__body"><div class="mv"><div class="mv__text"><span class="scr__chip"><i class="dot"></i>Friday 25 September</span><h4 class="scr__h scr__h--l">Good afternoon, <em>Rashid.</em></h4><p class="scr__p">32 things are waiting across four of your apps. Salesforce needs you most today.</p>`
-      + `<div class="mv__chips"><span class="scr__chip scr__chip--red">2 overdue</span><span class="scr__chip">3 due today</span><span class="scr__chip">27 this week</span></div><div class="scr__btns"><span class="scr__btn">Review 32 actions</span><span class="scr__btn scr__btn--o">${ic("inbox")}Open inbox</span></div></div>`
-      + `<div class="mv__orbit"><i class="mv__ring mv__ring--1"></i><i class="mv__ring mv__ring--2"></i><div class="mv__core"><b>32</b><small>actions waiting</small></div>`
-      + [["Salesforce", 15, 74, 9], ["UiPath", 10, 15, 36], ["SAP", "02", 88, 64], ["Darwinbox", "05", 40, 91]].map(([n, c, x, y]) => `<span class="mv__node" style="left:${x}%;top:${y}%">${n}<i>${c}</i></span>`).join("") + `</div></div></div>`)
+    go: () => scr("people", "Concept: Bloom@Go as a Bloom Go home for employees", nav("Go", ["Home", `Requests<i class="gx__soon">Soon</i>`], av("RD"))
+      + `<div class="scr__body"><div class="gx">${goNews("scr__eyebrow", "scr__h scr__h--s", `<span class="scr__btn">Watch the interview${ic("arrow-r")}</span>`)}`
+      + goPeople("scr__eyebrow", "scr__h scr__h--s", "scr__card", "scr__chip scr__chip--acc", "scr__btn scr__btn--o") + `</div></div>`)
   };
 
   /* 07a: one spec screen, re-tuned in place so the accent visibly morphs */
@@ -2117,10 +2104,10 @@ body[data-tone="ox"] { background: var(--ox); }
       rows: [["tool", "Service requests", "Raise and track a request"], ["wave", "Amenity booking", "Reserve a community amenity"], ["card", "Service charges", "Pay and see your history"]] },
     partners: { f: "partners", d: "Partners", links: ["Home", "Leads", "Inventory", "My Team"], end: bell + av("JD"), e: "Your requests", h: "How can we <em>assist you?</em>", p: "Choose a request type to get started. Our team will get back to you.", b: ["Raise a request", "Contact us"],
       rows: [["home", "Open house", "Materials or sales agent support", "Most requested"], ["cal", "Event request", "Materials from Bloom's team"], ["doc", "Mockups only", "Brochures, stationery and branded materials"]] },
-    multiverse: { f: "people", d: "Multiverse", links: ["Home", "Bloom GPT"], end: kbd + av("R"), e: "Friday 25 September", h: "Good afternoon, <em>Rashid.</em>", p: "32 things are waiting across four of your apps. Salesforce needs you most today.", b: ["Review 32 actions", "Open inbox"],
-      rows: [["bell", "Salesforce", "15 actions waiting", "Most today"], ["check", "UiPath", "10 actions waiting"], ["user", "Darwinbox", "05 actions waiting"]] }
+    go: { f: "people", d: "Go", links: ["Home", `Requests<i class="gx__soon">Soon</i>`], end: av("RD"), e: "New joiners", h: "Welcome to the Bloom <em>family.</em>", p: "Paras Shah joins the Finance Department as Executive Director – Commercial.", b: ["Say hello", "Watch the CEO on CNBC"],
+      rows: [["user", "Paras Shah", "Executive Director – Commercial", "New"], ["cal", "Date of joining", "6 Jul 2026"], ["doc", "News", "The CEO's interview with CNBC"]] }
   };
-  const TUNE_TABS = [["universal", "Universal", "group"], ["homes", "Homes", "homes"], ["community", "Community", "community"], ["partners", "Partners", "partners"], ["multiverse", "Multiverse", "people"]];
+  const TUNE_TABS = [["universal", "Universal", "group"], ["homes", "Homes", "homes"], ["community", "Community", "community"], ["partners", "Partners", "partners"], ["go", "Go", "people"]];
   const famTabs = (list, sel) => list.map(([k, n, f], i) => `<button type="button" role="tab" aria-selected="${k === sel}" tabindex="${k === sel ? 0 : -1}" data-k="${k}"><i style="--c:${FAM[f][0]}"></i>${esc(n)}</button>`).join("");
   const selectTab = (list, b) => $$("[role=tab]", list).forEach((x) => { const on = x === b; x.setAttribute("aria-selected", String(on)); x.tabIndex = on ? 0 : -1; });
   const tune = $("#tune"), tuneTabs = $("#tune-tabs");
@@ -2151,22 +2138,21 @@ body[data-tone="ox"] { background: var(--ox); }
     ["Owners", "The Super App, for owners", "#8F5E24", "#FFFFFF", "#FFFFFF", "rgba(255,255,255,.82)", "rgba(255,255,255,.4)"],
     ["Community", "The Community App, for residents", "#E3EFE6", "#3F7A55"],
     ["Partners", "For brokers and agencies", "#E6E8F8", "#3F4FB8"],
-    ["Multiverse", "For Bloom's employees", "#0B1640", "#A9B8FF", "#FFFFFF", "rgba(255,255,255,.72)", "rgba(255,255,255,.3)"]
+    ["Go", "Bloom@Go today, for employees", "#0265C5", "#FFFFFF", "#FFFFFF", "rgba(255,255,255,.82)", "rgba(255,255,255,.4)"]
   ].map(([d, s, bg, fg, wm, sub, rule]) => `<div class="lk" style="--lk-bg:${bg};--lk-d:${fg}${wm ? `;--lk-wm:${wm};--lk-s:${sub};--lk-rule:${rule}` : ""}"><span class="lk__l"><i class="wm" role="img" aria-label="Bloom"></i><b>${d}</b></span><small>${s}</small></div>`).join("");
-  $("#app-icons").innerHTML = [["Owners", "#8F5E24"], ["Community", "#3F7A55"], ["Partners", "#3F4FB8"]]
-    .map(([d, c]) => `<span class="app"><span class="app__ic" style="--c:${c}" role="img" aria-label="Bloom ${d} app icon"><i class="wm"></i><small>${d}</small></span><span>${d}</span></span>`).join("")
-    + `<span class="app"><span class="app__ic app__ic--mark" role="img" aria-label="Bloom Multiverse icon, keeping its existing mark"><i class="logo logo--mark"></i></span><span>Multiverse</span></span>`;
+  $("#app-icons").innerHTML = [["Owners", "#8F5E24"], ["Community", "#3F7A55"], ["Partners", "#3F4FB8"], ["Go", "#0265C5"]]
+    .map(([d, c]) => `<span class="app"><span class="app__ic" style="--c:${c}" role="img" aria-label="Bloom ${d} app icon"><i class="wm"></i><small>${d}</small></span><span>${d}</span></span>`).join("");
 
   /* 07c: palette and five same-recipe screens */
   $("#cores").innerHTML = [
-    ["#932A23", "Wordmark", "On today's wordmark", 1], ["#B6000E", "Bloom red", "Every main action"], ["#0B1640", "Ink", "Multiverse headings", 1],
-    ["#535464", "Body", "Multiverse body text", 1], ["#F6F4F0", "Paper", "Multiverse page", 1], ["#FFFFFF", "White", "Cards and bars", 1], ["#E6E1D8", "Line", "Borders and rules"]
+    ["#932A23", "Wordmark", "On today's wordmark", 1], ["#B6000E", "Bloom red", "Every main action"], ["#0B1640", "Ink", "Headings"],
+    ["#535464", "Body", "Body text"], ["#F6F4F0", "Paper", "Page"], ["#FFFFFF", "White", "Cards and bars", 1], ["#E6E1D8", "Line", "Borders and rules"]
   ].map(([c, n, s, used]) => `<div class="core"><i style="--c:${c}"></i><b>${n}</b><code>${c}</code><small${used ? ' class="in"' : ""}>${s}</small></div>`).join("");
   $("#accs").innerHTML = [
     ["group", "Group", "Bloom red", "Bloom Universal"], ["homes", "Homes", "Earth", "Home-buying, master plans, Owners"], ["community", "Community", "Garden", "Community App"],
-    ["partners", "Partners", "Indigo", "Bloom Partners"], ["people", "People", "Electric blue", "Multiverse, kept from today"]
+    ["partners", "Partners", "Indigo", "Bloom Partners"], ["people", "People", "Go blue", "Bloom@Go's #0282FD, deepened for text"]
   ].map(([f, n, t, s]) => `<div class="acc"><i style="--c:${FAM[f][0]};--t:${FAM[f][1]}"></i><b>${n} · ${t}</b><code>${FAM[f][0]} / ${FAM[f][1]}</code><small>${s}</small></div>`).join("");
-  $("#phs").innerHTML = [["group", "Universal", "Group"], ["homes", "Homes", "Homes"], ["community", "Community", "Community"], ["partners", "Partners", "Partners"], ["people", "Multiverse", "People"]]
+  $("#phs").innerHTML = [["group", "Universal", "Group"], ["homes", "Homes", "Homes"], ["community", "Community", "Community"], ["partners", "Partners", "Partners"], ["people", "Go", "People"]]
     .map(([f, n, a]) => `<div class="ph-wrap" style="${famVars(f)}"><div class="ph" aria-hidden="true"><i class="ph__nav"><i class="wm"></i><i></i></i><i class="ph__e"></i><i class="ph__t" style="width:88%"></i><i class="ph__t" style="width:58%"></i><i class="ph__m" style="width:92%"></i><i class="ph__m" style="width:70%"></i>`
       + `<i class="ph__card"><i class="ph__ic"></i><i class="ph__l"></i></i><i class="ph__card"><i class="ph__ic"></i><i class="ph__l"></i></i><i class="ph__chips"><i></i><i></i></i><i class="ph__btn"></i></div><span>${n}</span><small>${a} accent</small></div>`).join("");
 
@@ -2183,7 +2169,7 @@ body[data-tone="ox"] { background: var(--ox); }
     masterplan: [["The Bloom wordmark appears on the screen", "Filters move into a shared Bloom panel", "Book appointment uses Bloom red", "Ticks and controls take the Homes accent"], ["The satellite master plan", "Facade types and unit counts"]],
     home: [["Bloom red replaces the black buttons", "Price and Iskan loan sit in one card", "Construction progress becomes a bar", "The same navigation as every product"], ["Unit photography and details", "Book appointment and reserve unit"]],
     partners: [["One type pairing replaces the serif titles", "Raise a request becomes one red link style", "Pastel tiles become one Partners accent", "The same navigation and cards"], ["Request types and their wording", "Home, Leads, Inventory and My Team"]],
-    multiverse: [["The Bloom wordmark with a Multiverse descriptor", "Blue becomes the accent; actions turn Bloom red", "The gradient name becomes the italic Bloom moment", "Shared chips, buttons and cards"], ["The orbit of work apps and its counts", "Bloom GPT and quick search"]]
+    go: [["The Bloom wordmark returns to its own colour", "Bloom red takes the main action", "News and new joiners share one card style", "The same navigation as every product"], ["Company news and the CEO interview", "New joiners, roles and Say hello"]]
   };
   // A before/after slider, moved only by the presenter (drag or arrow keys). It opens with today's screen in view.
   const BA_START = 93;
@@ -2229,7 +2215,7 @@ body[data-tone="ox"] { background: var(--ox); }
   const sym = (st) => `<svg class="sym" viewBox="${SYMVB}" aria-hidden="true">${[0, 1, 2, 3, 4].map((k) => `<use href="#b-p${k}"${st && st[k] ? ` style="${st[k]}"` : ""}/>`).join("")}</svg>`; // st: per-petal styles, only for the misuse examples on 07d
   $$("[data-sym]").forEach((e) => { e.innerHTML = sym(); });
   // fill, text tone, tint. Base colours sampled from Bloom (see 07c); tints mixed with paper.
-  const FAMB = { group: ["#932A23", "#932A23", "#F3E4E2"], homes: ["#85674B", "#85674B", "#EEE6DD"], community: ["#4B5715", "#4B5715", "#E6E8D6"], partners: ["#A79DBF", "#6F5C9E", "#ECE9F2"], people: ["#0B1641", "#0B1641", "#E4E6EF"] };
+  const FAMB = { group: ["#932A23", "#932A23", "#F3E4E2"], homes: ["#85674B", "#85674B", "#EEE6DD"], community: ["#4B5715", "#4B5715", "#E6E8D6"], partners: ["#A79DBF", "#6F5C9E", "#ECE9F2"], people: ["#0282FD", "#0265C5", "#E9F2FF"] };
   const famB = (f) => `--c:${FAMB[f][0]};--ct:${FAMB[f][1]};--t:${FAMB[f][2]}`;
   // Product signatures: Bloom + [product signature]. The flower and wordmark never change; a secondary mark beside or
   // behind them tells products apart. Drawn on a 100 x 100 grid around the centre; w is the line weight.
@@ -2242,7 +2228,7 @@ body[data-tone="ox"] { background: var(--ox); }
     people: (w) => [[16, 1], [30, .7], [44, .4]].map(([r, o]) => `<circle cx="50" cy="${94 - r}" r="${r}" fill="none" stroke-width="${w}" stroke-opacity="${o}"/>`).join("") // layered rings, expanding from one point
   };
   const sig = (f, w, cls = "") => `<svg class="sig${cls ? ` ${cls}` : ""}" viewBox="0 0 100 100" aria-hidden="true">${SIGS[f](w)}</svg>`;
-  const SIGF = { Universal: "group", Homes: "homes", Community: "community", Partners: "partners", Multiverse: "people" };
+  const SIGF = { Universal: "group", Homes: "homes", Community: "community", Partners: "partners", Go: "people" };
   // A photograph seen through the counter of the wordmark's o, centred on (cx, cy) of the source at scale s.
   const owin = (img, iw, cx, cy, s, ow, ring, pick) => `<span class="ow" style="--ow:${ow};--ring:${ring}"><i class="ow__img" style="--img:var(--shot-${img});--iw:${iw};--cx:${cx};--cy:${cy};--s:${s}"></i><svg class="ow__ring" viewBox="-49.7 -50 99.4 100" aria-hidden="true"><use href="#b-o"/></svg><i class="ow__pick" style="--px:${pick[0]};--py:${pick[1]};--c:${pick[2]}"></i></span>`;
 
@@ -2280,7 +2266,7 @@ body[data-tone="ox"] { background: var(--ox); }
   }
 
   /* 07b: lockups and icons */
-  const BXP = [["group", "Universal", "Gateway to six Bloom businesses"], ["homes", "Homes", "Buyers and owners · master plans, home-buying"], ["community", "Community", "Residents"], ["partners", "Partners", "Brokers and agencies"], ["people", "Multiverse", "Bloom's employees"]];
+  const BXP = [["group", "Universal", "Gateway to six Bloom businesses"], ["homes", "Homes", "Buyers and owners · master plans, home-buying"], ["community", "Community", "Residents"], ["partners", "Partners", "Brokers and agencies"], ["people", "Go", "Bloom@Go today · employees"]];
   const bxIcon = ([f, d]) => `<span class="bx-app"><span class="bx-app__ic" role="img" aria-label="Bloom ${d} app icon: the Bloom symbol with the ${d} signature behind it">${sig(f, 3, "bx-app__sig")}${sym()}</span><span>${d}</span></span>`;
   if ($("#bx-rows")) {
     $("#bx-rows").innerHTML = BXP.map(([f, d, w]) => `<div class="bx-row" style="${famB(f)}" role="img" aria-label="Bloom ${d} lockup with its product signature">${sym()}<i class="wm"></i><em>${d}</em>${sig(f, 6)}<small>${esc(w)}</small></div>`).join("");
@@ -2292,24 +2278,21 @@ body[data-tone="ox"] { background: var(--ox); }
     ["homes", "Sandstone", "#85674B", "Bloom Properties photograph, building facade", "universal", 2000, 115, 760, 1, [-35, 0], "Homes"],
     ["community", "Garden", "#4B5715", "Bloom Landscape photograph, lawn", "universal", 2000, 900, 890, 1.3, [0, -52], "Community"],
     ["partners", "Dusk", "#A79DBF", "Bloom Properties photograph, evening sky · text tone #6F5C9E", "universal", 2000, 300, 580, 1, [0, -60], "Partners"],
-    ["people", "Navy", "#0B1641", "Bloom Multiverse headings, kept from today", "multiverse", 2000, 140, 468, 1.3, [-23, 3], "Multiverse"]
+    ["people", "Go Blue", "#0282FD", "Bloom@Go's action blue, kept from today · text tone #0265C5", "go", 2000, 126, 1058, 2.6, [0, 10], "Go"]
   ];
   if ($("#bx-wins")) {
-    $("#bx-neu").innerHTML = [["#1C1A19", "Ink", "Bloom Partners headings"], ["#F6F4F0", "Paper", "Bloom Multiverse page"], ["#FFFFFF", "White", "Bloom Universal page"]]
+    $("#bx-neu").innerHTML = [["#1C1A19", "Ink", "Bloom Partners and Bloom@Go headings"], ["#F8F8F8", "Paper", "Bloom@Go page"], ["#FFFFFF", "White", "Bloom Universal page"]]
       .map(([c, n, s]) => `<div><i style="--c:${c}"></i><b>${n}</b><code>${c}</code><small>${s}</small></div>`).join("");
     $("#bx-wins").innerHTML = WINS.map(([f, n, c, from, img, iw, cx, cy, s, [px, py], who]) => `<div class="bx-win" style="${famB(f)}">${owin(img, iw, cx, cy, s, 216, c, [px, py, c])}<span class="bx-sw-name">${n}</span><code>${c}</code><small>${from}</small><span class="bx-for"><i></i>${who}</span></div>`).join("");
   }
 
   /* 07d: symbol rules, and the logo-free parts that do the work */
-  const WL = [["Salesforce", 15], ["UiPath", 10], ["SAP", 2], ["Darwinbox", 5]]; // from today's Multiverse screen, 32 in all
-  const WLS = [...WL].sort((a, b) => b[1] - a[1]);
-  const wlStyle = [...WL.map(([, n]) => `fill:#0B1641;fill-opacity:${(.12 + .88 * n / 15).toFixed(2)}`), "fill:#0B1641;fill-opacity:.07"];
-  const bars = (list, top) => `<ul class="bx-bars">${list.map(([n, c], i) => `<li><span>${n}${top && !i ? ` <em class="bchip bchip--ox">${top}</em>` : ""}</span><b>${pad(c)}</b><i style="--v:${(c / list[0][1] * 100).toFixed(1)}%"></i></li>`).join("")}</ul>`;
+  const TRK = ["fill:#85674B", "fill:#85674B", "fill:#85674B", "fill:#85674B;fill-opacity:.45", "fill:#E7E2DA"]; // misuse example: petals as a progress tracker
   if ($("#bx-rules")) {
     const RULES = [
       [1, "Whole, in one colour", "Oxblood, or white on a dark field. Products add a signature beside it, never inside.", `${sym()}<span class="bx-rv__dark">${sym()}</span>`],
-      [0, "Never recoloured in parts", "One colour for the whole symbol, every time.", sym(["fill:#932A23", "fill:#85674B", "fill:#4B5715", "fill:#A79DBF", "fill:#0B1641"])],
-      [0, "Never a chart or loader", "In products, its petals never stand for data, steps or progress.", `<span class="bx-rv__chart">${sym(wlStyle)}<i>32</i></span>`],
+      [0, "Never recoloured in parts", "One colour for the whole symbol, every time.", sym(["fill:#932A23", "fill:#85674B", "fill:#4B5715", "fill:#A79DBF", "fill:#0282FD"])],
+      [0, "Never a chart or loader", "In products, its petals never stand for data, steps or progress.", `<span class="bx-rv__chart">${sym(TRK)}<i>45%</i></span>`],
       [0, "Never a bullet in text", "It never decorates labels, lists or running text.", `<span class="bx-rv__list">${["Your requests", "Unit price", "Documents"].map((t) => `<span>${sym()}${t}</span>`).join("")}</span>`]
     ];
     $("#bx-rules").innerHTML = RULES.map(([ok, t, d, v]) => `<div class="bx-do${ok ? " is-ok" : ""}"><span class="bx-rv" role="img" aria-label="${ok ? "Correct" : "Incorrect"}: ${esc(t)}">${v}<i class="bx-rv__b">${ic(ok ? "check" : "x")}</i></span><b>${t}</b><small>${d}</small></div>`).join("");
@@ -2317,14 +2300,14 @@ body[data-tone="ox"] { background: var(--ox); }
     $("#bx-parts").innerHTML = `<div class="bx-card bx-part" style="${famB("homes")}"><span class="bx-k">Journey tracker · after purchase</span><span class="bx-eyebrow">A1-401 · Al Metlaa, Al Ain</span><p class="bx-serif-h">Your home is 45% <em>built.</em></p>`
       + `<ol class="bx-steps">${STEPS.map(([n, d, st], i) => `<li${st ? ` class="is-${st}"` : ""}><b>${n}</b><small>${d}</small></li>`).join("")}</ol>`
       + `<small class="bx-trk-src">Concept. Steps and dates as ADHA publishes them${src(2)}<span>; progress and handover from today's screen</span>${src(16)}.</small></div>`
-      + `<div class="bx-card bx-part" style="${famB("people")}"><span class="bx-k">Workload · Multiverse</span><p class="bx-big"><b>32</b><span>actions waiting<br>across four apps</span></p>${bars(WLS)}</div>`
+      + `<div class="bx-card bx-part" style="${famB("people")}"><span class="bx-k">New joiner · Go</span><div class="bx-join">${crop("go", 2000, 160, 1560, 520, 600, .1)}<div><b>Paras Shah</b><small>Joined 6 Jul 2026</small></div></div><span class="bchip bx-role">Executive Director – Commercial</span><span class="bl">Say hello${ic("arrow-r")}</span></div>`
       + `<div class="bx-card bx-part bx-part--done" style="${famB("partners")}"><span class="bx-k">Confirmed · Partners</span><span class="bx-tick">${ic("check")}</span><b>Request raised</b><small>Open house. Our team will get back to you.</small><span class="bl">Track request${ic("arrow-r")}</span></div>`;
   }
 
   /* concept screens, direction B. Content is taken from today's screens (05a) or Bloom's published features. */
   const bnav = (d, links, end) => `<div class="bn"><span class="bn__brand">${sym()}<i class="wm"></i></span><span class="bn__desc">${d}${sig(SIGF[d], 7)}</span><span class="bn__links">${links.map((l, i) => i ? `<span>${l}</span>` : `<b>${l}</b>`).join("")}</span><span class="bn__end">${end}</span></div>`;
   const blang = `<span class="bn__lang"><b>EN</b> · عربي</span>`, bbell = `<span class="bn__icb">${ic("bell")}</span>`;
-  const bav = (t) => `<span class="bn__av">${t}</span>`, bkbd = `<span class="bn__kbd">${ic("search")}Search ⌘K</span>`;
+  const bav = (t) => `<span class="bn__av">${t}</span>`;
   const scrB = (f, label, inner) => `<div class="scr scr--b" style="${famB(f)}" role="img" aria-label="${esc(label)}">${inner}</div>`;
   const eb = (t) => `<span class="be">${t}</span>`;
   const MOCKS_B = {
@@ -2347,11 +2330,9 @@ body[data-tone="ox"] { background: var(--ox); }
         .map(([i, t, s], x) => `<div class="bcard bpt__card"><span><span class="bpt__n">${pad(x + 1)}</span><span class="bic">${ic(i)}</span></span><b>${t}</b><small>${s}</small><span class="bl">Raise a request${ic("arrow-r")}</span></div>`).join("")}</div>`
       + `<div class="bpt__list">${[["user", "Agency information update"], ["user", "Agent information update"], ["card", "Delayed commission payment"], ["card", "Incorrect commission payment"]]
         .map(([i, t]) => `<div class="bcard bpt__li"><span class="bic">${ic(i)}</span>${t}<svg class="ico chev" aria-hidden="true"><use href="#i-chev-r"/></svg></div>`).join("")}</div></div></div>`),
-    multiverse: () => scrB("people", "Direction B concept: Bloom Multiverse home for employees", bnav("Multiverse", ["Home", "Bloom GPT"], bkbd + bav("R"))
-      + `<div class="bbody" style="--em:var(--ox)"><div class="bmv"><div class="bmv__text"><span class="bchip bchip--line">Friday 25 September</span><h4 class="bh bh--l">Good afternoon, <em>Rashid.</em></h4><p class="bp">32 things are waiting across four of your apps. Salesforce needs you most today.</p>`
-      + `<div class="bmv__chips"><span class="bchip bchip--ox">2 overdue</span><span class="bchip bchip--line">3 due today</span><span class="bchip bchip--line">27 this week</span></div><div class="bbtns"><span class="bb">Review 32 actions${ic("arrow-r")}</span><span class="bb bb--o">${ic("inbox")}Open inbox</span></div></div>`
-      + `<div class="bmv__panel bcard">${eb("Waiting in your apps")}<p class="bx-big"><b>32</b><span>actions<br>across four apps</span></p>${bars(WLS, "Most today")}`
-      + `<div class="bmv__note">${ic("doc")}<span><b>Policy updated</b> · Data Security</span><span class="bl">Read${ic("arrow-r")}</span></div></div></div></div>`)
+    go: () => scrB("people", "Direction B concept: Bloom Go, the employee home", bnav("Go", ["Home", `Requests<i class="gx__soon">Soon</i>`], bav("RD"))
+      + `<div class="bbody"><div class="gx gx--b">${goNews("be", "bh bh--s", `<span class="bb">Watch the interview${ic("arrow-r")}</span>`)}`
+      + goPeople("be", "bh bh--s", "bcard", "bchip", "bb bb--o") + `</div></div>`)
   };
 
   /* 07e: before and after, direction B */
@@ -2360,7 +2341,7 @@ body[data-tone="ox"] { background: var(--ox); }
     masterplan: [["The Bloom symbol and wordmark appear", "Filters sit in one Bloom Homes panel", "Book appointment takes oxblood", "Sandstone marks the chosen facade"], ["The satellite master plan", "Facade types and unit counts"]],
     home: [["Oxblood replaces the black buttons", "A five-step tracker shows the buying step", "Price and Iskan loan sit in one card", "The unit name sets in the Bloom serif"], ["Unit photography and details", "Book appointment and reserve unit"]],
     partners: [["One serif replaces the mixed headings", "Dusk replaces five pastel tiles", "Raise a request becomes one oxblood link", "The Bloom symbol signs the navigation"], ["Request types and their wording", "Home, Leads, Inventory and My Team"]],
-    multiverse: [["The Bloom wordmark and symbol replace today's Multiverse mark", "The orbit becomes a ranked list of what waits", "Navy stays; main actions take oxblood", "The gradient name becomes the Bloom serif"], ["The four work apps and their counts", "Bloom GPT and quick search"]]
+    go: [["The wordmark returns to oxblood; @Go becomes a Go descriptor", "One serif replaces the mixed serif and system type", "Oxblood takes the main action; blue stays as the Go accent", "News and new joiners share one card style"], ["Company news and the CEO interview", "New joiners, roles and Say hello"]]
   };
   if ($("#bb-ba")) {
     const bbTabs = $("#bb-tabs"), baB = makeBA($("#bb-ba"), $("#bb-knob"));
@@ -2380,7 +2361,7 @@ body[data-tone="ox"] { background: var(--ox); }
 
   /* 07f: the family, direction B */
   if ($("#bx-mosaic")) {
-    $("#bx-mosaic").innerHTML = ["universal", "masterplan", "home", "partners", "multiverse"].map((k, i) => `<div class="bx-frame rv${i ? "" : " bx-frame--hero"}" style="--d:${i + 1}"><div class="fit">${MOCKS_B[k]()}</div><button class="shot__hit" type="button" data-zoom="mockb:${k}" aria-label="View the ${esc(PRODUCTS[k].n)} direction B concept full size"></button></div>`).join("")
+    $("#bx-mosaic").innerHTML = ["universal", "masterplan", "home", "partners", "go"].map((k, i) => `<div class="bx-frame rv${i ? "" : " bx-frame--hero"}" style="--d:${i + 1}"><div class="fit">${MOCKS_B[k]()}</div><button class="shot__hit" type="button" data-zoom="mockb:${k}" aria-label="View the ${esc(PRODUCTS[k].n)} direction B concept full size"></button></div>`).join("")
       + `<div class="bx-band rv" style="--d:6"><div class="bx-apps__row">${BXP.map(bxIcon).join("")}</div><p>One wordmark, one symbol, one action colour. <em>A signature for every product.</em><small>Concepts for discussion, written with content from today's screens. Select a screen to see it full size.</small></p></div>`;
     fitAll($("#bx-mosaic"));
   }
@@ -2388,9 +2369,9 @@ body[data-tone="ox"] { background: var(--ox); }
   /* ================= 05 PROPOSAL ================= */
   $("#pl-products").innerHTML = [
     ["bloomholding.com", "#B6000E"], ["Bloom Partners", "#2F5BFF"], ["Super App", "#0E9FB5"], ["Community App", "#17754A"],
-    ["School websites", "#D9722A"], ["Hotel channels", "#9A45C8"]
+    ["School websites", "#D9722A"], ["Hotel channels", "#9A45C8"], ["Bloom@Go", "#0282FD"]
   ].map(([n, c]) => `<span class="pd" style="--c:${c}">${esc(n)}</span>`).join("")
-    + `<span class="pd pd--mark"><i class="logo logo--mark" aria-hidden="true"></i>Bloom Multiverse</span><span class="pd pd--future">Future products</span>`;
+    + `<span class="pd pd--future">Future products</span>`;
 
   // Arrow keys move within any tab row without changing chapter.
   $$('[role="tablist"]').forEach((list) => list.addEventListener("keydown", (e) => {
