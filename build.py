@@ -37,6 +37,9 @@ assert "{{IMG_" not in source and "{{SHOT_" not in source and source.count("{{DI
 (ROOT / "dist").mkdir(exist_ok=True)
 for direction, (fragment, standalone_name) in BUILDS.items():
     page = source.replace("{{DIR}}", direction)
+    if direction == "b":  # its own name in the browser tab and the artifact gallery
+        page = page.replace("<title>Bloom Digital Ecosystem</title>", "<title>Bloom Ecosystem Direction B</title>", 1)
+        assert "<title>Bloom Ecosystem Direction B</title>" in page[:8192]
     (ROOT / "dist" / fragment).write_text(page, encoding="utf-8")
     # Same skeleton the artifact host wraps around the fragment.
     standalone = (

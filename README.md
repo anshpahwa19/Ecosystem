@@ -5,7 +5,7 @@ The glimpse slides (07a–07f) come in two design directions. Everything else in
 | Direction | Idea | Standalone file | Artifact build |
 | --- | --- | --- | --- |
 | A · One language | One shared UI language, an accent per audience | `Bloom-Digital-Ecosystem-Proposal.html` | `dist/bloom-digital-ecosystem.html` |
-| B · Drawn from Bloom | A symbol traced from the wordmark's letter o, colours sampled from Bloom's own screens and photography, serif-led type | `Bloom-Digital-Ecosystem-Proposal-B.html` | `dist/bloom-digital-ecosystem-b.html` |
+| B · Drawn from Bloom | A symbol traced from the wordmark's letter o, colours sampled from Bloom's own screens and photography, serif-led type | `Bloom-Digital-Ecosystem-Proposal-B.html` | `dist/bloom-digital-ecosystem-b.html`, published privately at https://claude.ai/artifact/GQNGMTPC3BzjuaKt34UyVy |
 
 - `src/proposal.html` — the single source for both. Slides and notes tagged `data-dir="a"` or `data-dir="b"` only appear in that direction's build. Logos live in `src/assets/`, product screens in `src/screens/`; the build inlines them.
 
