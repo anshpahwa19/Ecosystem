@@ -1093,9 +1093,9 @@ body[data-tone="ox"] { background: var(--ox); }
 .mparts__note { margin-top: auto; font-size: 13px; line-height: 1.45; color: var(--muted); }
 .mshell[data-hl="bar"] .mpin[data-p="bar"], .mshell[data-hl="greet"] .mpin[data-p="greet"], .mshell[data-hl="acc"] .mpin[data-p="acc"],
 .mshell[data-hl="card"] .mpin[data-p="card"], .mshell[data-hl="cta"] .mpin[data-p="cta"], .mshell[data-hl="tabs"] .mpin[data-p="tabs"] { background: var(--ox); color: #FFFFFF; }
-.mshell[data-hl="bar"] .ms__bar, .mshell[data-hl="tabs"] .ms__tabs { outline: 4px solid var(--ox); outline-offset: -4px; }
-.mshell[data-hl="greet"] .ms__hi, .mshell[data-hl="card"] .ms .bcard, .mshell[data-hl="cta"] .ms__cta,
-.mshell[data-hl="acc"] .ms .bic, .mshell[data-hl="acc"] .ms .bchip:not(.bchip--line), .mshell[data-hl="acc"] .ms__meter, .mshell[data-hl="acc"] .ms__stats i, .mshell[data-hl="acc"] .ms em { outline: 3px solid var(--ox); outline-offset: 3px; border-radius: 6px; }
+.mhl[data-hl="bar"] .ms__bar, .mhl[data-hl="tabs"] .ms__tabs { outline: 4px solid var(--ox); outline-offset: -4px; }
+.mhl[data-hl="greet"] .ms__hi, .mhl[data-hl="card"] .ms .bcard, .mhl[data-hl="cta"] .ms__cta,
+.mhl[data-hl="acc"] .ms .bic, .mhl[data-hl="acc"] .ms .bchip:not(.bchip--line), .mhl[data-hl="acc"] .ms__meter, .mhl[data-hl="acc"] .ms__stats i, .mhl[data-hl="acc"] .ms em { outline: 3px solid var(--ox); outline-offset: 3px; border-radius: 6px; }
 .mapps { display: flex; flex-direction: column; gap: 12px; min-width: 0; }
 .mapps .bx-k { margin-bottom: 2px; }
 .mapps__list { display: grid; gap: 12px; }
@@ -1122,6 +1122,27 @@ body[data-tone="ox"] { background: var(--ox); }
 .mba__head { display: flex; align-items: center; gap: 16px; }
 .mba__head .mapp__ic { width: 60px; height: 60px; border-radius: 15px; }
 .mba__lists { display: grid; grid-template-columns: 1fr 1fr; column-gap: 32px; }
+/* 07h motion: the concept assembles part by part (bar, greeting, cards, action, tabs), then each change is pointed out on it.
+   --b delays the build while the slide itself rises in. */
+.mfit.is-build .ms__bar { animation: mdrop .7s var(--ease) var(--b, 0s) both; }
+.mfit.is-build .ms__body > * { animation: mrise .6s var(--ease) both; animation-delay: calc(var(--b, 0s) + .2s); }
+.mfit.is-build .ms__body > :nth-child(2) { animation-delay: calc(var(--b, 0s) + .32s); }
+.mfit.is-build .ms__body > :nth-child(3) { animation-delay: calc(var(--b, 0s) + .44s); }
+.mfit.is-build .ms__body > :nth-child(4) { animation-delay: calc(var(--b, 0s) + .56s); }
+.mfit.is-build .ms__cta { animation: mrise .6s var(--ease) calc(var(--b, 0s) + .72s) both; }
+.mfit.is-build .ms__tabs { animation: mlift .6s var(--ease) calc(var(--b, 0s) + .8s) both; }
+@keyframes mdrop { from { transform: translateY(-100%); } }
+@keyframes mrise { from { opacity: 0; transform: translateY(18px); } }
+@keyframes mlift { from { transform: translateY(100%); } }
+.mba__arrow.is-go .ico { animation: mgo .9s var(--ease) var(--b, 0s) both; }
+@keyframes mgo { 0% { opacity: 0; transform: translateX(-12px); } 60% { opacity: 1; transform: translateX(4px); } }
+.mba__lists li { transition: opacity .3s, color .3s; }
+.mba__lists li::before { transition: transform .35s var(--spring); }
+.mba__lists li[data-p] { cursor: default; }
+.mba__lists.is-walk li[data-p]:not(.is-hl) { opacity: .4; }
+.mba__lists li.is-hl { color: var(--ox); }
+.mba__lists li.is-hl::before { transform: scale(1.5); }
+.mba__info.swap li { animation: rise .45s var(--ease) both; animation-delay: calc(var(--i, 0) * 80ms + 120ms); }
 /* 07i: the family, and its icons on the home screen */
 .mfam { display: grid; grid-template-columns: repeat(3, auto) minmax(0, 1fr); column-gap: 28px; height: 100%; }
 .mfam__band { display: flex; flex-direction: column; justify-content: space-between; margin-left: 8px; padding: 26px 30px 28px; border-radius: 18px; background: var(--paper-2); }
@@ -1966,7 +1987,7 @@ body[data-tone="ox"] { background: var(--ox); }
     <h2 class="h1 rv">The shell is shared. The rest is the <span class="serif hl">app's.</span></h2>
   </header>
   <div class="s-body">
-    <div class="mshell" id="m-shell">
+    <div class="mshell mhl" id="m-shell">
       <div class="mshell__ph rv" style="--d:1"><div class="phone"><div class="phone__scr"><div class="mfit" id="m-shell-fit"></div></div></div><div class="mpins" id="m-pins" aria-hidden="true"></div></div>
       <div class="mparts rv" style="--d:2"><span class="bx-k">Shared by every app</span><ol id="m-parts"></ol><p class="mparts__note">Point at a part to find it on the phone.</p></div>
       <div class="mapps rv" style="--d:3"><span class="bx-k">Tuned per app · choose one</span><div class="mapps__list" role="tablist" aria-label="Choose an app" id="m-shell-apps"></div></div>
@@ -1979,7 +2000,7 @@ body[data-tone="ox"] { background: var(--ox); }
     <h2 class="h1 rv">Same apps. Drawn from <span class="serif hl">Bloom.</span></h2>
   </header>
   <div class="s-body">
-    <div class="mba">
+    <div class="mba mhl" id="m-ba">
       <div class="mba__stage rv" style="--d:1">
         <div class="mba__col"><span>Today</span><div id="m-ba-today"></div></div>
         <span class="mba__arrow" aria-hidden="true"><svg class="ico"><use href="#i-arrow-r"/></svg></span>
@@ -2742,7 +2763,8 @@ body[data-tone="ox"] { background: var(--ox); }
     });
   }
 
-  /* 07h: today beside the concept */
+  /* 07h: today beside the concept. Each change names the part of the concept it points at (as on 07g). */
+  const MBA_P = { partners: ["bar", "greet", "acc", "cta"], homes: ["bar", "cta", "tabs", "acc"], community: ["bar", "greet", "acc", "tabs"] };
   const MBA = {
     partners: [["The Bloom symbol and wordmark sign the app bar", "One serif greeting replaces the slate sans and badge", "Dusk replaces the maroon chart and pastel tiles", "View leads takes oxblood, docked above the tabs"], ["Leads, commission and marketing material", "Home, Leads, Inventory and More"]],
     homes: [["The symbol and a Homes descriptor join the wordmark", "Oxblood replaces the floating black pill", "A tab bar replaces the corner buttons", "Sandstone replaces the pink, orange and blue accents"], ["The appointment, Al Metlaa and its units", "Book appointment, always in reach"]],
@@ -2756,12 +2778,32 @@ body[data-tone="ox"] { background: var(--ox); }
       $("#m-ba-today").innerHTML = todayPhone(k);
       f.innerHTML = MOBILE[k]();
       info.innerHTML = `<div class="mba__head">${appIcon(k)}<h3>${esc(a.n)}<small>${esc(a.who)}${a.n === `Bloom ${a.d}` ? "" : ` · as Bloom ${esc(a.d)}`}</small></h3></div>`
-        + `<div class="mba__lists"><div><span class="label">What changes</span><ul>${chg.map((t) => `<li>${esc(t)}</li>`).join("")}</ul></div><div class="keep"><span class="label">What stays</span><ul>${keep.map((t) => `<li>${esc(t)}</li>`).join("")}</ul></div></div>`
+        + `<div class="mba__lists"><div><span class="label">What changes</span><ul>${chg.map((t, i) => `<li tabindex="0" data-p="${MBA_P[k][i]}" style="--i:${i}">${esc(t)}</li>`).join("")}</ul></div>`
+        + `<div class="keep"><span class="label">What stays</span><ul>${keep.map((t, i) => `<li style="--i:${i + chg.length}">${esc(t)}</li>`).join("")}</ul></div></div>`
         + `<p class="bainfo__note">Scroll inside either phone. Today's screen as supplied by the Bloom team.${src(17)}</p>`;
-      if (animate && !reduce) { restart(info, "swap"); restart(f, "is-swap"); }
+      if (animate && !reduce) { restart(info, "swap"); playMBA(false); }
+    };
+    // Build the concept, then point at each change on it in turn. Pointing at a change yourself stops the tour.
+    const mba = $("#m-ba");
+    let tour = [];
+    const point = (li) => { mba.dataset.hl = li.dataset.p; $$("#m-ba-info li[data-p]").forEach((x) => x.classList.toggle("is-hl", x === li)); };
+    const unpoint = () => { delete mba.dataset.hl; $$("#m-ba-info li").forEach((x) => x.classList.remove("is-hl")); $("#m-ba-info .mba__lists")?.classList.remove("is-walk"); };
+    const stopTour = () => { tour.forEach(clearTimeout); tour = []; unpoint(); };
+    const playMBA = (entering) => {
+      stopTour(); if (reduce) return;
+      const f = $("#m-ba-fit"), arrow = $(".mba__arrow", mba), wait = entering ? 350 : 0;
+      [f, arrow].forEach((e) => { e.style.setProperty("--b", `${wait}ms`); restart(e, e === f ? "is-build" : "is-go"); });
+      const lis = $$("#m-ba-info li[data-p]");
+      lis.forEach((li, i) => tour.push(setTimeout(() => { $("#m-ba-info .mba__lists").classList.add("is-walk"); point(li); }, wait + 1500 + i * 1300)));
+      tour.push(setTimeout(unpoint, wait + 1500 + lis.length * 1300));
     };
     renderMBA("partners", false);
     mbaTabs.addEventListener("click", (e) => { const b = e.target.closest("[role=tab]"); if (!b) return; selectTab(mbaTabs, b); renderMBA(b.dataset.k, true); });
+    const onLi = (e) => { const li = e.target.closest("#m-ba-info li[data-p]"); if (!li) return; stopTour(); point(li); };
+    const offLi = (e) => { if (e.target.closest("#m-ba-info li[data-p]")) unpoint(); };
+    $("#m-ba-info").addEventListener("mouseover", onLi); $("#m-ba-info").addEventListener("focusin", onLi);
+    $("#m-ba-info").addEventListener("mouseout", offLi); $("#m-ba-info").addEventListener("focusout", offLi);
+    ENTER.push((slide) => { if (slide.contains(mba)) playMBA(true); else stopTour(); });
   }
 
   /* 07i: the family, and its icons together on the home screen */
