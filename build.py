@@ -1,8 +1,10 @@
 """Inline the logo files into the proposal and write the single-file builds.
 
-One source, two design directions for the glimpse slides (07a-07f):
-  direction A  "One language"      dist/bloom-digital-ecosystem.html,   Bloom-Digital-Ecosystem-Proposal.html
-  direction B  "Drawn from Bloom"  dist/bloom-digital-ecosystem-b.html, Bloom-Digital-Ecosystem-Proposal-B.html
+One source, three builds. Direction A or B styles the glimpse slides (07a-07f); the set picks the slides:
+  web,    direction A  "One language"      dist/bloom-digital-ecosystem.html,   Bloom-Digital-Ecosystem-Proposal.html
+  web,    direction B  "Drawn from Bloom"  dist/bloom-digital-ecosystem-b.html, Bloom-Digital-Ecosystem-Proposal-B.html
+  mobile, direction B  mobile apps only    dist/bloom-mobile-apps.html,         Bloom-Mobile-Apps.html
+The mobile set (05e-05g, 07g-07i) is tagged data-set="mobile" in the source. Set "all" builds both sets as one deck.
 
 dist/*.html are page fragments for the Claude artifact; the root files are standalone documents that open straight from disk.
 """
@@ -22,20 +24,39 @@ ASSETS = {
     "{{SHOT_MASTERPLAN}}": "screens/al-metlaa-master-plan.webp",
     "{{SHOT_UNIVERSAL}}": "screens/bloom-universal.webp",
 }
+# App home screens supplied by the Bloom team (slides 05e-07i), inlined only into builds that carry the mobile set.
+APP_ASSETS = {
+    "{{APP_PARTNERS}}": "screens/bloom-partners-app.webp",
+    "{{APP_HOMES}}": "screens/home-buying-app.webp",
+    "{{APP_COMMUNITY}}": "screens/bloom-community-app.webp",
+}
 MIME = {".png": "image/png", ".webp": "image/webp"}
-BUILDS = {"a": ("bloom-digital-ecosystem.html", "Bloom-Digital-Ecosystem-Proposal.html"),
-          "b": ("bloom-digital-ecosystem-b.html", "Bloom-Digital-Ecosystem-Proposal-B.html")}
+# name: (direction, set, artifact fragment, standalone file)
+BUILDS = {"a": ("a", "web", "bloom-digital-ecosystem.html", "Bloom-Digital-Ecosystem-Proposal.html"),
+          "b": ("b", "web", "bloom-digital-ecosystem-b.html", "Bloom-Digital-Ecosystem-Proposal-B.html"),
+          "mobile": ("b", "mobile", "bloom-mobile-apps.html", "Bloom-Mobile-Apps.html")}
 
-source = (ROOT / "src" / "proposal.html").read_text(encoding="utf-8")
-for token, name in ASSETS.items():
-    path = ROOT / "src" / name
-    data = base64.b64encode(path.read_bytes()).decode()
-    source = source.replace(token, f"data:{MIME[path.suffix]};base64,{data}")
-assert "{{IMG_" not in source and "{{SHOT_" not in source and source.count("{{DIR}}") == 1
+
+def inline(page, assets):
+    for token, name in assets.items():
+        path = ROOT / "src" / name
+        data = base64.b64encode(path.read_bytes()).decode()
+        page = page.replace(token, f"data:{MIME[path.suffix]};base64,{data}")
+    return page
+
+
+source = inline((ROOT / "src" / "proposal.html").read_text(encoding="utf-8"), ASSETS)
+assert "{{IMG_" not in source and "{{SHOT_" not in source and source.count("{{DIR}}") == 1 and source.count("{{SET}}") == 1
 
 (ROOT / "dist").mkdir(exist_ok=True)
-for direction, (fragment, standalone_name) in BUILDS.items():
-    page = source.replace("{{DIR}}", direction)
+for name, (direction, slides, fragment, standalone_name) in BUILDS.items():
+    page = source.replace("{{DIR}}", direction).replace("{{SET}}", slides)
+    if slides == "web":  # the mobile slides are dropped at runtime; leave their screens out
+        for token in APP_ASSETS:
+            page = page.replace(f"url({token})", "none")
+    else:
+        page = inline(page, APP_ASSETS)
+    assert "{{APP_" not in page, f"unfilled app screen in build {name}"
     (ROOT / "dist" / fragment).write_text(page, encoding="utf-8")
     # Same skeleton the artifact host wraps around the fragment.
     standalone = (
@@ -46,4 +67,4 @@ for direction, (fragment, standalone_name) in BUILDS.items():
         "</head><body>\n" + page + "\n</body></html>\n"
     )
     (ROOT / standalone_name).write_text(standalone, encoding="utf-8")
-    print(f"direction {direction}: built {len(page):,} bytes -> {standalone_name}")
+    print(f"{name}: direction {direction}, {slides} set, built {len(page):,} bytes -> {standalone_name}")
