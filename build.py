@@ -57,6 +57,8 @@ for name, (direction, slides, fragment, standalone_name) in BUILDS.items():
     else:
         page = inline(page, APP_ASSETS)
     assert "{{APP_" not in page, f"unfilled app screen in build {name}"
+    if slides == "mobile":  # its own name in the artifact gallery and the browser tab
+        page = page.replace("<title>Bloom Digital Ecosystem</title>", "<title>Bloom Mobile Apps</title>", 1)
     (ROOT / "dist" / fragment).write_text(page, encoding="utf-8")
     # Same skeleton the artifact host wraps around the fragment.
     standalone = (

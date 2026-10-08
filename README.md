@@ -6,7 +6,7 @@ The glimpse slides (07a–07f) come in two design directions. Everything else in
 | --- | --- | --- | --- |
 | A · One language | One shared UI language, an accent per audience | `Bloom-Digital-Ecosystem-Proposal.html` | `dist/bloom-digital-ecosystem.html` |
 | B · Drawn from Bloom | A symbol traced from the wordmark's letter o, colours sampled from Bloom's own screens and photography, serif-led type | `Bloom-Digital-Ecosystem-Proposal-B.html` | `dist/bloom-digital-ecosystem-b.html`, published privately at https://claude.ai/artifact/GQNGMTPC3BzjuaKt34UyVy |
-| Mobile apps · direction B | The three apps today (05e–05g) and as one Bloom (07g–07i) | `Bloom-Mobile-Apps.html` | `dist/bloom-mobile-apps.html` |
+| Mobile apps · direction B | The three apps today (05e–05g) and as one Bloom (07g–07i) | `Bloom-Mobile-Apps.html` | `dist/bloom-mobile-apps.html`, published privately at https://claude.ai/artifact/WCkCVhQCUfD2djTRbpsGUn |
 
 - The employee platform shown is **Bloom@Go**, live today (`src/screens/bloom-go-home.webp`, stitched from two screenshots of its home page). It replaces Bloom Multiverse throughout; the concepts name it Bloom Go.
 - `src/proposal.html` — the single source for all three. Slides and notes tagged `data-dir="a"` or `data-dir="b"` only appear in that direction's build. Slides tagged `data-set="mobile"` only appear in the mobile build; untagged slides are the web deck. Logos live in `src/assets/`, product screens in `src/screens/`; the build inlines them.
