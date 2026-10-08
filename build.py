@@ -8,6 +8,7 @@ dist/*.html are page fragments for the Claude artifact; the root files are stand
 """
 import base64
 import pathlib
+from html.parser import HTMLParser
 
 ROOT = pathlib.Path(__file__).parent
 ASSETS = {
@@ -32,6 +33,39 @@ for token, name in ASSETS.items():
     data = base64.b64encode(path.read_bytes()).decode()
     source = source.replace(token, f"data:{MIME[path.suffix]};base64,{data}")
 assert "{{IMG_" not in source and "{{SHOT_" not in source and source.count("{{DIR}}") == 1
+
+
+class SlideNesting(HTMLParser):
+    """Every slide must sit inside #canvas: a stray closing tag ends the canvas early, and the slides after it
+    are then laid out against the window instead of the 1600x900 canvas (it only looks right at exactly 1600x900)."""
+    VOID = {"area", "base", "br", "col", "embed", "hr", "img", "input", "link", "meta", "source", "track", "wbr",
+            "use", "path", "rect", "circle", "stop", "feblend"}
+
+    def __init__(self):
+        super().__init__()
+        self.stack, self.outside = [], []
+
+    def handle_starttag(self, tag, attrs):
+        a = dict(attrs)
+        if tag == "section" and "slide" in (a.get("class") or "").split() and not any(i == "canvas" for _, i in self.stack):
+            self.outside.append(a.get("data-num"))
+        if tag not in self.VOID:
+            self.stack.append((tag, a.get("id")))
+
+    def handle_startendtag(self, tag, attrs):
+        pass
+
+    def handle_endtag(self, tag):
+        for k in range(len(self.stack) - 1, -1, -1):
+            if self.stack[k][0] == tag:
+                del self.stack[k:]
+                return
+
+
+html = source.split("<script")[0]  # markup only; the script holds HTML inside template strings
+check = SlideNesting()
+check.feed(html)
+assert not check.outside, f"slides outside #canvas (look for a stray closing tag before them): {check.outside}"
 
 (ROOT / "dist").mkdir(exist_ok=True)
 for direction, (fragment, standalone_name) in BUILDS.items():
