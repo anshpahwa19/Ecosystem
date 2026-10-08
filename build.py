@@ -24,13 +24,14 @@ ASSETS = {
     "{{SHOT_MASTERPLAN}}": "screens/al-metlaa-master-plan.webp",
     "{{SHOT_UNIVERSAL}}": "screens/bloom-universal.webp",
 }
-# App home screens supplied by the Bloom team (slides 05e-07i), inlined only into builds that carry the mobile set.
+# App home screens supplied by the Bloom team (slides 05e-07i), inlined as supplied (no re-compression) and only into
+# builds that carry the mobile set.
 APP_ASSETS = {
     "{{APP_PARTNERS}}": "screens/bloom-partners-app.webp",
-    "{{APP_HOMES}}": "screens/home-buying-app.webp",
+    "{{APP_HOMES}}": "screens/home-buying-app.jpg",
     "{{APP_COMMUNITY}}": "screens/bloom-community-app.webp",
 }
-MIME = {".png": "image/png", ".webp": "image/webp"}
+MIME = {".png": "image/png", ".webp": "image/webp", ".jpg": "image/jpeg"}
 # name: (direction, set, artifact fragment, standalone file)
 BUILDS = {"a": ("a", "web", "bloom-digital-ecosystem.html", "Bloom-Digital-Ecosystem-Proposal.html"),
           "b": ("b", "web", "bloom-digital-ecosystem-b.html", "Bloom-Digital-Ecosystem-Proposal-B.html"),

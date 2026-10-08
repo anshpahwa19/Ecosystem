@@ -2103,7 +2103,7 @@ body[data-tone="ox"] { background: var(--ox); }
           <p data-set="web" data-dir="a"><b>Concepts.</b> 07a to 07f are design concepts for discussion, written with content from today's screens. Descriptor names, accents and the type pairing are proposals, not Bloom decisions.</p>
           <p data-set="web" data-dir="b"><b>Logos.</b> The Abu Dhabi EDITION and Marriott marks come from the Phase 1 material, the Bloom wordmark from the Bloom Universal screen. The Bloom symbol on 07a to 07f is a new proposal traced from the wordmark's o. Other brands are plain text until official files are supplied.</p>
           <p data-set="web" data-dir="b"><b>Concepts.</b> 07a to 07f are concepts for discussion, written with content from today's screens. Colours are sampled from those screens and the Bloom Universal photography (median of a 13 × 13 pixel patch; most frequent ink colour for text). The symbol, signatures, colour roles, names and type pairing are proposals, not Bloom decisions.</p>
-          <p data-set="mobile"><b>Mobile screens.</b> 05e to 05g show the home screens of Bloom Partners, the home-buying app and the Bloom Community App as the Bloom team supplied them; the Community screen is straightened out of its promotional device frame. Colours are the median of each element's dominant pixels. The Partners capture is 269 pixels wide, so its values are approximate.</p>
+          <p data-set="mobile"><b>Mobile screens.</b> 05e to 05g show the home screens of Bloom Partners, the home-buying app and the Bloom Community App as the Bloom team supplied them; the Community screen is straightened out of its promotional device frame. Colours are the median of each element's dominant pixels.</p>
           <p data-set="mobile"><b>Mobile concepts.</b> 07g to 07i apply direction B to the three apps, written with content from those screens and the Bloom Community App page. The Bloom symbol is a proposal traced from the wordmark's o; the app shell, names, accents and type pairing are proposals, not Bloom decisions.</p>
         </div>
       </div>
@@ -2667,7 +2667,7 @@ body[data-tone="ox"] { background: var(--ox); }
   // Today's three app home screens as supplied (natural pixel sizes). pins: [kind, x, y, w, h], the strips each app keeps
   // fixed while its content scrolls: the status bar, Partners' tab bar and the home-buying app's floating Book Appointment.
   const APPS = {
-    partners: { n: "Bloom Partners", who: "Brokers and agencies", d: "Partners", f: "partners", av: "R", img: "papp", iw: 269, ih: 2000, bg: "#F8F8F8", pins: [["top", 0, 0, 269, 30], ["bottom", 0, 1924, 269, 76]] },
+    partners: { n: "Bloom Partners", who: "Brokers and agencies", d: "Partners", f: "partners", av: "R", img: "papp", iw: 818, ih: 2000, bg: "#F8F8F8", pins: [["top", 0, 0, 818, 120], ["bottom", 0, 1773, 818, 227]] },
     homes: { n: "Home-buying app", who: "Al Metlaa buyers", d: "Homes", f: "homes", av: "JA", img: "happ", iw: 772, ih: 2000, bg: "#F5F5F5", pins: [["top", 0, 0, 772, 96], ["pill", 316, 1766, 456, 106]] },
     community: { n: "Bloom Community App", who: "Residents", d: "Community", f: "community", av: "HN", img: "capp", iw: 676, ih: 1452, bg: "#FFFFFF", pins: [] }
   };
@@ -2719,13 +2719,13 @@ body[data-tone="ox"] { background: var(--ox); }
 
   /* 05f: the same jobs, side by side. A crop is [image, natural width, x, y, w, h, scale, tile colour]; colours sampled as on 05b. */
   const CMP = [
-    ["Bloom in view", [[["papp", 269, 18, 128, 86, 19, 1.6, "#1B1B1B"], "Only in project names, such as Bloom Living"], [["happ", 772, 262, 118, 248, 87, .55, "#F5F5F5"], "The Bloom wordmark, centred"], [["capp", 676, 20, 160, 630, 140, .36, "#A72D2A"], "The name spelt out in a serif headline"]]],
-    ["Greeting", [[["papp", 269, 12, 58, 188, 48, 1.15, "#F8F8F8"], "Bold slate sans and a verified badge"], [["happ", 772, 22, 255, 428, 55, .7, "#F5F5F5"], "Grey sans, first name only"], [["capp", 676, 20, 300, 420, 65, .6, "#A72D2A"], "Full name in white serif, on red"]]],
-    ["Main action", [[["papp", 269, 18, 437, 232, 33, 1.35], "Black block beside an outlined button"], [["happ", 772, 316, 1764, 456, 110, .45], "Black pill, floating at the bottom"], [["capp", 676, 20, 585, 636, 175, .31], "Six outlined tiles; no single main action"]]],
-    ["Navigation", [[["papp", 269, 0, 1928, 269, 47, 1.2], "White tab bar, four tabs, black when active"], [["happ", 772, 25, 112, 725, 103, .48, "#F5F5F5"], "No tab bar; profile and alerts up top"], [["capp", 676, 0, 1272, 676, 180, .31], "Red tab bar with a raised centre button"]]]
+    ["Bloom in view", [[["papp", 818, 70, 400, 450, 135, .42, "#282828"], "Only in project names, such as Bloom Living"], [["happ", 772, 262, 118, 248, 87, .55, "#F5F5F5"], "The Bloom wordmark, centred"], [["capp", 676, 20, 160, 630, 140, .36, "#A72D2A"], "The name spelt out in a serif headline"]]],
+    ["Greeting", [[["papp", 818, 36, 180, 560, 145, .39, "#F8F8F8"], "Bold slate sans and a verified badge"], [["happ", 772, 22, 255, 428, 55, .7, "#F5F5F5"], "Grey sans, first name only"], [["capp", 676, 20, 300, 420, 65, .6, "#A72D2A"], "Full name in white serif, on red"]]],
+    ["Main action", [[["papp", 818, 62, 1316, 694, 120, .47], "Black block beside an outlined button"], [["happ", 772, 316, 1764, 456, 110, .45], "Black pill, floating at the bottom"], [["capp", 676, 20, 585, 636, 175, .31], "Six outlined tiles; no single main action"]]],
+    ["Navigation", [[["papp", 818, 0, 1800, 818, 130, .42], "White tab bar, four tabs, black when active"], [["happ", 772, 25, 112, 725, 103, .48, "#F5F5F5"], "No tab bar; profile and alerts up top"], [["capp", 676, 0, 1272, 676, 180, .31], "Red tab bar with a raised centre button"]]]
   ];
   const CMP_COL = [
-    [[["#000000", "Main action"], ["#393F4E", "Greeting"], ["#6D1215", "Chart"], ["#DA9093", "Chart"], ["#1BC4D6", "Verified badge"], ["#5B98D6", "Avatar"], ["#756BB7", "Commission text"], ["#E9FEEC", "Tile"]], "Black actions, a maroon chart, pastel tiles"],
+    [[["#000000", "Main action"], ["#344055", "Greeting"], ["#6D1215", "Chart"], ["#DB9092", "Chart"], ["#E9B8BB", "Chart"], ["#16C6DC", "Verified badge"], ["#5A98D8", "Avatar"], ["#489DA5", "Percentages"]], "Black actions, a maroon chart, teal and blue details"],
     [[["#1A1A1A", "Main action"], ["#333333", "Text"], ["#932923", "Bloom wordmark"], ["#883938", "Contact name"], ["#C6232A", "Tomorrow"], ["#FECDD1", "Tomorrow chip"], ["#F96256", "Calendar"], ["#F5F5F5", "Page"]], "A black action and three different reds"],
     [[["#A72D2A", "Band, tabs and icons"], ["#FFFFFF", "Text on red, tiles"], ["#111111", "Labels"], ["#D2D2D2", "Tile outline"]], "One red carries the whole screen"]
   ];
@@ -2734,7 +2734,7 @@ body[data-tone="ox"] { background: var(--ox); }
     + CMP.map(([row, cells]) => `<span class="mcmp__k">${row}</span>` + cells.map(([[img, iw, x, y, w, h, s, bg = "#FFFFFF"], t], i) => appCell(i,
       `<span class="mx__tile" style="--th:58px;--tbg:${bg}" role="img" aria-label="${esc(APPS[APP_KEYS[i]].n)}: ${esc(t)}">${crop(img, iw, x, y, w, h, s)}</span><small>${t}</small>`)).join("")).join("")
     + `<span class="mcmp__k">Colour</span>` + CMP_COL.map(([list, t], i) => appCell(i, `<div class="sws">${list.map((c) => sw(c)).join("")}</div><small>${t}</small>`)).join("");
-  $("#m-cmp-note").innerHTML = `Crops from the supplied home screens. Colours are the median of each element's dominant pixels; the Partners capture is low resolution, so its values are approximate.${src(17)}`;
+  $("#m-cmp-note").innerHTML = `Crops from the supplied home screens. Colours are the median of each element's dominant pixels.${src(17)}`;
 
   /* 07g: one shell, its parts numbered on the phone; choose an app to see what is tuned */
   const PARTS = [["bar", 76, "App bar", "The symbol and wordmark sign every app. A serif descriptor names it."],
@@ -2765,7 +2765,7 @@ body[data-tone="ox"] { background: var(--ox); }
   /* 07h: today beside the concept. Each change names the part of the concept it points at (as on 07g). */
   const MBA_P = { partners: ["bar", "greet", "acc", "cta"], homes: ["bar", "cta", "tabs", "acc"], community: ["bar", "greet", "acc", "tabs"] };
   const MBA = {
-    partners: [["The Bloom symbol and wordmark sign the app bar", "One serif greeting replaces the slate sans and badge", "Dusk replaces the maroon chart and pastel tiles", "View leads takes oxblood, docked above the tabs"], ["Leads, commission and marketing material", "Home, Leads, Inventory and More"]],
+    partners: [["The Bloom symbol and wordmark sign the app bar", "One serif greeting replaces the slate sans and badge", "Dusk replaces the maroon chart and teal figures", "View leads takes oxblood, docked above the tabs"], ["Leads, commission and marketing material", "Home, Leads, Inventory and More"]],
     homes: [["The symbol and a Homes descriptor join the wordmark", "Oxblood replaces the floating black pill", "A tab bar replaces the corner buttons", "Sandstone replaces the pink, orange and blue accents"], ["The appointment, Al Metlaa and its units", "Book appointment, always in reach"]],
     community: [["The symbol and wordmark replace the spelt-out name", "A white app bar replaces the full red band", "Garden marks the services; oxblood the main action", "The raised BCM button becomes a Community tab"], ["The six services and the unit", "Home, Pending, Favourites and Profile"]]
   };
