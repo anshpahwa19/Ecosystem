@@ -15,10 +15,10 @@ ASSETS = {
     "{{IMG_MARRIOTT}}": "assets/marriott.png",
     # Bloom wordmark lifted from the Bloom Universal screen as an alpha mask (slides 07a-07f)
     "{{IMG_WORDMARK}}": "assets/bloom-wordmark-alpha.png",
-    # Product screens supplied by the Bloom team (slides 05a-05c); Bloom@Go is the live employee platform
+    # Product screens supplied by the Bloom team (slides 05a-05c); Bloom Multiverse is the live employee platform
     "{{SHOT_HOME}}": "screens/home-buying-platform.webp",
     "{{SHOT_PARTNERS}}": "screens/bloom-partners-requests.webp",
-    "{{SHOT_GO}}": "screens/bloom-go-home.webp",
+    "{{SHOT_MULTIVERSE}}": "screens/bloom-multiverse-home.webp",
     "{{SHOT_MASTERPLAN}}": "screens/al-metlaa-master-plan.webp",
     "{{SHOT_UNIVERSAL}}": "screens/bloom-universal.webp",
 }
