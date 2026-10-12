@@ -1897,6 +1897,7 @@ body[data-tone="ox"] { background: var(--ox); }
   background: linear-gradient(180deg, #A5362E 0%, #8C2721 100%); box-shadow: inset 0 1px 0 rgba(255, 255, 255, .28), 0 18px 30px -14px rgba(147, 42, 35, .9), 0 0 0 6px rgba(147, 42, 35, .1); }
 .ms__fab > i { display: grid; place-items: center; width: 42px; height: 42px; border-radius: 50%; background: rgba(255, 255, 255, .16); box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .28); }
 .ms__fab .ico { width: 18px; height: 18px; }
+.ms .ms__fab--plain { padding-right: 20px; }
 .ms__fab > b { display: grid; place-items: center; min-width: 42px; height: 30px; padding: 0 10px; border-radius: 15px; background: #FFFFFF; color: var(--ox); font-family: var(--serif); font-size: 17px; font-weight: 600; }
 
 /* ---------- 06 pillars ---------- */
@@ -3610,7 +3611,7 @@ body[data-tone="ox"] { background: var(--ox); }
   const mscreen = (k, label, body, [ci, ct, fab], tabs, on, feed) => { const a = APPS[k];
     return `<div class="ms" style="${famB(a.f)}" role="img" aria-label="${esc(label)}"><div class="ms__bar"><span class="bn__brand">${sym()}<i class="wm"></i></span><span class="ms__desc">${a.d}</span><span class="ms__end">${bbell}${bav(a.av)}</span></div>`
       + `<div class="ms__stat"><b>9:41</b><i class="ms__island"></i><svg class="ms__sig" aria-hidden="true"><use href="#m-stat"/></svg></div>`
-      + `<div class="ms__body${feed ? " ms__body--feed" : ""}"${feed ? ` tabindex="0" role="region" aria-label="${esc(a.n)} concept, scrollable"` : ""}>${body}</div>${fab ? `<span class="ms__cta ms__fab"><i>${ic(ci)}</i>${ct}<b>${fab}</b></span>` : `<span class="bb ms__cta">${ic(ci)}${ct}</span>`}`
+      + `<div class="ms__body${feed ? " ms__body--feed" : ""}"${feed ? ` tabindex="0" role="region" aria-label="${esc(a.n)} concept, scrollable"` : ""}>${body}</div>${fab ? `<span class="ms__cta ms__fab${fab === true ? " ms__fab--plain" : ""}"><i>${ic(ci)}</i>${ct}${fab === true ? "" : `<b>${fab}</b>`}</span>` : `<span class="bb ms__cta">${ic(ci)}${ct}</span>`}`
       + `<nav class="ms__tabs" style="--n:${tabs.length}">${tabs.map(([i, t], x) => `<span${x === on ? ' class="is-on"' : ""}>${ic(i)}${t}</span>`).join("")}</nav></div>`; };
   const hello = (eyebrow, name, hi = "Good morning") => `<div class="ms__hi">${eb(eyebrow)}<h4 class="bh ms__h">${hi}, <em>${name}.</em></h4></div>`;
   const fhead = (t, end = "") => `<div class="mf__head"><b>${t}</b>${end}</div>`;
@@ -3637,7 +3638,7 @@ body[data-tone="ox"] { background: var(--ox); }
       + fhead("Available units", `<span class="mf__sort">${ic("swap")}Sort by</span>`)
       + [["A1-401", 3, 3, "1,650,000", "Handover Q4 2026"], ["A3-607", 2, 2, "1,145,000", ""]].map(([u, bd, bt, p, h]) => `<div class="bcard mf__unit"><div class="mf__ut">${crop("happ", 772, 72, 1300, 196, 140, .5)}<div><b class="ms__serif">${u}, <em>Al Metlaa</em></b>`
         + `<span class="mf__spec"><span>${ic("bed")}${bd} bed</span><span>${ic("wave")}${bt} bath</span><span>${ic("expand")}1,260 sq ft</span></span></div></div><div class="mf__pr"><b class="ms__price"><small>AED</small>${p}</b>${h ? `<span class="bchip bchip--line">${h}</span>` : `<span class="bl">Details${ic("arrow-r")}</span>`}</div></div>`).join(""),
-      ["cal", "Book appointment"], [["home", "Home"], ["map", "Masterplan"], ["grid", "Units"], ["doc", "Documents"]], 0, true),
+      ["cal", "Book appointment", true], [["home", "Home"], ["map", "Masterplan"], ["grid", "Units"], ["doc", "Documents"]], 0, true),
     community: () => mscreen("community", "Concept: the Bloom Community App home, for residents", hello("Bloom Community Management", "Hammad", "Welcome home")
       + `<div class="mf__hero mf__home"><span class="mf__ph">${crop("universal", 2000, 54, 640, 432, 215, .8194)}</span><div class="mf__over">${eb("Your home")}<b>Unit T14-C</b><small>Hammad Salem Naser</small>`
       + `<span class="mf__qa"><span class="mf__glass">${ic("out")}Move out / renew</span><span class="mf__glass">${ic("lock")}Access permit</span></span></div></div>`
@@ -3645,7 +3646,7 @@ body[data-tone="ox"] { background: var(--ox); }
       + `<div class="mf__bento"><span class="mf__feat"><span class="bic">${ic("tool")}</span><b>Service request</b><small>Raise and follow a request for your unit.</small>${ic("arrow-r")}</span>`
       + [["cal", "Events"], ["news", "Newsletter"], ["clip", "Notices"]].map(([i, t]) => `<span class="bcard mf__tile"><span class="bic">${ic(i)}</span><b>${t}</b></span>`).join("") + `</div>`
       + fhead("Also in the app") + `<div class="mf__also">${[["wave", "Book an amenity"], ["card", "Pay service charges"], ["sun", "Vacation mode"]].map(([i, t]) => `<span class="bcard"><span class="bic">${ic(i)}</span><b>${t}</b>${ic("chev-r")}</span>`).join("")}</div>`,
-      ["tool", "Raise a service request"], [["home", "Home"], ["clock", "Pending"], ["commune", "Community"], ["heart", "Favourites"], ["user", "Profile"]], 2, true)
+      ["tool", "Raise a service request", true], [["home", "Home"], ["clock", "Pending"], ["commune", "Community"], ["heart", "Favourites"], ["user", "Profile"]], 2, true)
   };
 
   /* 05e: today's three apps on a stage, mirroring 05a. Each phone is lit in a colour of its own, as sampled on 05f. */
