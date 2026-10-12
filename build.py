@@ -24,6 +24,12 @@ ASSETS = {
     "{{SHOT_MULTIVERSE}}": "screens/bloom-multiverse-home.webp",
     "{{SHOT_MASTERPLAN}}": "screens/al-metlaa-master-plan.webp",
     "{{SHOT_UNIVERSAL}}": "screens/bloom-universal.webp",
+    # HD photographs supplied for the Universal concept's gallery (illustrative), cropped to 720 x 1006
+    "{{UNI_EDUCATION}}": "screens/universal-education.webp",
+    "{{UNI_RETAIL}}": "screens/universal-retail.webp",
+    "{{UNI_HOSPITALITY}}": "screens/universal-hospitality.webp",
+    "{{UNI_LANDSCAPE}}": "screens/universal-landscape.webp",
+    "{{UNI_FACILITIES}}": "screens/universal-facilities.webp",
 }
 # App home screens supplied by the Bloom team (slides 05e-07i), inlined as supplied (no re-compression) and only into
 # builds that carry the mobile set.
@@ -48,7 +54,7 @@ def inline(page, assets):
 
 
 source = inline((ROOT / "src" / "proposal.html").read_text(encoding="utf-8"), ASSETS)
-assert "{{IMG_" not in source and "{{SHOT_" not in source and source.count("{{DIR}}") == 1 and source.count("{{SET}}") == 1
+assert "{{IMG_" not in source and "{{SHOT_" not in source and "{{UNI_" not in source and source.count("{{DIR}}") == 1 and source.count("{{SET}}") == 1
 
 
 class SlideNesting(HTMLParser):

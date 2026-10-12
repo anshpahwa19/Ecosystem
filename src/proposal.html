@@ -20,6 +20,7 @@
   --ease: cubic-bezier(.16, 1, .3, 1);
   --spring: cubic-bezier(.34, 1.4, .64, 1);
   --shot-home: url({{SHOT_HOME}}); --shot-partners: url({{SHOT_PARTNERS}}); --shot-multiverse: url({{SHOT_MULTIVERSE}}); --shot-masterplan: url({{SHOT_MASTERPLAN}}); --shot-universal: url({{SHOT_UNIVERSAL}});
+  --uni-education: url({{UNI_EDUCATION}}); --uni-retail: url({{UNI_RETAIL}}); --uni-hospitality: url({{UNI_HOSPITALITY}}); --uni-landscape: url({{UNI_LANDSCAPE}}); --uni-facilities: url({{UNI_FACILITIES}});
   --shot-papp: url({{APP_PARTNERS}}); --shot-happ: url({{APP_HOMES}}); --shot-capp: url({{APP_COMMUNITY}});
   --wordmark: url({{IMG_WORDMARK}});
   --b-paper: #F6F4F0; --b-line: #E6E1D8; --b-body: #535464;
@@ -1007,11 +1008,12 @@ body[data-tone="ox"] { background: var(--ox); }
 .xu__p { position: relative; flex: 1 1 0; min-width: 0; overflow: hidden; border-radius: 22px; background: var(--pb-sand); box-shadow: 0 16px 28px -22px rgba(28, 26, 25, .7); transition: flex-grow .8s var(--mo-spring), box-shadow var(--mo-comp); }
 .xu__p.is-on { flex-grow: 6; box-shadow: 0 28px 46px -26px rgba(28, 26, 25, .75); }
 .xu__p::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(28, 26, 25, 0) 42%, rgba(28, 26, 25, .66) 100%); pointer-events: none; }
-.xu__ph .crop { position: absolute; left: 50%; top: 50%; translate: -50% -50%; transition: filter var(--mo-comp); }
-.xu__p:not(.is-on) .crop { filter: saturate(.7) brightness(.9); }
-.xu__p:not(.is-on):hover .crop { filter: none; }
+.xu__ph :is(.crop, .xu__hd) { position: absolute; left: 50%; top: 50%; translate: -50% -50%; transition: filter var(--mo-comp); }
+.xu__hd { display: block; width: 252px; height: 352px; background: var(--img) center / cover no-repeat; }
+.xu__p:not(.is-on) :is(.crop, .xu__hd) { filter: saturate(.7) brightness(.9); }
+.xu__p:not(.is-on):hover :is(.crop, .xu__hd) { filter: none; }
 @keyframes xuKen { from { transform: scale(1.14); } }
-:is(.zoom, .ba) .xu__p.is-on .crop { animation: xuKen 9s var(--mo-ease) both; }
+:is(.zoom, .ba) .xu__p.is-on :is(.crop, .xu__hd) { animation: xuKen 9s var(--mo-ease) both; }
 .xu__v { position: absolute; z-index: 1; left: 0; right: 0; bottom: 14px; display: flex; flex-direction: column; align-items: center; gap: 10px; color: #FFFFFF; font-size: 11.5px; font-weight: 700; white-space: nowrap; transition: opacity var(--mo-comp), transform var(--mo-comp) var(--mo-ease); }
 .xu__v b { writing-mode: vertical-rl; transform: rotate(180deg); font-weight: 700; letter-spacing: .02em; }
 .xu__v i { font-style: normal; font-size: 9.5px; font-weight: 800; color: rgba(255, 255, 255, .78); }
@@ -3241,6 +3243,8 @@ body[data-tone="ox"] { background: var(--ox); }
   const di = (i, kind = "", css = "") => ` data-in="${kind}" style="--i:${i};${css}"`;
   // Universal's gallery: one 252 x 351 crop per business, inside its own photo on today's page (TILES order), clear of the captions
   const XU_CROPS = [[54, 466, 432, 603], [600, 465, 180, 251], [1080, 465, 180, 251], [1730, 465, 180, 251], [700, 812, 180, 251], [1580, 812, 180, 251]];
+  // HD photographs supplied for the concept (illustrative, not Bloom's own sites), 720 x 1006 portrait crops; null keeps today's page crop
+  const XU_HD = [null, "education", "retail", "hospitality", "landscape", "facilities"];
   const B_TYPES = [["Type 1", 391], ["Type 2", 727, 1], ["Type 3", 740], ["Type 4", 389]];
   /* Bloom Multiverse as its whole home page, in the order today's live page runs (source 14 and the full-page capture).
      The first 874 x 454 is a light hero, and it is all the slides show; the full-size view scrolls the rest. */
@@ -3315,7 +3319,7 @@ body[data-tone="ox"] { background: var(--ox); }
       + `<span class="xu__segs">${TILES.map(() => "<i></i>").join("")}</span><span class="xu__step"><span data-act="bizstep" data-d="-1" aria-label="Previous business">${ic("arrow-l")}</span><span data-act="bizstep" data-d="1" aria-label="Next business">${ic("arrow-r")}</span></span></div>`
       + `<span class="bb xu__cta"${di(5)}>Let's get started${ic("arrow-r")}</span></div>`
       + `<div class="xu__gal">${TILES.map(([n], k) => { const [x, y, w, h] = XU_CROPS[k]; return `<div class="xu__p${k ? "" : " is-on"}" data-act="biz" data-k="${k}" aria-label="${esc(n)}"${di(k + 2, "mask")}>`
-        + `<span class="xu__ph">${crop("universal", 2000, x, y, w, h, (252 / w).toFixed(4))}</span><span class="xu__v"><b>${n.replace("Bloom ", "").replace(" Management", "")}</b><i>${pad(k + 1)}</i></span>`
+        + `<span class="xu__ph">${XU_HD[k] ? `<i class="xu__hd" style="--img:var(--uni-${XU_HD[k]})"></i>` : crop("universal", 2000, x, y, w, h, (252 / w).toFixed(4))}</span><span class="xu__v"><b>${n.replace("Bloom ", "").replace(" Management", "")}</b><i>${pad(k + 1)}</i></span>`
         + `<span class="xu__cap"><i>${pad(k + 1)} / ${pad(TILES.length)}</i><b>${n}</b><span class="xu__go">Explore${ic("arrow-r")}</span></span><span class="xu__prog"><i></i></span></div>`; }).join("")}</div></div></div>`),
     masterplan: () => scrB("homes", "Direction B concept: Al Metlaa master plan as a Bloom Homes screen", `<div class="xm__map"><span${di(0, "settle", "display:block")}>${crop("masterplan", 2000, 424, 0, 1576, 819, .5546)}</span></div>`
       + bnav("Homes", ["Masterplan", "Units", "Documents"], blang)
