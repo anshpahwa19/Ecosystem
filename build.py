@@ -24,6 +24,10 @@ ASSETS = {
     "{{SHOT_MULTIVERSE}}": "screens/bloom-multiverse-home.webp",
     "{{SHOT_MASTERPLAN}}": "screens/al-metlaa-master-plan.webp",
     "{{SHOT_UNIVERSAL}}": "screens/bloom-universal.webp",
+    # updated web screens supplied by the Bloom team (07e "today" for Partners and the home-buying platform, and Bloom Education)
+    "{{SHOT_PARTNERSWEB}}": "screens/bloom-partners-dashboard.webp",
+    "{{SHOT_HOMEWEB}}": "screens/home-buying-home.webp",
+    "{{SHOT_EDUWEB}}": "screens/bloom-education.webp",
     # HD photographs supplied for the Universal concept's gallery (illustrative), cropped to 720 x 1006
     "{{UNI_PROPERTIES}}": "screens/universal-properties.webp",
     "{{UNI_EDUCATION}}": "screens/universal-education.webp",

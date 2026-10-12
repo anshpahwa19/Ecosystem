@@ -19,7 +19,7 @@
   --serif: "Cormorant Garamond", "Iowan Old Style", Georgia, "Times New Roman", serif;
   --ease: cubic-bezier(.16, 1, .3, 1);
   --spring: cubic-bezier(.34, 1.4, .64, 1);
-  --shot-home: url({{SHOT_HOME}}); --shot-partners: url({{SHOT_PARTNERS}}); --shot-multiverse: url({{SHOT_MULTIVERSE}}); --shot-masterplan: url({{SHOT_MASTERPLAN}}); --shot-universal: url({{SHOT_UNIVERSAL}});
+  --shot-home: url({{SHOT_HOME}}); --shot-partners: url({{SHOT_PARTNERS}}); --shot-multiverse: url({{SHOT_MULTIVERSE}}); --shot-masterplan: url({{SHOT_MASTERPLAN}}); --shot-universal: url({{SHOT_UNIVERSAL}}); --shot-partnersweb: url({{SHOT_PARTNERSWEB}}); --shot-homeweb: url({{SHOT_HOMEWEB}}); --shot-eduweb: url({{SHOT_EDUWEB}});
   --uni-properties: url({{UNI_PROPERTIES}}); --uni-education: url({{UNI_EDUCATION}}); --uni-retail: url({{UNI_RETAIL}}); --uni-hospitality: url({{UNI_HOSPITALITY}}); --uni-landscape: url({{UNI_LANDSCAPE}}); --uni-facilities: url({{UNI_FACILITIES}});
   --shot-papp: url({{APP_PARTNERS}}); --shot-happ: url({{APP_HOMES}}); --shot-capp: url({{APP_COMMUNITY}});
   --wordmark: url({{IMG_WORDMARK}});
@@ -502,6 +502,7 @@ body[data-tone="ink"] { background: var(--ink); }
 .tune[data-hl="shape"] .scr__nav { border-radius: 24px; }
 .tune[data-hl="shape"] .scr__card { border-radius: 14px; }
 .seg--fam button { display: inline-flex; align-items: center; gap: 8px; padding: 0 16px; }
+#bb-tabs button { gap: 6px; padding: 0 11px; font-size: 13px; white-space: nowrap; }
 .seg--fam button i { width: 8px; height: 8px; border-radius: 50%; background: var(--c); flex: none; }
 .seg--fam button[aria-selected="true"] i { box-shadow: 0 0 0 2px #FFFFFF; }
 /* 07b names */
@@ -860,7 +861,7 @@ body[data-tone="ox"] { background: var(--ox); }
 .bx-steps li.is-now b { color: var(--bx-sand); }
 @keyframes bxpop { from { transform: scale(.6) rotate(-40deg); opacity: 0; } }
 /* 07e/07f frames */
-.bx-mosaic { display: grid; grid-template-columns: 685px minmax(0, 1fr) minmax(0, 1fr); grid-template-rows: 170px 170px minmax(0, 1fr); gap: 16px; height: 100%; }
+.bx-mosaic { display: grid; grid-template-columns: repeat(3, 380px); justify-content: space-between; grid-template-rows: auto auto minmax(0, 1fr); gap: 14px; height: 100%; }
 .bx-frame { position: relative; border-radius: 10px; overflow: hidden; background: #FFFFFF; box-shadow: 0 0 0 1px var(--bx-line-2), 0 30px 50px -36px rgba(28, 26, 25, .55); transition: transform .4s var(--spring), box-shadow .4s; }
 .bx-frame:hover { transform: translateY(-4px); box-shadow: 0 0 0 1px #C4BDB2, 0 40px 60px -36px rgba(28, 26, 25, .6); }
 .bx-frame .fit { pointer-events: none; }
@@ -1899,6 +1900,154 @@ body[data-tone="ox"] { background: var(--ox); }
 .ms .ms__fab--plain { padding-right: 20px; }
 .ms__fab > b { display: grid; place-items: center; min-width: 42px; height: 30px; padding: 0 10px; border-radius: 15px; background: #FFFFFF; color: var(--ox); font-family: var(--serif); font-size: 17px; font-weight: 600; }
 
+/* Whole-page web concepts (Partners dashboard, home-buying home, Education): the Multiverse page grammar with shared app parts */
+.xw__hero { background:
+  radial-gradient(36% 50% at 8% 14%, color-mix(in srgb, var(--c) 40%, transparent), transparent 72%),
+  radial-gradient(36% 52% at 96% 8%, color-mix(in srgb, var(--ox) 22%, transparent), transparent 72%),
+  radial-gradient(46% 58% at 60% 110%, color-mix(in srgb, #D8C2A2 60%, transparent), transparent 72%); }
+.xw__card { display: grid; align-content: start; gap: 14px; padding: 18px; border-radius: 24px; }
+.scr--long .mv__sec .xw__card { background: rgba(255, 255, 255, .7); }
+.xw__ch { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+.xw__ch > b { font-family: var(--serif); font-size: 22px; font-weight: 600; line-height: 1; }
+.xw__ch > small, .xw__mute { font-size: 11px; color: var(--bx-mute); }
+.xw__ch .bchip .ico { width: 12px; height: 12px; }
+.xw__av { width: 46px; height: 46px; font-size: 14px; background: var(--t); color: var(--ct); box-shadow: 0 0 0 3px #FFFFFF, 0 0 0 4.5px color-mix(in srgb, var(--ct) 40%, transparent); }
+.xw__seg { display: inline-flex; gap: 2px; padding: 3px; border-radius: 16px; background: rgba(28, 26, 25, .05); font-size: 11px; font-weight: 700; color: var(--bx-mute); }
+.xw__seg > * { display: grid; place-items: center; height: 26px; padding: 0 12px; border-radius: 13px; }
+.xw__seg b { background: #FFFFFF; color: var(--bx-ink); box-shadow: 0 4px 10px -6px rgba(28, 26, 25, .4); }
+.xw__end { padding: 34px 40px 22px; }
+.xw__endrow { display: flex; align-items: center; gap: 14px; }
+.xw__endrow .bn__brand { color: #F7F3EC; }
+.xw__endrow .bn__brand .sym { width: 22px; }
+.xw__endrow .wm { width: 60px; --wm-c: #F7F3EC; }
+.xw__endrow > .bl { margin-left: auto; color: #F7F3EC; }
+.xw__links { display: flex; gap: 16px; margin-left: 18px; font-size: 11px; color: rgba(247, 243, 236, .66); }
+.xw__copy { display: block; margin-top: 18px; padding-top: 14px; border-top: 1px solid rgba(255, 255, 255, .1); font-size: 10.5px; color: rgba(247, 243, 236, .5); }
+/* Partners dashboard */
+.xpd__hi { position: absolute; left: 40px; right: 40px; top: 88px; display: flex; align-items: center; gap: 14px; }
+.xpd__hi > div { flex: 1; }
+.xpd__h { font-size: 40px; }
+.xpd__hi .bp { margin-top: 4px; font-size: 12.5px; }
+.xpd__hi .bchip .ico { width: 12px; height: 12px; }
+.xpd__feat { position: absolute; left: 40px; right: 40px; top: 170px; bottom: 22px; display: grid; grid-template-columns: minmax(0, 1fr) 300px; gap: 24px; align-items: center; padding: 18px 18px 18px 24px; border-radius: 28px; }
+.xpd__ft { display: grid; justify-items: start; gap: 10px; }
+.xpd__ft .bchip .ico { width: 12px; height: 12px; }
+.xpd__fh { font-size: 46px; }
+.xpd__ft .bp { font-size: 12px; line-height: 1.55; }
+.xpd__ft .bbtns { gap: 8px; margin-top: 4px; }
+.xpd__ph { position: relative; overflow: hidden; height: 218px; border-radius: 20px 56px 20px 20px; box-shadow: 0 24px 40px -26px rgba(28, 26, 25, .7); }
+.xpd__ph .crop { display: block; }
+.xpd__two { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); gap: 16px; align-items: stretch; }
+.xpd__two .mf__leads { grid-template-columns: 124px minmax(0, 1fr); }
+.xpd__two .mf__ring { width: 124px; height: 124px; }
+.xpd__two .bbtns { gap: 8px; }
+.xpd__team { justify-items: start; }
+.xpd__team .mf__avs i { width: 38px; height: 38px; }
+.xpd__active { display: flex; align-items: baseline; gap: 10px; justify-self: stretch; padding: 14px 16px; border-radius: 18px; background: color-mix(in srgb, var(--ox) 7%, #FFFFFF); font-size: 12px; font-weight: 700; color: var(--bx-mute); }
+.xpd__active b { font-size: 32px; color: var(--ox); }
+.xpd__team > .bb { justify-self: stretch; margin-top: auto; }
+.xpd__money { align-content: start; }
+.xpd__money > b { font-size: 52px; }
+.xpd__track { margin-top: auto; padding-top: 14px; border-top: 1px solid rgba(255, 255, 255, .12); }
+.xpd__lead { font-size: 12px; margin-top: -6px; }
+.xpd__tiles { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; }
+.xpd__tiles span { padding: 16px; border-radius: 20px; }
+.xpd__tiles b { font-size: 34px; }
+.xpd__find { display: flex; gap: 10px; margin: 14px 0; }
+.xpd__find .mf__search { flex: 1; background: rgba(255, 255, 255, .7); }
+.xpd__find .bb { height: 42px; }
+.xpd__table { display: grid; padding: 6px 14px; border-radius: 24px; }
+.scr--long .mv__sec .xpd__table { background: rgba(255, 255, 255, .7); }
+.xpd__tr { display: grid; grid-template-columns: minmax(0, 2fr) 1fr 1fr 1.1fr 1.1fr; align-items: center; min-height: 50px; font-size: 12.5px; border-top: 1px solid rgba(28, 26, 25, .07); }
+.xpd__th { min-height: 38px; border-top: 0; font-size: 9.5px; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; color: var(--bx-mute); }
+.xpd__tr > span:first-child { display: flex; align-items: center; gap: 10px; }
+.xpd__tr .bav { width: 30px; height: 30px; background: var(--t); color: var(--ct); }
+.xpd__tr:nth-child(odd) .bav { background: #F3E4E2; color: var(--ox); }
+.xpd__n { width: 14px; font-style: normal; font-size: 11px; color: var(--bx-mute); }
+.xpd__pill { display: inline-grid; place-items: center; min-width: 32px; height: 22px; padding: 0 8px; border-radius: 11px; font-style: normal; font-weight: 700; background: rgba(28, 26, 25, .05); }
+.xpd__pill--ok { background: #EBEDDF; color: var(--bx-garden); }
+.xpd__rate { display: inline-block; width: 14px; height: 14px; margin-right: 7px; vertical-align: -2px; border-radius: 50%; background: conic-gradient(var(--c) 0 var(--r), rgba(28, 26, 25, .1) 0); -webkit-mask: radial-gradient(closest-side, transparent 62%, #000 64%); mask: radial-gradient(closest-side, transparent 62%, #000 64%); }
+.xpd__tr .bnum { font-size: 17px; }
+.xpd__tr .bnum small { font-family: var(--sans); font-size: 9.5px; color: var(--bx-mute); }
+/* home-buying home */
+.xhh__h { position: absolute; left: 40px; top: 84px; font-size: 40px; }
+.xhh__grid { position: absolute; left: 40px; right: 40px; top: 140px; bottom: 22px; display: grid; grid-template-columns: 528px minmax(0, 1fr); gap: 16px; }
+.xhh__car { position: relative; overflow: hidden; border-radius: 26px; box-shadow: 0 26px 44px -28px rgba(28, 26, 25, .7); }
+.xhh__car .crop { display: block; }
+.xhh__car::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(28, 26, 25, 0) 45%, rgba(28, 26, 25, .66)); }
+.xhh__chip { position: absolute; z-index: 1; left: 14px; top: 14px; background: rgba(255, 255, 255, .75) !important; }
+.xhh__arr { position: absolute; z-index: 1; top: 50%; display: grid; place-items: center; width: 34px; height: 34px; margin-top: -17px; border-radius: 50%; background: rgba(255, 255, 255, .28); color: #FFFFFF; -webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px); box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .45); }
+.xhh__arr .ico { width: 15px; height: 15px; }
+.xhh__arr--l { left: 14px; } .xhh__arr--r { right: 14px; }
+.xhh__cap { position: absolute; z-index: 1; left: 18px; bottom: 24px; display: grid; gap: 4px; color: #FFFFFF; }
+.xhh__cap b { font-family: var(--serif); font-size: 30px; font-weight: 600; line-height: 1; }
+.xhh__cap em { color: #EEE6DD; }
+.xhh__cap small { display: flex; align-items: center; gap: 5px; font-size: 11.5px; color: rgba(255, 255, 255, .82); }
+.xhh__cap .ico { width: 13px; height: 13px; }
+.xhh__car .mf__dots { bottom: 10px; }
+.xhh__side { display: grid; grid-template-rows: auto auto 1fr; gap: 12px; align-content: start; }
+.xhh__price { gap: 12px; padding: 16px; }
+.xhh__price .xw__ch > b { font-size: 19px; color: var(--ox); }
+.xhh__track { position: relative; height: 6px; margin: 6px 4px 0; border-radius: 3px; background: rgba(28, 26, 25, .1); }
+.xhh__track i { position: absolute; left: 0; top: 0; bottom: 0; width: 19%; border-radius: inherit; background: var(--ox); }
+.xhh__track b { position: absolute; left: 19%; top: 50%; width: 16px; height: 16px; margin: -8px 0 0 -8px; border-radius: 50%; background: #FFFFFF; box-shadow: 0 0 0 4px var(--ox), 0 4px 10px rgba(147, 42, 35, .4); }
+.xhh__ticks { display: flex; justify-content: space-between; font-size: 9.5px; font-weight: 700; color: var(--bx-mute); }
+.xhh__ticks span:first-child, .xhh__ticks span:last-child { color: var(--bx-ink); }
+.xhh__warn { font-size: 10.5px; color: var(--bx-mute); }
+.xhh__warn b { color: var(--ox); }
+.xhh__units { display: flex; align-items: center; justify-content: space-between; padding: 14px 16px; }
+.xhh__units > span { display: flex; align-items: center; gap: 8px; font-size: 13px; font-weight: 700; }
+.xhh__units .ico { width: 16px; height: 16px; color: var(--ct); }
+.xhh__units > b { font-size: 32px; line-height: 1; }
+.xhh__book { align-self: end; height: 48px; }
+.xhh__vr { display: flex; align-items: center; justify-content: space-between; padding: 30px 32px; }
+.xhh__vr .bh { display: block; margin-top: 8px; font-size: 36px; }
+.xhh__tour { display: inline-flex; align-items: center; gap: 8px; height: 40px; padding: 0 18px 0 8px; border-radius: 20px; background: #FFFFFF; color: var(--bx-ink); font-size: 12.5px; font-weight: 700; }
+.xhh__tour .ico { width: 26px; height: 26px; padding: 6px; border-radius: 50%; background: var(--ox); color: #FFFFFF; }
+.xhh__amen { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 10px; }
+.xhh__amen > span { display: grid; justify-items: start; align-content: space-between; gap: 12px; min-height: 104px; padding: 14px; border-radius: 20px; font-size: 12px; font-weight: 700; line-height: 1.3; }
+.xhh__amen .bic { width: 34px; height: 34px; }
+.xhh__count { display: inline-flex; align-items: center; gap: 6px; font-size: 12px; font-weight: 700; color: var(--bx-mute); }
+.xhh__count .ico { width: 15px; height: 15px; }
+.xhh__list { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
+.xhh__unit { gap: 8px; padding: 8px 8px 12px; }
+.xhh__uph { display: block; height: 128px; overflow: hidden; border-radius: 18px; }
+.xhh__uph .crop { display: block; transform: scale(1.34); transform-origin: 50% 50%; }
+.xhh__unit > .ms__serif, .xhh__unit > small, .xhh__unit > .mf__spec { margin: 0 6px; }
+.xhh__unit .ms__serif { font-size: 21px; }
+.xhh__unit .mf__pr { margin-top: 4px; }
+.xhh__docs { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.xhh__docs > span { display: flex; align-items: center; gap: 12px; height: 64px; padding: 0 16px 0 12px; border-radius: 20px; }
+.xhh__docs b { font-size: 14px; }
+.xhh__docs > span > :last-child { margin-left: auto; }
+/* Education */
+.xed__hero { display: grid; grid-template-columns: 340px minmax(0, 1fr); gap: 30px; align-items: center; padding: 70px 40px 22px; }
+.xed__brand { display: grid; justify-items: start; gap: 16px; }
+.xed__wm { display: grid; justify-items: start; gap: 2px; }
+.xed__wm .wm { width: 210px; }
+.xed__wm b { padding-left: 6px; font-family: var(--serif); font-size: 32px; font-style: italic; font-weight: 600; line-height: 1; letter-spacing: .02em; color: var(--bx-ink); }
+.xed__brand .bp { font-size: 12.5px; }
+.xed__fan { position: relative; height: 330px; }
+.xed__card { position: absolute; overflow: hidden; width: 260px; border-radius: 22px; background: #FFFFFF; box-shadow: 0 26px 44px -26px rgba(28, 26, 25, .6), 0 0 0 6px rgba(255, 255, 255, .7); }
+.xed__card .crop { display: block; }
+.xed__card b { position: absolute; left: 14px; bottom: 12px; padding: 5px 11px; border-radius: 12px; background: rgba(255, 255, 255, .78); -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px); font-size: 11px; font-weight: 700; }
+.xed__card:nth-child(1) { left: 0; top: 18px; transform: rotate(-4deg); }
+.xed__card:nth-child(2) { left: 120px; top: 120px; z-index: 2; transform: rotate(2deg); }
+.xed__card:nth-child(3) { right: 0; top: 0; transform: rotate(5deg); }
+.xed__grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
+.xed__school { min-height: 0; }
+.xed__ph { display: grid; place-items: center; height: 128px; overflow: hidden; border-radius: 16px; background: #FFFFFF; }
+.xed__ph .crop { display: block; }
+.xed__charter { display: grid; justify-items: center; gap: 4px; color: #1E2A6B; }
+.xed__charter b { font-size: 18px; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; }
+.xed__charter small { font-size: 13px; font-weight: 700; }
+.xed__end { padding: 40px 40px 22px; }
+.xed__cols { display: grid; grid-template-columns: 1.1fr 1fr 1fr 1.4fr; gap: 24px; }
+.xed__cols > div { display: grid; align-content: start; gap: 8px; font-size: 11.5px; color: rgba(247, 243, 236, .72); }
+.xed__cols small { font-size: 9.5px; font-weight: 800; letter-spacing: .16em; text-transform: uppercase; color: var(--mv-hi); }
+.xed__wm--s .wm { width: 120px; --wm-c: #F7F3EC; }
+.xed__wm--s b { font-size: 20px; color: #F7F3EC; }
+
 /* ---------- 06 pillars ---------- */
 .temple { display: grid; }
 .lintel { display: flex; align-items: center; justify-content: space-between; height: 76px; padding: 0 29px; border-radius: 14px 14px 0 0; background: var(--red); color: #FFFFFF; }
@@ -2724,7 +2873,7 @@ body[data-tone="ox"] { background: var(--ox); }
 
 <section class="slide" data-dir="b" data-num="07f" data-title="One Bloom" data-cat="prop" aria-roledescription="slide">
   <header class="s-head">
-    <h2 class="h1 rv">Five products. <span class="serif hl">One Bloom.</span></h2>
+    <h2 class="h1 rv">Six products. <span class="serif hl">One Bloom.</span></h2>
   </header>
   <div class="s-body">
     <div class="bx-mosaic" id="bx-mosaic"></div>
@@ -2936,6 +3085,7 @@ body[data-tone="ox"] { background: var(--ox); }
   // The mobile set (05e-05g, 07g-07i) adds its own screens as source 17. SET: "web" (default), "mobile", or "all" for both.
   const SET = ["mobile", "all"].includes($("#deck").dataset.set) ? $("#deck").dataset.set : "web";
   if (SET !== "web") SOURCES.push(["Bloom mobile app screens · supplied by the Bloom team", "", "Home screens of the Bloom Partners app (Rashid's dashboard), the home-buying app (Javed's Al Metlaa home) and the Bloom Community App (Bloom Community Management, from a promotional image), October 2026. 05e to 05g show them as supplied, the Community screen straightened out of its device frame; colours on 05f are sampled from them. The concepts on 07g to 07i reuse their content."]);
+  if (SET === "all") SOURCES.push(["Bloom web screens, updated · supplied by the Bloom team", "", "The Bloom Partners dashboard (John Doe), the home-buying home page (Javed, Al Metlaa) and the Bloom Education website, as updated screens; drawn on 07e and 07f."]);
   $("#src-list").style.setProperty("--rows", Math.ceil(SOURCES.length / 2));
   const short = (u) => u.replace(/^https:\/\/(www\.)?/, "").replace(/\/$/, "");
   $("#src-list").innerHTML = SOURCES.map(([t, u], i) => `<li><span>${pad(i + 1)}</span><div><b>${esc(t)}</b>${u ? `<a href="${esc(u)}" target="_blank" rel="noopener">${esc(short(u).split("/")[0])}</a>` : `<a>Shared with the Bloom team</a>`}</div></li>`).join("");
@@ -3089,7 +3239,7 @@ body[data-tone="ox"] { background: var(--ox); }
   function openZoom(k, from) {
     // "mock:<product>" opens a direction A concept, "mockb:<product>" a direction B concept, anything else a supplied screen.
     const [kind, mock] = k.includes(":") ? k.split(":") : ["", ""], b = kind === "mockb";
-    const [t, a, img, ar] = mock ? [`${PRODUCTS[mock].n} · concept`, `Bloom ${PRODUCTS[mock].d} · for discussion`] : SCREENS[k];
+    const PR = b ? PRODUCTS_B : PRODUCTS, [t, a, img, ar] = mock ? [`${PR[mock].n} · concept`, `Bloom ${PR[mock].d} · for discussion`] : SCREENS[k];
     $("#zoom-t").textContent = t; $("#zoom-a").textContent = a;
     const z = $("#zoom-img"), zm = $("#zoom-mock"), sc = $("#zoom-scroll");
     z.hidden = !!mock; zm.hidden = !mock; zm.innerHTML = mock ? `<div class="fit">${(b ? MOCKS_B : MOCKS)[mock]()}</div>` : "";
@@ -3408,6 +3558,77 @@ body[data-tone="ox"] { background: var(--ox); }
     ["How do I access my profile?", "Select your initials at the top of any page."], ["How do I update my personal information?", "Open your profile and choose Edit details."], ["How do I search for information?", "Ask Bloom GPT, at the top of every page."]];
   const mvHead = (n, k, h, end = "") => `<div class="mv__head"><div><span class="be mv__k"${di(0)}><b>${n}</b><i></i>${k}</span><h5 class="bh mv__h"${di(1)}>${h}</h5></div>${end}</div>`;
   const mvMarq = (t, cls = "") => `<div class="mv__marq ${cls}" aria-hidden="true"><span>${`${t} · `.repeat(2)}</span></div>`;
+  /* Whole-page concepts for the updated web screens (Bloom Partners dashboard, the home-buying home, Bloom Education).
+     Like Multiverse: the first 874 x 454 is the hero the slides show; the full-size view scrolls the rest. Content is only
+     what those screens show. */
+  const xwCard = (cls, inner, i) => `<div class="xw__card glc ${cls}"${di(i)}>${inner}</div>`;
+  const xwHead = (t, end = "") => `<div class="xw__ch"><b>${t}</b>${end}</div>`;
+  const pdPage = () => {
+    const hero = `<div class="mv__hero xw__hero" data-sec><div class="xpd__hi"${di(0)}><i class="bav xw__av">JD</i><div><h4 class="bh xpd__h">Hi, <em>John Doe.</em></h4><p class="bp">Welcome back! Explore your latest updates and insights below.</p></div><span class="bchip bchip--ok">${ic("check")}Account verified</span></div>`
+      + `<div class="xpd__feat glc"${di(1)}><div class="xpd__ft"><span class="bchip bchip--ox">${ic("spark")}Newly launched</span><b class="bh xpd__fh">Bloom <em>Living</em></b>`
+      + `<p class="bp">Inspired by Mediterranean Spanish architecture, a 2.2 million sqm community in Zayed City near Zayed International Airport. It will feature over 4,500 villas, townhouses and apartments, with spacious indoor and outdoor areas for residents of all generations.</p>`
+      + `<div class="bbtns"><span class="bb bb--s">Assign units${ic("arrow-r")}</span><span class="bb bb--o bb--s">${ic("download")}Marketing material</span></div></div>`
+      + `<span class="xpd__ph"${di(2, "mask")}>${crop("partnersweb", 1082, 679, 188, 317, 230, .9464)}<span class="mf__dots"><i class="is-on"></i><i></i><i></i><i></i><i></i></span></span></div></div>`;
+    const perf = `<section class="mv__sec" data-sec>` + mvHead("02", "Performance", "Your leads and <em>your team.</em>", `<span class="xw__seg"${di(2)}><b>30 days</b><span>Custom</span></span>`)
+      + `<div class="xpd__two">` + xwCard("", xwHead("Leads performance", `<small>Data from 11th August 25</small>`)
+        + `<div class="mf__leads"><span class="mf__ring"><b>450</b><small>Leads created</small></span><div class="mf__kv">${[["Leads created", "450", "75%", 1], ["In review", "320", "75%", .75], ["Converted", "185", "71%", .5], ["Closed", "55", "30%", .3]].map(([t, n, p, o]) => `<span style="--o:${o}"><i></i><small>${t}</small><b>${n}</b><em>${p}</em></span>`).join("")}</div></div>`
+        + `<div class="bbtns"><span class="bb bb--s">View leads${ic("arrow-r")}</span><span class="bb bb--o bb--s">View sales order</span></div>`, 2)
+      + xwCard("xpd__team", xwHead("Team members", `<span class="bchip">${ic("users")}Total 50</span>`) + `<span class="mf__avs">${["JD", "MJ", "SL", "EW", "OB"].map((x) => `<i>${x}</i>`).join("")}<i class="mf__more">+45</i></span><small class="xw__mute">Get to know your team</small>`
+        + `<span class="xpd__active"><b class="bnum">50</b>Active members</span><span class="bb bb--s">View team${ic("arrow-r")}</span>`, 3) + `</div></section>`;
+    const money = `<section class="mv__sec" data-sec>` + mvHead("03", "Earnings", "Commission and <em>materials.</em>")
+      + `<div class="xpd__two"><div class="mf__money xpd__money"${di(2)}>${eb("Commission · 30 days")}<b><small>AED</small>25,000</b><small>Credited from completed sales. Close more deals to boost your earnings.</small><span class="bic">${ic("card")}</span>`
+      + `<small class="xpd__track">Track commissions from completed sales and stay updated on the earnings credited.</small></div>`
+      + xwCard("", xwHead("Marketing materials", `<small>Projects</small>`) + `<p class="bp xpd__lead">Access the latest brochures and marketing materials to enhance your sales approach.</p>`
+        + ["Bloom Heights", "Bloom Living", "Community 1", "Community 2"].map((t) => `<div class="mf__li"><span class="bic">${ic("doc")}</span>${t}<span class="ms__dl">${ic("download")}</span></div>`).join(""), 3) + `</div></section>`;
+    const team = `<section class="mv__sec" data-sec>` + mvHead("04", "My team", "Team <em>performance.</em>", `<span class="xw__seg"${di(2)}><b>30 days</b><span>Custom</span></span>`)
+      + `<div class="mf__tiles xpd__tiles"${di(2)}>${[["Leads created", "63", "users"], ["In review", "30", "clock"], ["Converted", "22", "swap"], ["Closed", "04", "check"]].map(([t, n, i], x) => `<span style="--o:${[.12, .2, .28, .36][x]}">${ic(i)}<small>${t}</small><b>${n}</b></span>`).join("")}</div>`
+      + `<div class="xpd__find"${di(3)}><span class="mf__search">${ic("search")}Search by agent name</span><span class="bb bb--o bb--s">Search</span></div>`
+      + `<div class="xpd__table glc"${di(4)}><span class="xpd__tr xpd__th"><span>Agent</span><span>Lead created</span><span>Lead converted</span><span>Conversion rate</span><span>Commission earned</span></span>`
+      + [["SA", "Sara Ahmed", 20, 20, 100, "120k"], ["JD", "John Doe", 20, 12, 90, "92k"], ["MJ", "Michael Johnson", 20, 12, 75, "92k"], ["SA", "Sara Ahmed", 20, 20, 100, "120k"], ["JD", "John Doe", 20, 12, 90, "92k"]]
+        .map(([a, n, c, v, r, m], k) => `<span class="xpd__tr"><span><i class="xpd__n">${k + 1}</i><i class="bav">${a}</i><b>${n}</b></span><span><i class="xpd__pill">${c}</i></span><span><i class="xpd__pill xpd__pill--ok">${v}</i></span><span><i class="xpd__rate" style="--r:${r}%"></i>${r}%</span><span><b class="bnum"><small>AED</small> ${m}</b></span></span>`).join("")
+      + `</div></section>`;
+    const end = `<footer class="mv__end xw__end" data-sec><div class="xw__endrow"${di(0)}><span class="bn__brand">${sym()}<i class="wm"></i></span><span class="mv__enddesc">Partners</span><span class="xw__links"><span>About Bloom Holding</span><span>Terms of use</span><span>Privacy policy</span></span>`
+      + `<span class="mv__stores"><span>Google Play</span><span>App Store</span></span></div><small class="xw__copy">© 2025 Bloom. All rights reserved.</small></footer>`;
+    return `<div class="mv">${hero}${perf}${money}${team}${end}</div>`;
+  };
+  const AMEN = [["spark", "Cycling tracks"], ["pin", "Parking space"], ["home", "Mosques"], ["wave", "Swimming pools"], ["heart", "State of the art gymnasium"], ["leaf", "Walking & running tracks"], ["wave", "Central lake"], ["lock", "24-7 security services"], ["users", "Kids play areas"], ["shop", "Community center · F&B, retail outlets"]];
+  const hhPage = () => {
+    const hero = `<div class="mv__hero xw__hero" data-sec><h4 class="bh xhh__h"${di(0)}>Good morning, <em>Javed.</em></h4><div class="xhh__grid">`
+      + `<div class="xhh__car"${di(1, "mask")}>${crop("homeweb", 1851, 120, 300, 880, 440, .6)}<span class="bchip bchip--line xhh__chip">Construction completed 45%</span>`
+      + `<span class="xhh__arr xhh__arr--l">${ic("arrow-l")}</span><span class="xhh__arr xhh__arr--r">${ic("arrow-r")}</span><span class="mf__dots"><i class="is-on"></i><i></i><i></i><i></i><i></i></span>`
+      + `<div class="xhh__cap"><b>Al Metlaa, <em>Al Ain</em></b><small>${ic("pin")}Bloom Living, Zayed City, Abu Dhabi, UAE</small></div></div>`
+      + `<div class="xhh__side"><div class="xw__card glc xhh__price"${di(2)}>${xwHead("Price range", `<small>1.75 M · Iskan loan</small>`)}<span class="xhh__track"><i></i><b></b></span>`
+      + `<span class="xhh__ticks"><span>AED 1M</span><span>2M</span><span>3M</span><span>4M</span><span>AED 5.0M+</span></span><small class="xhh__warn">Your selection is <b>above</b> your loan eligibility.</small></div>`
+      + `<div class="xw__card glc xhh__units"${di(3)}><span>${ic("grid")}Available units</span><b class="bnum">20</b></div>`
+      + `<span class="bb xhh__book"${di(4)}>${ic("cal")}Book appointment</span></div></div></div>`;
+    const vr = `<section class="mv__sec mv__sec--band" data-sec><div class="mv__dark xhh__vr"><div>${eb("Virtual experience")}<b class="bh">Explore Al Metlaa <em>in VR.</em></b></div><span class="xhh__tour">${ic("arrow-r")}Start tour</span></div></section>`;
+    const amen = `<section class="mv__sec" data-sec>` + mvHead("02", "About property", "Amenities at <em>Al Metlaa.</em>")
+      + `<div class="xhh__amen">${AMEN.map(([i, t], k) => `<span class="glc"${di(k + 2)}><i class="bic">${ic(i)}</i>${t}</span>`).join("")}</div></section>`;
+    const units = `<section class="mv__sec" data-sec>` + mvHead("03", "Available units", "Choose your <em>home.</em>", `<span class="xhh__count"${di(2)}>${ic("grid")}20 units</span>`)
+      + `<div class="xhh__list">${[0, 1, 2].map((k) => `<div class="xw__card glc xhh__unit"${di(k + 2)}><span class="xhh__uph">${crop("homeweb", 1851, 1100, 494, 696, 251, .3836)}</span>`
+        + `<b class="ms__serif">A1-401, <em>Al Metlaa</em></b><small class="xw__mute">Al Ain</small><span class="mf__spec"><span>${ic("bed")}3 bedrooms</span><span>${ic("wave")}3 bathrooms</span><span>${ic("expand")}1,260 sq ft</span></span>`
+        + `<span class="mf__pr"><b class="ms__price"><small>AED</small>1,850,000</b><span class="bchip bchip--line">Handover Q4 2026</span></span></div>`).join("")}</div></section>`;
+    const docs = `<section class="mv__sec" data-sec>` + mvHead("04", "Documents", "Brochure and <em>master plan.</em>")
+      + `<div class="xhh__docs">${[["doc", "Brochure", `<span class="ms__dl">${ic("download")}</span>`], ["map", "Master plan", `<span class="bl">View${ic("arrow-r")}</span>`]].map(([i, t, e], k) => `<span class="glc"${di(k + 2)}><i class="bic">${ic(i)}</i><b>${t}</b>${e}</span>`).join("")}</div></section>`;
+    const end = `<footer class="mv__end xw__end" data-sec><div class="xw__endrow"${di(0)}><span class="bn__brand">${sym()}<i class="wm"></i></span><span class="mv__enddesc">Homes</span><span class="bl" data-act="jump" data-to=".mv__hero">Back to top${ic("arrow-r")}</span></div></footer>`;
+    return `<div class="mv">${hero}${vr}${amen}${units}${docs}${end}</div>`;
+  };
+  const SCHOOLS = [["Brighton College Abu Dhabi", "Schools", 47, 957], ["Brighton College Al Ain", "Schools", 486, 957], ["Brighton College Dubai", "Schools", 926, 957],
+    ["Bloom World Academy", "Schools", 47, 1266], ["Bloom Nurseries @ Bloom Gardens", "Nurseries", 486, 1266], ["Charter Schools", "Charter"]];
+  const edPage = () => {
+    const hero = `<div class="mv__hero xw__hero xed__hero" data-sec><div class="xed__brand"><span class="xed__wm"${di(0)}><i class="wm"></i><b>Education</b></span>`
+      + `<p class="bp"${di(1)}>Bloom Education supports the development of future generations through partnerships with world-class international education brands, own brand schools and nurseries, and the operation of UAE Charter Schools and New Generation Schools.</p>`
+      + `<div class="bbtns"${di(2)}><span class="bb" data-act="jump" data-to=".xed__feat">Schools &amp; nurseries${ic("arrow-r")}</span><span class="bb bb--o">Who we are</span></div></div>`
+      + `<div class="xed__fan">${SCHOOLS.slice(0, 3).map(([n, , x, y], k) => `<span class="xed__card"${di(k + 2, "mask")}>${crop("eduweb", 1385, x, y, 412, 205, .6311)}<b>${n}</b></span>`).join("")}</div></div>`;
+    const feat = `<section class="mv__sec xed__feat" data-sec>` + mvHead("02", "Featured", "Schools and <em>news.</em>", `<span class="bl"${di(2)}>Media centre${ic("arrow-r")}</span>`)
+      + `<div class="mv__chips"${di(2)}>${["All", "Schools", "Nurseries", "Charter"].map((c, k) => `<span class="mv__chip${k ? "" : " is-on"}" data-act="pol" data-cat="${k ? c : ""}">${c}</span>`).join("")}</div>`
+      + `<div class="xed__grid">${SCHOOLS.map(([n, c, x, y], k) => `<div class="mv__pol glc xed__school" data-cat="${c}"${di(k + 3)}><span class="xed__ph">${x ? crop("eduweb", 1385, x, y, 412, 205, .6214) : `<span class="xed__charter"><b>Charter Schools</b><small>مدارس الشراكات التعليمية</small></span>`}</span>`
+        + `<span class="mv__tags"><span class="bchip">${c}</span></span><b>${n}</b><span class="bl">Explore${ic("arrow-r")}</span></div>`).join("")}</div></section>`;
+    const end = `<footer class="mv__end xed__end" data-sec><div class="xed__cols"${di(0)}><div><span class="xed__wm xed__wm--s"><i class="wm"></i><b>Education</b></span></div>`
+      + [["Who we are", ["About us", "Leadership team", "Careers", "Vendor registration"]], ["What we do", ["Schools", "Bloom Nurseries", "Privacy policy"]], ["Contact us", ["Sheikh Rashid Bin Saeed St. Rd 18th, Bloom Central, 3rd floor, Abu Dhabi – UAE", "info@bloomeducation.ae", "+971 2 697 3800"]]]
+        .map(([h, l]) => `<div><small>${h}</small>${l.map((t) => `<span>${t}</span>`).join("")}</div>`).join("") + `</div><small class="xw__copy">© Bloom 2025. All rights reserved.</small></footer>`;
+    return `<div class="mv">${hero}${feat}${end}</div>`;
+  };
   const mvPage = () => {
     const app = (m) => m.split(" · ")[0];
     const hero = `<div class="mv__hero" data-sec><div class="mv__intro"><span class="mv__date glc"${di(0)}><i></i>Friday 25 September</span>`
@@ -3460,6 +3681,8 @@ body[data-tone="ox"] { background: var(--ox); }
       + `<span class="mv__stores"><span>Google Play</span><span>App Store</span></span><span class="bl" data-act="jump" data-to=".mv__hero">Back to top${ic("arrow-r")}</span></div></footer>`;
     return `<div class="mv">${hero}${attn}${welcome}${news}${policies}${life}${deals}${perks}${faq}${end}</div>`;
   };
+  const PRODUCTS_B = { ...PRODUCTS, home: { ...PRODUCTS.home, n: "Home-buying platform", who: "Buyers · Al Metlaa home", shot: "homeweb" }, partners: { ...PRODUCTS.partners, who: "Brokers and agencies · Dashboard", shot: "partnersweb" },
+    education: { f: "group", d: "Education", n: "Bloom Education", who: "Families · schools and nurseries", shot: "eduweb" } };
   const MOCKS_B = {
     universal: () => scrB("group", "Direction B concept: Bloom Universal, the gateway to six Bloom businesses", bnav("Universal", ["Home", "Businesses"], blang)
       + `<div class="bbody"><div class="xu" data-on="0"><div class="xu__text"><span class="be"${di(0)}>The Bloom experience</span>`
@@ -3479,20 +3702,9 @@ body[data-tone="ox"] { background: var(--ox); }
       + `<ul class="xm__f">${B_TYPES.map(([t, n, on], k) => `<li class="${on ? "is-on" : ""}" data-act="type" data-t="${t}" data-n="${n}"${di(k + 4)}><i class="xm__cb">${ic("check")}</i>${t}<span class="xm__bar"><i${di(k + 5, "grow", `--v:${(n / 740 * 100).toFixed(1)}%`)}></i></span><b class="bnum">${n}</b></li>`).join("")}</ul>`
       + `<span class="bb"${di(8)}>Book appointment</span><span class="bl"${di(9)}>Download brochure${ic("arrow-r")}</span></div>`
       + `<div class="xm__zoom"${di(6, "fade")}><i>${ic("plus")}</i><i>${ic("minus")}</i></div>`),
-    home: () => scrB("homes", "Direction B concept: Al Metlaa unit details as a Bloom Homes screen", bnav("Homes", ["Home", "Unit details", "Documents"], bbell + bav("JA"))
-      + `<div class="bbody"><div class="xh"><div class="xh__main"><figure class="xh__photo"${di(0, "mask")}>${crop("home", 1930, 42, 190, 1050, 470, .4762)}</figure>`
-      + `<div class="xh__row"><div><h4 class="bh bh--s"${di(2)}>A1-401, <em>Al Metlaa</em></h4><p class="bp"${di(3)}>Al Ain · Handover by December 2028</p></div>`
-      + `<div class="xh__specs"${di(4)}><span><b>3</b>bed</span><span><b>3</b>bath</span><span><b>1,260</b>sq ft</span></div></div></div>`
-      + `<div class="xh__side bcard"${di(1)}><div class="xh__step"><b>Step 1 of 5 · View</b><ol>${["View", "Book", "Buy", "Build", "Move in"].map((s, k) => `<li${k ? "" : ' class="is-on"'}>${s}</li>`).join("")}</ol></div>`
-      + `<span class="be"${di(3)}>Unit price</span><b class="xh__price bnum"${di(4)}><small>AED</small><span data-count="1850000">1,850,000</span></b>`
-      + `<span class="xh__loan"${di(5)}>${ic("check")}Iskan loan of AED 2,000,000 covers this unit</span>`
-      + `<span class="bb"${di(6)}>Book appointment</span><span class="bb bb--o"${di(7)}>Reserve unit</span></div></div></div>`),
-    partners: () => scrB("partners", "Direction B concept: Bloom Partners requests screen", bnav("Partners", ["Home", "Leads", "Inventory", "My Team"], bbell + bav("JD"))
-      + `<div class="bbody"><div class="xp"><div class="xp__head"><div><span class="be"${di(0)}>Your requests</span><h4 class="bh"${di(1)}>How can we <em>assist you?</em></h4></div><p class="bp"${di(2)}>Choose a request type to get started. Our team will get back to you.</p></div>`
-      + `<div class="xp__types">${[["home", "Open house", "Materials or sales agent support for your open house."], ["cal", "Event request", "Planning an event? Request materials from Bloom's team."], ["doc", "Mockups only", "Brochures, mockups, stationery or branded materials."]]
-        .map(([i, t, s], x) => `<div class="xp__type" data-act="req"${di(x + 3)}><span class="xp__n">${pad(x + 1)}</span><span class="bic">${ic(i)}</span><b>${t}</b><small>${s}</small><span class="bl">Raise a request${ic("arrow-r")}</span></div>`).join("")}</div>`
-      + `<div class="xp__list">${[["user", "Agency information update"], ["user", "Agent information update"], ["card", "Delayed commission payment"], ["card", "Incorrect commission payment"]]
-        .map(([i, t], x) => `<div class="xp__li"${di(x + 6)}><span class="bic">${ic(i)}</span>${t}<svg class="ico chev" aria-hidden="true"><use href="#i-chev-r"/></svg></div>`).join("")}</div></div></div>`),
+    home: () => scrB("homes", "Direction B concept: the home-buying home page as Bloom Homes, as its whole page", bnav("Homes", ["Home", "Units", "Documents"], bbell + bav("JA")) + hhPage(), "scr--long"),
+    partners: () => scrB("partners", "Direction B concept: the Bloom Partners dashboard, as its whole page", bnav("Partners", ["Home", "Leads", "Inventory", "My Team"], bbell + bav("JD")) + pdPage(), "scr--long"),
+    education: () => scrB("group", "Direction B concept: Bloom Education, as its whole page", bnav("Education", ["Who we are", "Schools", "Media centre", "Careers"], `<span class="bb bb--o bb--s">Contact us</span>`) + edPage(), "scr--long"),
     multiverse: () => scrB("people", "Direction B concept: Bloom Multiverse, the employee home, as its whole page", bnav("Multiverse", ["Home", "Inbox", "Bloom GPT"], bbell + bav("R")) + mvPage(), "scr--long")
   };
 
@@ -3560,20 +3772,21 @@ body[data-tone="ox"] { background: var(--ox); }
   const BB = {
     universal: [["The symbol and wordmark sign the screen", "The headline sets in the Bloom serif", "The six photo tiles become one expanding gallery", "Each business opens on hover, the arrows or a timed line"], ["The six businesses and their photography", "The Arabic language switch"]],
     masterplan: [["The Bloom symbol and wordmark appear", "Filters sit in one Bloom Homes panel", "Book appointment takes oxblood", "Sandstone marks the chosen facade"], ["The satellite master plan", "Facade types and unit counts"]],
-    home: [["Oxblood replaces the black buttons", "A five-step tracker shows the buying step", "Price and Iskan loan sit in one card", "The unit name sets in the Bloom serif"], ["Unit photography and details", "Book appointment and reserve unit"]],
-    partners: [["One serif replaces the mixed headings", "Dusk replaces five pastel tiles", "Raise a request becomes one oxblood link", "The Bloom symbol signs the navigation"], ["Request types and their wording", "Home, Leads, Inventory and My Team"]],
+    home: [["The Bloom symbol and wordmark sign a floating glass bar", "One serif greeting; oxblood takes Book appointment", "Price range and units sit beside the gallery as glass cards", "The page scrolls: VR tour, amenities, units and documents"], ["Al Metlaa photography, units and prices", "Price range against the Iskan loan"]],
+    partners: [["One serif replaces the mixed headings", "Oxblood replaces the black buttons", "Dusk carries the charts, chips and avatars", "The page scrolls: performance, commission, materials and the team table"], ["Bloom Living, leads, team and commission figures", "Home, Leads, Inventory and My Team"]],
+    education: [["The Bloom wordmark leads the hero with the Education descriptor", "School photography fans out beside the mission line", "Schools, nurseries and charter schools filter in place", "The footer keeps every link and contact in one dark band"], ["The six featured schools and their photographs", "Who we are, schools, media centre, careers and contact"]],
     multiverse: [["The wordmark returns whole, in oxblood; Multiverse becomes a descriptor", "One serif headline replaces the heavy sans, gradient and script", "Oxblood takes Review and Approve; Marina replaces electric blue", "A light hero: one greeting, two actions, the app orbit in glass"], ["32 actions from four connected apps", "The whole page, from tasks and new joiners to perks and questions"]]
   };
   if ($("#bb-ba")) {
     const bbTabs = $("#bb-tabs"), baB = makeBA($("#bb-ba"), $("#bb-knob"));
-    bbTabs.innerHTML = Object.entries(PRODUCTS).map(([k, p], i) => `<button type="button" role="tab" aria-selected="${i === 0}" tabindex="${i ? -1 : 0}" data-k="${k}"><i style="--c:${FAMB[p.f][1]}"></i>${esc(p.n.replace(/^Bloom /, "").replace("Al Metlaa master plan", "Master plan").replace("-buying platform", "-buying"))}</button>`).join("");
+    bbTabs.innerHTML = Object.entries(PRODUCTS_B).map(([k, p], i) => `<button type="button" role="tab" aria-selected="${i === 0}" tabindex="${i ? -1 : 0}" data-k="${k}"><i style="--c:${FAMB[p.f][1]}"></i>${esc(p.n.replace(/^Bloom /, "").replace("Al Metlaa master plan", "Master plan").replace("-buying platform", "-buying"))}</button>`).join("");
     const renderBB = (k, animate) => {
-      const p = PRODUCTS[k], [chg, keep] = BB[k], before = $("#bb-before");
+      const p = PRODUCTS_B[k], [chg, keep] = BB[k], before = $("#bb-before");
       before.style.setProperty("--img", `var(--shot-${p.shot})`); before.setAttribute("aria-label", `${p.n} today`);
       $("#bb-after").innerHTML = `<div class="fit">${MOCKS_B[k]()}</div>`; fitAll($("#bb-after")); countUp($("#bb-after")); pbNav($("#bb-after"));
       const info = $("#bb-info");
       info.innerHTML = `<h3>${esc(p.n)}<small>${esc(p.who)}${p.n === `Bloom ${p.d}` ? "" : ` · as Bloom ${esc(p.d)}`}</small></h3><div><span class="label">What changes</span><ul>${chg.map((t) => `<li>${esc(t)}</li>`).join("")}</ul></div>`
-        + `<div class="keep"><span class="label">What stays</span><ul>${keep.map((t) => `<li>${esc(t)}</li>`).join("")}</ul></div><p class="bainfo__note">Drag the handle, or use the arrow keys on it. Today's screen as supplied by the Bloom team.${src(16)}</p>`;
+        + `<div class="keep"><span class="label">What stays</span><ul>${keep.map((t) => `<li>${esc(t)}</li>`).join("")}</ul></div><p class="bainfo__note">Drag the handle, or use the arrow keys on it. Today's screen as supplied by the Bloom team.${src(p.shot.endsWith("web") ? 18 : 16)}</p>`;
       if (animate && !reduce) restart(info, "swap");
     };
     renderBB("universal", false);
@@ -3582,7 +3795,7 @@ body[data-tone="ox"] { background: var(--ox); }
 
   /* 07f: the family, direction B */
   if ($("#bx-mosaic")) {
-    $("#bx-mosaic").innerHTML = ["universal", "masterplan", "home", "partners", "multiverse"].map((k, i) => `<div class="bx-frame rv${i ? "" : " bx-frame--hero"}" style="--d:${i + 1}"><div class="fit">${MOCKS_B[k]()}</div><button class="shot__hit" type="button" data-zoom="mockb:${k}" aria-label="View the ${esc(PRODUCTS[k].n)} direction B concept full size"></button></div>`).join("")
+    $("#bx-mosaic").innerHTML = ["universal", "masterplan", "home", "partners", "multiverse", "education"].map((k, i) => `<div class="bx-frame rv" style="--d:${i + 1}"><div class="fit">${MOCKS_B[k]()}</div><button class="shot__hit" type="button" data-zoom="mockb:${k}" aria-label="View the ${esc(PRODUCTS_B[k].n)} direction B concept full size"></button></div>`).join("")
       + `<div class="bx-band rv" style="--d:6"><div class="bx-apps__row">${BXP.map(bxIcon).join("")}</div><p>One wordmark, one symbol, one action colour. <em>A view for every product.</em><small>Concepts for discussion, written with content from today's screens. Select a screen to see it full size; Bloom Multiverse opens as its whole page.</small></p></div>`;
     fitAll($("#bx-mosaic"));
   }
