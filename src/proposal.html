@@ -965,35 +965,52 @@ body[data-tone="ox"] { background: var(--ox); }
 .bav { display: grid; place-items: center; font-style: normal; width: 30px; height: 30px; flex: none; border-radius: 50%; background: var(--pb-sand); color: var(--bx-ink); font-size: 10.5px; font-weight: 800; box-shadow: 0 0 0 2px #FFFFFF; }
 
 /* Universal: image-led. The index chooses the business, the photograph follows. */
-.xu { display: grid; grid-template-columns: 262px 300px minmax(0, 1fr); column-gap: 24px; height: 100%; }
-.xu__text { display: flex; flex-direction: column; align-items: flex-start; gap: 18px; padding-top: 14px; }
-.xu__text .bp { max-width: 240px; }
-.xu__text .bh { display: grid; }
-.xu__text .bb { margin-top: auto; margin-bottom: 4px; }
-.xu__stage { position: relative; align-self: center; width: 300px; height: 318px; border-radius: 4px 64px 4px 4px; overflow: hidden; background: var(--pb-sand); }
-.xu__img { position: absolute; inset: 0; opacity: 0; transform: scale(1.06); transition: opacity .6s var(--mo-ease), transform 1.1s var(--mo-ease); }
-.xu__img .crop { display: block; width: 100%; height: 100%; }
-.xu__cap { position: absolute; left: 0; right: 22px; bottom: 22px; height: 40px; }
-.xu__cap span { position: absolute; inset: 0 auto 0 auto; display: flex; align-items: center; gap: 10px; padding: 0 16px 0 18px; border-radius: 0 3px 3px 0; background: #FFFFFF; font-family: var(--serif); font-size: 17px; font-weight: 600; white-space: nowrap; opacity: 0; transform: translateX(-12px); transition: opacity var(--mo-comp) var(--mo-ease), transform var(--mo-comp) var(--mo-ease); }
-.xu__cap i { font-family: var(--sans); font-style: normal; font-size: 10.5px; font-weight: 800; color: var(--ox); }
-.xu__idx { display: flex; flex-direction: column; padding-top: 6px; }
-.xu__idx .be { margin-bottom: 10px; color: var(--ox); }
-.xu__idx ul { display: grid; }
-.xu__idx li { position: relative; display: grid; grid-template-columns: 26px minmax(0, 1fr) 14px; align-items: center; height: 46px; border-top: 1px solid var(--pb-stone); transition: color var(--mo-micro); }
-.xu__idx li::before { content: ""; position: absolute; left: -10px; top: 10px; bottom: 10px; width: 2px; background: var(--ox); transform: scaleY(0); transition: transform var(--mo-comp) var(--mo-ease); }
-.xu__idx li span { font-size: 10.5px; font-weight: 800; color: var(--bx-mute); font-variant-numeric: tabular-nums; transition: color var(--mo-micro); }
-.xu__idx li b { font-family: var(--serif); font-size: 21px; font-weight: 600; line-height: 1; transition: color var(--mo-micro), transform var(--mo-comp) var(--mo-ease); }
-.xu__idx li .ico { width: 13px; height: 13px; color: var(--bx-mute); transition: transform var(--mo-comp) var(--mo-spring), color var(--mo-micro); }
-.xu__idx li:hover b { transform: translateX(3px); }
-.xu[data-on="0"] .xu__img:nth-child(1), .xu[data-on="1"] .xu__img:nth-child(2), .xu[data-on="2"] .xu__img:nth-child(3),
-.xu[data-on="3"] .xu__img:nth-child(4), .xu[data-on="4"] .xu__img:nth-child(5), .xu[data-on="5"] .xu__img:nth-child(6) { opacity: 1; transform: none; }
-.xu[data-on="0"] .xu__cap span:nth-child(1), .xu[data-on="1"] .xu__cap span:nth-child(2), .xu[data-on="2"] .xu__cap span:nth-child(3),
-.xu[data-on="3"] .xu__cap span:nth-child(4), .xu[data-on="4"] .xu__cap span:nth-child(5), .xu[data-on="5"] .xu__cap span:nth-child(6) { opacity: 1; transform: none; transition-delay: .12s; }
-.xu[data-on="0"] li:nth-child(1), .xu[data-on="1"] li:nth-child(2), .xu[data-on="2"] li:nth-child(3),
-.xu[data-on="3"] li:nth-child(4), .xu[data-on="4"] li:nth-child(5), .xu[data-on="5"] li:nth-child(6) { color: var(--ox); }
-:is(.xu[data-on="0"] li:nth-child(1), .xu[data-on="1"] li:nth-child(2), .xu[data-on="2"] li:nth-child(3), .xu[data-on="3"] li:nth-child(4), .xu[data-on="4"] li:nth-child(5), .xu[data-on="5"] li:nth-child(6))::before { transform: none; }
-:is(.xu[data-on="0"] li:nth-child(1), .xu[data-on="1"] li:nth-child(2), .xu[data-on="2"] li:nth-child(3), .xu[data-on="3"] li:nth-child(4), .xu[data-on="4"] li:nth-child(5), .xu[data-on="5"] li:nth-child(6)) :is(span, .ico) { color: var(--ox); }
-:is(.xu[data-on="0"] li:nth-child(1), .xu[data-on="1"] li:nth-child(2), .xu[data-on="2"] li:nth-child(3), .xu[data-on="3"] li:nth-child(4), .xu[data-on="4"] li:nth-child(5), .xu[data-on="5"] li:nth-child(6)) .ico { transform: translateX(3px); }
+/* Universal: the six businesses as one expanding gallery. The chosen business opens wide with its name; the others stand as
+   labelled slivers. Hover, the arrows, the keyboard or (in the full-size view) a timed progress line moves it on. */
+.xu { display: grid; grid-template-columns: 290px minmax(0, 1fr); column-gap: 26px; height: 100%; }
+.xu__text { display: flex; flex-direction: column; align-items: flex-start; padding-top: 12px; }
+.xu__text .bh { display: grid; margin-top: 16px; }
+.xu__text .bp { max-width: 250px; margin-top: 16px; }
+.xu__act { display: flex; align-items: center; align-self: stretch; margin-top: auto; margin-bottom: 2px; }
+.xu__step { display: flex; align-items: center; gap: 6px; margin-left: auto; }
+.xu__step > [data-act] { display: grid; place-items: center; width: 32px; height: 32px; border-radius: 50%; background: rgba(255, 255, 255, .72); color: var(--bx-ink); box-shadow: inset 0 0 0 1px rgba(28, 26, 25, .1), 0 6px 14px -10px rgba(28, 26, 25, .5); transition: transform var(--mo-comp) var(--mo-spring), background-color var(--mo-micro); }
+.xu__step > [data-act]:hover { background: #FFFFFF; transform: scale(1.08); }
+.xu__step .ico { width: 14px; height: 14px; }
+.xu__no { display: flex; align-items: baseline; gap: 3px; padding: 0 3px; white-space: nowrap; font-size: 10.5px; font-weight: 700; color: var(--bx-mute); }
+.xu__odo { display: block; height: 26px; overflow: hidden; font-family: var(--serif); font-size: 26px; font-weight: 600; line-height: 26px; color: var(--ox); }
+.xu__odo > span { display: grid; transition: transform var(--mo-sig) var(--mo-spring); }
+.xu[data-on="1"] .xu__odo > span { transform: translateY(-26px); }
+.xu[data-on="2"] .xu__odo > span { transform: translateY(-52px); }
+.xu[data-on="3"] .xu__odo > span { transform: translateY(-78px); }
+.xu[data-on="4"] .xu__odo > span { transform: translateY(-104px); }
+.xu[data-on="5"] .xu__odo > span { transform: translateY(-130px); }
+.xu__gal { display: flex; gap: 6px; height: 100%; }
+.xu__p { position: relative; flex: 1 1 0; min-width: 0; overflow: hidden; border-radius: 22px; background: var(--pb-sand); box-shadow: 0 16px 28px -22px rgba(28, 26, 25, .7); transition: flex-grow .8s var(--mo-spring), box-shadow var(--mo-comp); }
+.xu__p.is-on { flex-grow: 6; box-shadow: 0 28px 46px -26px rgba(28, 26, 25, .75); }
+.xu__p::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(28, 26, 25, 0) 42%, rgba(28, 26, 25, .66) 100%); pointer-events: none; }
+.xu__ph .crop { position: absolute; left: 50%; top: 50%; translate: -50% -50%; transition: filter var(--mo-comp); }
+.xu__p:not(.is-on) .crop { filter: saturate(.7) brightness(.9); }
+.xu__p:not(.is-on):hover .crop { filter: none; }
+@keyframes xuKen { from { transform: scale(1.14); } }
+:is(.zoom, .ba) .xu__p.is-on .crop { animation: xuKen 9s var(--mo-ease) both; }
+.xu__v { position: absolute; z-index: 1; left: 0; right: 0; bottom: 14px; display: flex; flex-direction: column; align-items: center; gap: 10px; color: #FFFFFF; font-size: 11.5px; font-weight: 700; white-space: nowrap; transition: opacity var(--mo-comp), transform var(--mo-comp) var(--mo-ease); }
+.xu__v b { writing-mode: vertical-rl; transform: rotate(180deg); font-weight: 700; letter-spacing: .02em; }
+.xu__v i { font-style: normal; font-size: 9.5px; font-weight: 800; color: rgba(255, 255, 255, .78); }
+.xu__p.is-on .xu__v { opacity: 0; transform: translateY(12px); }
+.xu__cap { position: absolute; z-index: 1; left: 16px; bottom: 16px; display: flex; flex-direction: column; align-items: flex-start; gap: 9px; width: 220px; color: #FFFFFF; opacity: 0; transform: translateY(14px); pointer-events: none; transition: opacity var(--mo-comp), transform var(--mo-reveal) var(--mo-ease); }
+.xu__p.is-on .xu__cap { opacity: 1; transform: none; pointer-events: auto; transition-delay: .24s; }
+.xu__cap i { font-style: normal; font-size: 10px; font-weight: 800; letter-spacing: .16em; color: rgba(255, 255, 255, .85); }
+.xu__cap b { font-family: var(--serif); font-size: 30px; font-weight: 600; line-height: .95; text-wrap: balance; }
+.xu__go { display: inline-flex; align-items: center; gap: 7px; height: 30px; padding: 0 13px; border-radius: 15px; background: rgba(255, 255, 255, .2); -webkit-backdrop-filter: blur(12px) saturate(1.4); backdrop-filter: blur(12px) saturate(1.4); box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .42); font-size: 11px; font-weight: 700; transition: background-color var(--mo-micro), color var(--mo-micro); }
+.xu__go .ico { width: 13px; height: 13px; transition: transform var(--mo-comp) var(--mo-spring); }
+.xu__go:hover { background: #FFFFFF; color: var(--bx-ink); }
+.xu__go:hover .ico { transform: translateX(3px); }
+.xu__prog { position: absolute; z-index: 1; left: 16px; right: 16px; top: 16px; height: 3px; border-radius: 2px; background: rgba(255, 255, 255, .3); opacity: 0; transition: opacity var(--mo-comp); }
+.xu__prog i { position: absolute; inset: 0; border-radius: inherit; background: #FFFFFF; transform: scaleX(0); transform-origin: left; }
+@keyframes xuProg { to { transform: scaleX(1); } }
+.zoom .xu__p.is-on .xu__prog { opacity: 1; }
+.zoom .xu__p.is-on .xu__prog i { animation: xuProg 6s linear .8s forwards; }
+.zoom .xu__gal:hover .xu__prog i { animation-play-state: paused; }
 
 /* Master plan: the map is the screen; one floating Homes panel filters it */
 .xm__map { position: absolute; left: 0; top: 0; overflow: hidden; }
@@ -1358,7 +1375,7 @@ body[data-tone="ox"] { background: var(--ox); }
 @keyframes pbRise { from { opacity: 0; transform: translateY(16px); filter: blur(6px); } }
 @keyframes glDrop { from { opacity: 0; transform: translateY(-14px) scale(.97); filter: blur(6px); } }
 /* the glass itself */
-:is(.scr--b .bn, .scr--b .glc, .xm__panel, .xm__zoom, .xu__idx, .xh__side, .xp__type, .xp__li, .ms__bar, .ms .bcard, .ms__tabs) {
+:is(.scr--b .bn, .scr--b .glc, .xm__panel, .xm__zoom, .xh__side, .xp__type, .xp__li, .ms__bar, .ms .bcard, .ms__tabs) {
   background: var(--gl); -webkit-backdrop-filter: var(--gl-blur); backdrop-filter: var(--gl-blur);
   box-shadow: inset 0 0 0 1px var(--gl-line), inset 0 1px 0 rgba(255, 255, 255, .9), var(--gl-lift); }
 
@@ -1390,13 +1407,6 @@ body[data-tone="ox"] { background: var(--ox); }
 :is(.is-current, .zoom, .mba, .manat) :is(.scr--b, .ms) .bn__icb::after { animation: pbPop .5s var(--mo-spring) both; animation-delay: calc(var(--in, 0s) + .7s); }
 :is(.scr--b, .ms) .bn__av { width: 36px; height: 36px; box-shadow: 0 0 0 2px #FFFFFF, 0 0 0 3.5px color-mix(in srgb, var(--ct) 55%, transparent); }
 
-/* Universal: the index becomes a glass panel beside the photograph; the caption is glass on the photo */
-.xu__idx { align-self: start; margin-top: 2px; padding: 14px 16px 6px; border-radius: var(--gl-r); }
-.xu__idx li { height: 44px; border-top-color: rgba(28, 26, 25, .08); }
-.xu__idx li::before { left: -16px; }
-.xu__stage { border-radius: 24px 80px 24px 24px; box-shadow: 0 28px 50px -30px rgba(28, 26, 25, .6); }
-.xu__cap span { left: 14px; border-radius: 16px; background: rgba(255, 255, 255, .6); -webkit-backdrop-filter: blur(16px) saturate(1.6); backdrop-filter: blur(16px) saturate(1.6); box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .7); }
-.xu__cap { left: 0; right: 14px; bottom: 16px; }
 
 /* Master plan: the nav floats over the map too; the panel and controls are glass */
 .xm__panel { top: 80px; border-radius: 26px 26px 26px 44px; }
@@ -3210,7 +3220,8 @@ body[data-tone="ox"] { background: var(--ox); }
   const eb = (t) => `<span class="be">${t}</span>`;
   // Reveal order inside a screen: data-in names the motion, --i staggers it from the screen's focal point.
   const di = (i, kind = "", css = "") => ` data-in="${kind}" style="--i:${i};${css}"`;
-  const B_BIZ = ["Properties", "Education", "Retail", "Hospitality", "Landscape", "Facilities"];
+  // Universal's gallery: one 252 x 351 crop per business, inside its own photo on today's page (TILES order), clear of the captions
+  const XU_CROPS = [[60, 468, 420, 585], [600, 465, 180, 251], [1080, 465, 180, 251], [1730, 465, 180, 251], [700, 812, 180, 251], [1580, 812, 180, 251]];
   const B_TYPES = [["Type 1", 391], ["Type 2", 727, 1], ["Type 3", 740], ["Type 4", 389]];
   /* Bloom Multiverse as its whole home page, in the order today's live page runs (source 14 and the full-page capture).
      The first 874 x 454 is a light hero, and it is all the slides show; the full-size view scrolls the rest. */
@@ -3280,10 +3291,12 @@ body[data-tone="ox"] { background: var(--ox); }
     universal: () => scrB("group", "Direction B concept: Bloom Universal, the gateway to six Bloom businesses", bnav("Universal", ["Home", "Businesses"], blang)
       + `<div class="bbody"><div class="xu" data-on="0"><div class="xu__text"><span class="be"${di(0)}>The Bloom experience</span>`
       + `<h4 class="bh bh--xl"><span${di(1)}>More than a</span><span${di(2)}>place <em>to live.</em></span></h4>`
-      + `<p class="bp"${di(3)}>Homes, schools, hotels and services. Six Bloom businesses, one place to start.</p><span class="bb"${di(4)}>Let's get started${ic("arrow-r")}</span></div>`
-      + `<figure class="xu__stage"${di(1, "mask")}>${TILES.map(([, iw, x, y, w, h], k) => `<span class="xu__img">${crop("universal", iw, x, y, w, h, (300 / w).toFixed(4))}</span>`).join("")}`
-      + `<figcaption class="xu__cap">${TILES.map(([n], k) => `<span><i>${pad(k + 1)}</i>${n}</span>`).join("")}</figcaption></figure>`
-      + `<div class="xu__idx"><span class="be"${di(2)}>Six businesses</span><ul>${B_BIZ.map((n, k) => `<li data-act="biz" data-k="${k}"${di(k + 3)}><span>${pad(k + 1)}</span><b>${n}</b>${ic("arrow-r")}</li>`).join("")}</ul></div></div></div>`),
+      + `<p class="bp"${di(3)}>Homes, schools, hotels and services. Six Bloom businesses, one place to start.</p>`
+      + `<div class="xu__act"${di(4)}><span class="bb">Let's get started${ic("arrow-r")}</span><span class="xu__step"><span data-act="bizstep" data-d="-1" aria-label="Previous business">${ic("arrow-l")}</span>`
+      + `<span class="xu__no"><b class="xu__odo"><span>${TILES.map((t, k) => `<span>${pad(k + 1)}</span>`).join("")}</span></b>/ ${pad(TILES.length)}</span><span data-act="bizstep" data-d="1" aria-label="Next business">${ic("arrow-r")}</span></span></div></div>`
+      + `<div class="xu__gal">${TILES.map(([n], k) => { const [x, y, w, h] = XU_CROPS[k]; return `<div class="xu__p${k ? "" : " is-on"}" data-act="biz" data-k="${k}" aria-label="${esc(n)}"${di(k + 2, "mask")}>`
+        + `<span class="xu__ph">${crop("universal", 2000, x, y, w, h, (252 / w).toFixed(4))}</span><span class="xu__v"><b>${n.replace("Bloom ", "").replace(" Management", "")}</b><i>${pad(k + 1)}</i></span>`
+        + `<span class="xu__cap"><i>${pad(k + 1)} / ${pad(TILES.length)}</i><b>${n}</b><span class="xu__go">Explore${ic("arrow-r")}</span></span><span class="xu__prog"><i></i></span></div>`; }).join("")}</div></div></div>`),
     masterplan: () => scrB("homes", "Direction B concept: Al Metlaa master plan as a Bloom Homes screen", `<div class="xm__map"><span${di(0, "settle", "display:block")}>${crop("masterplan", 2000, 424, 0, 1576, 819, .5546)}</span></div>`
       + bnav("Homes", ["Masterplan", "Units", "Documents"], blang)
       + `<span class="xm__tag"${di(5)}><i></i><b>Type 2 · 727 villas</b></span>`
@@ -3314,7 +3327,8 @@ body[data-tone="ox"] { background: var(--ox); }
   const PB_LIVE = ".zoom .scr--b, .bx-part";
   function pbAct(el) {
     const a = el.dataset.act, n = (v) => v.toLocaleString("en-US");
-    if (a === "biz") { const u = el.closest(".xu"); u.dataset.on = el.dataset.k; $$('[data-act="biz"]', u).forEach((x) => x.setAttribute("aria-pressed", String(x === el))); return; }
+    if (a === "biz") { const u = el.closest(".xu"); u.dataset.on = el.dataset.k; $$('[data-act="biz"]', u).forEach((x) => { x.classList.toggle("is-on", x === el); x.setAttribute("aria-pressed", String(x === el)); }); return; }
+    if (a === "bizstep") { const u = el.closest(".xu"), n = $$('[data-act="biz"]', u).length; pbAct($(`[data-act="biz"][data-k="${(Number(u.dataset.on) + Number(el.dataset.d) + n) % n}"]`, u)); return; }
     if (a === "type") {
       el.classList.toggle("is-on"); el.setAttribute("aria-pressed", String(el.classList.contains("is-on")));
       const p = el.closest(".scr--b"), on = $$(".xm__f .is-on", p), sum = on.reduce((t, x) => t + Number(x.dataset.n), 0) || 2247;
@@ -3343,7 +3357,17 @@ body[data-tone="ox"] { background: var(--ox); }
     const el = (e.key === "Enter" || e.key === " ") && e.target.closest && e.target.closest("[data-act]");
     if (el && el.closest(PB_LIVE) && !el.matches("button")) { e.preventDefault(); pbAct(el); }
   });
-  document.addEventListener("pointerover", (e) => { const el = e.target.closest('[data-act="biz"]'); if (el && !el.closest(".bx-frame")) pbAct(el); });
+  // Hover previews follow the pointer only when it actually moves: Chrome also fires pointerover when the gallery reflows under a
+  // resting pointer, which would undo a choice made with the keyboard, the arrows or the timer.
+  let pbXY = "";
+  document.addEventListener("pointermove", (e) => { pbXY = `${e.clientX},${e.clientY}`; }, { passive: true });
+  document.addEventListener("pointerover", (e) => { const el = e.target.closest('[data-act="biz"]'); if (el && !el.closest(".bx-frame") && !el.classList.contains("is-on") && `${e.clientX},${e.clientY}` !== pbXY) pbAct(el); });
+  // Universal's gallery moves on by itself in the full-size view: each business's progress line ends, the next one opens.
+  // The line is a CSS animation, so reduced motion (no animation, no animationend) leaves it still.
+  document.addEventListener("animationend", (e) => {
+    if (e.animationName !== "xuProg") return;
+    const u = e.target.closest(".zoom .xu"); if (u) pbAct($$('[data-act="bizstep"]', u)[1]);
+  });
   // Web navigation: a white bubble sits under the current page and springs to whichever link the pointer is on.
   const pbNav = (root) => $$(".scr--b .bn__links", root).forEach((l) => {
     const cur = $("b", l); if (!cur) return;
@@ -3360,7 +3384,7 @@ body[data-tone="ox"] { background: var(--ox); }
 
   /* 07e: before and after, direction B */
   const BB = {
-    universal: [["The symbol and wordmark sign the screen", "The headline sets in the Bloom serif", "Photography previews the business you choose", "Six businesses become one numbered index"], ["The six businesses and their photography", "The Arabic language switch"]],
+    universal: [["The symbol and wordmark sign the screen", "The headline sets in the Bloom serif", "The six photo tiles become one expanding gallery", "Each business opens on hover, the arrows or a timed line"], ["The six businesses and their photography", "The Arabic language switch"]],
     masterplan: [["The Bloom symbol and wordmark appear", "Filters sit in one Bloom Homes panel", "Book appointment takes oxblood", "Sandstone marks the chosen facade"], ["The satellite master plan", "Facade types and unit counts"]],
     home: [["Oxblood replaces the black buttons", "A five-step tracker shows the buying step", "Price and Iskan loan sit in one card", "The unit name sets in the Bloom serif"], ["Unit photography and details", "Book appointment and reserve unit"]],
     partners: [["One serif replaces the mixed headings", "Dusk replaces five pastel tiles", "Raise a request becomes one oxblood link", "The Bloom symbol signs the navigation"], ["Request types and their wording", "Home, Leads, Inventory and My Team"]],
