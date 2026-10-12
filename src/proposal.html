@@ -1463,8 +1463,33 @@ body[data-tone="ox"] { background: var(--ox); }
    scrolls the rest, with the glass navigation following and each section revealing as it arrives. */
 .scr--b.scr--long { height: auto; padding-bottom: 14px; background: #F7F3EC; --mv-hi: color-mix(in srgb, var(--c) 45%, #FFFFFF); --mv-on: rgba(247, 243, 236, .66); }
 :is(.zoom, .ba) .scr--b.scr--long { animation: none; }
-.scr--long .bn { z-index: 6; translate: 0 var(--sy, 0px); }
-@media (prefers-reduced-motion: no-preference) { .zoom .scr--long [data-sec]:not(.is-in) [data-in] { animation: none; opacity: 0; } }
+.scr--long .bn { z-index: 6; will-change: translate; transition: left .55s var(--mo-spring), right .55s var(--mo-spring), top .4s var(--mo-ease), height .4s var(--mo-ease), background-color .3s, box-shadow .3s; }
+/* In the full-size view the nav rides the scroll on the compositor (a scroll-driven animation on the viewer's own scroller, so it
+   never lags or stutters), and once the hero is behind it squeezes into a compact, denser glass pill: the descriptor folds away. */
+#zoom-scroll { scroll-timeline: --zs block; }
+@keyframes mvFollow { to { translate: 0 var(--mv-max, 0px); } }
+.zoom .scr--long .bn.is-follow { animation: glDrop .6s var(--mo-ease) both, mvFollow 1s linear both; animation-timeline: auto, --zs; }
+.scr--long .bn__desc { max-width: 150px; overflow: hidden; transition: max-width .5s var(--mo-spring), opacity .25s, padding-left .5s var(--mo-ease), margin-left .5s var(--mo-ease), border-color .3s; }
+.scr--long .bn.is-squeezed { left: 172px; right: 172px; top: 8px; height: 48px; background: rgba(255, 255, 255, .74); -webkit-backdrop-filter: blur(24px) saturate(1.8); backdrop-filter: blur(24px) saturate(1.8);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .9), inset 0 1px 0 #FFFFFF, 0 20px 40px -18px rgba(28, 26, 25, .5); }
+.scr--long .bn.is-squeezed .bn__desc { max-width: 0; opacity: 0; padding-left: 0; margin-left: -12px; border-left-color: transparent; }
+/* smooth on long scrolls: reveals rise without the blur, the glows hold still, and the pieces that float are not frosted
+   (frosted glass that moves, or sits over something moving, re-blurs on every frame) */
+@keyframes mvRise { from { opacity: 0; transform: translateY(18px); } }
+.zoom .scr--long [data-in=""] { animation-name: mvRise; }
+.scr--long :is(.mv__up, .mv__card, .mv__person) { -webkit-backdrop-filter: none; backdrop-filter: none; background: rgba(255, 255, 255, .86); }
+/* below the hero the paper is flat, so frosting shows nothing; the cards keep the glass colour and edge without the blur */
+.scr--long .mv__sec .glc, .scr--long .mv__ai { -webkit-backdrop-filter: none; backdrop-filter: none; }
+.scr--long .mv__sec .glc { background: rgba(255, 255, 255, .64); }
+.scr--long .mv__person { background: rgba(255, 255, 255, .78); }
+/* below the hero each section arrives as one piece (one layer to animate while scrolling, not dozens) */
+@keyframes mvSec { from { opacity: 0; transform: translateY(26px); } }
+.zoom .scr--long [data-sec]:not(.mv__hero) [data-in] { animation: none; }
+@media (prefers-reduced-motion: no-preference) {
+  .zoom .scr--long [data-sec]:not(.mv__hero):not(.is-in) { opacity: 0; }
+  .zoom .scr--long [data-sec]:not(.mv__hero).is-in { animation: mvSec .8s var(--mo-ease) both; }
+  .zoom .scr--long .mv__hero:not(.is-in) [data-in] { animation: none; opacity: 0; }
+}
 .mv__sec { position: relative; padding: 76px 40px 0; }
 .mv__sec--band { padding: 34px 14px 0; }
 .mv__head { display: flex; align-items: flex-end; justify-content: space-between; gap: 24px; margin-bottom: 24px; }
@@ -1485,7 +1510,6 @@ body[data-tone="ox"] { background: var(--ox); }
   radial-gradient(46% 58% at 66% 108%, color-mix(in srgb, #D8C2A2 62%, transparent), transparent 72%),
   radial-gradient(32% 42% at 72% 50%, color-mix(in srgb, var(--c) 22%, transparent), transparent 70%);
   background-size: 140% 140%, 140% 140%, 140% 140%, 120% 120%; background-position: 0% 0%, 100% 0%, 50% 100%, 50% 50%; }
-:is(.zoom, .ba) .mv__hero { animation: glDrift 16s ease-in-out infinite alternate; }
 .mv__intro { position: absolute; left: 40px; top: 100px; width: 430px; display: flex; flex-direction: column; align-items: flex-start; }
 .mv__date { display: inline-flex; align-items: center; gap: 8px; height: 28px; padding: 0 13px; border-radius: 14px; font-size: 11px; font-weight: 700; }
 .mv__date i { width: 7px; height: 7px; border-radius: 50%; background: var(--bx-garden); box-shadow: 0 0 0 3px rgba(75, 87, 21, .16); }
@@ -2963,10 +2987,24 @@ body[data-tone="ox"] { background: var(--ox); }
   function longB(zm, sc) {
     longIO?.disconnect();
     const s = $(".scr--long", zm); if (!s) return null;
-    const f = s.parentElement; f.style.aspectRatio = `874 / ${s.offsetHeight}`;
-    const follow = () => { const k = f.getBoundingClientRect().width / 874, y = (sc.getBoundingClientRect().top - f.getBoundingClientRect().top) / k; s.style.setProperty("--sy", `${Math.round(Math.min(Math.max(0, y), s.offsetHeight - 80))}px`); };
+    const f = s.parentElement, nav = $(".bn", s); f.style.aspectRatio = `874 / ${s.offsetHeight}`;
     return () => {
-      sc.onscroll = follow; follow();
+      // the page's offset inside the scroller, and its scale, once it is laid out at its full-size width
+      const top = f.getBoundingClientRect().top - sc.getBoundingClientRect().top + sc.scrollTop, k = f.getBoundingClientRect().width / 874;
+      const css = !reduce && CSS.supports("animation-timeline: scroll()");
+      let sq = false, raf = 0;
+      const follow = () => {
+        const y = Math.max(0, (sc.scrollTop - top) / k);
+        if (!css) nav.style.translate = `0 ${Math.round(Math.min(y, s.offsetHeight - 80))}px`;
+        if ((y > 40) !== sq) { sq = !sq; nav.classList.toggle("is-squeezed", sq); }
+      };
+      if (css) {
+        nav.style.setProperty("--mv-max", `${((sc.scrollHeight - sc.clientHeight - top) / k).toFixed(1)}px`);
+        nav.style.animationRange = `normal, ${Math.round(top)}px 100%`;
+        nav.classList.add("is-follow");
+      }
+      sc.onscroll = () => { if (!raf) raf = requestAnimationFrame(() => { raf = 0; follow(); }); };
+      follow();
       longIO = new IntersectionObserver((es) => es.forEach((e) => { if (!e.isIntersecting) return; e.target.classList.add("is-in"); if (e.target.matches("section")) countUp(e.target); longIO.unobserve(e.target); }), { root: sc, threshold: .12 });
       $$("[data-sec]", s).forEach((x) => longIO.observe(x));
     };
@@ -3257,7 +3295,7 @@ body[data-tone="ox"] { background: var(--ox); }
   const MV_FAQ = [["What is Bloom Multiverse?", "Your workplace, connected: what is waiting for you in Salesforce, UiPath, Darwinbox and SAP, with the people, policies and perks of Bloom, on one home page."],
     ["How do I access my profile?", "Select your initials at the top of any page."], ["How do I update my personal information?", "Open your profile and choose Edit details."], ["How do I search for information?", "Ask Bloom GPT, at the top of every page."]];
   const mvHead = (n, k, h, end = "") => `<div class="mv__head"><div><span class="be mv__k"${di(0)}><b>${n}</b><i></i>${k}</span><h5 class="bh mv__h"${di(1)}>${h}</h5></div>${end}</div>`;
-  const mvMarq = (t, cls = "") => `<div class="mv__marq ${cls}" aria-hidden="true"><span>${`${t} · `.repeat(4)}</span></div>`;
+  const mvMarq = (t, cls = "") => `<div class="mv__marq ${cls}" aria-hidden="true"><span>${`${t} · `.repeat(2)}</span></div>`;
   const mvPage = () => {
     const app = (m) => m.split(" · ")[0];
     const hero = `<div class="mv__hero" data-sec><div class="mv__intro"><span class="mv__date glc"${di(0)}><i></i>Friday 25 September</span>`
