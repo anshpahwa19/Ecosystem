@@ -31,7 +31,7 @@
 html, body { height: 100%; }
 body { margin: 0; overflow: hidden; background: var(--paper); color: var(--ink); font-family: var(--sans); -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility; transition: background-color .5s; }
 body[data-tone="red"] { background: var(--red); }
-h1, h2, h3, h4, p, ul, ol, figure, blockquote { margin: 0; }
+h1, h2, h3, h4, h5, h6, p, ul, ol, figure, blockquote { margin: 0; }
 ul, ol { padding: 0; list-style: none; }
 button { font: inherit; color: inherit; cursor: pointer; background: none; border: 0; padding: 0; }
 a { color: inherit; }
@@ -1077,28 +1077,7 @@ body[data-tone="ox"] { background: var(--ox); }
 .xp__li:hover { padding-left: 4px; color: var(--ox); }
 .xp__li:hover .ico.chev { transform: translateX(4px); color: var(--ox); }
 
-/* Multiverse: today's work first, the apps as one measured bar */
-.xv { display: grid; grid-template-columns: 350px minmax(0, 1fr); column-gap: 26px; height: 100%; }
-.xv__home { display: flex; flex-direction: column; align-items: flex-start; gap: 11px; min-width: 0; }
-.xv__home .bh em { color: var(--ct); }
-.xv__chips { display: flex; gap: 6px; }
-.xv__home .bbtns { margin-top: 3px; }
-.xv__moments { display: flex; gap: 18px; align-self: stretch; margin-top: 4px; padding: 10px 0; border-top: 1px solid var(--pb-stone); border-bottom: 1px solid var(--pb-stone); }
-.xv__moments > span { display: flex; align-items: center; gap: 9px; min-width: 0; }
-.xv__moments small { display: block; font-size: 9px; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; color: var(--bx-mute); }
-.xv__moments b { display: block; font-size: 12px; font-weight: 700; white-space: nowrap; }
-.xv__apps { align-self: stretch; display: grid; gap: 8px; margin-top: auto; }
-.xv__bar { display: flex; height: 8px; gap: 3px; }
-.xv__bar i { flex: var(--v); border-radius: 2px; background: var(--ct); transform-origin: left; }
-.xv__bar i:nth-child(2) { opacity: .72; } .xv__bar i:nth-child(3) { opacity: .48; } .xv__bar i:nth-child(4) { opacity: .28; }
-.xv__legend { display: flex; justify-content: space-between; font-size: 11px; font-weight: 600; color: var(--bx-mute); }
-.xv__legend b { margin-left: 5px; color: var(--bx-ink); font-weight: 800; font-variant-numeric: tabular-nums; }
-.xv__tasks { display: flex; flex-direction: column; min-width: 0; padding: 14px 16px 12px; }
-.xv__head { display: flex; align-items: center; justify-content: space-between; padding-bottom: 10px; border-bottom: 1px solid var(--pb-stone); }
-.xv__head small, .xv__foot small { font-size: 11px; color: var(--bx-mute); }
-.xv__task { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: start; gap: 6px 14px; padding: 11px 0; border-bottom: 1px solid var(--pb-stone); transition: opacity var(--mo-comp); }
-.xv__task > b { font-size: 12.5px; font-weight: 700; line-height: 1.35; transition: color var(--mo-comp); }
-.xv__task > small { align-self: center; font-size: 11px; color: var(--bx-mute); }
+/* Multiverse task actions, shared by the long page and 07d's card */
 .xv__acts { position: relative; display: flex; gap: 6px; }
 .xv__done { position: absolute; right: 0; top: 50%; display: inline-flex; align-items: center; gap: 8px; font-size: 11px; font-weight: 700; color: var(--bx-mute); white-space: nowrap; opacity: 0; transform: translate(8px, -50%); pointer-events: none; transition: opacity var(--mo-comp) var(--mo-ease), transform var(--mo-comp) var(--mo-ease); }
 .xv__done .bl { color: var(--bx-ink); }
@@ -1109,7 +1088,6 @@ body[data-tone="ox"] { background: var(--ox); }
 :is([data-state="approve"], [data-state="reject"]) .xv__acts > .bb { opacity: 0; transform: translateX(-8px); pointer-events: none; }
 :is([data-state="approve"], [data-state="reject"]) .xv__done { opacity: 1; transform: translate(0, -50%); pointer-events: auto; }
 [data-state="reject"] > b { color: var(--bx-mute); }
-.xv__foot { display: flex; align-items: center; justify-content: space-between; margin-top: auto; padding-top: 10px; }
 .bchip .ico { width: 11px; height: 11px; stroke-width: 2.6; }
 .xv__acts > .bb { transition: opacity var(--mo-micro), transform var(--mo-comp) var(--mo-ease), background-color var(--mo-micro), visibility 0s linear 0s; }
 .xv__done { visibility: hidden; transition: opacity var(--mo-comp) var(--mo-ease), transform var(--mo-comp) var(--mo-ease), visibility 0s linear var(--mo-comp); }
@@ -1381,7 +1359,7 @@ body[data-tone="ox"] { background: var(--ox); }
 @keyframes pbRise { from { opacity: 0; transform: translateY(16px); filter: blur(6px); } }
 @keyframes glDrop { from { opacity: 0; transform: translateY(-14px) scale(.97); filter: blur(6px); } }
 /* the glass itself */
-:is(.scr--b .bn, .scr--b .glc, .xm__panel, .xm__zoom, .xu__idx, .xh__side, .xp__type, .xp__li, .xv__tasks, .xv__moments > span, .ms__bar, .ms .bcard, .ms__tabs) {
+:is(.scr--b .bn, .scr--b .glc, .xm__panel, .xm__zoom, .xu__idx, .xh__side, .xp__type, .xp__li, .ms__bar, .ms .bcard, .ms__tabs) {
   background: var(--gl); -webkit-backdrop-filter: var(--gl-blur); backdrop-filter: var(--gl-blur);
   box-shadow: inset 0 0 0 1px var(--gl-line), inset 0 1px 0 rgba(255, 255, 255, .9), var(--gl-lift); }
 
@@ -1451,13 +1429,272 @@ body[data-tone="ox"] { background: var(--ox); }
 .xp__li { height: 44px; padding: 0 14px 0 7px; border-bottom: 0; border-radius: 14px; }
 .xp__li:hover { padding-left: 10px; }
 
-/* Multiverse */
-.xv__tasks { border-radius: 24px; }
-.xv__head, .xv__task { border-bottom-color: rgba(28, 26, 25, .08); }
-.xv__moments { gap: 10px; padding: 0; border: 0; }
-.xv__moments > span { flex: 1; padding: 8px 10px; border-radius: 16px; }
-.xv__bar { height: 10px; }
-.xv__bar i { border-radius: 5px; }
+/* Multiverse: the whole home page. The first 874 x 454 is a light hero and is all the slides show; the full-size view
+   scrolls the rest, with the glass navigation following and each section revealing as it arrives. */
+.scr--b.scr--long { height: auto; padding-bottom: 14px; background: #F7F3EC; --mv-hi: color-mix(in srgb, var(--c) 45%, #FFFFFF); --mv-on: rgba(247, 243, 236, .66); }
+:is(.zoom, .ba) .scr--b.scr--long { animation: none; }
+.scr--long .bn { z-index: 6; translate: 0 var(--sy, 0px); }
+@media (prefers-reduced-motion: no-preference) { .zoom .scr--long [data-sec]:not(.is-in) [data-in] { animation: none; opacity: 0; } }
+.mv__sec { position: relative; padding: 76px 40px 0; }
+.mv__sec--band { padding: 34px 14px 0; }
+.mv__head { display: flex; align-items: flex-end; justify-content: space-between; gap: 24px; margin-bottom: 24px; }
+.mv__k::before { display: none; }
+.mv__k b { font-weight: 800; color: var(--ox); }
+.mv__k i { width: 22px; height: 1px; background: currentColor; opacity: .5; }
+.mv__h { margin-top: 12px; font-size: 44px; }
+.mv__h--xl { font-size: 64px; }
+.mv__marq { overflow: hidden; margin: 0 -40px; white-space: nowrap; font-family: var(--serif); font-size: 104px; font-weight: 600; line-height: 1; letter-spacing: -.01em; color: transparent; -webkit-text-stroke: 1px rgba(28, 26, 25, .13); pointer-events: none; user-select: none; }
+.mv__marq span { display: inline-block; }
+@keyframes mvMarq { to { translate: -50% 0; } }
+.zoom .mv__marq span { animation: mvMarq 60s linear infinite; }
+
+/* 01 hero: the greeting, one line, two actions; the apps orbit the count */
+.mv__hero { position: relative; height: 454px; overflow: hidden; background:
+  radial-gradient(36% 50% at 10% 14%, color-mix(in srgb, var(--c) 46%, transparent), transparent 72%),
+  radial-gradient(36% 52% at 94% 8%, color-mix(in srgb, var(--ox) 26%, transparent), transparent 72%),
+  radial-gradient(46% 58% at 66% 108%, color-mix(in srgb, #D8C2A2 62%, transparent), transparent 72%),
+  radial-gradient(32% 42% at 72% 50%, color-mix(in srgb, var(--c) 22%, transparent), transparent 70%);
+  background-size: 140% 140%, 140% 140%, 140% 140%, 120% 120%; background-position: 0% 0%, 100% 0%, 50% 100%, 50% 50%; }
+:is(.zoom, .ba) .mv__hero { animation: glDrift 16s ease-in-out infinite alternate; }
+.mv__intro { position: absolute; left: 40px; top: 100px; width: 430px; display: flex; flex-direction: column; align-items: flex-start; }
+.mv__date { display: inline-flex; align-items: center; gap: 8px; height: 28px; padding: 0 13px; border-radius: 14px; font-size: 11px; font-weight: 700; }
+.mv__date i { width: 7px; height: 7px; border-radius: 50%; background: var(--bx-garden); box-shadow: 0 0 0 3px rgba(75, 87, 21, .16); }
+.mv__hi { display: grid; margin-top: 18px; font-size: 64px; line-height: .9; }
+.mv__sub { margin-top: 16px; font-size: 16px; font-weight: 600; color: var(--bx-ink); }
+.mv__sub em { font-family: var(--serif); font-size: 23px; font-weight: 600; color: var(--ct); }
+.mv__intro .bbtns { margin-top: 26px; }
+.mv__orbit { position: absolute; left: 496px; top: 92px; width: 284px; height: 284px; --r: 142px; }
+.mv__ring { position: absolute; inset: 0; border-radius: 50%; box-shadow: inset 0 0 0 1px rgba(28, 26, 25, .14); }
+.mv__ring--i { inset: 52px; box-shadow: none; border: 1px dashed color-mix(in srgb, var(--c) 50%, transparent); }
+.mv__core { position: absolute; left: 50%; top: 50%; display: grid; place-content: center; justify-items: center; gap: 4px; width: 128px; height: 128px; margin: -64px 0 0 -64px; border-radius: 50%; }
+.mv__core b { font-size: 54px; line-height: .8; color: var(--ct); }
+.mv__core small { font-size: 9px; font-weight: 800; letter-spacing: .14em; text-transform: uppercase; color: var(--bx-mute); }
+.mv__spin { position: absolute; inset: 0; }
+.mv__spin--i { inset: 52px; }
+.mv__spin i { position: absolute; left: 50%; top: -4px; width: 8px; height: 8px; margin-left: -4px; border-radius: 50%; background: var(--ox); box-shadow: 0 0 0 4px rgba(147, 42, 35, .14); }
+.mv__spin--i i { background: var(--c); box-shadow: 0 0 0 4px color-mix(in srgb, var(--c) 18%, transparent); }
+.mv__nodes { position: absolute; inset: 0; }
+.mv__node { position: absolute; left: 50%; top: 50%; transform: rotate(var(--a)) translateX(var(--r)) rotate(calc(-1 * var(--a))); }
+.mv__up { position: absolute; display: inline-flex; align-items: center; gap: 7px; height: 32px; padding: 0 13px 0 5px; border-radius: 16px; font-size: 11.5px; font-weight: 700; white-space: nowrap; transform: translate(-50%, -50%); }
+.mv__up b { display: grid; place-items: center; min-width: 24px; height: 22px; padding: 0 5px; border-radius: 11px; background: var(--ox); color: #FFFFFF; font-size: 10.5px; font-weight: 800; }
+@keyframes mvSpin { to { rotate: 360deg; } }
+:is(.zoom, .ba) .mv__spin { animation: mvSpin 26s linear infinite; }
+:is(.zoom, .ba) .mv__spin--i { animation-duration: 18s; animation-direction: reverse; }
+:is(.zoom, .ba) .mv__up { animation: mvFloat 4s ease-in-out infinite alternate; }
+:is(.zoom, .ba) .mv__node:nth-child(2n) .mv__up { animation-delay: -2s; }
+.mv__fl { position: absolute; z-index: 2; }
+.mv__fl--a { left: 448px; top: 84px; }
+.mv__fl--b { left: 426px; top: 300px; }
+.mv__fl--c { right: 26px; top: 326px; }
+.mv__card { display: flex; align-items: center; gap: 9px; padding: 6px 15px 6px 6px; border-radius: 21px; }
+.mv__card small, .mv__ai small { display: block; font-size: 8.5px; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; color: var(--bx-mute); }
+.mv__card b, .mv__ai b { display: block; font-size: 12px; font-weight: 700; white-space: nowrap; }
+.mv__card .bav, .mv__ai .bav { width: 30px; height: 30px; background: var(--t); color: var(--ct); }
+.mv__card .bav .ico, .mv__ai .bav .ico { width: 14px; height: 14px; }
+@keyframes mvFloat { to { translate: 0 -7px; } }
+:is(.zoom, .ba) .mv__card { animation: mvFloat 5s ease-in-out infinite alternate; }
+:is(.zoom, .ba) .mv__fl--b .mv__card { animation-delay: -2s; }
+:is(.zoom, .ba) .mv__fl--c .mv__card { animation-delay: -3.5s; }
+.mv__dock { position: absolute; left: 40px; right: 40px; bottom: 16px; display: flex; align-items: center; justify-content: space-between; }
+.mv__scroll { display: flex; align-items: center; gap: 10px; font-size: 9.5px; font-weight: 800; letter-spacing: .18em; text-transform: uppercase; color: var(--bx-mute); }
+.mv__scroll i { position: relative; width: 1px; height: 26px; overflow: hidden; background: rgba(28, 26, 25, .14); }
+.mv__scroll i::after { content: ""; position: absolute; left: 0; top: 0; width: 1px; height: 10px; background: var(--ox); }
+@keyframes mvDrop { from { translate: 0 -10px; } to { translate: 0 26px; } }
+:is(.zoom, .ba) .mv__scroll i::after { animation: mvDrop 1.8s var(--mo-ease) infinite; }
+.mv__quick { display: flex; align-items: center; gap: 5px; height: 40px; padding: 0 4px 0 16px; border-radius: 20px; font-size: 11px; font-weight: 700; }
+.mv__quick small { margin-right: 6px; font-size: 9px; font-weight: 800; letter-spacing: .16em; text-transform: uppercase; color: var(--bx-mute); }
+.mv__quick > span:not(.bl) { display: grid; place-items: center; height: 30px; padding: 0 11px; border-radius: 15px; background: rgba(255, 255, 255, .8); box-shadow: inset 0 0 0 1px rgba(28, 26, 25, .07); transition: transform var(--mo-comp) var(--mo-spring); }
+.mv__quick > span:not(.bl):hover { transform: translateY(-2px); }
+.mv__quick .bl { margin: 0 10px 0 6px; }
+.mv__count { font-size: 11px; font-weight: 700; color: var(--bx-mute); font-variant-numeric: tabular-nums; }
+.mv__count b { color: var(--bx-ink); }
+
+/* 02 attention: the one dark band; filter by app, act in place */
+.mv__dark { position: relative; overflow: hidden; padding: 52px 26px 24px; border-radius: 30px; color: #F7F3EC; background:
+  radial-gradient(46% 60% at 0% 0%, color-mix(in srgb, var(--c) 46%, transparent), transparent 72%),
+  radial-gradient(40% 54% at 100% 100%, rgba(147, 42, 35, .34), transparent 72%), #1C1A19; }
+.mv__dark .bh { color: #F7F3EC; }
+.mv__dark .bh em { color: var(--mv-hi); }
+.mv__dark .be { color: var(--mv-hi); }
+.mv__dark .mv__k b { color: #F1B9B2; }
+.mv__dark .bl, .mv__band .bl { color: #F7F3EC; }
+.mv__dark .bchip { background: rgba(255, 255, 255, .08); color: rgba(247, 243, 236, .85); box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .12); }
+.mv__dark .bchip--ox { background: rgba(165, 54, 46, .3); color: #F1B9B2; }
+.mv__dark .bchip--ok { background: rgba(181, 199, 122, .16); color: #CBD6A0; }
+.mv__dark .bchip--line { background: transparent; color: var(--mv-on); }
+:is(.mv__dark, .mv__band) .bb--o { background: rgba(255, 255, 255, .07); color: #F7F3EC; box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .22); }
+:is(.mv__dark, .mv__band) .bb--o:hover { background: rgba(255, 255, 255, .16); box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .45); }
+.mv__note { display: grid; justify-items: end; gap: 10px; max-width: 220px; padding-bottom: 4px; text-align: right; font-size: 12px; line-height: 1.5; color: var(--mv-on); }
+.mv__live { display: inline-flex; align-items: center; gap: 7px; height: 24px; padding: 0 11px; border-radius: 12px; background: rgba(181, 199, 122, .14); color: #CBD6A0; font-size: 9.5px; font-weight: 800; letter-spacing: .16em; text-transform: uppercase; box-shadow: inset 0 0 0 1px rgba(203, 214, 160, .25); }
+.mv__live i { width: 6px; height: 6px; border-radius: 50%; background: #B5C77A; }
+@keyframes mvLive { from { box-shadow: 0 0 0 0 rgba(181, 199, 122, .6); } to { box-shadow: 0 0 0 8px rgba(181, 199, 122, 0); } }
+:is(.zoom, .ba) .mv__live i { animation: mvLive 1.6s ease-out infinite; }
+.mv__ctl { display: grid; grid-template-columns: 206px minmax(0, 1fr); gap: 26px; }
+.mv__apps { display: flex; flex-direction: column; gap: 6px; }
+.mv__total { display: flex; align-items: flex-end; gap: 10px; margin-bottom: 14px; }
+.mv__total b { font-size: 88px; line-height: .74; color: #F7F3EC; }
+.mv__total small { padding-bottom: 2px; font-size: 11px; font-weight: 600; line-height: 1.3; color: var(--mv-on); }
+.mv__app { position: relative; display: flex; align-items: center; justify-content: space-between; height: 42px; padding: 0 14px 4px; border-radius: 14px; font-size: 12px; font-weight: 700; color: rgba(247, 243, 236, .78); background: rgba(255, 255, 255, .04); box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .07); transition: background-color var(--mo-micro), color var(--mo-micro), box-shadow var(--mo-comp); }
+.mv__app b { font-family: var(--serif); font-size: 19px; font-weight: 600; color: #F7F3EC; }
+.mv__app i { position: absolute; left: 14px; right: 14px; bottom: 8px; height: 2px; border-radius: 1px; background: rgba(255, 255, 255, .09); }
+.mv__app i::after { content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: var(--v); border-radius: inherit; background: var(--mv-hi); }
+.mv__app:hover { background: rgba(255, 255, 255, .09); color: #FFFFFF; }
+.mv__app.is-on { background: rgba(255, 255, 255, .13); color: #FFFFFF; box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .2), 0 14px 26px -18px rgba(0, 0, 0, .8); }
+.mv__app.is-on i::after { background: #F1B9B2; }
+.mv__hint { margin-top: 6px; font-size: 10.5px; color: rgba(247, 243, 236, .5); }
+.mv__tasks { display: flex; flex-direction: column; min-width: 0; border-top: 1px solid rgba(255, 255, 255, .1); }
+.mv__task { display: grid; grid-template-columns: 36px minmax(0, 1fr) auto; align-items: center; gap: 14px; padding: 13px 4px; border-bottom: 1px solid rgba(255, 255, 255, .08); }
+.mv__task.is-out { display: none; }
+.mv__ico { display: grid; place-items: center; width: 36px; height: 36px; border-radius: 12px; background: rgba(255, 255, 255, .94); color: var(--ct); font-size: 10.5px; font-weight: 800; box-shadow: 0 8px 16px -10px rgba(0, 0, 0, .8); }
+.mv__tt { min-width: 0; }
+.mv__tt b { display: block; font-size: 12.5px; font-weight: 700; line-height: 1.35; color: #F7F3EC; transition: color var(--mo-comp); }
+.mv__tt > span { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 10px; margin-top: 5px; }
+.mv__tt small { font-size: 10.5px; color: rgba(247, 243, 236, .55); }
+.mv__tt .bchip { height: 20px; padding: 0 9px; font-size: 10px; }
+.mv__task[data-state="reject"] .mv__tt b { color: rgba(247, 243, 236, .42); }
+.mv__dark .xv__done { color: var(--mv-on); }
+.mv__dark .xv__done .bl { color: #F7F3EC; }
+.mv__foot { display: flex; align-items: center; justify-content: space-between; padding-top: 14px; font-size: 10.5px; color: rgba(247, 243, 236, .5); }
+
+/* 03 new joiners */
+.mv__welcome .mv__marq { margin-top: -18px; }
+.mv__wel { display: grid; grid-template-columns: minmax(0, 1fr) 366px; gap: 40px; align-items: center; margin-top: -30px; }
+.mv__wel .mv__head { margin-bottom: 14px; }
+.mv__wel .bp { max-width: 330px; }
+.mv__person { display: grid; grid-template-columns: 104px minmax(0, 1fr); align-items: center; gap: 4px 18px; padding: 18px; border-radius: 28px; }
+.mv__mono { grid-row: span 4; display: grid; place-items: center; width: 104px; height: 104px; border-radius: 30px; font-family: var(--serif); font-size: 42px; font-weight: 600; color: #FFFFFF;
+  background: radial-gradient(70% 70% at 30% 20%, rgba(255, 255, 255, .35), transparent 70%), linear-gradient(150deg, #6F8DBE, #2E4A78); box-shadow: inset 0 1px 0 rgba(255, 255, 255, .35), 0 18px 30px -16px rgba(46, 74, 120, .8); }
+.mv__name { font-family: var(--serif); font-size: 27px; font-weight: 600; line-height: 1; }
+.mv__chk { display: flex; align-items: center; gap: 6px; font-size: 11px; color: var(--bx-mute); }
+.mv__chk .ico { width: 13px; height: 13px; color: var(--ct); }
+.mv__person .bbtns { gap: 6px; margin-top: 8px; }
+
+/* 04 announcements: a Marina band */
+.mv__band { position: relative; overflow: hidden; padding: 50px 26px 30px; border-radius: 30px; color: #FFFFFF; background:
+  radial-gradient(40% 70% at 14% 40%, rgba(255, 255, 255, .2), transparent 70%),
+  radial-gradient(44% 64% at 100% 100%, rgba(147, 42, 35, .4), transparent 72%),
+  linear-gradient(135deg, #5878AC 0%, #3B5989 55%, #273D62 100%); }
+.mv__band .bh { color: #FFFFFF; }
+.mv__band .bh em, .mv__band .be { color: #EEE6DD; }
+.mv__band .mv__k b { color: #FFFFFF; }
+.mv__ann { display: grid; grid-template-columns: 132px minmax(0, 1fr) 262px; gap: 28px; align-items: center; }
+.mv__bday { position: relative; display: grid; place-items: center; width: 132px; height: 132px; border-radius: 50%; background: radial-gradient(70% 70% at 30% 20%, rgba(255, 255, 255, .5), transparent 70%), linear-gradient(150deg, #E2D2BE, #A9886A); box-shadow: 0 0 0 6px rgba(255, 255, 255, .14), 0 26px 40px -20px rgba(0, 0, 0, .7); }
+.mv__bday b { font-family: var(--serif); font-size: 48px; font-weight: 600; color: #FFFFFF; }
+.mv__bday i { position: absolute; right: 4px; bottom: 6px; display: grid; place-items: center; width: 36px; height: 36px; border-radius: 50%; background: var(--ox); color: #FFFFFF; box-shadow: 0 0 0 3px #3B5989; }
+.mv__bday i .ico { width: 16px; height: 16px; }
+.mv__wish { display: flex; flex-direction: column; align-items: flex-start; }
+.mv__hb { margin-top: 10px; font-family: var(--serif); font-size: 26px; font-style: italic; font-weight: 500; line-height: 1; color: #EEE6DD; }
+.mv__who { font-family: var(--serif); font-size: 72px; font-weight: 600; line-height: .9; letter-spacing: -.02em; }
+.mv__wish p { margin: 6px 0 16px; font-size: 12.5px; color: rgba(255, 255, 255, .75); }
+.mv__alist { display: flex; flex-direction: column; gap: 8px; }
+.mv__alist > small { font-size: 9px; font-weight: 800; letter-spacing: .16em; text-transform: uppercase; color: rgba(255, 255, 255, .6); }
+.mv__ai { display: flex; align-items: center; gap: 10px; padding: 8px 12px 8px 8px; border-radius: 18px; color: #FFFFFF; background: rgba(255, 255, 255, .1); -webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px); box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .16); transition: background-color var(--mo-micro), transform var(--mo-comp) var(--mo-spring); }
+.mv__ai small { color: rgba(255, 255, 255, .6); }
+.mv__ai:hover { transform: translateX(4px); }
+.mv__ai.is-on { background: rgba(255, 255, 255, .94); color: var(--bx-ink); box-shadow: 0 14px 26px -16px rgba(0, 0, 0, .6); }
+.mv__ai.is-on small { color: var(--bx-mute); }
+
+/* 05 policies: filter chips over four glass cards */
+.mv__chips { display: flex; gap: 6px; margin: -6px 0 18px; }
+.mv__chip { display: inline-flex; align-items: center; height: 30px; padding: 0 15px; border-radius: 15px; font-size: 11.5px; font-weight: 700; background: rgba(255, 255, 255, .62); box-shadow: inset 0 0 0 1px rgba(28, 26, 25, .1); transition: background-color var(--mo-micro), color var(--mo-micro); }
+.mv__chip:hover { background: #FFFFFF; }
+.mv__chip.is-on { background: var(--bx-ink); color: #FFFFFF; box-shadow: 0 10px 18px -12px rgba(28, 26, 25, .8); }
+.mv__pols { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; }
+.mv__pol { display: flex; flex-direction: column; min-height: 252px; padding: 8px 8px 14px; border-radius: 22px; transition: opacity var(--mo-comp), transform var(--mo-comp) var(--mo-spring), filter var(--mo-comp), box-shadow var(--mo-comp); }
+.mv__pol:hover { transform: translateY(-4px); }
+.mv__pol.is-dim { opacity: .3; filter: grayscale(.8); transform: scale(.97); }
+.mv__art { position: relative; display: grid; place-items: center; height: 116px; overflow: hidden; border-radius: 16px; color: #FFFFFF; background: linear-gradient(145deg, var(--a1), var(--a2)); }
+.mv__art::before { content: ""; position: absolute; inset: 0; background: radial-gradient(circle at 82% 18%, rgba(255, 255, 255, .38), transparent 42%), repeating-radial-gradient(circle at 12% 112%, rgba(255, 255, 255, .13) 0 1px, transparent 1px 15px); }
+.mv__art .ico { position: relative; width: 38px; height: 38px; stroke-width: 1.4; transition: transform var(--mo-comp) var(--mo-spring); }
+.mv__pol:hover .mv__art .ico { transform: scale(1.12) rotate(-6deg); }
+.mv__tags { display: flex; gap: 5px; margin: 12px 6px 0; }
+.mv__pol > b { margin: 9px 6px 0; font-family: var(--serif); font-size: 21px; font-weight: 600; line-height: 1.02; }
+.mv__pol > .bl { margin: auto 6px 0; padding-top: 12px; }
+
+/* 06 life at Bloom: communities on a dark band */
+.mv__life { text-align: center; }
+.mv__marq--life { position: absolute; left: 40px; right: 40px; top: 96px; font-size: 92px; }
+.mv__lifeh { position: relative; display: grid; justify-items: center; }
+.mv__lifeh .bp { max-width: 400px; margin-top: 10px; }
+.mv__clubs { display: grid; grid-template-columns: 212px minmax(0, 1.5fr) minmax(0, 1fr) minmax(0, .8fr); gap: 12px; margin: 40px -26px 0; padding: 30px 26px; text-align: left; }
+.mv__clubk { display: flex; flex-direction: column; align-items: flex-start; justify-content: flex-end; gap: 10px; padding-right: 8px; }
+.mv__clubk .mv__h { margin-top: 0; font-size: 36px; }
+.mv__clubk p { font-size: 12px; line-height: 1.5; color: var(--mv-on); }
+.mv__club { position: relative; display: flex; flex-direction: column; align-items: flex-start; justify-content: flex-end; gap: 12px; height: 236px; padding: 16px; overflow: hidden; border-radius: 22px; color: #FFFFFF; transition: transform var(--mo-comp) var(--mo-spring); }
+.mv__club:hover { transform: translateY(-4px); }
+.mv__club b { position: relative; font-family: var(--serif); font-size: 34px; font-weight: 600; line-height: .9; }
+.mv__club .bb { position: relative; }
+.mv__club--cricket { background: radial-gradient(60% 46% at 70% 16%, rgba(255, 255, 255, .26), transparent 70%), repeating-linear-gradient(90deg, rgba(255, 255, 255, .05) 0 26px, transparent 26px 52px), linear-gradient(165deg, #7E8D3F, #39430F); }
+.mv__club--cricket::before { content: ""; position: absolute; left: 50%; top: 14%; width: 34px; height: 46%; margin-left: -17px; border-radius: 3px; background: rgba(236, 222, 190, .3); box-shadow: inset 0 7px 0 rgba(255, 255, 255, .45), inset 0 -7px 0 rgba(255, 255, 255, .45); }
+.mv__club--yoga { background: radial-gradient(circle at 50% 36%, rgba(255, 255, 255, .32) 0 18%, transparent 18.5%), radial-gradient(circle at 50% 36%, rgba(255, 255, 255, .12) 0 31%, transparent 31.5%), radial-gradient(circle at 50% 36%, rgba(255, 255, 255, .06) 0 45%, transparent 45.5%), linear-gradient(170deg, #9A86CA, #4B3A7E); }
+.mv__club--more { align-items: center; justify-content: center; gap: 10px; background: rgba(255, 255, 255, .05); box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .14); color: var(--mv-on); }
+.mv__club--more b { font-family: var(--sans); font-size: 12px; font-weight: 700; }
+.mv__club--more .bic { background: rgba(255, 255, 255, .1); color: #FFFFFF; box-shadow: none; }
+
+/* 07 discounts: the two Bloom hotels carry their own logos; every other brand is a text label */
+.mv__deals { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)) 150px; gap: 12px; }
+.mv__deal { display: flex; flex-direction: column; align-items: flex-start; padding: 8px 8px 14px; border-radius: 22px; transition: transform var(--mo-comp) var(--mo-spring); }
+.mv__deal:hover { transform: translateY(-4px); }
+.mv__logo { display: grid; place-items: center; align-self: stretch; height: 96px; border-radius: 15px; background: #FFFFFF; box-shadow: inset 0 0 0 1px rgba(28, 26, 25, .06); }
+.mv__logo .logo--marriott { width: 70px; height: 53px; background-position: center; }
+.mv__logo .logo--edition { width: 140px; height: 41px; background-position: center; }
+.mv__logo b { font-family: var(--serif); font-size: 36px; font-weight: 700; letter-spacing: .06em; color: var(--bx-ink); }
+.mv__deal > small { margin: 12px 6px 0; font-size: 11px; font-weight: 700; color: var(--bx-mute); }
+.mv__pct { margin: 2px 6px 0; font-size: 50px; line-height: 1; color: var(--bx-ink); }
+.mv__pct small { margin-left: 5px; font-family: var(--sans); font-size: 11px; font-weight: 700; letter-spacing: 0; color: var(--bx-mute); }
+.mv__deal .bb { margin: 12px 6px 0; }
+.mv__all { display: grid; place-content: center; justify-items: center; gap: 10px; border-radius: 22px; font-size: 12px; font-weight: 700; }
+.mv__all .bic { background: var(--ox); color: #FFFFFF; transition: transform var(--mo-comp) var(--mo-spring); }
+.mv__all:hover .bic { transform: translateX(4px); }
+
+/* 08 perks: pick one, it fills the dark card */
+.mv__perks { display: grid; grid-template-columns: minmax(0, 1fr) 430px; gap: 24px; }
+.mv__plist { display: flex; flex-direction: column; gap: 8px; }
+.mv__pi { display: flex; align-items: center; gap: 12px; height: 56px; padding: 0 16px 0 10px; border-radius: 18px; font-size: 13px; font-weight: 700; transition: transform var(--mo-comp) var(--mo-spring), box-shadow var(--mo-comp), background-color var(--mo-micro); }
+.mv__pi .chev { width: 14px; height: 14px; margin-left: auto; color: var(--bx-mute); transition: transform var(--mo-comp) var(--mo-spring); }
+.mv__pi:hover { transform: translateX(4px); }
+.mv__pi.is-on { background: #FFFFFF; box-shadow: inset 0 0 0 1.5px var(--ox), 0 16px 28px -18px rgba(28, 26, 25, .5); }
+.mv__pi.is-on .chev { color: var(--ox); transform: translateX(3px); }
+.mv__pfs { position: relative; min-height: 248px; overflow: hidden; border-radius: 26px; background:
+  radial-gradient(60% 70% at 100% 0%, color-mix(in srgb, var(--c) 55%, transparent), transparent 72%),
+  radial-gradient(50% 60% at 0% 100%, rgba(147, 42, 35, .3), transparent 72%), #1C1A19; }
+.mv__pf { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: flex-start; justify-content: flex-end; gap: 8px; padding: 26px; color: #F7F3EC; opacity: 0; transform: translateY(12px); pointer-events: none; transition: opacity var(--mo-comp) var(--mo-ease), transform var(--mo-comp) var(--mo-ease); }
+.mv__pf > .ico { position: absolute; right: 24px; top: 24px; width: 70px; height: 70px; stroke-width: 1.1; color: var(--mv-hi); }
+.mv__pf .be { color: var(--mv-hi); }
+.mv__pf b { font-family: var(--serif); font-size: 42px; font-weight: 600; line-height: .95; }
+.mv__pf p { margin-bottom: 8px; font-size: 12.5px; color: var(--mv-on); }
+.mv__perks[data-on="0"] .mv__pf[data-k="0"], .mv__perks[data-on="1"] .mv__pf[data-k="1"], .mv__perks[data-on="2"] .mv__pf[data-k="2"], .mv__perks[data-on="3"] .mv__pf[data-k="3"] { opacity: 1; transform: none; pointer-events: auto; }
+
+/* 09 questions */
+.mv__faq { display: grid; grid-template-columns: 300px minmax(0, 1fr); gap: 44px; align-items: start; }
+.mv__help { display: grid; justify-items: start; gap: 4px; padding: 16px 18px; border-radius: 22px; }
+.mv__help b { font-size: 13px; }
+.mv__help small { font-size: 11px; color: var(--bx-mute); }
+.mv__help .bb { margin-top: 10px; }
+.mv__qs { margin-top: 26px; border-top: 1px solid rgba(28, 26, 25, .1); }
+.mv__q { display: grid; grid-template-columns: minmax(0, 1fr) 30px; grid-template-rows: auto 0fr; align-items: center; column-gap: 14px; padding: 17px 4px; border-bottom: 1px solid rgba(28, 26, 25, .1); transition: grid-template-rows var(--mo-comp) var(--mo-ease); }
+.mv__q b { font-size: 14px; font-weight: 700; }
+.mv__q > i { display: grid; place-items: center; width: 30px; height: 30px; border-radius: 50%; background: rgba(255, 255, 255, .7); box-shadow: inset 0 0 0 1px rgba(28, 26, 25, .1); transition: transform var(--mo-comp) var(--mo-spring), background-color var(--mo-micro), color var(--mo-micro); }
+.mv__q > i .ico { width: 14px; height: 14px; }
+.mv__q p { grid-column: 1 / -1; align-self: stretch; min-height: 0; overflow: hidden; font-size: 12.5px; line-height: 1.55; color: var(--pb-body); }
+.mv__q p span { display: block; max-width: 460px; padding-top: 8px; }
+.mv__q:hover > i { background: #FFFFFF; }
+.mv__q.is-open { grid-template-rows: auto 1fr; }
+.mv__q.is-open > i { background: var(--ox); color: #FFFFFF; box-shadow: none; transform: rotate(45deg); }
+
+/* footer */
+.mv__end { margin: 76px 14px 0; padding: 56px 40px 24px; border-radius: 30px; color: #F7F3EC; background:
+  radial-gradient(50% 80% at 100% 0%, color-mix(in srgb, var(--c) 42%, transparent), transparent 72%), #1C1A19; }
+.mv__end .bh { max-width: 470px; font-size: 54px; color: #F7F3EC; }
+.mv__end .bh em { color: var(--mv-hi); }
+.mv__endrow { display: flex; align-items: center; gap: 14px; margin-top: 50px; padding-top: 20px; border-top: 1px solid rgba(255, 255, 255, .1); }
+.mv__endrow .bn__brand { color: #F7F3EC; }
+.mv__endrow .bn__brand .sym { width: 22px; }
+.mv__endrow .wm { width: 60px; --wm-c: #F7F3EC; }
+.mv__enddesc { padding-left: 12px; border-left: 1px solid rgba(255, 255, 255, .16); font-family: var(--serif); font-size: 20px; font-style: italic; font-weight: 600; }
+.mv__stores { display: flex; gap: 8px; margin-left: auto; }
+.mv__stores span { display: grid; place-items: center; height: 30px; padding: 0 13px; border-radius: 15px; font-size: 11px; font-weight: 700; box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .22); }
+.mv__end .bl { margin-left: 8px; color: #F7F3EC; }
 
 /* 07d's product cards: pill actions */
 .bx-part .bb--s, .bx-acts .bb { border-radius: 999px; }
@@ -2682,10 +2919,27 @@ body[data-tone="ox"] { background: var(--ox); }
     const z = $("#zoom-img"), zm = $("#zoom-mock"), sc = $("#zoom-scroll");
     z.hidden = !!mock; zm.hidden = !mock; zm.innerHTML = mock ? `<div class="fit">${(b ? MOCKS_B : MOCKS)[mock]()}</div>` : "";
     if (!mock) { z.style.setProperty("--img", img); z.style.setProperty("--ar", ar); z.setAttribute("role", "img"); z.setAttribute("aria-label", `${t}, full screen`); }
-    zoomFrom = from; zoom.hidden = false; sc.scrollTop = 0;
+    zoomFrom = from; zoom.hidden = false; sc.scrollTop = 0; sc.onscroll = null;
+    const long = longB(zm, sc);
+    if (long) $("#zoom-a").textContent += " · the whole page, scroll to explore";
     if (mock) { zm.style.setProperty("--zw", `${Math.floor(Math.min(sc.clientWidth - 32, (sc.clientHeight - 32) * 874 / 454))}px`); fitAll(zm); }
     if (mock && b) { armB(zm); countUp(zm); pbNav(zm); }
+    if (long) long();
     $("#zoom-x").focus({ preventScroll: true });
+  }
+  /* A whole-page screen (Bloom Multiverse) opens on its hero, sized like the other screens, and scrolls; the navigation follows
+     the scroll and each section reveals, and counts, as it arrives. */
+  let longIO = null;
+  function longB(zm, sc) {
+    longIO?.disconnect();
+    const s = $(".scr--long", zm); if (!s) return null;
+    const f = s.parentElement; f.style.aspectRatio = `874 / ${s.offsetHeight}`;
+    const follow = () => { const k = f.getBoundingClientRect().width / 874, y = (sc.getBoundingClientRect().top - f.getBoundingClientRect().top) / k; s.style.setProperty("--sy", `${Math.round(Math.min(Math.max(0, y), s.offsetHeight - 80))}px`); };
+    return () => {
+      sc.onscroll = follow; follow();
+      longIO = new IntersectionObserver((es) => es.forEach((e) => { if (!e.isIntersecting) return; e.target.classList.add("is-in"); if (e.target.matches("section")) countUp(e.target); longIO.unobserve(e.target); }), { root: sc, threshold: .12 });
+      $$("[data-sec]", s).forEach((x) => longIO.observe(x));
+    };
   }
   function closeZoom() { if (zoom.hidden) return; zoom.hidden = true; if (zoomFrom) zoomFrom.focus({ preventScroll: true }); }
   document.addEventListener("click", (e) => { const z = e.target.closest("[data-zoom]"); if (z) openZoom(z.dataset.zoom, z); });
@@ -2953,12 +3207,76 @@ body[data-tone="ox"] { background: var(--ox); }
   const bnav = (d, links, end) => `<div class="bn"><span class="bn__brand">${sym()}<i class="wm"></i></span><span class="bn__desc">${d}</span><span class="bn__links"><i class="bn__pill" aria-hidden="true"></i>${links.map((l, i) => i ? `<span>${l}</span>` : `<b>${l}</b>`).join("")}</span><span class="bn__end">${end}</span></div>`;
   const blang = `<span class="bn__lang"><b>EN</b> · عربي</span>`, bbell = `<span class="bn__icb">${ic("bell")}</span>`;
   const bav = (t) => `<span class="bn__av">${t}</span>`;
-  const scrB = (f, label, inner) => `<div class="scr scr--b" style="${famB(f)}" role="img" aria-label="${esc(label)}">${inner}</div>`;
+  const scrB = (f, label, inner, cls = "") => `<div class="scr scr--b ${cls}" style="${famB(f)}" role="img" aria-label="${esc(label)}">${inner}</div>`;
   const eb = (t) => `<span class="be">${t}</span>`;
   // Reveal order inside a screen: data-in names the motion, --i staggers it from the screen's focal point.
   const di = (i, kind = "", css = "") => ` data-in="${kind}" style="--i:${i};${css}"`;
   const B_BIZ = ["Properties", "Education", "Retail", "Hospitality", "Landscape", "Facilities"];
   const B_TYPES = [["Type 1", 391], ["Type 2", 727, 1], ["Type 3", 740], ["Type 4", 389]];
+  /* Bloom Multiverse as its whole home page, in the order today's live page runs (source 14 and the full-page capture).
+     The first 874 x 454 is a light hero, and it is all the slides show; the full-size view scrolls the rest. */
+  const MV_MORE = [["Confirm onboarding checklist for Abdulazeez Aladwan", "Darwinbox · Projects Affairs team", "Due today"], ["Review Q3 pipeline forecast before Thursday's call", "Salesforce · Shared by Sales Operations", "Due today"]];
+  const MV_MONO = { Salesforce: "Sf", UiPath: "Ui", Darwinbox: "Db", SAP: "SAP" }; // initials, never the apps' logos
+  const MV_NODES = [["Salesforce", 15, -50], ["SAP", 2, 6], ["Darwinbox", 5, 104], ["UiPath", 10, 200]]; // name, actions, angle on the orbit
+  const MV_POL = [["Data Security", "Security", "lock", "#B5483F,#6F1E19", "#932A23,#F3E4E2", 1], ["Management process", "Operations", "clip", "#A68A6E,#634A34", "#85674B,#EEE6DD"],
+    ["Brand Guidelines", "Brand", "spark", "#8C77C2,#4B3A7E", "#684FA1,#EDEAF4"], ["Code of Conduct", "Conduct", "users", "#7D8C40,#39430F", "#4B5715,#E6E8D6"]];
+  const MV_PERKS = [["heart", "Medical insurance"], ["pin", "Air tickets"], ["clock", "Annual health check"], ["card", "Travel insurance"]];
+  const MV_FAQ = [["What is Bloom Multiverse?", "Your workplace, connected: what is waiting for you in Salesforce, UiPath, Darwinbox and SAP, with the people, policies and perks of Bloom, on one home page."],
+    ["How do I access my profile?", "Select your initials at the top of any page."], ["How do I update my personal information?", "Open your profile and choose Edit details."], ["How do I search for information?", "Ask Bloom GPT, at the top of every page."]];
+  const mvHead = (n, k, h, end = "") => `<div class="mv__head"><div><span class="be mv__k"${di(0)}><b>${n}</b><i></i>${k}</span><h5 class="bh mv__h"${di(1)}>${h}</h5></div>${end}</div>`;
+  const mvMarq = (t, cls = "") => `<div class="mv__marq ${cls}" aria-hidden="true"><span>${`${t} · `.repeat(4)}</span></div>`;
+  const mvPage = () => {
+    const app = (m) => m.split(" · ")[0];
+    const hero = `<div class="mv__hero" data-sec><div class="mv__intro"><span class="mv__date glc"${di(0)}><i></i>Friday 25 September</span>`
+      + `<h4 class="bh mv__hi"><span${di(1)}>Good afternoon,</span><span${di(2)}><em>Rashid.</em></span></h4>`
+      + `<p class="mv__sub"${di(3)}>Your workplace, <em>connected.</em></p>`
+      + `<div class="bbtns"${di(4)}><span class="bb" data-act="jump" data-to=".mv__attn">Review 32 actions${ic("arrow-r")}</span><span class="bb bb--o">${ic("inbox")}Open inbox</span></div></div>`
+      + `<div class="mv__orbit"${di(2, "fade")}><i class="mv__ring"></i><i class="mv__ring mv__ring--i"></i><span class="mv__core glc"><b class="bnum" data-count="32">32</b><small>actions waiting</small></span>`
+      + `<span class="mv__spin"><i></i></span><span class="mv__spin mv__spin--i"><i></i></span><span class="mv__nodes">${MV_NODES.map(([n, v, a]) => `<span class="mv__node" style="--a:${a}deg"><span class="mv__up glc"><b>${pad(v)}</b>${n}</span></span>`).join("")}</span></div>`
+      + [["a", "AA", "Joined this week", "Abdulazeez Aladwan"], ["b", "AO", "Birthday today", "Ahmed Obaid"], ["c", ic("lock"), "Policy updated", "Data Security"]]
+        .map(([c, a, k, n], i) => `<span class="mv__fl mv__fl--${c}"${di(i + 4)}><span class="mv__card glc"><i class="bav">${a}</i><span><small>${k}</small><b>${n}</b></span></span></span>`).join("")
+      + `<div class="mv__dock"><span class="mv__scroll"${di(6, "fade")}><i></i>Scroll to explore</span><span class="mv__quick glc"${di(5)}><small>Quick links</small>${MV_APPS.map(([n]) => `<span>${n}</span>`).join("")}<span class="bl">View all${ic("arrow-r")}</span></span><span class="mv__count"${di(6, "fade")}><b>01</b> / 09</span></div></div>`;
+    const attn = `<section class="mv__sec mv__sec--band mv__attn" data-sec><div class="mv__dark">`
+      + mvHead("02", "Live control center", "Your attention <em>required.</em>", `<div class="mv__note"${di(2)}><p>Tasks from your connected apps, most urgent first.</p><span class="mv__live"><i></i>Live</span></div>`)
+      + `<div class="mv__ctl"><div class="mv__apps"><div class="mv__total"${di(2)}><b class="bnum" data-count="32">32</b><small>actions<br>pending</small></div>`
+      + [["All apps", 32], ...MV_APPS].map(([n, v], k) => `<span class="mv__app${k ? "" : " is-on"}" data-act="app" data-app="${k ? n : ""}"${di(k + 3)}><span>${n}</span><b>${pad(v)}</b><i style="--v:${(v / 32 * 100).toFixed(1)}%"></i></span>`).join("")
+      + `<small class="mv__hint"${di(8, "fade")}>Select an app to see only its tasks.</small></div><div class="mv__tasks">`
+      + [...MV_TASKS, ...MV_MORE].map(([t, m, st, late], k) => `<div class="mv__task" data-task data-app="${app(m)}"${di(k + 3)}><span class="mv__ico">${MV_MONO[app(m)]}</span><span class="mv__tt"><b>${t}</b><span><small>${m}</small>`
+        + `<span class="bchip ${late ? "bchip--ox" : ""}">${st}</span><span class="bchip bchip--ok" data-st="approve">${ic("check")}Approved</span><span class="bchip bchip--line" data-st="reject">Rejected</span></span></span>`
+        + `<span class="xv__acts"><span class="bb bb--s" data-act="approve">${ic("check")}Approve</span><span class="bb bb--o bb--s" data-act="reject">Reject</span><span class="xv__done"><span class="bl" data-act="undo">Undo</span></span></span></div>`).join("")
+      + `<div class="mv__foot"${di(9, "fade")}><span class="bl">Show more tasks${ic("arrow-r")}</span><small>Synced 2 minutes ago</small></div></div></div></div></section>`;
+    const welcome = `<section class="mv__sec mv__welcome" data-sec>${mvMarq("Welcome to the Bloom family")}<div class="mv__wel"><div>`
+      + mvHead("03", "New joiners", "Welcome to the <em>Bloom family.</em>") + `<p class="bp"${di(2)}>Abdulazeez Aladwan joined this week. Say hello and help a new colleague settle in.</p></div>`
+      + `<div class="mv__person glc"${di(2)}><span class="mv__mono">AA</span><span class="be">Joined this week</span><b class="mv__name">Abdulazeez Aladwan</b>`
+      + `<span class="mv__chk">${ic("clip")}Onboarding checklist due today · Darwinbox</span><div class="bbtns"><span class="bb bb--s">Say hello${ic("arrow-r")}</span><span class="bb bb--o bb--s">View profile</span></div></div></div></section>`;
+    const news = `<section class="mv__sec mv__sec--band" data-sec><div class="mv__band">` + mvHead("04", "Announcements", "This week at <em>Bloom.</em>")
+      + `<div class="mv__ann"><span class="mv__bday"${di(2, "mask")}><b>AO</b><i>${ic("heart")}</i></span><div class="mv__wish"><span class="be"${di(3)}>Birthday today</span><span class="mv__hb"${di(3)}>Happy birthday,</span>`
+      + `<b class="mv__who"${di(4)}>Ahmed.</b><p${di(5)}>Ahmed Obaid celebrates today.</p><span class="bb"${di(6)}>Send wishes${ic("arrow-r")}</span></div>`
+      + `<div class="mv__alist"><small${di(3)}>This week</small>${[["AO", "Birthday today", "Ahmed Obaid"], ["AA", "Joined this week", "Abdulazeez Aladwan"], [ic("lock"), "Policy updated", "Data Security"]]
+        .map(([a, k, n], i) => `<span class="mv__ai${i ? "" : " is-on"}"${di(i + 4)}><i class="bav">${a}</i><span><small>${k}</small><b>${n}</b></span></span>`).join("")}</div></div></div></section>`;
+    const policies = `<section class="mv__sec" data-sec>` + mvHead("05", "Policies", "Explore <em>policies.</em>", `<span class="bl"${di(2)}>Browse all policies${ic("arrow-r")}</span>`)
+      + `<div class="mv__chips"${di(2)}>${["All", ...MV_POL.map((p) => p[1])].map((c, k) => `<span class="mv__chip${k ? "" : " is-on"}" data-act="pol" data-cat="${k ? c : ""}">${c}</span>`).join("")}</div>`
+      + `<div class="mv__pols">${MV_POL.map(([t, c, i, art, tone, upd], k) => `<div class="mv__pol glc" data-cat="${c}" style="--a1:${art.split(",")[0]};--a2:${art.split(",")[1]};--ct:${tone.split(",")[0]};--t:${tone.split(",")[1]}"${di(k + 3)}>`
+        + `<span class="mv__art">${ic(i)}</span><span class="mv__tags"><span class="bchip">${c}</span>${upd ? `<span class="bchip bchip--line">Updated</span>` : ""}</span><b>${t}</b><span class="bl">Read policy${ic("arrow-r")}</span></div>`).join("")}</div></section>`;
+    const life = `<section class="mv__sec mv__life" data-sec>${mvMarq("Communities · Discounts · Perks", "mv__marq--life")}<div class="mv__lifeh"><span class="be mv__k"${di(0)}><b>06</b><i></i>Life at Bloom</span>`
+      + `<h5 class="bh mv__h mv__h--xl"${di(1)}>Life at <em>Bloom.</em></h5><p class="bp"${di(2)}>Communities, discounts and perks for everyone at Bloom.</p></div>`
+      + `<div class="mv__dark mv__clubs"><div class="mv__clubk"><span class="be"${di(3)}>Communities</span><h5 class="bh mv__h"${di(4)}>Sports &amp; <em>communities.</em></h5><p${di(5)}>Play, train and meet colleagues outside work.</p><span class="bl"${di(6)}>See all groups${ic("arrow-r")}</span></div>`
+      + `<div class="mv__club mv__club--cricket"${di(4, "mask")}><b>Cricket</b><span class="bb bb--s">Join group${ic("arrow-r")}</span></div><div class="mv__club mv__club--yoga"${di(5, "mask")}><b>Yoga</b><span class="bb bb--o bb--s">Join group</span></div>`
+      + `<div class="mv__club mv__club--more"${di(6, "mask")}><i class="bic">${ic("plus")}</i><b>More groups</b></div></div></section>`;
+    const deals = `<section class="mv__sec" data-sec>` + mvHead("07", "Savings", "Exclusive retail <em>discounts.</em>", `<span class="bl"${di(2)}>All discounts${ic("arrow-r")}</span>`)
+      + `<div class="mv__deals">${[[`<i class="logo logo--marriott"></i>`, "Downtown Abu Dhabi", 30], [`<i class="logo logo--edition"></i>`, "The Abu Dhabi EDITION", 30], [`<b>EIIC</b>`, "Partner offer", 15]]
+        .map(([l, n, v], k) => `<div class="mv__deal glc"${di(k + 2)}><span class="mv__logo">${l}</span><small>${n}</small><b class="mv__pct"><span data-count="${v}">${v}</span>%<small>off</small></b><span class="bb bb--o bb--s">View offer</span></div>`).join("")}`
+      + `<div class="mv__all glc"${di(5)}><i class="bic">${ic("arrow-r")}</i>More offers</div></div></section>`;
+    const perks = `<section class="mv__sec" data-sec>` + mvHead("08", "Benefits", "Your workplace <em>perks.</em>")
+      + `<div class="mv__perks" data-on="0"><div class="mv__plist">${MV_PERKS.map(([i, t], k) => `<span class="mv__pi glc${k ? "" : " is-on"}" data-act="perk" data-k="${k}"${di(k + 2)}><i class="bic">${ic(i)}</i>${t}<svg class="ico chev" aria-hidden="true"><use href="#i-chev-r"/></svg></span>`).join("")}</div>`
+      + `<div class="mv__pfs"${di(2, "mask")}>${MV_PERKS.map(([i, t], k) => `<div class="mv__pf" data-k="${k}">${ic(i)}<span class="be">Perk ${pad(k + 1)} of ${pad(MV_PERKS.length)}</span><b>${t}</b><p>See what it covers and how to use it.</p><span class="bb bb--s">View details${ic("arrow-r")}</span></div>`).join("")}</div></div></section>`;
+    const faq = `<section class="mv__sec" data-sec><div class="mv__faq"><div>` + mvHead("09", "Support", "Frequently asked <em>questions.</em>")
+      + `<div class="mv__help glc"${di(3)}><b>Still need help?</b><small>Ask Bloom GPT, or write to the support team.</small><span class="bb bb--s">Contact support${ic("arrow-r")}</span></div></div>`
+      + `<div class="mv__qs">${MV_FAQ.map(([q, a], k) => `<div class="mv__q${k ? "" : " is-open"}" data-act="faq"${di(k + 2)}><b>${q}</b><i>${ic("plus")}</i><p><span>${a}</span></p></div>`).join("")}</div></div></section>`;
+    const end = `<footer class="mv__end" data-sec><h5 class="bh"${di(0)}>Where human and AI <em>work together.</em></h5><div class="mv__endrow"${di(1, "fade")}><span class="bn__brand">${sym()}<i class="wm"></i></span><span class="mv__enddesc">Multiverse</span>`
+      + `<span class="mv__stores"><span>Google Play</span><span>App Store</span></span><span class="bl" data-act="jump" data-to=".mv__hero">Back to top${ic("arrow-r")}</span></div></footer>`;
+    return `<div class="mv">${hero}${attn}${welcome}${news}${policies}${life}${deals}${perks}${faq}${end}</div>`;
+  };
   const MOCKS_B = {
     universal: () => scrB("group", "Direction B concept: Bloom Universal, the gateway to six Bloom businesses", bnav("Universal", ["Home", "Businesses"], blang)
       + `<div class="bbody"><div class="xu" data-on="0"><div class="xu__text"><span class="be"${di(0)}>The Bloom experience</span>`
@@ -2989,18 +3307,7 @@ body[data-tone="ox"] { background: var(--ox); }
         .map(([i, t, s], x) => `<div class="xp__type" data-act="req"${di(x + 3)}><span class="xp__n">${pad(x + 1)}</span><span class="bic">${ic(i)}</span><b>${t}</b><small>${s}</small><span class="bl">Raise a request${ic("arrow-r")}</span></div>`).join("")}</div>`
       + `<div class="xp__list">${[["user", "Agency information update"], ["user", "Agent information update"], ["card", "Delayed commission payment"], ["card", "Incorrect commission payment"]]
         .map(([i, t], x) => `<div class="xp__li"${di(x + 6)}><span class="bic">${ic(i)}</span>${t}<svg class="ico chev" aria-hidden="true"><use href="#i-chev-r"/></svg></div>`).join("")}</div></div></div>`),
-    multiverse: () => scrB("people", "Direction B concept: Bloom Multiverse, the employee home", bnav("Multiverse", ["Home", "Inbox", "Bloom GPT"], bbell + bav("R"))
-      + `<div class="bbody"><div class="xv"><div class="xv__home"><span class="be"${di(0)}>Your workplace, connected</span><h4 class="bh bh--m"${di(1)}>Good afternoon, <em>Rashid.</em></h4>`
-      + `<p class="bp"${di(2)}>32 things are waiting across four of your apps. Salesforce needs you most today.</p>`
-      + `<div class="xv__chips"${di(3)}><span class="bchip bchip--ox">2 overdue</span><span class="bchip">3 due today</span><span class="bchip bchip--line">27 this week</span></div>`
-      + `<div class="bbtns"${di(4)}><span class="bb">Review 32 actions${ic("arrow-r")}</span><span class="bb bb--o">Open inbox</span></div>`
-      + `<div class="xv__moments"${di(5)}>${[["AA", "Joined this week", "Abdulazeez Aladwan"], ["AO", "Birthday today", "Ahmed Obaid"]].map(([a, k, n]) => `<span><i class="bav">${a}</i><span><small>${k}</small><b>${n}</b></span></span>`).join("")}</div>`
-      + `<div class="xv__apps"${di(6)}><span class="xv__bar">${MV_APPS.map(([, v], k) => `<i${di(k + 7, "grow", `--v:${v}`)}></i>`).join("")}</span>`
-      + `<span class="xv__legend">${MV_APPS.map(([n, v]) => `<span>${n}<b>${pad(v)}</b></span>`).join("")}</span></div></div>`
-      + `<div class="xv__tasks bcard"${di(1)}><div class="xv__head"><span class="be">Your attention required</span><small>Most urgent first</small></div>`
-      + MV_TASKS.map(([t, m, st, late], k) => `<div class="xv__task" data-task${di(k + 2)}><b>${t}</b><span><span class="bchip ${late ? "bchip--ox" : ""}">${st}</span><span class="bchip bchip--ok" data-st="approve">Approved</span><span class="bchip bchip--line" data-st="reject">Rejected</span></span>`
-        + `<small>${m}</small><span class="xv__acts"><span class="bb bb--s" data-act="approve">${ic("check")}Approve</span><span class="bb bb--o bb--s" data-act="reject">Reject</span><span class="xv__done"><span class="bl" data-act="undo">Undo</span></span></span></div>`).join("")
-      + `<div class="xv__foot"><span class="bl">Show more tasks${ic("arrow-r")}</span><small>Synced 2 minutes ago</small></div></div></div></div>`)
+    multiverse: () => scrB("people", "Direction B concept: Bloom Multiverse, the employee home, as its whole page", bnav("Multiverse", ["Home", "Inbox", "Bloom GPT"], bbell + bav("R")) + mvPage(), "scr--long")
   };
 
   /* Interactions inside the product screens. Live in the full-size view and on 07d's own cards; hover previews also run on 07e.
@@ -3017,6 +3324,18 @@ body[data-tone="ox"] { background: var(--ox); }
       return;
     }
     if (a === "req") { $$(".xp__type", el.parentElement).forEach((x) => { const o = x === el && !x.classList.contains("is-on"); x.classList.toggle("is-on", o); x.setAttribute("aria-pressed", String(o)); }); return; }
+    // Multiverse's whole page: filter tasks by app and policies by kind, pick a perk, open an answer, jump within the page
+    const pick = (sel, box) => $$(sel, box).forEach((x) => { x.classList.toggle("is-on", x === el); x.setAttribute("aria-pressed", String(x === el)); });
+    if (a === "app") { const box = el.closest(".mv__ctl"); pick(".mv__app", box); $$(".mv__task", box).forEach((t) => t.classList.toggle("is-out", !!el.dataset.app && t.dataset.app !== el.dataset.app)); return; }
+    if (a === "pol") { const box = el.closest(".mv__sec"); pick(".mv__chip", box); $$(".mv__pol", box).forEach((p) => p.classList.toggle("is-dim", !!el.dataset.cat && p.dataset.cat !== el.dataset.cat)); return; }
+    if (a === "perk") { const box = el.closest(".mv__perks"); box.dataset.on = el.dataset.k; pick(".mv__pi", box); return; }
+    if (a === "faq") { el.setAttribute("aria-expanded", String(el.classList.toggle("is-open"))); return; }
+    if (a === "jump") {
+      const sc = el.closest(".zoom__scroll"), to = $(el.dataset.to, el.closest(".scr--b")); if (!sc || !to) return;
+      const k = el.closest(".fit").getBoundingClientRect().width / 874;
+      sc.scrollTo({ top: sc.scrollTop + to.getBoundingClientRect().top - sc.getBoundingClientRect().top - (to.matches(".mv__hero") ? 16 : 72 * k), behavior: reduce ? "auto" : "smooth" });
+      return;
+    }
     const t = el.closest("[data-task]"); if (!t) return;
     if (a === "undo") delete t.dataset.state; else t.dataset.state = a;
   }
@@ -3036,7 +3355,8 @@ body[data-tone="ox"] { background: var(--ox); }
   // In the full-size view a screen becomes a live group: its controls take focus and announce their state.
   const armB = (root) => {
     $$(".scr--b", root).forEach((s) => s.setAttribute("role", "group"));
-    $$("[data-act]", root).forEach((el) => { el.tabIndex = 0; el.setAttribute("role", "button"); if (/^(biz|type|req)$/.test(el.dataset.act)) el.setAttribute("aria-pressed", String(el.classList.contains("is-on") || (el.dataset.act === "biz" && el.dataset.k === "0"))); });
+    $$("[data-act]", root).forEach((el) => { el.tabIndex = 0; el.setAttribute("role", "button"); if (/^(biz|type|req|app|pol|perk)$/.test(el.dataset.act)) el.setAttribute("aria-pressed", String(el.classList.contains("is-on") || (el.dataset.act === "biz" && el.dataset.k === "0")));
+      if (el.dataset.act === "faq") el.setAttribute("aria-expanded", String(el.classList.contains("is-open"))); });
   };
 
   /* 07e: before and after, direction B */
@@ -3045,7 +3365,7 @@ body[data-tone="ox"] { background: var(--ox); }
     masterplan: [["The Bloom symbol and wordmark appear", "Filters sit in one Bloom Homes panel", "Book appointment takes oxblood", "Sandstone marks the chosen facade"], ["The satellite master plan", "Facade types and unit counts"]],
     home: [["Oxblood replaces the black buttons", "A five-step tracker shows the buying step", "Price and Iskan loan sit in one card", "The unit name sets in the Bloom serif"], ["Unit photography and details", "Book appointment and reserve unit"]],
     partners: [["One serif replaces the mixed headings", "Dusk replaces five pastel tiles", "Raise a request becomes one oxblood link", "The Bloom symbol signs the navigation"], ["Request types and their wording", "Home, Leads, Inventory and My Team"]],
-    multiverse: [["The wordmark returns whole, in oxblood; Multiverse becomes a descriptor", "One serif headline replaces the heavy sans, gradient and script", "Oxblood takes Review and Approve; Marina replaces electric blue", "The app orbit becomes counts beside the tasks"], ["32 actions from four connected apps", "Approve or reject in place, most urgent first"]]
+    multiverse: [["The wordmark returns whole, in oxblood; Multiverse becomes a descriptor", "One serif headline replaces the heavy sans, gradient and script", "Oxblood takes Review and Approve; Marina replaces electric blue", "A light hero: one greeting, two actions, the app orbit in glass"], ["32 actions from four connected apps", "The whole page, from tasks and new joiners to perks and questions"]]
   };
   if ($("#bb-ba")) {
     const bbTabs = $("#bb-tabs"), baB = makeBA($("#bb-ba"), $("#bb-knob"));
@@ -3066,7 +3386,7 @@ body[data-tone="ox"] { background: var(--ox); }
   /* 07f: the family, direction B */
   if ($("#bx-mosaic")) {
     $("#bx-mosaic").innerHTML = ["universal", "masterplan", "home", "partners", "multiverse"].map((k, i) => `<div class="bx-frame rv${i ? "" : " bx-frame--hero"}" style="--d:${i + 1}"><div class="fit">${MOCKS_B[k]()}</div><button class="shot__hit" type="button" data-zoom="mockb:${k}" aria-label="View the ${esc(PRODUCTS[k].n)} direction B concept full size"></button></div>`).join("")
-      + `<div class="bx-band rv" style="--d:6"><div class="bx-apps__row">${BXP.map(bxIcon).join("")}</div><p>One wordmark, one symbol, one action colour. <em>A view for every product.</em><small>Concepts for discussion, written with content from today's screens. Select a screen to see it full size.</small></p></div>`;
+      + `<div class="bx-band rv" style="--d:6"><div class="bx-apps__row">${BXP.map(bxIcon).join("")}</div><p>One wordmark, one symbol, one action colour. <em>A view for every product.</em><small>Concepts for discussion, written with content from today's screens. Select a screen to see it full size; Bloom Multiverse opens as its whole page.</small></p></div>`;
     fitAll($("#bx-mosaic"));
   }
 
