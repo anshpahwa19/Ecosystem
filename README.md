@@ -1,14 +1,16 @@
 # Bloom Digital Ecosystem — stakeholder proposal
 
-The glimpse slides (07a–07f) come in two design directions. Everything else in the deck is identical.
+The glimpse slides (07a–07f) come in two design directions. Everything else in the deck is identical. The mobile apps have their own slides, built as a separate deck for now.
 
 | Direction | Idea | Standalone file | Artifact build |
 | --- | --- | --- | --- |
 | A · One language | One shared UI language, an accent per audience | `Bloom-Digital-Ecosystem-Proposal.html` | `dist/bloom-digital-ecosystem.html` |
 | B · Drawn from Bloom | A symbol traced from the wordmark's letter o, colours sampled from Bloom's own screens and photography, serif-led type | `Bloom-Digital-Ecosystem-Proposal-B.html` | `dist/bloom-digital-ecosystem-b.html`, published privately at https://claude.ai/artifact/GQNGMTPC3BzjuaKt34UyVy |
+| Mobile apps · direction B | The three apps today (05e–05g) and as one Bloom (07g–07i) | `Bloom-Mobile-Apps.html` | `dist/bloom-mobile-apps.html`, published privately at https://claude.ai/artifact/WCkCVhQCUfD2djTRbpsGUn |
 
 - The employee platform shown is **Bloom Multiverse**, live today (`src/screens/bloom-multiverse-home.webp`, its home page as shared by the Bloom team). Bloom@Go was revamped as Bloom Multiverse; the concepts keep its name and its content (actions waiting across connected apps, approvals in place).
-- `src/proposal.html` — the single source for both. Slides and notes tagged `data-dir="a"` or `data-dir="b"` only appear in that direction's build. Logos live in `src/assets/`, product screens in `src/screens/`; the build inlines them.
+- `src/proposal.html` — the single source for all three builds. Slides and notes tagged `data-dir="a"` or `data-dir="b"` only appear in that direction's build. Slides tagged `data-set="mobile"` only appear in builds whose set is `"mobile"` or `"all"`; untagged slides are the web deck. Logos live in `src/assets/`, product screens in `src/screens/`; the build inlines them.
+- **Combined deck.** Direction B builds with set `"all"` (`BUILDS` in `build.py`): the mobile slides sit after 05d and 07f, numbered 05e–05g and 07g–07i, with source 17 and the mobile notes in the appendix. Direction A stays web only; the mobile build is direction B, mobile slides only.
 
 Rebuild after editing the source:
 
@@ -26,3 +28,9 @@ Open either standalone file in a browser. Navigate with the arrow keys, the chap
 - **Symbol rules.** The symbol only signs: whole, in one colour (oxblood, or white on a dark field), in lockups, app icons and favicons. It is never recoloured in parts, never a chart, tracker or loader, and never a bullet in text.
 - **Product views.** One Bloom, five views: no new marks. Each product is a crop of the same flower (`VIEWS` in the source): Universal the whole flower, Homes one petal's arch, Community the centre where all five meet, Partners the wordmark's two o's woven together, Multiverse the wordmark's m, traced as it is. App icons show the view white on oxblood; lockup rows end with the same view, oxblood on cream.
 - **Product screens.** The five concept screens (07e, 07f and the full-size view) and 07d's product cards share one product language: oxblood for primary actions and selected states, warm paper, sand and stone surfaces, Cormorant display headlines over Plus Jakarta Sans controls, and each product's sampled accent. Motion runs on four tempos (micro .18s, component .34s, reveal .56s, signature .95s), replays whenever a screen comes into view and is off under reduced motion. In the full-size view the screens are live: choose a business on Universal, filter facades on the master plan, pick a request type on Partners, approve or reject tasks on Multiverse; 07d's approval card works on the slide.
+
+## Mobile apps
+
+- **Screens.** Home screens supplied by the Bloom team: Bloom Partners (`src/screens/bloom-partners-app.webp`, 818 px wide), the home-buying app (`home-buying-app.jpg`, embedded as supplied) and the Bloom Community App (`bloom-community-app.webp`, straightened out of a promotional device frame, its bezel corners painted over). In the phone frames the content scrolls while each app's fixed parts stay pinned: status bars, Partners' tab bar and the floating Book Appointment.
+- **05e–05g, today.** The three apps in phone frames; the same jobs side by side (Bloom in view, greeting, main action, navigation, colour); and what it means: 1 app with the wordmark in view, 3 greeting styles, 3 navigation patterns, 5 reds and none on a main action.
+- **07g–07i, direction B.** 07g puts today's screen beside the concept on a dark stage lit in the app's accent, then points out each change on the phone. 07h is the app shell's anatomy on oxblood: app bar signed by the symbol and wordmark, serif greeting, one accent, cards, one oxblood action docked above the tab bar, each with a leader line into the phone. It is tuned per app: Partners in Dusk, Homes in Sandstone, Community in Garden. 07i shows the three concepts together on one stage with their icons. Concept screens are drawn at 390 × 844 (`MOBILE` in the source) with content from today's screens and the Bloom Community App page.
