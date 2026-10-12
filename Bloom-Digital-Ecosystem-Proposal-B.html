@@ -747,6 +747,7 @@ body[data-tone="ox"] { background: var(--ox); }
 .bx-app { display: grid; justify-items: center; gap: 10px; }
 .bx-app__ic { position: relative; display: grid; place-items: center; width: 72px; height: 72px; border-radius: 18px; overflow: hidden; background: var(--ox); box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .1), 0 18px 30px -16px rgba(0, 0, 0, .9); }
 .bx-app__art { display: block; width: 100%; height: 100%; }
+#bx-apps .bx-app__ic { width: 60px; height: 60px; border-radius: 15px; }
 .bx-app > span { font-size: 12.5px; font-weight: 600; color: rgba(255, 255, 255, .84); }
 .bx-endorse { display: flex; flex-direction: column; gap: 6px; padding: 16px 24px; border-radius: 18px; background: var(--paper-2); }
 .bx-en { display: flex; align-items: center; gap: 12px; height: 42px; padding: 0 14px; border-radius: 10px; background: #FFFFFF; }
@@ -2786,7 +2787,7 @@ body[data-tone="ox"] { background: var(--ox); }
           <div id="bx-rows" style="display:contents"></div>
         </div>
         <div class="bx-bot rv" style="--d:3">
-          <div class="bx-apps"><span class="label">App icons · one Bloom, five views</span><div class="bx-apps__row" id="bx-apps"></div></div>
+          <div class="bx-apps"><span class="label">App icons · one Bloom, six views</span><div class="bx-apps__row" id="bx-apps"></div></div>
           <div class="bx-endorse">
             <span class="label">Partner brands lead</span>
             <div class="bx-en"><i class="logo logo--edition" role="img" aria-label="The Abu Dhabi EDITION"></i><i class="bx-en__div" aria-hidden="true"></i><span class="bx-sig" role="img" aria-label="Bloom"><span data-sym></span><i class="wm"></i></span></div>
@@ -3465,13 +3466,14 @@ body[data-tone="ox"] { background: var(--ox); }
   // fill, text tone, tint. Base colours sampled from Bloom (see 07c); tints mixed with paper.
   const FAMB = { group: ["#932A23", "#932A23", "#F3E4E2"], homes: ["#85674B", "#85674B", "#EEE6DD"], community: ["#4B5715", "#4B5715", "#E6E8D6"], partners: ["#684FA1", "#684FA1", "#EDEAF4"], people: ["#47699E", "#47699E", "#E9EDF3"] };
   const famB = (f) => `--c:${FAMB[f][0]};--ct:${FAMB[f][1]};--t:${FAMB[f][2]}`;
-  // Product views: one Bloom, five views. Each product is a crop of the same flower, never a new mark.
+  // Product views: one Bloom, six views. Each product is a crop of the same flower, never a new mark.
   // Windows are in flower units (the flower spans about -100..100): the whole flower, one petal's arch, the centre where
   // all five meet, two petals weaving, and the petals radiating from a corner.
   const PETALS = [0, 1, 2, 3, 4].map((k) => `<use href="#b-p${k}"/>`).join("");
   // Partners and Multiverse take letters from the wordmark itself: its two o's, woven (#b-pair), and its m (#b-m).
   const VIEWS = { group: [[-118, -120, 236, 236], PETALS], homes: [[-58, -104, 116, 116], PETALS], community: [[-52, -54, 106, 106], PETALS],
-    partners: [[-92, -92, 184, 184], `<use href="#b-pair"/>`], people: [[-118, -118, 236, 236], `<use href="#b-m"/>`] };
+    partners: [[-92, -92, 184, 184], `<use href="#b-pair"/>`], people: [[-118, -118, 236, 236], `<use href="#b-m"/>`],
+    education: [[-45, -85, 90, 90], `<g transform="rotate(180)">${PETALS}</g>`] };
   const view = (f, cls, bg, fg) => { const [[x, y, w, h], art] = VIEWS[f];
     return `<svg class="${cls}" viewBox="${x} ${y} ${w} ${h}" aria-hidden="true"><rect x="${x}" y="${y}" width="${w}" height="${h}" style="fill:${bg}"/><g style="fill:${fg}">${art}</g></svg>`; };
   // A photograph seen through the counter of the wordmark's o, centred on (cx, cy) of the source at scale s.
@@ -3496,7 +3498,8 @@ body[data-tone="ox"] { background: var(--ox); }
     ["homes", "Homes", "Buyers and owners · master plans, home-buying", "<b>One petal's arch.</b> Structure, shelter, a place to live."],
     ["community", "Community", "Residents", "<b>The centre.</b> Where all five petals meet, people gather."],
     ["partners", "Partners", "Brokers and agencies", "<b>Two o's, woven.</b> Two forms, working as one."],
-    ["people", "Multiverse", "Bloom Multiverse today · employees", "<b>The m of Bloom.</b> Where Bloom ends, Multiverse begins."]];
+    ["people", "Multiverse", "Bloom Multiverse today · employees", "<b>The m of Bloom.</b> Where Bloom ends, Multiverse begins."],
+    ["education", "Education", "Families · schools and nurseries", "<b>One petal, rising.</b> Growth from the centre, a first step."]];
   const bxIcon = ([f, d]) => `<span class="bx-app"><span class="bx-app__ic" role="img" aria-label="Bloom ${d} app icon: a view of the Bloom flower, or its o">${view(f, "bx-app__art", "var(--ox)", "#FFFFFF")}</span><span>${d}</span></span>`;
   if ($("#bx-rows")) {
     $("#bx-rows").innerHTML = BXP.map(([f, d, w, why]) => `<div class="bx-row" role="img" aria-label="Bloom ${d} lockup with its view of the flower">${sym()}<i class="wm"></i><em>${d}</em><small><span class="bx-why">${why}</span>${esc(w)}</small>${view(f, "bx-view", "var(--paper-2)", "var(--ox)")}</div>`).join("");
