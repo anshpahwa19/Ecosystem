@@ -25,6 +25,7 @@ ASSETS = {
     "{{SHOT_MASTERPLAN}}": "screens/al-metlaa-master-plan.webp",
     "{{SHOT_UNIVERSAL}}": "screens/bloom-universal.webp",
     # HD photographs supplied for the Universal concept's gallery (illustrative), cropped to 720 x 1006
+    "{{UNI_PROPERTIES}}": "screens/universal-properties.webp",
     "{{UNI_EDUCATION}}": "screens/universal-education.webp",
     "{{UNI_RETAIL}}": "screens/universal-retail.webp",
     "{{UNI_HOSPITALITY}}": "screens/universal-hospitality.webp",

@@ -20,7 +20,7 @@
   --ease: cubic-bezier(.16, 1, .3, 1);
   --spring: cubic-bezier(.34, 1.4, .64, 1);
   --shot-home: url({{SHOT_HOME}}); --shot-partners: url({{SHOT_PARTNERS}}); --shot-multiverse: url({{SHOT_MULTIVERSE}}); --shot-masterplan: url({{SHOT_MASTERPLAN}}); --shot-universal: url({{SHOT_UNIVERSAL}});
-  --uni-education: url({{UNI_EDUCATION}}); --uni-retail: url({{UNI_RETAIL}}); --uni-hospitality: url({{UNI_HOSPITALITY}}); --uni-landscape: url({{UNI_LANDSCAPE}}); --uni-facilities: url({{UNI_FACILITIES}});
+  --uni-properties: url({{UNI_PROPERTIES}}); --uni-education: url({{UNI_EDUCATION}}); --uni-retail: url({{UNI_RETAIL}}); --uni-hospitality: url({{UNI_HOSPITALITY}}); --uni-landscape: url({{UNI_LANDSCAPE}}); --uni-facilities: url({{UNI_FACILITIES}});
   --shot-papp: url({{APP_PARTNERS}}); --shot-happ: url({{APP_HOMES}}); --shot-capp: url({{APP_COMMUNITY}});
   --wordmark: url({{IMG_WORDMARK}});
   --b-paper: #F6F4F0; --b-line: #E6E1D8; --b-body: #535464;
@@ -3243,8 +3243,8 @@ body[data-tone="ox"] { background: var(--ox); }
   const di = (i, kind = "", css = "") => ` data-in="${kind}" style="--i:${i};${css}"`;
   // Universal's gallery: one 252 x 351 crop per business, inside its own photo on today's page (TILES order), clear of the captions
   const XU_CROPS = [[54, 466, 432, 603], [600, 465, 180, 251], [1080, 465, 180, 251], [1730, 465, 180, 251], [700, 812, 180, 251], [1580, 812, 180, 251]];
-  // HD photographs supplied for the concept (illustrative, not Bloom's own sites), 720 x 1006 portrait crops; null keeps today's page crop
-  const XU_HD = [null, "education", "retail", "hospitality", "landscape", "facilities"];
+  // HD photographs supplied for the concept (illustrative, not Bloom's own sites), 720 x 1006 portrait crops; null would keep today's page crop
+  const XU_HD = ["properties", "education", "retail", "hospitality", "landscape", "facilities"];
   const B_TYPES = [["Type 1", 391], ["Type 2", 727, 1], ["Type 3", 740], ["Type 4", 389]];
   /* Bloom Multiverse as its whole home page, in the order today's live page runs (source 14 and the full-page capture).
      The first 874 x 454 is a light hero, and it is all the slides show; the full-size view scrolls the rest. */
