@@ -1465,11 +1465,10 @@ body[data-tone="ox"] { background: var(--ox); }
 .scr--b.scr--long { height: auto; padding-bottom: 14px; background: #F7F3EC; --mv-hi: color-mix(in srgb, var(--c) 45%, #FFFFFF); --mv-on: rgba(247, 243, 236, .66); }
 :is(.zoom, .ba) .scr--b.scr--long { animation: none; }
 .scr--long .bn { z-index: 6; will-change: translate; transition: left .55s var(--mo-spring), right .55s var(--mo-spring), top .4s var(--mo-ease), height .4s var(--mo-ease), background-color .3s, box-shadow .3s; }
-/* In the full-size view the nav rides the scroll on the compositor (a scroll-driven animation on the viewer's own scroller, so it
-   never lags or stutters), and once the hero is behind it squeezes into a compact, denser glass pill: the descriptor folds away. */
-#zoom-scroll { scroll-timeline: --zs block; }
-@keyframes mvFollow { to { translate: 0 var(--mv-max, 0px); } }
-.zoom .scr--long .bn.is-follow { animation: glDrop .6s var(--mo-ease) both, mvFollow 1s linear both; animation-timeline: auto, --zs; }
+/* In the full-size view the nav is lifted out of the scrolling page and pinned over the top of the viewer at the page's scale,
+   so it never moves with the scroll; past the hero it squeezes into a compact, denser glass pill and the descriptor folds away. */
+.zoom__nav { position: absolute; z-index: 3; width: 874px; height: 80px; padding: 0; transform-origin: 0 0; pointer-events: none; background: none !important; animation: none !important; }
+.zoom__nav .bn { pointer-events: auto; }
 .scr--long .bn__desc { max-width: 150px; overflow: hidden; transition: max-width .5s var(--mo-spring), opacity .25s, padding-left .5s var(--mo-ease), margin-left .5s var(--mo-ease), border-color .3s; }
 .scr--long .bn.is-squeezed { left: 172px; right: 172px; top: 8px; height: 48px; background: rgba(255, 255, 255, .74); -webkit-backdrop-filter: blur(24px) saturate(1.8); backdrop-filter: blur(24px) saturate(1.8);
   box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .9), inset 0 1px 0 #FFFFFF, 0 20px 40px -18px rgba(28, 26, 25, .5); }
@@ -2986,31 +2985,22 @@ body[data-tone="ox"] { background: var(--ox); }
      the scroll and each section reveals, and counts, as it arrives. */
   let longIO = null;
   function longB(zm, sc) {
-    longIO?.disconnect();
+    longIO?.disconnect(); $(".zoom__nav", zoom)?.remove();
     const s = $(".scr--long", zm); if (!s) return null;
-    const f = s.parentElement, nav = $(".bn", s); f.style.aspectRatio = `874 / ${s.offsetHeight}`;
+    const f = s.parentElement; f.style.aspectRatio = `874 / ${s.offsetHeight}`;
     return () => {
-      // the page's offset inside the scroller, and its scale, once it is laid out at its full-size width
-      const top = f.getBoundingClientRect().top - sc.getBoundingClientRect().top + sc.scrollTop, k = f.getBoundingClientRect().width / 874;
-      const css = !reduce && CSS.supports("animation-timeline: scroll()");
+      const nav = $(".bn", s), bar = document.createElement("div");
+      bar.className = "zoom__nav scr--b scr--long"; bar.style.cssText = s.getAttribute("style"); bar.append(nav); zoom.append(bar);
+      const place = () => { const z = zoom.getBoundingClientRect(), r = f.getBoundingClientRect(), q = sc.getBoundingClientRect(), k = r.width / 874, c = zoom.offsetWidth / z.width;
+        bar.style.left = `${(r.left - z.left) * c}px`; bar.style.top = `${(q.top - z.top + Math.max(0, r.top - q.top + sc.scrollTop)) * c}px`; bar.style.transform = `scale(${k * c})`; };
+      place(); new ResizeObserver(place).observe(sc);
       let sq = false, raf = 0;
-      const follow = () => {
-        const y = Math.max(0, (sc.scrollTop - top) / k);
-        if (!css) nav.style.translate = `0 ${Math.round(Math.min(y, s.offsetHeight - 80))}px`;
-        if ((y > 40) !== sq) { sq = !sq; nav.classList.toggle("is-squeezed", sq); }
-      };
-      if (css) {
-        nav.style.setProperty("--mv-max", `${((sc.scrollHeight - sc.clientHeight - top) / k).toFixed(1)}px`);
-        nav.style.animationRange = `normal, ${Math.round(top)}px 100%`;
-        nav.classList.add("is-follow");
-      }
-      sc.onscroll = () => { if (!raf) raf = requestAnimationFrame(() => { raf = 0; follow(); }); };
-      follow();
+      sc.onscroll = () => { if (!raf) raf = requestAnimationFrame(() => { raf = 0; const v = sc.scrollTop > 60; if (v !== sq) { sq = v; nav.classList.toggle("is-squeezed", v); } }); };
       longIO = new IntersectionObserver((es) => es.forEach((e) => { if (!e.isIntersecting) return; e.target.classList.add("is-in"); if (e.target.matches("section")) countUp(e.target); longIO.unobserve(e.target); }), { root: sc, threshold: .12 });
       $$("[data-sec]", s).forEach((x) => longIO.observe(x));
     };
   }
-  function closeZoom() { if (zoom.hidden) return; zoom.hidden = true; if (zoomFrom) zoomFrom.focus({ preventScroll: true }); }
+  function closeZoom() { if (zoom.hidden) return; zoom.hidden = true; $(".zoom__nav", zoom)?.remove(); if (zoomFrom) zoomFrom.focus({ preventScroll: true }); }
   document.addEventListener("click", (e) => { const z = e.target.closest("[data-zoom]"); if (z) openZoom(z.dataset.zoom, z); });
   $("#zoom-x").addEventListener("click", closeZoom);
 
