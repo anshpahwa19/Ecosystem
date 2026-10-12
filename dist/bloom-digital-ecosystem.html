@@ -30,7 +30,7 @@
 *, *::before, *::after { box-sizing: border-box; }
 html, body { height: 100%; }
 body { margin: 0; overflow: hidden; background: var(--paper); color: var(--ink); font-family: var(--sans); -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility; transition: background-color .5s; }
-body[data-tone="red"] { background: var(--red); }
+body[data-tone="red"] { background: radial-gradient(120% 90% at 0% 0%, #D0101F 0%, rgba(208, 16, 31, 0) 60%), radial-gradient(90% 90% at 100% 100%, var(--red-deep) 0%, rgba(126, 0, 8, 0) 70%), var(--red); background-attachment: fixed; }
 h1, h2, h3, h4, h5, h6, p, ul, ol, figure, blockquote { margin: 0; }
 ul, ol { padding: 0; list-style: none; }
 button { font: inherit; color: inherit; cursor: pointer; background: none; border: 0; padding: 0; }
@@ -46,6 +46,9 @@ a { color: inherit; }
 .slide { position: absolute; inset: 0; display: flex; flex-direction: column; gap: 48px; padding: 136px 112px 104px; background: var(--paper); color: var(--ink); opacity: 0; visibility: hidden; transition: opacity .55s var(--ease), visibility 0s linear .55s; }
 .slide.is-current { opacity: 1; visibility: visible; transition-delay: 0s; z-index: 1; }
 .slide--red { background: radial-gradient(120% 90% at 0% 0%, #D0101F 0%, rgba(208, 16, 31, 0) 60%), radial-gradient(90% 90% at 100% 100%, var(--red-deep) 0%, rgba(126, 0, 8, 0) 70%), var(--red); color: var(--on-red); }
+/* red and oxblood slides are see-through: their gradient is painted on the whole window (body[data-tone]), so it runs edge to edge
+   when the window is wider or taller than the 16:9 canvas instead of stopping in a band at the canvas edge */
+.slide.slide--red, .slide.slide--ox { background: transparent; }
 .s-head { display: grid; gap: 14px; max-width: 1180px; }
 .s-body { flex: 1; min-height: 0; position: relative; }
 .is-current .rv { animation: rise .8s var(--ease) both; animation-delay: calc(var(--d, 0) * 90ms + 100ms); }
@@ -674,7 +677,7 @@ body[data-tone="ink"] { background: var(--ink); }
 .slide[data-dir="b"] .hl { color: var(--ox); }
 .slide[data-dir="b"] .s-head { max-width: none; }
 .slide--ox { background: radial-gradient(110% 90% at 100% 0%, #A9372E 0%, rgba(169, 55, 46, 0) 58%), radial-gradient(80% 90% at 0% 100%, #651A14 0%, rgba(101, 26, 20, 0) 70%), var(--ox); color: #FFFFFF; }
-body[data-tone="ox"] { background: var(--ox); }
+body[data-tone="ox"] { background: radial-gradient(110% 90% at 100% 0%, #A9372E 0%, rgba(169, 55, 46, 0) 58%), radial-gradient(80% 90% at 0% 100%, #651A14 0%, rgba(101, 26, 20, 0) 70%), var(--ox); background-attachment: fixed; }
 .slide--ox .label { color: rgba(255, 255, 255, .74); }
 .slide--ox :focus-visible { outline-color: #FFFFFF; }
 .slide--ox .src { color: #FFFFFF; }
