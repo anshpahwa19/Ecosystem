@@ -1778,6 +1778,98 @@ body[data-tone="ox"] { background: var(--ox); }
 @keyframes glDriftM { to { background-position: 14% 8%, 86% 30%, 40% 70%, 0 0; } }
 :is(.mba, .manat) .ms { animation: glDriftM 14s ease-in-out infinite alternate; }
 
+/* scrollable concept feeds (Partners, Homes): content runs under the floating glass bar and dock; one 12px rhythm, 20px cards */
+.ms__body--feed { top: 0 !important; bottom: 0; gap: 12px; padding: 122px 18px 190px; overflow-y: auto; overscroll-behavior: contain; scrollbar-width: none; }
+.ms__body--feed::-webkit-scrollbar { display: none; }
+.ms__body--feed > * { flex: none; }
+.ms__body--feed .ms__hi { padding: 4px 4px 2px; }
+.ms .mf__card { display: grid; gap: 12px; padding: 16px; }
+.mf__head { display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 0 2px; }
+.mf__head > b { font-size: 15px; font-weight: 800; letter-spacing: -.01em; }
+.ms__body--feed > .mf__head { padding: 6px 4px 0; }
+.mf__hero { position: relative; height: 176px; overflow: hidden; border-radius: 24px; color: #FFFFFF; box-shadow: 0 22px 36px -24px rgba(28, 26, 25, .7); }
+.mf__hero--tall { height: 229px; }
+.ms:has(.ms__body--feed) .ms__stat { background: linear-gradient(#F5F0E8 62%, rgba(245, 240, 232, 0)); }
+.mf__ph { position: absolute; inset: 0; }
+.mf__ph .crop { display: block; }
+.mf__hero::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(28, 26, 25, .05) 25%, rgba(28, 26, 25, .72)); }
+.mf__over { position: absolute; z-index: 1; left: 16px; right: 16px; bottom: 26px; display: grid; gap: 5px; justify-items: start; }
+.mf__over .be { color: #F1D9CF; }
+.mf__over > b { font-family: var(--serif); font-size: 30px; font-weight: 600; line-height: .95; }
+.mf__over > small { display: flex; align-items: center; gap: 5px; max-width: 250px; font-size: 11.5px; line-height: 1.4; color: rgba(255, 255, 255, .82); }
+.mf__over > small .ico { width: 13px; height: 13px; }
+.mf__glass { display: inline-flex; align-items: center; gap: 7px; height: 32px; margin-top: 6px; padding: 0 13px; border-radius: 16px; font-size: 11.5px; font-weight: 700; background: rgba(255, 255, 255, .2); -webkit-backdrop-filter: blur(14px) saturate(1.5); backdrop-filter: blur(14px) saturate(1.5); box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .42); }
+.mf__glass .ico { width: 14px; height: 14px; }
+.mf__glass--ic { position: absolute; right: 0; bottom: 0; width: 40px; height: 40px; padding: 0; justify-content: center; border-radius: 50%; }
+.mf__dots { position: absolute; z-index: 1; left: 0; right: 0; bottom: 10px; display: flex; justify-content: center; gap: 5px; }
+.mf__dots i { width: 5px; height: 5px; border-radius: 3px; background: rgba(255, 255, 255, .5); }
+.mf__dots .is-on { width: 16px; background: #FFFFFF; }
+.mf__units { position: absolute; z-index: 1; left: 12px; top: 12px; background: rgba(255, 255, 255, .7) !important; }
+.mf__leads { display: grid; grid-template-columns: 112px minmax(0, 1fr); align-items: center; gap: 16px; }
+.mf__ring { display: grid; place-content: center; justify-items: center; width: 112px; height: 112px; border-radius: 50%;
+  background: radial-gradient(closest-side, #FFFFFF 74%, transparent 75%), conic-gradient(var(--c) 0 34%, color-mix(in srgb, var(--c) 72%, #FFFFFF) 0 74%, color-mix(in srgb, var(--c) 40%, #FFFFFF) 0 100%); }
+.mf__ring b { font-family: var(--serif); font-size: 32px; font-weight: 600; line-height: .9; }
+.mf__ring small { font-size: 10px; font-weight: 700; color: var(--bx-mute); }
+.mf__kv { display: grid; gap: 8px; }
+.mf__kv > span { display: grid; grid-template-columns: 8px minmax(0, 1fr) auto 38px; align-items: center; gap: 8px; }
+.mf__kv i { width: 8px; height: 8px; border-radius: 50%; background: var(--c); opacity: var(--o); }
+.mf__kv small { font-size: 12px; color: var(--bx-mute); }
+.mf__kv b { font-family: var(--serif); font-size: 20px; font-weight: 600; line-height: 1; }
+.mf__kv em { font-style: normal; font-size: 11px; font-weight: 700; text-align: right; color: var(--ct); }
+.mf__card > .bl { justify-self: start; }
+.mf__money { position: relative; display: grid; gap: 6px; padding: 18px; border-radius: 24px; color: #FFFFFF; overflow: hidden;
+  background: radial-gradient(70% 90% at 100% 0%, color-mix(in srgb, var(--c) 70%, transparent), transparent 72%), radial-gradient(60% 80% at 0% 100%, rgba(147, 42, 35, .5), transparent 72%), #1C1A19; }
+.mf__money .be { color: #D9CFF0; }
+.mf__money > b { font-family: var(--serif); font-size: 42px; font-weight: 600; line-height: 1; }
+.mf__money > b small { margin-right: 6px; font-family: var(--sans); font-size: 12px; font-weight: 700; color: rgba(255, 255, 255, .6); }
+.mf__money > small { max-width: 240px; font-size: 12px; line-height: 1.45; color: rgba(255, 255, 255, .7); }
+.mf__money .bic { position: absolute; right: 16px; top: 16px; background: rgba(255, 255, 255, .12); color: #FFFFFF; box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .2); }
+.mf__avs { display: flex; }
+.mf__avs i { display: grid; place-items: center; width: 34px; height: 34px; margin-right: -8px; border-radius: 50%; font-style: normal; font-size: 10.5px; font-weight: 800; color: var(--ct); background: var(--t); box-shadow: 0 0 0 2.5px #FFFFFF; }
+.mf__avs i:nth-child(2n) { background: #F3E4E2; color: var(--ox); }
+.mf__avs .mf__more { background: #1C1A19; color: #FFFFFF; }
+.mf__pair { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.mf__pair span, .mf__tiles span { display: grid; gap: 4px; padding: 12px 14px; border-radius: 16px; background: rgba(28, 26, 25, .04); }
+.mf__pair small, .mf__tiles small { font-size: 11.5px; color: var(--bx-mute); }
+.mf__pair b, .mf__tiles b { font-family: var(--serif); font-size: 28px; font-weight: 600; line-height: 1; }
+.mf__li { display: flex; align-items: center; gap: 12px; height: 46px; padding: 0 2px; border-top: 1px solid rgba(28, 26, 25, .07); font-size: 13.5px; font-weight: 700; }
+.mf__li .bic { width: 32px; height: 32px; }
+.mf__tiles { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.mf__tiles span { position: relative; background: color-mix(in srgb, var(--c) calc(var(--o) * 100%), #FFFFFF); }
+.mf__tiles .ico { position: absolute; right: 12px; top: 12px; width: 16px; height: 16px; color: var(--ct); }
+.mf__search { display: flex; align-items: center; gap: 9px; height: 42px; padding: 0 14px; border-radius: 21px; font-size: 12.5px; color: var(--bx-mute); background: rgba(28, 26, 25, .04); box-shadow: inset 0 0 0 1px rgba(28, 26, 25, .06); }
+.mf__search .ico { width: 15px; height: 15px; }
+.mf__agent { display: grid; grid-template-columns: 38px minmax(0, 1fr); gap: 10px 12px; padding: 12px 0 2px; border-top: 1px solid rgba(28, 26, 25, .07); }
+.mf__agent .bav { width: 38px; height: 38px; background: var(--t); color: var(--ct); }
+.mf__agent > div { display: grid; gap: 4px; min-width: 0; }
+.mf__agent > div > b { font-size: 13.5px; font-weight: 700; }
+.mf__agent > div > span { display: flex; align-items: center; gap: 8px; }
+.mf__amt { font-family: var(--serif); font-size: 19px; font-weight: 600; }
+.mf__amt small { margin-right: 4px; font-family: var(--sans); font-size: 10px; color: var(--bx-mute); }
+.mf__agent .bchip { height: 20px; font-size: 9.5px; }
+.mf__trio { grid-column: 1 / -1; display: grid; grid-template-columns: repeat(3, 1fr); padding: 8px 0 4px; font-size: 13px; font-weight: 700; }
+.mf__trio span + span { padding-left: 10px; border-left: 1px solid rgba(28, 26, 25, .08); }
+.mf__trio small { display: block; font-size: 10.5px; font-weight: 500; color: var(--bx-mute); }
+.mf__appt { display: flex; align-items: center; gap: 12px; padding: 12px; }
+.mf__date { display: grid; place-content: center; justify-items: center; width: 52px; height: 56px; border-radius: 16px; background: var(--t); color: var(--ct); }
+.mf__date small { font-size: 9.5px; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; }
+.mf__date b { font-family: var(--serif); font-size: 26px; font-weight: 600; line-height: .9; }
+.mf__appt > div { display: grid; gap: 2px; flex: 1; min-width: 0; }
+.mf__appt > div > small { display: flex; align-items: center; gap: 5px; font-size: 11px; color: var(--bx-mute); }
+.mf__appt > div > small .ico { width: 12px; height: 12px; }
+.mf__appt > div > b { font-size: 15px; font-weight: 700; }
+.mf__sort { display: inline-flex; align-items: center; gap: 6px; height: 32px; padding: 0 12px; border-radius: 16px; font-size: 11.5px; font-weight: 700; background: rgba(255, 255, 255, .7); box-shadow: inset 0 0 0 1px rgba(28, 26, 25, .08); }
+.mf__sort .ico { width: 13px; height: 13px; }
+.mf__unit { display: grid; gap: 12px; padding: 10px 10px 12px; }
+.mf__ut { display: grid; grid-template-columns: 98px minmax(0, 1fr); align-items: center; gap: 12px; }
+.mf__ut .crop { border-radius: 14px; }
+.mf__ut > div { display: grid; gap: 8px; min-width: 0; }
+.mf__ut .ms__serif { font-size: 20px; }
+.mf__spec { display: flex; flex-wrap: wrap; gap: 4px 12px; font-size: 11.5px; font-weight: 600; color: var(--bx-mute); }
+.mf__spec span { display: inline-flex; align-items: center; gap: 4px; }
+.mf__spec .ico { width: 14px; height: 14px; color: var(--ct); }
+.mf__pr { display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 10px 12px; border-radius: 14px; background: rgba(28, 26, 25, .04); }
+
 /* ---------- 06 pillars ---------- */
 .temple { display: grid; }
 .lintel { display: flex; align-items: center; justify-content: space-between; height: 76px; padding: 0 29px; border-radius: 14px 14px 0 0; background: var(--red); color: #FFFFFF; }
@@ -3486,26 +3578,37 @@ body[data-tone="ox"] { background: var(--ox); }
   // docked above the tab bar); tuned per app: descriptor, accent, content and tabs. Content from today's screens.
   const msObs = new ResizeObserver((es) => es.forEach((e) => { if (e.contentRect.width) e.target.style.setProperty("--k", (e.contentRect.width / 390).toFixed(4)); }));
   const fitMs = (r) => $$(".mfit", r).forEach((f) => msObs.observe(f));
-  const mscreen = (k, label, body, [ci, ct], tabs, on) => { const a = APPS[k];
+  const mscreen = (k, label, body, [ci, ct], tabs, on, feed) => { const a = APPS[k];
     return `<div class="ms" style="${famB(a.f)}" role="img" aria-label="${esc(label)}"><div class="ms__bar"><span class="bn__brand">${sym()}<i class="wm"></i></span><span class="ms__desc">${a.d}</span><span class="ms__end">${bbell}${bav(a.av)}</span></div>`
       + `<div class="ms__stat"><b>9:41</b><i class="ms__island"></i><svg class="ms__sig" aria-hidden="true"><use href="#m-stat"/></svg></div>`
-      + `<div class="ms__body">${body}</div><span class="bb ms__cta">${ic(ci)}${ct}</span>`
+      + `<div class="ms__body${feed ? " ms__body--feed" : ""}"${feed ? ` tabindex="0" role="region" aria-label="${esc(a.n)} concept, scrollable"` : ""}>${body}</div><span class="bb ms__cta">${ic(ci)}${ct}</span>`
       + `<nav class="ms__tabs" style="--n:${tabs.length}">${tabs.map(([i, t], x) => `<span${x === on ? ' class="is-on"' : ""}>${ic(i)}${t}</span>`).join("")}</nav></div>`; };
-  const hello = (eyebrow, name) => `<div class="ms__hi">${eb(eyebrow)}<h4 class="bh ms__h">Good morning, <em>${name}.</em></h4></div>`;
+  const hello = (eyebrow, name, hi = "Good morning") => `<div class="ms__hi">${eb(eyebrow)}<h4 class="bh ms__h">${hi}, <em>${name}.</em></h4></div>`;
+  const fhead = (t, end = "") => `<div class="mf__head"><b>${t}</b>${end}</div>`;
+  const AGENTS = [["SA", "Steven Smith Alexander", "120,000", "100%"], ["JD", "John Doe", "92,000", "92%"], ["MJ", "Michael Johnson", "40,000", "92%"]];
   const MOBILE = {
-    partners: () => mscreen("partners", "Concept: the Bloom Partners app home, for brokers", hello("Your dashboard", "Rashid")
-      + `<div class="bcard ms__leads"><div class="ms__row"><b>Leads</b><span class="bchip bchip--line">Last 30 days</span></div>`
-      + `<div class="ms__stats">${[["450", "Created"], ["320", "In review", .4], ["120", "Closed", 1]].map(([n, t, o]) => `<span><b>${n}</b><small>${o ? `<i style="--o:${o}"></i>` : ""}${t}</small></span>`).join("")}</div>`
-      + `<span class="ms__meter"><i style="--v:26.7%"></i><i style="--v:71.1%;--o:.4"></i></span></div>`
-      + `<div class="bcard ms__money"><div>${eb("Commission · 30 days")}<b class="ms__amt"><small>AED</small>50,000</b><small>Credited from completed sales.</small></div><span class="bic">${ic("card")}</span></div>`
-      + `<div class="ms__sec">${eb("Marketing material")}${["Bloom Heights", "Bloom Living"].map((t) => `<div class="bcard ms__li"><span class="bic">${ic("doc")}</span>${t}<span class="ms__dl">${ic("download")}</span></div>`).join("")}</div>`,
-      ["users", "View leads"], [["home", "Home"], ["users", "Leads"], ["grid", "Inventory"], ["dots", "More"]], 0),
+    // Partners and Homes scroll: the whole of today's home screen, as one feed under the floating bar and tab dock
+    partners: () => mscreen("partners", "Concept: the Bloom Partners app home, for brokers", hello("Your dashboard", "Rashid", "Welcome back")
+      + `<div class="mf__hero"><span class="mf__ph">${crop("universal", 2000, 54, 640, 432, 215, .8194)}</span><div class="mf__over">${eb("Featured project")}<b>Bloom Living</b><small>A vibrant community of spacious homes, inspired by the Mediterranean.</small><span class="mf__glass">${ic("download")}Marketing material</span></div><span class="mf__dots"><i class="is-on"></i><i></i><i></i></span></div>`
+      + `<div class="bcard mf__card">${fhead("Leads performance", `<span class="bchip bchip--line">30 days</span>`)}<div class="mf__leads"><span class="mf__ring"><b>450</b><small>Created</small></span>`
+      + `<div class="mf__kv">${[["In review", "320", "71%"], ["Converted", "460", "75%"], ["Closed", "120", "30%"]].map(([t, n, p], i) => `<span style="--o:${[.45, .75, 1][i]}"><i></i><small>${t}</small><b>${n}</b><em>${p}</em></span>`).join("")}</div></div>`
+      + `<span class="bl">View sales order${ic("arrow-r")}</span></div>`
+      + `<div class="mf__money">${eb("Commission · 30 days")}<b><small>AED</small>50,000</b><small>Credited from completed sales. Close more deals to boost your earnings.</small><span class="bic">${ic("card")}</span></div>`
+      + `<div class="bcard mf__card">${fhead("Team members", `<span class="bchip">Total 50</span>`)}<div class="mf__team"><span class="mf__avs">${["JD", "MJ", "SL", "EW", "OF"].map((x) => `<i>${x}</i>`).join("")}<i class="mf__more">+42</i></span></div>`
+      + `<div class="mf__pair"><span><small>Active members</small><b>45</b></span><span><small>Suspended</small><b>05</b></span></div></div>`
+      + `<div class="bcard mf__card">${fhead("Marketing material", `<span class="bl">All${ic("arrow-r")}</span>`)}${["Bloom Heights", "Bloom Living", "Community 1", "Community 2", "Bloom Paradise"].map((t) => `<div class="mf__li"><span class="bic">${ic("doc")}</span>${t}<span class="ms__dl">${ic("download")}</span></div>`).join("")}</div>`
+      + `<div class="bcard mf__card">${fhead("Team performance", `<span class="bchip bchip--line">13–18 Aug 25</span>`)}<div class="mf__tiles">${[["Leads created", "63", "users"], ["In review", "30", "clock"], ["Converted", "22", "swap"], ["Closed", "04", "check"]].map(([t, n, i], x) => `<span style="--o:${[.12, .2, .28, .36][x]}">${ic(i)}<small>${t}</small><b>${n}</b></span>`).join("")}</div>`
+      + `<span class="mf__search">${ic("search")}Search by agent name</span>${AGENTS.map(([a, n, amt, r]) => `<div class="mf__agent"><i class="bav">${a}</i><div><b>${n}</b><span><b class="mf__amt"><small>AED</small>${amt}</b><span class="bchip bchip--ok">Commission earned</span></span></div>`
+        + `<span class="mf__trio"><span><small>Created</small>20</span><span><small>Converted</small>20</span><span><small>Rate</small>${r}</span></span></div>`).join("")}</div>`,
+      ["users", "View leads"], [["home", "Home"], ["users", "Leads"], ["grid", "Inventory"], ["dots", "More"]], 0, true),
     homes: () => mscreen("homes", "Concept: the home-buying app as Bloom Homes", hello("Al Metlaa · Al Ain", "Javed")
-      + `<div class="bcard ms__appt"><span class="bic">${ic("cal")}</span><div><b>Upcoming appointment</b><small>12:30 PM · ${ic("phone")}Ahmed Al Mansoori</small></div><span class="bchip">Tomorrow</span></div>`
-      + `<div class="bcard ms__proj"><span class="ms__photo">${crop("happ", 772, 80, 670, 608, 330, .5757)}<span class="bchip bchip--line">24 available units</span></span>`
-      + `<div class="ms__row"><div><b class="ms__serif">Al Metlaa</b><small>${ic("pin")}Al Ain, Abu Dhabi</small></div><span class="bn__icb">${ic("map")}</span></div></div>`
-      + `<div class="bcard ms__unit">${crop("happ", 772, 76, 1304, 188, 130, .45)}<div><b class="ms__serif">A3-607, <em>Al Metlaa</em></b><small>2 bed · 2 bath · 1,260 sq ft</small><b class="ms__price"><small>AED</small>1,145,000</b></div></div>`,
-      ["cal", "Book appointment"], [["home", "Home"], ["map", "Masterplan"], ["grid", "Units"], ["doc", "Documents"]], 0),
+      + `<div class="bcard mf__appt"><span class="mf__date"><small>Mar</small><b>12</b></span><div><small>Upcoming appointment</small><b>12:30 PM · 2026</b><small>${ic("phone")}Ahmed Al Mansoori</small></div><span class="bchip bchip--ox">Tomorrow</span></div>`
+      + `<div class="mf__hero mf__hero--tall"><span class="mf__ph">${crop("happ", 772, 42, 594, 690, 446, .5130)}</span><span class="bchip bchip--line mf__units">24 available units</span>`
+      + `<div class="mf__over"><b>Al Metlaa</b><small>${ic("pin")}Al Ain, Abu Dhabi</small><span class="mf__glass mf__glass--ic">${ic("map")}</span></div><span class="mf__dots"><i class="is-on"></i><i></i><i></i><i></i><i></i></span></div>`
+      + fhead("Available units", `<span class="mf__sort">${ic("swap")}Sort by</span>`)
+      + [["A1-401", 3, 3, "1,650,000", "Handover Q4 2026"], ["A3-607", 2, 2, "1,145,000", ""]].map(([u, bd, bt, p, h]) => `<div class="bcard mf__unit"><div class="mf__ut">${crop("happ", 772, 72, 1300, 196, 140, .5)}<div><b class="ms__serif">${u}, <em>Al Metlaa</em></b>`
+        + `<span class="mf__spec"><span>${ic("bed")}${bd} bed</span><span>${ic("wave")}${bt} bath</span><span>${ic("expand")}1,260 sq ft</span></span></div></div><div class="mf__pr"><b class="ms__price"><small>AED</small>${p}</b>${h ? `<span class="bchip bchip--line">${h}</span>` : `<span class="bl">Details${ic("arrow-r")}</span>`}</div></div>`).join(""),
+      ["cal", "Book appointment"], [["home", "Home"], ["map", "Masterplan"], ["grid", "Units"], ["doc", "Documents"]], 0, true),
     community: () => mscreen("community", "Concept: the Bloom Community App home, for residents", hello("Unit T14-C", "Hammad")
       + `<div class="ms__sec">${eb("Services")}<div class="ms__tiles">${[["out", "Move out / renew"], ["lock", "Access permit"], ["tool", "Service request"], ["cal", "Events"], ["news", "Newsletter"], ["clip", "Notices"]]
         .map(([i, t]) => `<span class="bcard ms__tile"><span class="bic">${ic(i)}</span>${t}</span>`).join("")}</div></div>`
