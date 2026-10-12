@@ -1155,7 +1155,8 @@ body[data-tone="ox"] { background: var(--ox); }
 .phone__pin--bottom { bottom: 0; }
 .phone__pin--pill { bottom: calc(var(--sw) * var(--b) / var(--iw)); border-radius: calc(var(--sw) * var(--h) / var(--iw) / 2) 0 0 calc(var(--sw) * var(--h) / var(--iw) / 2); box-shadow: 0 10px 18px -10px rgba(0, 0, 0, .6); }
 .mfit { position: absolute; inset: 0; }
-.mfit.is-swap .ms { animation: mfade .45s var(--ease) both; }
+.mfit.is-swap .ms { animation: mswap .4s var(--ease) both; }
+@keyframes mswap { from { opacity: .35; transform: scale(var(--k, 1)) translateY(8px); } }
 @keyframes mfade { from { opacity: 0; } }
 .mph { display: flex; flex-direction: column; align-items: center; gap: 12px; min-width: 0; }
 .mph figcaption { display: flex; align-items: baseline; gap: 8px; font-size: 14px; white-space: nowrap; }
@@ -1761,8 +1762,10 @@ body[data-tone="ox"] { background: var(--ox); }
 .ms .ms__tabs { left: 14px; right: 14px; bottom: 26px; height: 64px; padding: 6px; border-radius: 32px; align-items: stretch; }
 .ms .ms__tabs::after { bottom: -18px; }
 .ms__tabs span { border-radius: 26px; gap: 3px; transition: background-color var(--mo-comp), color var(--mo-comp); }
-.ms__tabs .is-on { background: color-mix(in srgb, var(--ox) 12%, #FFFFFF); box-shadow: inset 0 0 0 1px rgba(147, 42, 35, .14); }
-.ms__tabs .is-on::before { display: none; }
+.ms__tabs span { isolation: isolate; align-content: center; gap: 5px; font-size: 10px; letter-spacing: -.005em; white-space: nowrap; }
+.ms__tabs .is-on { font-weight: 700; }
+.ms__tabs .is-on::before { z-index: -1; top: 3px; width: 48px; height: 30px; margin-left: -24px; border-radius: 15px; background: color-mix(in srgb, var(--ox) 12%, #FFFFFF); box-shadow: inset 0 0 0 1px rgba(147, 42, 35, .14); }
+.ms__tabs .ico { width: 21px; height: 21px; }
 .ms__tabs .is-on .ico { animation: none; }
 .ms__tile { border-radius: 18px; }
 .ms__meter { height: 8px; border-radius: 4px; background: rgba(28, 26, 25, .08); }
@@ -3676,7 +3679,8 @@ body[data-tone="ox"] { background: var(--ox); }
     const playMBA = (entering) => {
       stopTour(); if (reduce) return;
       const f = $("#m-ba-fit"), path = $(".mba__path", mba), wait = entering ? 350 : 0;
-      [f, path].forEach((e) => { e.style.setProperty("--b", `${wait}ms`); restart(e, e === f ? "is-build" : "is-go"); });
+      f.classList.remove("is-build", "is-swap");
+      [f, path].forEach((e) => { e.style.setProperty("--b", `${wait}ms`); restart(e, e === f ? (entering ? "is-build" : "is-swap") : "is-go"); });
       const lis = $$("#m-ba-info li[data-p]");
       lis.forEach((li, i) => tour.push(setTimeout(() => { $("#m-ba-info .mchg").classList.add("is-walk"); point(li); }, wait + 1500 + i * 1300)));
       tour.push(setTimeout(unpoint, wait + 1500 + lis.length * 1300));
@@ -3710,7 +3714,7 @@ body[data-tone="ox"] { background: var(--ox); }
     $("#m-parts").innerHTML = PARTS.map(([p, , t, d, side, top], i) => `<li class="manat__part manat__part--${side} rv" style="--top:${top}px;--d:${i + 2}" tabindex="0" data-hl="${p}"><b><i>${pad(i + 1)}</i><span>${t}</span></b><small>${d}</small>${p === "acc" ? accs : ""}</li>`).join("");
     const list = $("#m-shell-apps"), lines = $$("#m-lines g");
     list.innerHTML = pickHtml("homes", (k) => APPS[k].d);
-    const setShell = (k, animate) => { const f = $("#m-shell-fit"); f.innerHTML = MOBILE[k](); if (animate && !reduce) { f.style.setProperty("--b", "0ms"); restart(f, "is-build"); } };
+    const setShell = (k, animate) => { const f = $("#m-shell-fit"); f.innerHTML = MOBILE[k](); f.classList.remove("is-build"); if (animate && !reduce) restart(f, "is-swap"); };
     setShell("homes", false);
     list.addEventListener("click", (e) => { const b = e.target.closest("[role=tab]"); if (!b) return; selectTab(list, b); setShell(b.dataset.k, true); });
     const hl = (part) => { if (part) shell.dataset.hl = part; else delete shell.dataset.hl; lines.forEach((g) => g.classList.toggle("is-on", g.dataset.p === part)); };
