@@ -923,7 +923,7 @@ body[data-tone="ox"] { background: var(--ox); }
 .bn__lang b { color: var(--bx-ink); text-decoration: underline; text-decoration-color: var(--ox); text-decoration-thickness: 2px; text-underline-offset: 5px; }
 .bn__icb { position: relative; display: grid; place-items: center; width: 32px; height: 32px; border-radius: 50%; box-shadow: inset 0 0 0 1px var(--pb-stone); color: var(--bx-ink); transition: background-color var(--mo-micro); }
 .bn__icb:hover { background: var(--pb-sand); }
-.bn__icb::after { content: ""; position: absolute; top: 7px; right: 8px; width: 6px; height: 6px; border-radius: 50%; background: var(--ox); box-shadow: 0 0 0 2px #FFFFFF; }
+:is(.bn__end, .ms__end) .bn__icb::after { content: ""; position: absolute; top: 7px; right: 8px; width: 6px; height: 6px; border-radius: 50%; background: var(--ox); box-shadow: 0 0 0 2px #FFFFFF; }
 .bn__icb .ico { width: 14px; height: 14px; }
 .bn__av { display: grid; place-items: center; width: 32px; height: 32px; border-radius: 50%; background: var(--t); color: var(--ct); font-size: 11px; font-weight: 800; }
 .bbody { position: absolute; left: 28px; right: 28px; top: 80px; bottom: 22px; }
@@ -1360,6 +1360,132 @@ body[data-tone="ox"] { background: var(--ox); }
 .mfam__band p em { color: #EBC2BB; }
 .mfam__band p small { display: block; margin-top: 12px; font-family: var(--sans); font-size: 13px; font-weight: 500; line-height: 1.45; letter-spacing: 0; color: rgba(255, 255, 255, .64); }
 
+/* ===== Product UI, glass layer (direction B: the five web screens, the three app screens and 07d's cards) =====
+   Each screen sits on warm paper lit by soft glows in its own accent and in oxblood; bars, panels and cards are frosted glass
+   with a hairline of light; actions are oxblood pills; the navigation floats. The glows drift slowly where a screen is shown
+   on its own (full-size view, 07e, 07g, 07h) and hold still in the mosaics. Reduced motion stops all of it. */
+:is(.scr--b, .ms) { --gl: rgba(255, 255, 255, .56); --gl-hi: rgba(255, 255, 255, .8); --gl-line: rgba(255, 255, 255, .78); --gl-blur: blur(18px) saturate(1.7);
+  --gl-lift: 0 18px 38px -22px rgba(28, 26, 25, .38); --gl-r: 22px; }
+:is(.scr--b, .ms) { background:
+  radial-gradient(36% 50% at 10% 14%, color-mix(in srgb, var(--c) 46%, transparent), transparent 72%),
+  radial-gradient(36% 52% at 94% 8%, color-mix(in srgb, var(--ox) 28%, transparent), transparent 72%),
+  radial-gradient(46% 58% at 66% 108%, color-mix(in srgb, #D8C2A2 62%, transparent), transparent 72%),
+  radial-gradient(32% 42% at 42% 58%, color-mix(in srgb, var(--c) 20%, transparent), transparent 70%),
+  #F7F3EC;
+  background-size: 140% 140%, 140% 140%, 140% 140%, 120% 120%, auto; background-position: 0% 0%, 100% 0%, 50% 100%, 50% 50%, 0 0; }
+@keyframes glDrift { to { background-position: 22% 14%, 78% 18%, 36% 78%, 30% 70%, 0 0; } }
+:is(.zoom, .ba, .mba, .manat) :is(.scr--b, .ms) { animation: glDrift 16s ease-in-out infinite alternate; }
+.is-current .ba .scr--b, .zoom .scr--b { animation: glDrift 16s ease-in-out infinite alternate; }
+/* reveals arrive out of a soft blur */
+@keyframes pbRise { from { opacity: 0; transform: translateY(16px); filter: blur(6px); } }
+@keyframes glDrop { from { opacity: 0; transform: translateY(-14px) scale(.97); filter: blur(6px); } }
+/* the glass itself */
+:is(.scr--b .bn, .scr--b .glc, .xm__panel, .xm__zoom, .xu__idx, .xh__side, .xp__type, .xp__li, .xv__tasks, .xv__moments > span, .ms__bar, .ms .bcard, .ms__tabs) {
+  background: var(--gl); -webkit-backdrop-filter: var(--gl-blur); backdrop-filter: var(--gl-blur);
+  box-shadow: inset 0 0 0 1px var(--gl-line), inset 0 1px 0 rgba(255, 255, 255, .9), var(--gl-lift); }
+
+/* actions: oxblood pills with a sheen; secondary actions are glass */
+:is(.scr--b, .ms, .bx-part) .bb { border-radius: 999px; background: linear-gradient(180deg, #A5362E 0%, #8C2721 100%); box-shadow: inset 0 1px 0 rgba(255, 255, 255, .28), 0 12px 22px -12px rgba(147, 42, 35, .85); }
+:is(.scr--b, .ms, .bx-part) .bb:hover { background: linear-gradient(180deg, #9A2F28 0%, #7A211B 100%); transform: translateY(-1px); box-shadow: inset 0 1px 0 rgba(255, 255, 255, .28), 0 18px 28px -12px rgba(147, 42, 35, .9); }
+:is(.scr--b, .ms, .bx-part) .bb:active { transform: translateY(0) scale(.96); }
+:is(.scr--b, .ms, .bx-part) .bb--o { background: rgba(255, 255, 255, .62); color: var(--bx-ink); -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px); box-shadow: inset 0 0 0 1px rgba(28, 26, 25, .13), 0 8px 18px -14px rgba(28, 26, 25, .4); }
+:is(.scr--b, .ms, .bx-part) .bb--o:hover { background: rgba(255, 255, 255, .9); box-shadow: inset 0 0 0 1px rgba(28, 26, 25, .3), 0 12px 22px -14px rgba(28, 26, 25, .45); }
+:is(.scr--b, .ms) .bchip { -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px); box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .6); }
+:is(.scr--b, .ms) .bchip--line { background: rgba(255, 255, 255, .6); box-shadow: inset 0 0 0 1px rgba(28, 26, 25, .1); }
+:is(.scr--b, .ms) .bic { box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .7); }
+
+/* web navigation: a floating glass pill; a white bubble springs between the links */
+.scr--b .bn { left: 14px; right: 14px; top: 12px; height: 54px; gap: 12px; padding: 0 9px 0 18px; border-radius: 27px; }
+:is(.is-current, .zoom) .scr--b .bn { animation: glDrop .6s var(--mo-ease) both; animation-delay: calc(var(--d, 0) * 90ms); }
+.scr--b .bn__desc { border-left-color: rgba(28, 26, 25, .12); }
+.scr--b .bn__links { position: relative; gap: 2px; margin-left: 8px; padding: 4px; border-radius: 20px; background: rgba(28, 26, 25, .045); box-shadow: inset 0 1px 2px rgba(28, 26, 25, .06); }
+.scr--b .bn__links > :not(.bn__pill) { position: relative; z-index: 1; display: grid; place-items: center; height: 32px; padding: 0 14px; border-radius: 16px; }
+.scr--b .bn__links b::after { display: none; }
+.scr--b .bn__links:not(.is-ready) b { background: #FFFFFF; box-shadow: 0 4px 12px -5px rgba(28, 26, 25, .3); }
+.bn__pill { position: absolute; z-index: 0; top: 4px; left: var(--x, 4px); width: var(--w, 0px); height: 32px; border-radius: 16px; background: #FFFFFF; box-shadow: 0 4px 12px -5px rgba(28, 26, 25, .32), inset 0 0 0 1px rgba(255, 255, 255, .9); transition: left .45s var(--mo-spring), width .45s var(--mo-spring); }
+.bn__pill::after { content: ""; position: absolute; left: 50%; bottom: 3px; width: 12px; height: 2px; margin-left: -6px; border-radius: 1px; background: var(--ox); }
+.scr--b .bn__lang { display: flex; align-items: center; gap: 4px; white-space: nowrap; height: 34px; padding: 0 13px; border-radius: 17px; background: rgba(255, 255, 255, .7); box-shadow: inset 0 0 0 1px rgba(28, 26, 25, .08); }
+.scr--b .bn__lang b { text-underline-offset: 4px; }
+:is(.scr--b, .ms) .bn__icb { width: 36px; height: 36px; background: rgba(255, 255, 255, .72); box-shadow: inset 0 0 0 1px rgba(28, 26, 25, .08), 0 6px 14px -10px rgba(28, 26, 25, .5); transition: transform var(--mo-comp) var(--mo-spring), background-color var(--mo-micro); }
+:is(.scr--b, .ms) .bn__icb:hover { transform: rotate(-12deg) scale(1.06); background: #FFFFFF; }
+:is(.scr--b, .ms) .bn__icb::after { top: 8px; right: 9px; }
+:is(.is-current, .zoom, .mba, .manat) :is(.scr--b, .ms) .bn__icb::after { animation: pbPop .5s var(--mo-spring) both; animation-delay: calc(var(--in, 0s) + .7s); }
+:is(.scr--b, .ms) .bn__av { width: 36px; height: 36px; box-shadow: 0 0 0 2px #FFFFFF, 0 0 0 3.5px color-mix(in srgb, var(--ct) 55%, transparent); }
+
+/* Universal: the index becomes a glass panel beside the photograph; the caption is glass on the photo */
+.xu__idx { align-self: start; margin-top: 2px; padding: 14px 16px 6px; border-radius: var(--gl-r); }
+.xu__idx li { height: 44px; border-top-color: rgba(28, 26, 25, .08); }
+.xu__idx li::before { left: -16px; }
+.xu__stage { border-radius: 24px 80px 24px 24px; box-shadow: 0 28px 50px -30px rgba(28, 26, 25, .6); }
+.xu__cap span { left: 14px; border-radius: 16px; background: rgba(255, 255, 255, .6); -webkit-backdrop-filter: blur(16px) saturate(1.6); backdrop-filter: blur(16px) saturate(1.6); box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .7); }
+.xu__cap { left: 0; right: 14px; bottom: 16px; }
+
+/* Master plan: the nav floats over the map too; the panel and controls are glass */
+.xm__panel { top: 80px; border-radius: 26px 26px 26px 44px; }
+.xm__f li { border-top-color: rgba(28, 26, 25, .08); border-radius: 8px; }
+.xm__f li:hover { background: rgba(255, 255, 255, .55); }
+.xm__bar { background: rgba(28, 26, 25, .07); }
+.xm__zoom { border-radius: 18px; overflow: hidden; }
+.xm__zoom i + i { border-top-color: rgba(28, 26, 25, .08); }
+.xm__tag { top: 82px; height: 32px; padding: 0 14px; border-radius: 16px; background: rgba(28, 26, 25, .5); -webkit-backdrop-filter: blur(14px) saturate(1.4); backdrop-filter: blur(14px) saturate(1.4); box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .25); }
+.xm__tag i { box-shadow: 0 0 0 3px rgba(232, 217, 196, .3); }
+
+/* Home-buying */
+.xh__photo { border-radius: 22px 22px 22px 56px; box-shadow: 0 26px 46px -30px rgba(28, 26, 25, .6); }
+.xh__side { border-radius: 24px; }
+.xh__step { border-bottom-color: rgba(28, 26, 25, .08); }
+.xh__step li::before { height: 6px; border-radius: 3px; background: rgba(28, 26, 25, .1); }
+.xh__loan { border-radius: 14px; background: color-mix(in srgb, var(--t) 70%, transparent); box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .7); }
+.xh__specs span { border-left-color: rgba(28, 26, 25, .12); }
+
+/* Partners: three glass cards that lift and tint; the other requests as glass rows */
+.xp__types { gap: 12px; border: 0; }
+.xp__type { border-radius: var(--gl-r); transition: transform var(--mo-comp) var(--mo-spring), box-shadow var(--mo-comp); }
+.xp__type + .xp__type { border-left: 0; }
+.xp__type::before { border-radius: inherit; opacity: .8; }
+.xp__type::after { inset: 0; top: 0; height: auto; border-radius: inherit; background: none; box-shadow: inset 0 0 0 2px var(--ox); transform: none; opacity: 0; transition: opacity var(--mo-comp); }
+.xp__type.is-on::after { opacity: 1; }
+.xp__type:hover { transform: translateY(-4px); box-shadow: inset 0 0 0 1px var(--gl-line), 0 26px 40px -22px rgba(28, 26, 25, .45); }
+.xp__list { gap: 8px 12px; column-gap: 12px; }
+.xp__li { height: 44px; padding: 0 14px 0 7px; border-bottom: 0; border-radius: 14px; }
+.xp__li:hover { padding-left: 10px; }
+
+/* Multiverse */
+.xv__tasks { border-radius: 24px; }
+.xv__head, .xv__task { border-bottom-color: rgba(28, 26, 25, .08); }
+.xv__moments { gap: 10px; padding: 0; border: 0; }
+.xv__moments > span { flex: 1; padding: 8px 10px; border-radius: 16px; }
+.xv__bar { height: 10px; }
+.xv__bar i { border-radius: 5px; }
+
+/* 07d's product cards: pill actions */
+.bx-part .bb--s, .bx-acts .bb { border-radius: 999px; }
+
+/* app screens: a floating glass app bar, glass cards, an oxblood pill action and a floating glass tab dock */
+.ms .ms__bar { left: 14px; right: 14px; top: 54px; height: 54px; padding: 0 9px 0 16px; border-radius: 27px; }
+.ms__desc { border-left-color: rgba(28, 26, 25, .12); }
+.ms__body { top: 120px; }
+.ms .bcard { border-radius: 20px; }
+.ms .ms__cta { left: 22px; right: 22px; bottom: 102px; height: 50px; }
+.ms .ms__tabs { left: 14px; right: 14px; bottom: 26px; height: 64px; padding: 6px; border-radius: 32px; align-items: stretch; }
+.ms .ms__tabs::after { bottom: -18px; }
+.ms__tabs span { border-radius: 26px; gap: 3px; transition: background-color var(--mo-comp), color var(--mo-comp); }
+.ms__tabs .is-on { background: color-mix(in srgb, var(--ox) 12%, #FFFFFF); box-shadow: inset 0 0 0 1px rgba(147, 42, 35, .14); }
+.ms__tabs .is-on::before { display: none; }
+.ms__tabs .is-on .ico { animation: none; }
+.ms__tile { border-radius: 18px; }
+.ms__meter { height: 8px; border-radius: 4px; background: rgba(28, 26, 25, .08); }
+
+/* app screens: deeper glows so the glass reads on a phone */
+.ms { background:
+  radial-gradient(60% 34% at 0% 18%, color-mix(in srgb, var(--c) 52%, transparent), transparent 72%),
+  radial-gradient(56% 30% at 100% 46%, color-mix(in srgb, var(--ox) 30%, transparent), transparent 72%),
+  radial-gradient(70% 30% at 30% 92%, color-mix(in srgb, #D8C2A2 70%, transparent), transparent 72%),
+  #F5F0E8; background-size: 130% 130%, 130% 130%, 130% 130%, auto; }
+.ms .bcard, .ms__tabs, .ms .ms__bar { --gl: rgba(255, 255, 255, .5); }
+@keyframes glDriftM { to { background-position: 14% 8%, 86% 30%, 40% 70%, 0 0; } }
+:is(.mba, .manat) .ms { animation: glDriftM 14s ease-in-out infinite alternate; }
+
 /* ---------- 06 pillars ---------- */
 .temple { display: grid; }
 .lintel { display: flex; align-items: center; justify-content: space-between; height: 76px; padding: 0 29px; border-radius: 14px 14px 0 0; background: var(--red); color: #FFFFFF; }
@@ -1407,11 +1533,11 @@ body[data-tone="ox"] { background: var(--ox); }
 
 /* ---------- 11 sources ---------- */
 .appx { display: grid; grid-template-columns: 437px 1fr; column-gap: 64px; height: 100%; }
-.keys { display: grid; gap: 16px; align-content: start; }
-.keys li { display: grid; gap: 6px; }
+.keys { display: grid; gap: 10px; align-content: start; }
+.keys li { display: grid; grid-template-columns: 128px minmax(0, 1fr); column-gap: 12px; align-items: baseline; }
 .keys .cat { color: var(--ink); }
-.keys p { font-size: 15.5px; line-height: 1.45; color: var(--ink-2); }
-.notes { display: grid; gap: 8px; margin-top: 22px; padding-top: 16px; border-top: 1px solid var(--rule); font-size: 14px; line-height: 1.5; color: var(--ink-2); }
+.keys p { font-size: 14px; line-height: 1.45; color: var(--ink-2); }
+.notes { display: grid; gap: 6px; margin-top: 14px; padding-top: 12px; border-top: 1px solid var(--rule); font-size: 13px; line-height: 1.42; color: var(--ink-2); }
 .notes b { color: var(--ink); }
 .slist { display: grid; grid-template-columns: 1fr 1fr; grid-auto-flow: column; grid-template-rows: repeat(var(--rows, 8), auto); column-gap: 40px; align-content: start; }
 .slist li { display: grid; grid-template-columns: 30px 1fr; padding: 6px 0; border-top: 1px solid var(--rule); }
@@ -2315,10 +2441,10 @@ body[data-tone="ox"] { background: var(--ox); }
           <p data-set="web"><b>Left out on purpose.</b> Bloom's own pages publish different school counts (15 and 20), student totals (19,000+ and 22,000+) and hotel room totals. None are shown until Bloom confirms one figure.</p>
           <p data-set="web" data-dir="a"><b>Logos.</b> The Abu Dhabi EDITION and Marriott marks come from the Phase 1 material. The Bloom wordmark on 07a to 07f is taken from the Bloom Universal screen. Other brands are plain text until official files are supplied.</p>
           <p data-set="web" data-dir="a"><b>Concepts.</b> 07a to 07f are design concepts for discussion, written with content from today's screens. Descriptor names, accents and the type pairing are proposals, not Bloom decisions.</p>
-          <p data-set="web" data-dir="b"><b>Logos.</b> The Abu Dhabi EDITION and Marriott marks come from the Phase 1 material, the Bloom wordmark from the Bloom Universal screen. The Bloom symbol on 07a to 07f is a new proposal traced from the wordmark's o. Other brands are plain text until official files are supplied.</p>
-          <p data-set="web" data-dir="b"><b>Concepts.</b> 07a to 07f are concepts for discussion, written with content from today's screens. Colours are sampled from those screens and the Bloom Universal photography (median of a 13 × 13 pixel patch; most frequent ink colour for text). The symbol, signatures, colour roles, names and type pairing are proposals, not Bloom decisions.</p>
-          <p data-set="mobile"><b>Mobile screens.</b> 05e to 05g show the home screens of Bloom Partners, the home-buying app and the Bloom Community App as the Bloom team supplied them; the Community screen is straightened out of its promotional device frame. Colours are the median of each element's dominant pixels.</p>
-          <p data-set="mobile"><b>Mobile concepts.</b> 07g to 07i apply direction B to the three apps, written with content from those screens and the Bloom Community App page. The Bloom symbol is a proposal traced from the wordmark's o; the app shell, names, accents and type pairing are proposals, not Bloom decisions.</p>
+          <p data-set="web" data-dir="b"><b>Logos.</b> The Abu Dhabi EDITION and Marriott marks come from the Phase 1 material, the Bloom wordmark from the Bloom Universal screen; the Bloom symbol is a new proposal traced from its o. Other brands are plain text until official files are supplied.</p>
+          <p data-set="web" data-dir="b"><b>Concepts.</b> 07a to 07f are concepts for discussion, written with content from today's screens. Colours are sampled from those screens and the Bloom Universal photography (median of a 13 × 13 pixel patch; most frequent ink colour for text). Symbol, colour roles, names and type pairing are proposals, not Bloom decisions.</p>
+          <p data-set="mobile"><b>Mobile screens.</b> 05e to 05g show the Bloom Partners, home-buying and Bloom Community App home screens as supplied; the Community screen is straightened out of its device frame. Colours are the median of each element's dominant pixels.</p>
+          <p data-set="mobile"><b>Mobile concepts.</b> 07g to 07i apply direction B to the three apps, with content from those screens and the Bloom Community App page. The app shell, names and accents are proposals, not Bloom decisions.</p>
         </div>
       </div>
       <ol class="slist rv" style="--d:2" id="src-list"></ol>
@@ -2557,7 +2683,7 @@ body[data-tone="ox"] { background: var(--ox); }
     if (!mock) { z.style.setProperty("--img", img); z.style.setProperty("--ar", ar); z.setAttribute("role", "img"); z.setAttribute("aria-label", `${t}, full screen`); }
     zoomFrom = from; zoom.hidden = false; sc.scrollTop = 0;
     if (mock) { zm.style.setProperty("--zw", `${Math.floor(Math.min(sc.clientWidth - 32, (sc.clientHeight - 32) * 874 / 454))}px`); fitAll(zm); }
-    if (mock && b) { armB(zm); countUp(zm); }
+    if (mock && b) { armB(zm); countUp(zm); pbNav(zm); }
     $("#zoom-x").focus({ preventScroll: true });
   }
   function closeZoom() { if (zoom.hidden) return; zoom.hidden = true; if (zoomFrom) zoomFrom.focus({ preventScroll: true }); }
@@ -2823,7 +2949,7 @@ body[data-tone="ox"] { background: var(--ox); }
   }
 
   /* concept screens, direction B. Content is taken from today's screens (05a) or Bloom's published features. */
-  const bnav = (d, links, end) => `<div class="bn"><span class="bn__brand">${sym()}<i class="wm"></i></span><span class="bn__desc">${d}</span><span class="bn__links">${links.map((l, i) => i ? `<span>${l}</span>` : `<b>${l}</b>`).join("")}</span><span class="bn__end">${end}</span></div>`;
+  const bnav = (d, links, end) => `<div class="bn"><span class="bn__brand">${sym()}<i class="wm"></i></span><span class="bn__desc">${d}</span><span class="bn__links"><i class="bn__pill" aria-hidden="true"></i>${links.map((l, i) => i ? `<span>${l}</span>` : `<b>${l}</b>`).join("")}</span><span class="bn__end">${end}</span></div>`;
   const blang = `<span class="bn__lang"><b>EN</b> · عربي</span>`, bbell = `<span class="bn__icb">${ic("bell")}</span>`;
   const bav = (t) => `<span class="bn__av">${t}</span>`;
   const scrB = (f, label, inner) => `<div class="scr scr--b" style="${famB(f)}" role="img" aria-label="${esc(label)}">${inner}</div>`;
@@ -2899,6 +3025,13 @@ body[data-tone="ox"] { background: var(--ox); }
     if (el && el.closest(PB_LIVE) && !el.matches("button")) { e.preventDefault(); pbAct(el); }
   });
   document.addEventListener("pointerover", (e) => { const el = e.target.closest('[data-act="biz"]'); if (el && !el.closest(".bx-frame")) pbAct(el); });
+  // Web navigation: a white bubble sits under the current page and springs to whichever link the pointer is on.
+  const pbNav = (root) => $$(".scr--b .bn__links", root).forEach((l) => {
+    const cur = $("b", l); if (!cur) return;
+    const to = (el) => { l.style.setProperty("--x", `${el.offsetLeft}px`); l.style.setProperty("--w", `${el.offsetWidth}px`); };
+    to(cur); l.classList.add("is-ready");
+    if (!l.dataset.nav) { l.dataset.nav = "1"; l.addEventListener("pointerover", (e) => { const el = e.target.closest(".bn__links > :not(.bn__pill)"); if (el) to(el); }); l.addEventListener("pointerleave", () => to(cur)); }
+  });
   // In the full-size view a screen becomes a live group: its controls take focus and announce their state.
   const armB = (root) => {
     $$(".scr--b", root).forEach((s) => s.setAttribute("role", "group"));
@@ -2919,7 +3052,7 @@ body[data-tone="ox"] { background: var(--ox); }
     const renderBB = (k, animate) => {
       const p = PRODUCTS[k], [chg, keep] = BB[k], before = $("#bb-before");
       before.style.setProperty("--img", `var(--shot-${p.shot})`); before.setAttribute("aria-label", `${p.n} today`);
-      $("#bb-after").innerHTML = `<div class="fit">${MOCKS_B[k]()}</div>`; fitAll($("#bb-after")); countUp($("#bb-after"));
+      $("#bb-after").innerHTML = `<div class="fit">${MOCKS_B[k]()}</div>`; fitAll($("#bb-after")); countUp($("#bb-after")); pbNav($("#bb-after"));
       const info = $("#bb-info");
       info.innerHTML = `<h3>${esc(p.n)}<small>${esc(p.who)}${p.n === `Bloom ${p.d}` ? "" : ` · as Bloom ${esc(p.d)}`}</small></h3><div><span class="label">What changes</span><ul>${chg.map((t) => `<li>${esc(t)}</li>`).join("")}</ul></div>`
         + `<div class="keep"><span class="label">What stays</span><ul>${keep.map((t) => `<li>${esc(t)}</li>`).join("")}</ul></div><p class="bainfo__note">Drag the handle, or use the arrow keys on it. Today's screen as supplied by the Bloom team.${src(16)}</p>`;
@@ -3019,7 +3152,7 @@ body[data-tone="ox"] { background: var(--ox); }
   const MBA = {
     partners: [["The Bloom symbol and wordmark sign the app bar", "One serif greeting replaces the slate sans and badge", "Dusk replaces the maroon chart and teal figures", "View leads takes oxblood, docked above the tabs"], ["Leads, commission and marketing material", "Home, Leads, Inventory and More"]],
     homes: [["The symbol and a Homes descriptor join the wordmark", "Oxblood replaces the floating black pill", "A tab bar replaces the corner buttons", "Sandstone replaces the pink, orange and blue accents"], ["The appointment, Al Metlaa and its units", "Book appointment, always in reach"]],
-    community: [["The symbol and wordmark replace the spelt-out name", "A white app bar replaces the full red band", "Garden marks the services; oxblood the main action", "The raised BCM button becomes a Community tab"], ["The six services and the unit", "Home, Pending, Favourites and Profile"]]
+    community: [["The symbol and wordmark replace the spelt-out name", "A floating glass app bar replaces the full red band", "Garden marks the services; oxblood the main action", "The raised BCM button becomes a Community tab"], ["The six services and the unit", "Home, Pending, Favourites and Profile"]]
   };
   const mbaTabs = $("#m-ba-tabs");
   if (mbaTabs) {
@@ -3059,12 +3192,12 @@ body[data-tone="ox"] { background: var(--ox); }
   }
 
   /* 07h: the shell's anatomy on oxblood. [part, y on the 390 x 844 concept, title, note, side, top of the note on the slide] */
-  const PARTS = [["bar", 76, "App bar", "The symbol and wordmark sign every app. A serif descriptor names it.", "l", 0],
+  const PARTS = [["bar", 80, "App bar", "A floating glass bar, signed by the symbol and wordmark. A serif descriptor names the app.", "l", 0],
     ["greet", 150, "Greeting", "One line in the Bloom serif: good morning, and a first name.", "l", 116],
     ["acc", 230, "Accent", "One colour per app, sampled from Bloom, for icons, chips and figures.", "l", 232],
-    ["card", 380, "Cards", "White, with 8 px corners and one line colour. The app's content lives in them.", "r", 150],
-    ["cta", 724, "Main action", "Oxblood, one per screen, docked above the tabs.", "r", 322],
-    ["tabs", 800, "Tab bar", "Four or five tabs. Oxblood marks where you are.", "r", 446]];
+    ["card", 380, "Cards", "Frosted glass with 20 px corners and a hairline of light. The app's content lives in them.", "r", 150],
+    ["cta", 717, "Main action", "An oxblood pill, one per screen, floating above the tabs.", "r", 322],
+    ["tabs", 786, "Tab bar", "A floating glass dock of four or five tabs. Oxblood marks where you are.", "r", 446]];
   // The phone (.manat__ph) spans x 562-814 from y 8; its screen starts 7 px in and draws the concept at 238 / 390.
   // Notes end at x 470 on the left and start at x 906 on the right.
   const PH = { l: 562, r: 814, y: 15, k: 238 / 390 }, NOTE = { l: 470, r: 906 };
@@ -3099,6 +3232,7 @@ body[data-tone="ox"] { background: var(--ox); }
       + `<p>One wordmark, one symbol, one action colour. <em>A view for every app.</em><small>Concepts for discussion, written with content from today's screens and the Bloom Community App page.${src(9, 17)}</small></p></div>`;
   }
   fitMs(document);
+  pbNav(document); document.fonts?.ready.then(() => pbNav(document));
 
   /* ================= 05 PROPOSAL ================= */
   $("#pl-products").innerHTML = [
