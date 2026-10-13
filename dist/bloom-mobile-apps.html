@@ -711,6 +711,8 @@ body[data-tone="ox"] { background: radial-gradient(110% 90% at 100% 0%, #A9372E 
 .bx-guide { fill: none; stroke: rgba(255, 255, 255, .34); stroke-width: .32; vector-effect: non-scaling-stroke; }
 .bx-guide--dash { stroke-dasharray: 3 4; }
 .bx-dot { fill: #FFFFFF; }
+.bx-hub { fill: #FFFFFF; }
+.bx-dot--c { fill: var(--ox); }
 .bx-lab text { fill: #FFFFFF; font: 600 7.2px var(--sans); letter-spacing: .01em; }
 .bx-lab text.bx-lab__c { font-size: 6.2px; font-weight: 800; letter-spacing: .14em; text-transform: uppercase; fill: rgba(255, 255, 255, .78); }
 /* 07b lockups */
@@ -3497,11 +3499,11 @@ body[data-tone="ox"] { background: radial-gradient(110% 90% at 100% 0%, #A9372E 
     const NAMES = ["Properties", "Education", "Hospitality", "Facilities", "Landscape"];
     const at = (k, r) => { const a = k * 72 * Math.PI / 180; return [Math.sin(a) * r, -Math.cos(a) * r]; };
     const guides = `<circle class="bx-guide bx-guide--dash" r="50"/><circle class="bx-guide" r="100"/>`
-      + NAMES.map((n, k) => { const [x, y] = at(k, 108), [ox, oy] = at(k, 50); return `<line class="bx-guide bx-guide--dash" x2="${x.toFixed(1)}" y2="${y.toFixed(1)}"/><circle class="bx-dot" cx="${ox.toFixed(1)}" cy="${oy.toFixed(1)}" r="1.5"/>`; }).join("")
-      + `<line class="bx-guide bx-guide--dash" y1="3" y2="112"/>`;
+      + NAMES.map((n, k) => { const [x, y] = at(k, 108), [ox, oy] = at(k, 50), [ix, iy] = at(k, 100); return `<line class="bx-guide bx-guide--dash" x1="${ix.toFixed(1)}" y1="${iy.toFixed(1)}" x2="${x.toFixed(1)}" y2="${y.toFixed(1)}"/><circle class="bx-dot" cx="${ox.toFixed(1)}" cy="${oy.toFixed(1)}" r="1.5"/>`; }).join("")
+      + `<line class="bx-guide bx-guide--dash" y1="98" y2="112"/>`;
     const labels = NAMES.map((n, k) => { const [x, y] = at(k, 116), anchor = x > 20 ? "start" : x < -20 ? "end" : "middle"; return `<g class="bx-lab" style="--k:${k}"><text x="${x.toFixed(1)}" y="${(y + (k ? (y > 0 ? 8 : 3) : -2)).toFixed(1)}" text-anchor="${anchor}">${n}</text></g>`; }).join("")
       + `<g class="bx-lab" style="--k:5"><text class="bx-lab__c" y="124" text-anchor="middle">The centre · the person</text></g>`;
-    bloomB.innerHTML = `<svg viewBox="-165 -134 330 272" aria-hidden="true"><g>${guides}</g>${[0, 1, 2, 3, 4].map((k) => `<use class="bx-petal" href="#b-p${k}"/>`).join("")}<circle class="bx-dot" r="2.2"/>${labels}</svg>`;
+    bloomB.innerHTML = `<svg viewBox="-165 -134 330 272" aria-hidden="true"><g>${guides}</g>${[0, 1, 2, 3, 4].map((k) => `<use class="bx-petal" href="#b-p${k}"/>`).join("")}<circle class="bx-hub" r="7"/><circle class="bx-dot bx-dot--c" r="2.2"/>${labels}</svg>`;
   }
 
   /* 07b: lockups and icons */
